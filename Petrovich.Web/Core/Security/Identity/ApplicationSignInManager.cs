@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Petrovich.Web.Security.DbContext.Entities;
+using Petrovich.Web.Core.Security.DbContext.Entities;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Petrovich.Web.Security.Identity
+namespace Petrovich.Web.Core.Security.Identity
 {
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {

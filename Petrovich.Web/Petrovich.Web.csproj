@@ -166,26 +166,28 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManageUsersController.cs" />
     <Compile Include="Core\Attributes\LayoutInjecterAttribute.cs" />
     <Compile Include="Core\Controllers\BaseController.cs" />
+    <Compile Include="Core\Controllers\IdentityController.cs" />
     <Compile Include="Core\Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\Attributes\ClaimsAuthorizeAttribute.cs" />
-    <Compile Include="Security\AuthenticationConfiguration.cs" />
-    <Compile Include="Security\DbContext\AuthenticationDbContext.cs" />
-    <Compile Include="Security\DbContext\Entities\ApplicationUser.cs" />
-    <Compile Include="Security\Defaults.cs" />
-    <Compile Include="Security\Identity\ApplicationSignInManager.cs" />
-    <Compile Include="Security\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Core\Security\Attributes\ClaimsAuthorizeAttribute.cs" />
+    <Compile Include="Core\Security\AuthenticationConfiguration.cs" />
+    <Compile Include="Core\Security\DbContext\AuthenticationDbContext.cs" />
+    <Compile Include="Core\Security\DbContext\Entities\ApplicationUser.cs" />
+    <Compile Include="Core\Security\Defaults.cs" />
+    <Compile Include="Core\Security\Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Core\Security\Identity\ApplicationUserManager.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,31 +232,14 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ManageUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +285,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

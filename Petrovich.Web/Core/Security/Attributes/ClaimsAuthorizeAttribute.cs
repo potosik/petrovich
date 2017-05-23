@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Petrovich.Web.Security.Attributes
+namespace Petrovich.Web.Core.Security.Attributes
 {
     public class ClaimsAuthorizeAttribute : AuthorizeAttribute
     {

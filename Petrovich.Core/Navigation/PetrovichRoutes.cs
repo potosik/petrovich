@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Petrovich.Core.Navigation
+﻿namespace Petrovich.Core.Navigation
 {
     public static class PetrovichRoutes
     {
@@ -16,6 +10,8 @@ namespace Petrovich.Core.Navigation
 
             public static Endpoint Login = new Endpoint(Controller, "Login");
             public static Endpoint Logout = new Endpoint(Controller, "Logout");
+            public static Endpoint ChangePassword = new Endpoint(Controller, "ChangePassword");
+            public static Endpoint ChangePasswordSuccess = new Endpoint(Controller, "ChangePasswordSuccess");
         }
 
         public static class Dashboard

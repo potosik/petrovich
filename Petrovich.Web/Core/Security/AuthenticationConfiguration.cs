@@ -6,13 +6,13 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Petrovich.Core;
 using Petrovich.Core.Utils;
-using Petrovich.Web.Security.DbContext;
-using Petrovich.Web.Security.DbContext.Entities;
-using Petrovich.Web.Security.Identity;
+using Petrovich.Web.Core.Security.DbContext;
+using Petrovich.Web.Core.Security.DbContext.Entities;
+using Petrovich.Web.Core.Security.Identity;
 using System;
 using System.Collections.Generic;
 
-namespace Petrovich.Web.Security
+namespace Petrovich.Web.Core.Security
 {
     public static class AuthenticationConfiguration
     {

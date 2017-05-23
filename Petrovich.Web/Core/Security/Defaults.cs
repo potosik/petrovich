@@ -1,4 +1,4 @@
-﻿namespace Petrovich.Web.Security
+﻿namespace Petrovich.Web.Core.Security
 {
     internal static class Defaults
     {

@@ -1,4 +1,4 @@
-﻿@model Petrovich.Web.Models.LoginViewModel
+﻿@model Petrovich.Web.Models.Account.LoginViewModel
 
 @{
     ViewBag.Title = "Вход";
@@ -7,10 +7,11 @@
 <div class="login_wrapper">
     <div class="form login_form">
         <section class="login_content">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm(PetrovichRoutes.Account.Login, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <h1>Вход</h1>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div>
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Логин", required = "" })
                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
