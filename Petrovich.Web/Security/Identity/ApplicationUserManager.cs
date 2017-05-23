@@ -2,7 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Petrovich.Web.Models;
+using Petrovich.Web.Security.DbContext;
+using Petrovich.Web.Security.DbContext.Entities;
 
 namespace Petrovich.Web.Security.Identity
 {
@@ -15,7 +16,7 @@ namespace Petrovich.Web.Security.Identity
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<AuthenticationDbContext>()));
 
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

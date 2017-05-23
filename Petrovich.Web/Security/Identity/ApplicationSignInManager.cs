@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Petrovich.Web.Models;
+using Petrovich.Web.Security.DbContext.Entities;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

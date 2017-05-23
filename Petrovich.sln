@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petrovich.Repositories.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petrovich.Business.Tests", "Petrovich.Business.Tests\Petrovich.Business.Tests.csproj", "{7767B8AF-0C41-4268-BEE5-FC8955AECD32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petrovich.Context", "Petrovich.Context\Petrovich.Context.csproj", "{2D498F3E-937C-4382-95E4-C0C778A45323}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{7767B8AF-0C41-4268-BEE5-FC8955AECD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7767B8AF-0C41-4268-BEE5-FC8955AECD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7767B8AF-0C41-4268-BEE5-FC8955AECD32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D498F3E-937C-4382-95E4-C0C778A45323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D498F3E-937C-4382-95E4-C0C778A45323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D498F3E-937C-4382-95E4-C0C778A45323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D498F3E-937C-4382-95E4-C0C778A45323}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

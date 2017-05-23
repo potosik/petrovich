@@ -6,7 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Petrovich.Core;
 using Petrovich.Core.Utils;
-using Petrovich.Web.Models;
+using Petrovich.Web.Security.DbContext;
+using Petrovich.Web.Security.DbContext.Entities;
 using Petrovich.Web.Security.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Petrovich.Web.Security
     {
         internal static void ConfigureAuth(IAppBuilder app)
         {
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(AuthenticationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
@@ -36,12 +37,12 @@ namespace Petrovich.Web.Security
 
         internal static void CreateDefaultArtifacts(IAppBuilder app)
         {
-            var context = new ApplicationDbContext();
+            var context = new AuthenticationDbContext();
 
             CreateDefaultUser(context);
         }
 
-        private static void CreateDefaultUser(ApplicationDbContext context)
+        private static void CreateDefaultUser(AuthenticationDbContext context)
         {
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             var defaultUser = userManager.FindByEmail(Defaults.User.Email);

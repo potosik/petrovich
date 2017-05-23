@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Petrovich.Web.Models;
 using Petrovich.Web.Security.Identity;
+using Petrovich.Web.Security.DbContext.Entities;
 
 namespace Petrovich.Web.Controllers
 {

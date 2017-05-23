@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Petrovich.Business.Tests")]
+[assembly: AssemblyTitle("Petrovich.Context")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Petrovich.Business.Tests")]
+[assembly: AssemblyProduct("Petrovich.Context")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7767b8af-0c41-4268-bee5-fc8955aecd32")]
+[assembly: Guid("2d498f3e-937c-4382-95e4-c0c778a45323")]
 
 // Version information for an assembly consists of the following four values:
 //
