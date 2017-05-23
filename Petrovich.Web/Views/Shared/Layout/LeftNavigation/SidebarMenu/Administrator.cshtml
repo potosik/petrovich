@@ -1,0 +1,16 @@
+﻿<div class="menu_section">
+    <h3>Администрирование</h3>
+    <ul class="nav side-menu">
+        <li>
+            <a><i class="fa fa-user"></i> Пользователи <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    @Html.ActionLink("Активные пользователи", PetrovichRoutes.ManageUsers.Active)
+                </li>
+                <li>
+                    @Html.ActionLink("Удаленные пользователи", PetrovichRoutes.ManageUsers.Deleted)
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

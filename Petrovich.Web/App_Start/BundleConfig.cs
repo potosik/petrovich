@@ -4,27 +4,23 @@ namespace Petrovich.Web
 {
     public class BundleConfig
     {
-        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Content/js/vendor/jquery.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Content/js/vendor/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                "~/Content/js/vendor/"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/theme").Include("~/Content/js/theme.js"));
+            bundles.Add(new ScriptBundle("~/bundles/petrovich").Include("~/Content/js/petrovich.js"));
+            
+            bundles.Add(new StyleBundle("~/Content/css/common").Include(
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/font-awesome.min.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css/theme").Include("~/Content/css/theme.css"));
+            bundles.Add(new StyleBundle("~/Content/css/petrovich").Include("~/Content/css/petrovich.css"));
         }
     }
 }

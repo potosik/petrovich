@@ -1,8 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using Petrovich.Web.Core.Controllers;
+using System.Web.Mvc;
 
 namespace Petrovich.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
