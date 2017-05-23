@@ -1,0 +1,18 @@
+﻿<div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+        <a href="@Url.Action(PetrovichRoutes.Dashboard.Index)" class="site_title"><i class="fa fa-paw"></i> <span>Прокат</span></a>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="profile clearfix">
+        <div class="profile_info profile_info_full">
+            <span>Добро пожаловать,</span>
+            <h2>@User.Identity.Name</h2>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <br />
+
+    @Html.Partial("Layout/LeftNavigation/SidebarMenu")
+</div>

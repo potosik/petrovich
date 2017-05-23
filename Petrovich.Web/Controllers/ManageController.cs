@@ -7,11 +7,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Petrovich.Web.Models;
 using Petrovich.Web.Security.Identity;
+using Petrovich.Web.Core.Controllers;
 
 namespace Petrovich.Web.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
