@@ -25,6 +25,14 @@ namespace Petrovich.Core.Navigation
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
         }
 
+        public static class Error
+        {
+            private const string Controller = "Error";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+            public static Endpoint NotFound = new Endpoint(Controller, "NotFound");
+        }
+
         public static class ManageUsers
         {
             private const string Controller = "ManageUsers";
