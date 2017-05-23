@@ -1,6 +1,6 @@
 ﻿using Petrovich.Core;
 using Petrovich.Web.Core.Controllers;
-using Petrovich.Web.Security.Attributes;
+using Petrovich.Web.Core.Security.Attributes;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Controllers

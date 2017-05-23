@@ -4,3 +4,7 @@
 .profile_info h2 {
   text-align: right;
 }
+.validation-summary-errors ul {
+  list-style: none;
+  text-align: left;
+}

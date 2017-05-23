@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Petrovich.Web.Security.DbContext.Entities
+namespace Petrovich.Web.Core.Security.DbContext.Entities
 {
     public class ApplicationUser : IdentityUser
     {

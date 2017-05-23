@@ -2,10 +2,10 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Petrovich.Web.Security.DbContext;
-using Petrovich.Web.Security.DbContext.Entities;
+using Petrovich.Web.Core.Security.DbContext;
+using Petrovich.Web.Core.Security.DbContext.Entities;
 
-namespace Petrovich.Web.Security.Identity
+namespace Petrovich.Web.Core.Security.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {

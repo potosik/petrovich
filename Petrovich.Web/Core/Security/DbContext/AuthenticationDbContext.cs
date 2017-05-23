@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using Petrovich.Web.Security.DbContext.Entities;
+using Petrovich.Web.Core.Security.DbContext.Entities;
 
-namespace Petrovich.Web.Security.DbContext
+namespace Petrovich.Web.Core.Security.DbContext
 {
     public class AuthenticationDbContext : IdentityDbContext<ApplicationUser>
     {

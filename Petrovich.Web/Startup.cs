@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using Petrovich.Web.Security;
+using Petrovich.Web.Core.Security;
 
 [assembly: OwinStartupAttribute(typeof(Petrovich.Web.Startup))]
 namespace Petrovich.Web
