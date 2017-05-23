@@ -68,7 +68,7 @@ namespace Petrovich.Web.Security
 
         private static void AddDefaultUserClaims(ApplicationUser user, ApplicationUserManager userManager)
         {
-            foreach (var claim in EnumUtil.GetValues<PetrovichClaims>())
+            foreach (var claim in EnumUtils.GetValues<PetrovichClaims>())
             {
                 var claimString = claim.ToString();
                 user.Claims.Add(new IdentityUserClaim() { ClaimType = claimString, ClaimValue = claimString });
