@@ -10,8 +10,6 @@ using Petrovich.Web.Models;
 using Petrovich.Web.Security.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Petrovich.Web.Security
 {
@@ -48,7 +46,9 @@ namespace Petrovich.Web.Security
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             var defaultUser = userManager.FindByEmail(Defaults.User.Email);
             if (defaultUser == null)
+            {
                 RegisterDefaultUser(userManager);
+            }
         }
 
         private static void RegisterDefaultUser(ApplicationUserManager userManager)
@@ -61,9 +61,13 @@ namespace Petrovich.Web.Security
 
             var userCreationResult = userManager.Create(user, Defaults.User.Password);
             if (userCreationResult.Succeeded)
+            {
                 AddDefaultUserClaims(user, userManager);
+            }
             else
+            {
                 GenerateError("Error creating default user", userCreationResult.Errors);
+            }
         }
 
         private static void AddDefaultUserClaims(ApplicationUser user, ApplicationUserManager userManager)

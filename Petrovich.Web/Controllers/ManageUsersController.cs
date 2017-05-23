@@ -1,11 +1,6 @@
 ﻿using Petrovich.Core;
 using Petrovich.Web.Security.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using static Petrovich.Web.Startup;
 
 namespace Petrovich.Web.Controllers
 {
