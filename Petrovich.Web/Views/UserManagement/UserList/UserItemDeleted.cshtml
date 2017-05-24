@@ -1,0 +1,16 @@
+﻿@model Petrovich.Web.Models.UserManagement.ApplicationUserModel
+
+<tr>
+    <th scope="row">@Model.Id</th>
+    <td>@Model.Email</td>
+    <td>
+        @using (Html.BeginForm(PetrovichRoutes.UserManagement.Restore, new { id = Model.Id }, FormMethod.Post, null))
+        {
+            <div class="btn-group" role="group">
+                <button type="submit" class="btn btn-success btn-xs" aria-label="Restore">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+            </div>
+        }
+    </td>
+</tr>

@@ -18,5 +18,11 @@ namespace Petrovich.Web.Controllers
         {
             return View();
         }
+
+        [LayoutInjecter("_LayoutEmpty")]
+        public ActionResult BadRequest()
+        {
+            return View();
+        }
     }
 }

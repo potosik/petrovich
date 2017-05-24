@@ -6,6 +6,11 @@ namespace Petrovich.Web.Core.Extensions
 {
     public static class HtmlHelperExtensions
     {
+        public static MvcHtmlString ActionLink(this HtmlHelper helper, string linkText, Endpoint endpoint, object routeValues, object htmlAttributes)
+        {
+            return helper.ActionLink(linkText, endpoint.Action, endpoint.Controller, routeValues, htmlAttributes);
+        }
+
         public static MvcHtmlString ActionLink(this HtmlHelper helper, string linkText, Endpoint endpoint)
         {
             return helper.ActionLink(linkText, endpoint.Action, endpoint.Controller);

@@ -27,14 +27,19 @@
 
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
             public static Endpoint NotFound = new Endpoint(Controller, "NotFound");
+            public static Endpoint BadRequest = new Endpoint(Controller, "BadRequest");
         }
 
-        public static class ManageUsers
+        public static class UserManagement
         {
-            private const string Controller = "ManageUsers";
+            private const string Controller = "UserManagement";
 
             public static Endpoint Active = new Endpoint(Controller, "Active");
             public static Endpoint Deleted = new Endpoint(Controller, "Deleted");
+            public static Endpoint Create = new Endpoint(Controller, "Create");
+            public static Endpoint Edit = new Endpoint(Controller, "Edit");
+            public static Endpoint Delete = new Endpoint(Controller, "Delete");
+            public static Endpoint Restore = new Endpoint(Controller, "Restore");
         }
     }
 }

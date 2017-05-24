@@ -1,4 +1,5 @@
 ﻿using Petrovich.Core.Navigation;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Core.Controllers
@@ -18,6 +19,16 @@ namespace Petrovich.Web.Core.Controllers
             }
 
             return RedirectToAction(PetrovichRoutes.Dashboard.Index);
+        }
+
+        protected ActionResult CreateNotFoundResponse()
+        {
+            return RedirectToAction(PetrovichRoutes.Error.NotFound);
+        }
+
+        protected ActionResult CreateBadRequestResponse()
+        {
+            return RedirectToAction(PetrovichRoutes.Error.BadRequest);
         }
     }
 }

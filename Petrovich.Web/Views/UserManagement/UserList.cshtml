@@ -1,0 +1,45 @@
+﻿@model System.Collections.Generic.IEnumerable<Petrovich.Web.Models.UserManagement.ApplicationUserModel>
+
+@{
+    ViewBag.Title = "UserList";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>basic table subtitle</small></h2>
+
+        @if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Active.Action))
+        {
+            <div class="nav navbar-right">
+                <a href="@Url.Action(PetrovichRoutes.UserManagement.Create)" class="btn btn-default btn-sm">Create new</a>
+            </div>
+        }
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Active.Action))
+                    {
+                        @Html.Partial("UserList/UserItemActive", user)
+                    }
+
+                    if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Deleted.Action))
+                    {
+                        @Html.Partial("UserList/UserItemDeleted", user)
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

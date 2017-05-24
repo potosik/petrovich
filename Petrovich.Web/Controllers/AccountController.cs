@@ -36,8 +36,18 @@ namespace Petrovich.Web.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-            switch (result)
+            var status = SignInStatus.Success;
+            var user = await UserManager.FindByEmailAsync(model.Email);
+            if (user != null && user.LockoutEnabled)
+            {
+                status = SignInStatus.Failure;
+            }
+            else
+            {
+                status = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            }
+
+            switch (status)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
