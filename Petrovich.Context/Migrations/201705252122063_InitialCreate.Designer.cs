@@ -13,7 +13,7 @@ namespace Petrovich.Context.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705250815369_InitialCreate"; }
+            get { return "201705252122063_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

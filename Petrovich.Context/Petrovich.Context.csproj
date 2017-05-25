@@ -69,9 +69,9 @@
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Enumerations\LogSeverity.cs" />
     <Compile Include="IPetrovichContext.cs" />
-    <Compile Include="Migrations\201705250815369_InitialCreate.cs" />
-    <Compile Include="Migrations\201705250815369_InitialCreate.Designer.cs">
-      <DependentUpon>201705250815369_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201705252122063_InitialCreate.cs" />
+    <Compile Include="Migrations\201705252122063_InitialCreate.Designer.cs">
+      <DependentUpon>201705252122063_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -83,15 +83,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705250815369_InitialCreate.resx">
-      <DependentUpon>201705250815369_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Petrovich.Core\Petrovich.Core.csproj">
       <Project>{0363A4E5-86AA-4D11-ACDE-273111E82A23}</Project>
       <Name>Petrovich.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705252122063_InitialCreate.resx">
+      <DependentUpon>201705252122063_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

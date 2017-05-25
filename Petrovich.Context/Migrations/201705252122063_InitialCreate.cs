@@ -15,6 +15,7 @@ namespace Petrovich.Context.Migrations
                         Severity = c.Int(nullable: false),
                         Message = c.String(),
                         StackTrace = c.String(),
+                        InnerExceptionMessage = c.String(),
                     })
                 .PrimaryKey(t => t.LogId);
             

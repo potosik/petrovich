@@ -64,6 +64,7 @@
     <Compile Include="Exceptions\DatabaseOperationException.cs" />
     <Compile Include="Exceptions\ErrorCode.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
+    <Compile Include="Logging\Composition\CompositionModule.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingService.cs" />
     <Compile Include="Models\Enumerations\LogSeverity.cs" />

@@ -18,7 +18,7 @@ namespace Petrovich.Web.App_Start
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
-            Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
+             Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
         }
 
         public static void Shutdown()

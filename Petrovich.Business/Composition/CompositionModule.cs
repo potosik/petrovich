@@ -12,7 +12,10 @@ namespace Petrovich.Business.Composition
 {
     public class CompositionModule : ICompositionModule
     {
-        public ICompositionModule[] InnerModules => null;
+        public ICompositionModule[] InnerModules => new ICompositionModule[] 
+        {
+            new Logging.Composition.CompositionModule(),
+        };
 
         public void RegisterTypes(IUnityContainer container)
         {

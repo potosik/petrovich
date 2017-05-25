@@ -9,14 +9,16 @@ namespace Petrovich.Business.Logging
 {
     public interface ILoggingService
     {
-        Task LogNone(string message);
-        Task LogInformation(string message);
-        Task LogError(string message);
-        Task LogError(Exception ex);
-        Task LogError(string message, Exception ex);
-        Task LogCritical(string message);
-        Task LogCritical(Exception ex);
-        Task LogCritical(string message, Exception ex);
-        Task Log(LogSeverity severity, string message, string stackTrace);
+        Task LogNoneAsync(string message);
+        Task LogInformationAsync(string message);
+        Task LogInformationAsync(Exception ex);
+        Task LogInformationAsync(string message, Exception ex);
+        Task LogErrorAsync(string message);
+        Task LogErrorAsync(Exception ex);
+        Task LogErrorAsync(string message, Exception ex);
+        Task LogCriticalAsync(string message);
+        Task LogCriticalAsync(Exception ex);
+        Task LogCriticalAsync(string message, Exception ex);
+        Task LogAsync(LogSeverity severity, string message, string stackTrace = null, string innerExceptionMessage = null);
     }
 }

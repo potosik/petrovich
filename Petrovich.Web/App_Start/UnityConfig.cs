@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using Petrovich.Core.Composition;
 using Petrovich.Web.Composition;
+using System.Threading;
 
 namespace Petrovich.Web.App_Start
 {
@@ -29,7 +30,7 @@ namespace Petrovich.Web.App_Start
             //container.RegisterType<IProductRepository, ProductRepository>();
         }
 
-        private static void RegisterTypes(UnityContainer container, CompositionModule compositionModule)
+        private static void RegisterTypes(UnityContainer container, ICompositionModule compositionModule)
         {
             compositionModule.RegisterTypes(container);
 
@@ -37,7 +38,7 @@ namespace Petrovich.Web.App_Start
             {
                 foreach (var module in compositionModule.InnerModules)
                 {
-                    RegisterTypes(container, compositionModule);
+                    RegisterTypes(container, module);
                 }
             }
         }

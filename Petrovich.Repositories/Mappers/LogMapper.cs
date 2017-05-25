@@ -18,6 +18,7 @@ namespace Petrovich.Repositories.Mappers
                 Severity = (Business.Models.Enumerations.LogSeverity)((int)entity.Severity),
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
+                InnerExceptionMessage = entity.InnerExceptionMessage,
             };
         }
 
@@ -34,6 +35,7 @@ namespace Petrovich.Repositories.Mappers
                 Severity = (LogSeverity)((int)entity.Severity),
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
+                InnerExceptionMessage = entity.InnerExceptionMessage,
             };
         }
     }
