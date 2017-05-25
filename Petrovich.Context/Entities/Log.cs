@@ -12,6 +12,7 @@ namespace Petrovich.Context.Entities
     {
         [Key]
         public int LogId { get; set; }
+        public Guid CorrelationId { get; set; }
         public LogSeverity Severity { get; set; }
         public string Message { get; set; }
         public string StackTrace { get; set; }

@@ -12,6 +12,7 @@ namespace Petrovich.Context.Migrations
                 c => new
                     {
                         LogId = c.Int(nullable: false, identity: true),
+                        CorrelationId = c.Guid(nullable: false),
                         Severity = c.Int(nullable: false),
                         Message = c.String(),
                         StackTrace = c.String(),

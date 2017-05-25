@@ -69,9 +69,9 @@
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Enumerations\LogSeverity.cs" />
     <Compile Include="IPetrovichContext.cs" />
-    <Compile Include="Migrations\201705252122063_InitialCreate.cs" />
-    <Compile Include="Migrations\201705252122063_InitialCreate.Designer.cs">
-      <DependentUpon>201705252122063_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201705252143428_InitialCreate.cs" />
+    <Compile Include="Migrations\201705252143428_InitialCreate.Designer.cs">
+      <DependentUpon>201705252143428_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -89,8 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705252122063_InitialCreate.resx">
-      <DependentUpon>201705252122063_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705252143428_InitialCreate.resx">
+      <DependentUpon>201705252143428_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

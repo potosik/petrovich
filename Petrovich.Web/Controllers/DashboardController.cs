@@ -1,6 +1,7 @@
 ﻿using Petrovich.Business.Logging;
 using Petrovich.Web.Core.Controllers;
 using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Controllers
@@ -15,24 +16,24 @@ namespace Petrovich.Web.Controllers
             this.logger = logger;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             try
             {
-                logger.LogAsync(Business.Models.Enumerations.LogSeverity.None, "Test");
-                logger.LogCriticalAsync("Critical log");
-                logger.LogCriticalAsync(new Exception("Critical exception"));
-                logger.LogCriticalAsync("Critical message", new Exception("With exception"));
-                logger.LogCriticalAsync("Critical message", new Exception("With exception", new Exception("With inner exception")));
-                logger.LogErrorAsync("Error log");
-                logger.LogErrorAsync(new Exception("Error exception"));
-                logger.LogErrorAsync("Error message", new Exception("With exception"));
-                logger.LogErrorAsync("Error message", new Exception("With exception", new Exception("With inner exception")));
-                logger.LogInformationAsync("Information log");
-                logger.LogInformationAsync(new Exception("Information exception"));
-                logger.LogInformationAsync("Information message", new Exception("With exception"));
-                logger.LogInformationAsync("Information message", new Exception("With exception", new Exception("With inner exception")));
-                logger.LogNoneAsync("None log");
+                await logger.LogAsync(Business.Models.Enumerations.LogSeverity.None, "Test");
+                await logger.LogCriticalAsync("Critical log");
+                await logger.LogCriticalAsync(new Exception("Critical exception"));
+                await logger.LogCriticalAsync("Critical message", new Exception("With exception"));
+                await logger.LogCriticalAsync("Critical message", new Exception("With exception", new Exception("With inner exception")));
+                await logger.LogErrorAsync("Error log");
+                await logger.LogErrorAsync(new Exception("Error exception"));
+                await logger.LogErrorAsync("Error message", new Exception("With exception"));
+                await logger.LogErrorAsync("Error message", new Exception("With exception", new Exception("With inner exception")));
+                await logger.LogInformationAsync("Information log");
+                await logger.LogInformationAsync(new Exception("Information exception"));
+                await logger.LogInformationAsync("Information message", new Exception("With exception"));
+                await logger.LogInformationAsync("Information message", new Exception("With exception", new Exception("With inner exception")));
+                await logger.LogNoneAsync("None log");
             }
             catch(Exception ex)
             {
