@@ -46,10 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ILogDataSource.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\DatabaseOperationException.cs" />
+    <Compile Include="Exceptions\ErrorCode.cs" />
+    <Compile Include="Exceptions\LogNotFoundException.cs" />
+    <Compile Include="Logging\ILoggingService.cs" />
+    <Compile Include="Logging\LoggingService.cs" />
+    <Compile Include="Models\Enumerations\LogSeverity.cs" />
+    <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\LogCollection.cs" />
+    <Compile Include="PerformanceCounters\LogPerformanceCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

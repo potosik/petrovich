@@ -36,7 +36,14 @@
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,10 +53,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\BaseRepostory.cs" />
+    <Compile Include="Concrete\LogRepository.cs" />
+    <Compile Include="DataSources\LogDataSource.cs" />
+    <Compile Include="IBaseRepository.cs" />
+    <Compile Include="ILogRepository.cs" />
+    <Compile Include="Mappers\IBaseMapper.cs" />
+    <Compile Include="Mappers\ILogMapper.cs" />
+    <Compile Include="Mappers\LogMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Key.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Petrovich.Business\Petrovich.Business.csproj">
+      <Project>{B0E09655-38CB-49E2-B060-34990431C29C}</Project>
+      <Name>Petrovich.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.Context\Petrovich.Context.csproj">
+      <Project>{2D498F3E-937C-4382-95E4-C0C778A45323}</Project>
+      <Name>Petrovich.Context</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
