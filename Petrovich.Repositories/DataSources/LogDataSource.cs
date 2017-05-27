@@ -27,7 +27,7 @@ namespace Petrovich.Repositories.DataSources
         {
             try
             {
-                var entity = await logRepository.FindByIdAsync(id);
+                var entity = await logRepository.FindAsync(id);
                 if (entity == null)
                 {
                     throw new LogNotFoundException(id);

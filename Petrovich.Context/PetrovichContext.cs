@@ -18,5 +18,10 @@ namespace Petrovich.Context
         }
 
         public IDbSet<Log> Logs { get; set; }
+
+        async Task IPetrovichContext.SaveChangesAsync()
+        {
+            await (this as DbContext).SaveChangesAsync();
+        }
     }
 }

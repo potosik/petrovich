@@ -1,4 +1,5 @@
-﻿using Petrovich.Core;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Petrovich.Core;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Core.Controllers;
 using Petrovich.Web.Core.Security.Attributes;
@@ -53,7 +54,24 @@ namespace Petrovich.Web.Controllers
                 var result = await UserManager.CreateAsync(user, userModel.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+                    foreach (var claim in userModel.Claims)
+                    {
+                        var parsedClaim = PetrovichClaims.PowerAdmin;
+                        if (Enum.TryParse(claim, out parsedClaim))
+                        {
+                            user.Claims.Add(new IdentityUserClaim()
+                            {
+                                ClaimType = claim,
+                                ClaimValue = claim,
+                            });
+                        }
+                    }
+
+                    result = await UserManager.UpdateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+                    }
                 }
 
                 AddErrors(result);
@@ -88,9 +106,13 @@ namespace Petrovich.Web.Controllers
 
                 user.Email = userModel.Email;
                 user.UserName = userModel.Email;
-                await UserManager.UpdateAsync(user);
+                var result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+                }
                 
-                return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+                AddErrors(result);
             }
             
             return View(userModel);

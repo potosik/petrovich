@@ -42,10 +42,17 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Moq, Version=4.7.10.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,11 +74,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\LogDataSourceTests.cs" />
+    <Compile Include="Extensions\MockExtensions.cs" />
+    <Compile Include="LogRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTestsBase.cs" />
+    <Compile Include="TestQueryProvider\TestDbAsyncEnumerable.cs" />
+    <Compile Include="TestQueryProvider\TestDbAsyncEnumerator.cs" />
+    <Compile Include="TestQueryProvider\TestDbAsyncQueryProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Key.snk" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Petrovich.Business\Petrovich.Business.csproj">
+      <Project>{B0E09655-38CB-49E2-B060-34990431C29C}</Project>
+      <Name>Petrovich.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.Context\Petrovich.Context.csproj">
+      <Project>{2D498F3E-937C-4382-95E4-C0C778A45323}</Project>
+      <Name>Petrovich.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.Repositories\Petrovich.Repositories.csproj">
+      <Project>{3C3AB191-33DB-4818-AF64-695AF83F2D5E}</Project>
+      <Name>Petrovich.Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

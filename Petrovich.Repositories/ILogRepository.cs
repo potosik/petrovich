@@ -9,6 +9,6 @@ namespace Petrovich.Repositories
 {
     public interface ILogRepository : IBaseRepository<Log>
     {
-        Task<IEnumerable<Log>> ListAsync(int pageIndex, int pageSize);
+        Task<IList<Log>> ListAsync(int pageIndex, int pageSize);
     }
 }

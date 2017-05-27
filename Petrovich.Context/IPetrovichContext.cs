@@ -11,5 +11,7 @@ namespace Petrovich.Context
     public interface IPetrovichContext : IDisposable
     {
         IDbSet<Log> Logs { get; set; }
+        
+        Task SaveChangesAsync();
     }
 }

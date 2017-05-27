@@ -61,6 +61,15 @@ namespace Petrovich.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Супер администратор.
+        /// </summary>
+        internal static string PowerAdmin {
+            get {
+                return ResourceManager.GetString("PowerAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TestString.
         /// </summary>
         internal static string TestString {

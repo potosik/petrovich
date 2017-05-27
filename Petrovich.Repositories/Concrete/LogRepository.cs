@@ -11,19 +11,19 @@ namespace Petrovich.Repositories.Concrete
 {
     public class LogRepository : BaseRepostory<Log>, ILogRepository
     {
-        public LogRepository(IPetrovichContext context) 
+        public LogRepository(IPetrovichContext context)
             : base(context)
         {
         }
-
-        public override async Task<Log> FindByIdAsync(int id)
+        
+        public override async Task<Log> FindAsync(int id)
         {
-            return await Entities.FirstOrDefaultAsync(item => item.LogId == id);
+            return await context.Logs.FirstOrDefaultAsync(item => item.LogId == id);
         }
 
-        public async Task<IEnumerable<Log>> ListAsync(int pageIndex, int pageSize)
+        public async Task<IList<Log>> ListAsync(int pageIndex, int pageSize)
         {
-            return await Entities
+            return await context.Logs
                 .OrderByDescending(item => item.LogId)
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
