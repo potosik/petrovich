@@ -2,6 +2,7 @@
 {
     public enum PetrovichClaims
     {
+        PowerAdmin,
         UserManagement,
     }
 }

@@ -67,11 +67,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErrorCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Petrovich.Business\Petrovich.Business.csproj">
+      <Project>{B0E09655-38CB-49E2-B060-34990431C29C}</Project>
+      <Name>Petrovich.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.Core\Petrovich.Core.csproj">
+      <Project>{0363A4E5-86AA-4D11-ACDE-273111E82A23}</Project>
+      <Name>Petrovich.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
