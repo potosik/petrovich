@@ -1,4 +1,6 @@
-﻿using Petrovich.Web.Core.Security.DbContext.Entities;
+﻿using Petrovich.Core;
+using Petrovich.Web.Core.Extensions;
+using Petrovich.Web.Core.Security.DbContext.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,13 +13,15 @@ namespace Petrovich.Web.Models.UserManagement
     {
         public string Id { get; set; }
         public string Email { get; set; }
-        
+        public string UserName { get; set; }
+
         public static ApplicationUserModel Create(ApplicationUser user)
         {
             return new ApplicationUserModel()
             {
                 Id = user.Id,
                 Email = user.Email,
+                UserName = user.Claims.GetUserName(),
             };
         }
     }

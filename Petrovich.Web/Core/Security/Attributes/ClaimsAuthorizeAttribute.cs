@@ -7,7 +7,7 @@ namespace Petrovich.Web.Core.Security.Attributes
 {
     public class ClaimsAuthorizeAttribute : AuthorizeAttribute
     {
-        public PetrovichClaims[] Claims { get; set; } = new PetrovichClaims[0];
+        public PermissionClaims[] Claims { get; set; } = new PermissionClaims[0];
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

@@ -1,4 +1,5 @@
 ﻿using Petrovich.Core.Utils;
+using Petrovich.Web.Core.Extensions;
 using Petrovich.Web.Core.Security.DbContext.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,19 @@ using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace Petrovich.Web.Models.UserManagement
 {
-    public class EditApplicationUserModel
+    public class EditApplicationUserModel : IUpdateApplicationUserModel
     {
         [Required]
         public string Id { get; set; }
 
         [Required]
         [EmailAddress]
+        [Display(Name = "Логин (email)")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Имя пользователя")]
+        public string UserName { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Новый пароль")]
@@ -50,6 +56,7 @@ namespace Petrovich.Web.Models.UserManagement
             {
                 Id = user.Id,
                 Email = user.Email,
+                UserName = user.Claims.GetUserName(),
                 Claims = user.Claims.Select(item => item.ClaimValue).ToList()
             };
         }

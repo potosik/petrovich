@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Logging;
+using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
 using System;
 using System.Threading.Tasks;
@@ -7,13 +8,12 @@ using System.Web.Mvc;
 namespace Petrovich.Web.Controllers
 {
     [Authorize]
+    [LoggableActions]
     public class DashboardController : BaseController
     {
-        protected readonly ILoggingService logger;
-
-        public DashboardController(ILoggingService logger)
+        public DashboardController(ILoggingService logging)
+            : base(logging)
         {
-            this.logger = logger;
         }
 
         public async Task<ActionResult> Index()

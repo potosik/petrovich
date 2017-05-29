@@ -86,5 +86,14 @@ namespace Petrovich.Business.Properties {
                 return ResourceManager.GetString("E404001", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404002 {
+            get {
+                return ResourceManager.GetString("E404002", resourceCulture);
+            }
+        }
     }
 }

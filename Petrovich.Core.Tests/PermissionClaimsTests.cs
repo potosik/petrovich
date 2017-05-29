@@ -3,12 +3,12 @@ using Xunit;
 
 namespace Petrovich.Core.Tests
 {
-    public class PetrovichClaimsTests
+    public class PermissionClaimsTests
     {
         [Fact]
         public void AllClaimsHasLocalization()
         {
-            var claims = EnumUtils.GetValuesStrings<PetrovichClaims>();
+            var claims = EnumUtils.GetValuesStrings<PermissionClaims>();
 
             foreach (var claim in claims)
             {

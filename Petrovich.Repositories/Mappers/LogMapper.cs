@@ -19,6 +19,7 @@ namespace Petrovich.Repositories.Mappers
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
                 InnerExceptionMessage = entity.InnerExceptionMessage,
+                CallStack = entity.CallStack,
             };
         }
 
@@ -36,6 +37,7 @@ namespace Petrovich.Repositories.Mappers
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
                 InnerExceptionMessage = entity.InnerExceptionMessage,
+                CallStack = entity.CallStack,
             };
         }
     }

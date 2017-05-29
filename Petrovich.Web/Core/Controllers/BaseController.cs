@@ -1,4 +1,5 @@
-﻿using Petrovich.Core.Navigation;
+﻿using Petrovich.Business.Logging;
+using Petrovich.Core.Navigation;
 using System.Net;
 using System.Web.Mvc;
 
@@ -6,6 +7,13 @@ namespace Petrovich.Web.Core.Controllers
 {
     public class BaseController : Controller
     {
+        protected readonly ILoggingService logger;
+
+        public BaseController(ILoggingService logger)
+        {
+            this.logger = logger;
+        }
+
         protected RedirectToRouteResult RedirectToAction(Endpoint endpoint)
         {
             return RedirectToAction(endpoint.Action, endpoint.Controller);

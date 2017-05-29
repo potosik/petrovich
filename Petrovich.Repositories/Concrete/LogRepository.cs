@@ -18,7 +18,7 @@ namespace Petrovich.Repositories.Concrete
         
         public override async Task<Log> FindAsync(int id)
         {
-            return await context.Logs.FirstOrDefaultAsync(item => item.LogId == id);
+            return await context.Logs.FirstOrDefaultAsync(item => item.LogId == id).ConfigureAwait(false);
         }
 
         public async Task<IList<Log>> ListAsync(int pageIndex, int pageSize)
@@ -27,7 +27,8 @@ namespace Petrovich.Repositories.Concrete
                 .OrderByDescending(item => item.LogId)
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize)
-                .ToListAsync();
+                .ToListAsync()
+                .ConfigureAwait(false);
         }
     }
 }

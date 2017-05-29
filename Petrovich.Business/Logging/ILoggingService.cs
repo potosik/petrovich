@@ -10,6 +10,8 @@ namespace Petrovich.Business.Logging
     public interface ILoggingService
     {
         Task LogNoneAsync(string message);
+        void LogNone(string v);
+
         Task LogInformationAsync(string message);
         Task LogInformationAsync(Exception ex);
         Task LogInformationAsync(string message, Exception ex);
@@ -19,6 +21,7 @@ namespace Petrovich.Business.Logging
         Task LogCriticalAsync(string message);
         Task LogCriticalAsync(Exception ex);
         Task LogCriticalAsync(string message, Exception ex);
-        Task LogAsync(LogSeverity severity, string message, string stackTrace = null, string innerExceptionMessage = null);
+        
+        Task LogInvalidModelAsync(Type type);
     }
 }

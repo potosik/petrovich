@@ -15,7 +15,7 @@ namespace Petrovich.Core.Tests.Utils
         {
             var result = ClaimUtils.GetPublicClaims();
 
-            Assert.DoesNotContain(PetrovichClaims.PowerAdmin, result);
+            Assert.DoesNotContain(PermissionClaims.PowerAdmin, result);
         }
     }
 }
