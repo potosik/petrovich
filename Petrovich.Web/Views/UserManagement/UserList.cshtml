@@ -1,12 +1,20 @@
 ﻿@model System.Collections.Generic.IEnumerable<Petrovich.Web.Models.UserManagement.ApplicationUserModel>
 
 @{
-    ViewBag.Title = "UserList";
+    if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Active.Action))
+    {
+        ViewBag.Title = "Активные пользователи";
+    }
+
+    if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Deleted.Action))
+    {
+        ViewBag.Title = "Удаленные пользователи";
+    }
 }
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@ViewBag.Title <small>basic table subtitle</small></h2>
+        <h2>Список пользователей <small>@ViewBag.Title.ToLower()</small></h2>
 
         @if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Active.Action))
         {
@@ -21,9 +29,9 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Имя</th>
                     <th>Email</th>
-                    <th>Operations</th>
+                    <th>Операции</th>
                 </tr>
             </thead>
             <tbody>

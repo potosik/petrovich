@@ -117,16 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="E0" xml:space="preserve">
-    <value>Unknown error. Check inner exception for details.</value>
+  <data name="Target" xml:space="preserve">
+    <value>H4sIAAAAAAAEAM1Y227jNhB9L9B/EPTUAlnLcZB2G8i7SJ1kYTROglV232lp7BBLkVqSCuxv60M/qb/QoS6kLr4mu22Rl5iaOZz7HOnvP/8K369S5j2DVFTwsX86GPoe8FgklC/Hfq4Xb97679/9+EN4naQr73Mtd2bkUJOrsf+kdXYRBCp+gpSoQUpjKZRY6EEs0oAkIhgNh78Fp6cBIISPWJ4Xfsy5pikUP/DnRPAYMp0TNhMJMFWd45OoQPXuSAoqIzGM/QfQUjzT+GmAWhpW2vcuGSVoSARs4XuEc6GJRjMvPimIUJgvowwPCHtcZ4ByC8IUVOZfOPFDPRmOjCeBU6yh4lxpkR4JeHpWhSboqr8owL4NHQbvGoOs18brIoBj/1Ysfa97z8WESSOzIbSDAoGCGqDmidd7fmIrAgvH/J14k5zpXMKYQ64lYaiUzxmN/4D1o/gCKHg+GiXn8a+LxfCX84S8bRqMJqNc6wCPHqTIQOr1R1g4N6aJ7wVt1aCrazXbaqWvU67PRr53lzNG5gxsVTTiEmkh4QNwkERD8kC0BolJnSZQxLVnQOe6iZASWAHlrv2Q02TDrbuRIsAGLW4sQUyhm4y48yMBZ6AUWYLF0xLb3fdmZHULfKmfUIKsfO+GriCpTyrgT5zidEAlLfP9hmsSf3mU2Lff/aopxzxdr8wYwYD/Ww5OCGOFk9/4pjBwvdvu6Dxt97Orgam6YWTp5ttxfZ6npsxRTDUr6zv1PLqegGRrDFWzG9uhnkE6B1l5eic4uvSZsBx/DHtpaclO+ULItJqhlcrpbpVrKYW0wqPdwhOMDI0Js/Jn/eSVaeoPYxNEQrnFsuG1y6yXNtxiVeZUVSpt20rgCLQrCuV7rn7cvNhcY9Ykt3WDcu3W6znYsp/DGckyzGFjX1cnXlQu68mb6Pg1lpYYQaw2bDNrrb0JpzS2euepGb8J3FCp9BXRZE5MR0yStCfWS8CW4NbXNWLcXVQu5LWw+b+TZ9tyJh8dBBe/G3QpxTVTeAfWiHKD97QKnkQYkZsX3kSwPOU7VucujM4Wa2J1Hh2O6WZWE86dHo5k53wTyB4eYVFjUbVsapwfjrZlFzWBt4gckRe3eVo5ccd9rDDolFe3goNeCXcoVrcddo2Troi93Y6VzvgIq1be/w7Q6+1SxPceTJMlpq+jtdKQDozAIPrKJoyiv05gRjhdgNLlgvKRh4867xH/H04fKJWw/cT+PyLS1IR1L1U+kqBu5M45p19zoAXmgoJ8NY8uTH8ddebPRMZPRP6UktXPTbCX0eNXwe2kwK9C7tHcI9C2U9lNfKi/tfeSnW1cp5wJYz+ZCzS7NK/kRi9kQf3xFAbNDxnhFSi6dBDmswaH2CTDgdYyhqTWUUZ3mhbVIr3K0yTBqFxKLH8Sa3wcY46L142KiF4jS02m/D7XWa4vlULWylr7NAx2319QvbbN4X1RTupbuIBmUnQB7vnvOWWJtfum33nbIEyBVIMGrcLXLYRbri1S+Z5wCFAVvivIgJuR8ghphhMH1D2PyDO8xDZk6rewJPG63jLbQfYnoh328IqSpSSpqjCcvvk4F5ivc+/+AfD1RN3PEwAA</value>
   </data>
-  <data name="E1" xml:space="preserve">
-    <value>Error while fetching data from database repository. Check inner exception for details.</value>
-  </data>
-  <data name="E404001" xml:space="preserve">
-    <value>Log entity '{0}' not found.</value>
-  </data>
-  <data name="E404002" xml:space="preserve">
-    <value>User '{0}' not found.</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

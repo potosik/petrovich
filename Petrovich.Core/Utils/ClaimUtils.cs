@@ -8,9 +8,9 @@ namespace Petrovich.Core.Utils
 {
     public static class ClaimUtils
     {
-        public static IList<PetrovichClaims> GetPublicClaims()
+        public static IList<PermissionClaims> GetPublicClaims()
         {
-            return EnumUtils.GetValues<PetrovichClaims>().Where(item => item != PetrovichClaims.PowerAdmin).ToList();
+            return EnumUtils.GetValues<PermissionClaims>().Where(item => item != PermissionClaims.PowerAdmin).ToList();
         }
     }
 }

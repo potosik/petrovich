@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Petrovich.Business.Exceptions;
+using Petrovich.Business.Logging;
 using Petrovich.Core;
 using Petrovich.Core.Navigation;
+using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
+using Petrovich.Web.Core.Security;
 using Petrovich.Web.Core.Security.Attributes;
 using Petrovich.Web.Core.Security.DbContext.Entities;
 using Petrovich.Web.Models.UserManagement;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,14 +20,20 @@ using System.Web.Mvc;
 
 namespace Petrovich.Web.Controllers
 {
-    [ClaimsAuthorize(Claims = new[] { PetrovichClaims.UserManagement })]
+    [LoggableActions]
+    [ClaimsAuthorize(Claims = new[] { PermissionClaims.UserManagement })]
     public class UserManagementController : IdentityController
     {
+        public UserManagementController(ILoggingService logging)
+            : base(logging)
+        {
+        }
+
         [HttpGet]
         public async Task<ActionResult> Active()
         {
             var users = await UserManager.Users
-                .Where(user => !user.LockoutEnabled)
+                .Where(user => !user.LockoutEnabled && user.Email != Defaults.User.Email)
                 .ToListAsync();
 
             var model = users.Select(user => ApplicationUserModel.Create(user));
@@ -50,31 +62,19 @@ namespace Petrovich.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userModel.Email, Email = userModel.Email };
-                var result = await UserManager.CreateAsync(user, userModel.Password);
+                var result = await UpdateApplicationUser(userModel);
                 if (result.Succeeded)
                 {
-                    foreach (var claim in userModel.Claims)
-                    {
-                        var parsedClaim = PetrovichClaims.PowerAdmin;
-                        if (Enum.TryParse(claim, out parsedClaim))
-                        {
-                            user.Claims.Add(new IdentityUserClaim()
-                            {
-                                ClaimType = claim,
-                                ClaimValue = claim,
-                            });
-                        }
-                    }
-
-                    result = await UserManager.UpdateAsync(user);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction(PetrovichRoutes.UserManagement.Active);
-                    }
+                    await logger.LogNoneAsync("User successfully created.");
+                    return RedirectToAction(PetrovichRoutes.UserManagement.Active);
                 }
 
+                await logger.LogInformationAsync("User wan not created.");
                 AddErrors(result);
+            }
+            else
+            {
+                await logger.LogInvalidModelAsync(userModel.GetType());
             }
 
             return View(userModel);
@@ -86,6 +86,7 @@ namespace Petrovich.Web.Controllers
             var user = await UserManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
+                await logger.LogInformationAsync($"User '{id}' not found for edit.");
                 return CreateNotFoundResponse();
             }
 
@@ -98,23 +99,29 @@ namespace Petrovich.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByIdAsync(userModel.Id.ToString());
-                if (user == null)
+                try
                 {
+                    var result = await UpdateApplicationUser(userModel);
+                    if (result.Succeeded)
+                    {
+                        await logger.LogNoneAsync($"User '{userModel.Id}' successfully updated.");
+                        return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+                    }
+
+                    await logger.LogInformationAsync($"User '{userModel.Id}' update completed unsuccessfully.");
+                    AddErrors(result);
+                }
+                catch (UserNotFoundException ex)
+                {
+                    await logger.LogErrorAsync($"User '{userModel.Id}' not found for update.", ex);
                     return CreateNotFoundResponse();
                 }
-
-                user.Email = userModel.Email;
-                user.UserName = userModel.Email;
-                var result = await UserManager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction(PetrovichRoutes.UserManagement.Active);
-                }
-                
-                AddErrors(result);
             }
-            
+            else
+            {
+                await logger.LogInvalidModelAsync(userModel.GetType());
+            }
+
             return View(userModel);
         }
 
@@ -123,18 +130,22 @@ namespace Petrovich.Web.Controllers
         {
             if (id.Equals(Guid.Empty))
             {
+                await logger.LogErrorAsync($"Trying to delete user with invalid id ({id}).");
                 return CreateBadRequestResponse();
             }
 
             var user = await UserManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
+                await logger.LogErrorAsync($"User '{id}' not found for delete.");
                 return CreateNotFoundResponse();
             }
 
             user.LockoutEnabled = true;
             await UserManager.UpdateAsync(user);
-            return RedirectToAction(PetrovichRoutes.UserManagement.Deleted);
+
+            await logger.LogNoneAsync($"User '{id}' successfully deleted.");
+            return RedirectToAction(PetrovichRoutes.UserManagement.Active);
         }
 
         [HttpPost]
@@ -142,18 +153,105 @@ namespace Petrovich.Web.Controllers
         {
             if (id.Equals(Guid.Empty))
             {
+                await logger.LogErrorAsync($"Trying to restore user with invalid id ({id}).");
                 return CreateBadRequestResponse();
             }
 
             var user = await UserManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
+                await logger.LogErrorAsync($"User '{id}' not found for restore.");
                 return CreateNotFoundResponse();
             }
 
             user.LockoutEnabled = false;
             await UserManager.UpdateAsync(user);
+
+            await logger.LogNoneAsync($"User '{id}' successfully restored.");
             return RedirectToAction(PetrovichRoutes.UserManagement.Active);
+        }
+
+        private async Task<IdentityResult> UpdateApplicationUser(IUpdateApplicationUserModel userModel)
+        {
+            ApplicationUser user = null;
+            IdentityResult result = null;
+
+            if (String.IsNullOrWhiteSpace(userModel.Id))
+            {
+                await logger.LogNoneAsync($"Attempting to create a new user '{userModel.Email}'.");
+                user = new ApplicationUser { UserName = userModel.Email, Email = userModel.Email };
+                result = await UserManager.CreateAsync(user, userModel.ConfirmPassword);
+            }
+            else
+            {
+                await logger.LogNoneAsync($"Attempting to update an existing user '{userModel.Email}'.");
+                user = await UserManager.FindByIdAsync(userModel.Id.ToString());
+                if (user == null)
+                {
+                    await logger.LogErrorAsync($"User {userModel.Id}/{userModel.Email} was not found for edit.");
+                    throw new UserNotFoundException(userModel.Id.ToString());
+                }
+
+                user.Email = userModel.Email;
+                user.UserName = userModel.Email;
+
+                result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded && !String.IsNullOrWhiteSpace(userModel.ConfirmPassword))
+                {
+                    await logger.LogNoneAsync($"Attempting to update password for existing user '{userModel.Email}'.");
+                    var passwordChangeToken = await UserManager.GeneratePasswordResetTokenAsync(userModel.Id);
+                    result = await UserManager.ResetPasswordAsync(user.Id, passwordChangeToken, userModel.ConfirmPassword);
+                    if (result.Succeeded)
+                    {
+                        await logger.LogNoneAsync($"Password updated for '{userModel.Email}'.");
+                    }
+                    else
+                    {
+                        await logger.LogInformationAsync($"Password was not updated for '{userModel.Email}'.");
+                    }
+                }
+            }
+
+            if (result.Succeeded)
+            {
+                await logger.LogNoneAsync($"Attempting to update claims for user '{userModel.Email}'.");
+                UpdateUserClaims(userModel, user);
+                result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    await logger.LogNoneAsync($"Claims updated for '{userModel.Email}'.");
+                }
+                else
+                {
+                    await logger.LogInformationAsync($"Claims was not updated for '{userModel.Email}'.");
+                }
+            }
+
+            return result;
+        }
+
+        private void UpdateUserClaims(IUpdateApplicationUserModel userModel, ApplicationUser user)
+        {
+            for (int i = user.Claims.Count - 1; i >= 0; i--)
+            {
+                var identityClaim = user.Claims.ElementAt(i);
+                UserManager.RemoveClaim(user.Id, new System.Security.Claims.Claim(identityClaim.ClaimType, identityClaim.ClaimValue));
+            }
+
+            user.Claims.Add(new IdentityUserClaim() { ClaimType = PetrovichClaims.UserName.ToString(), ClaimValue = userModel.UserName });
+
+            foreach (var claim in userModel.Claims)
+            {
+                var parsedClaim = PermissionClaims.PowerAdmin;
+                if (Enum.TryParse(claim, out parsedClaim))
+                {
+                    user.Claims.Add(new IdentityUserClaim()
+                    {
+                        ClaimType = claim,
+                        ClaimValue = claim,
+                    });
+                }
+            }
         }
     }
 }

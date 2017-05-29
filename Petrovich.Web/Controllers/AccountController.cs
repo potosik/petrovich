@@ -7,13 +7,16 @@ using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Models.Account;
+using Petrovich.Business.Logging;
 
 namespace Petrovich.Web.Controllers
 {
     [Authorize]
+    [LoggableActions]
     public class AccountController : IdentityController
     {
-        public AccountController()
+        public AccountController(ILoggingService logging)
+            : base(logging)
         {
         }
 
@@ -33,6 +36,7 @@ namespace Petrovich.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await logger.LogInvalidModelAsync(model.GetType());
                 return View(model);
             }
 
@@ -41,10 +45,12 @@ namespace Petrovich.Web.Controllers
             if (user != null && user.LockoutEnabled)
             {
                 status = SignInStatus.Failure;
+                await logger.LogInformationAsync($"Login failed for {model.Email}. Trying to sign in with deleted user account.");
             }
             else
             {
                 status = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+                await logger.LogNoneAsync($"Login process completed.");
             }
 
             switch (status)
@@ -53,6 +59,7 @@ namespace Petrovich.Web.Controllers
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.Failure:
                 default:
+                    await logger.LogInformationAsync($"Login failed for {model.Email}.");
                     ModelState.AddModelError("", "Введены неверные логин или пароль.");
                     return View(model);
             }
@@ -60,9 +67,10 @@ namespace Petrovich.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Logout()
+        public async Task<ActionResult> Logout()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            await logger.LogNoneAsync($"Logout process completed.");
             return RedirectToAction(PetrovichRoutes.Dashboard.Index);
         }
 
@@ -78,6 +86,7 @@ namespace Petrovich.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await logger.LogInvalidModelAsync(model.GetType());
                 return View(model);
             }
 
@@ -93,6 +102,8 @@ namespace Petrovich.Web.Controllers
                 return RedirectToAction(PetrovichRoutes.Account.ChangePasswordSuccess.Action);
             }
 
+            await logger.LogErrorAsync($"Unsuccessful password change for {User.Identity.GetUserId()}.");
+            
             AddErrors(result);
             return View(model);
         }

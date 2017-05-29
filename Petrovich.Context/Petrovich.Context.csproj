@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201705252143428_InitialCreate.Designer.cs">
       <DependentUpon>201705252143428_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705292119589_CallStackAdded.cs" />
+    <Compile Include="Migrations\201705292119589_CallStackAdded.Designer.cs">
+      <DependentUpon>201705292119589_CallStackAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +95,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705252143428_InitialCreate.resx">
       <DependentUpon>201705252143428_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705292119589_CallStackAdded.resx">
+      <DependentUpon>201705292119589_CallStackAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

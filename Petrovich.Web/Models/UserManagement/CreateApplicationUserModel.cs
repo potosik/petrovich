@@ -11,11 +11,18 @@ using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace Petrovich.Web.Models.UserManagement
 {
-    public class CreateApplicationUserModel
+    public class CreateApplicationUserModel : IUpdateApplicationUserModel
     {
+        public string Id { get; }
+
         [Required]
         [EmailAddress]
+        [Display(Name = "Логин (email)")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Имя пользователя")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -26,7 +26,7 @@ namespace Petrovich.Repositories.Concrete
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
             dbContext.Set<TEntity>().Add(entity);
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync().ConfigureAwait(false);
             return entity;
         }
 
@@ -34,7 +34,7 @@ namespace Petrovich.Repositories.Concrete
         {
             var dbContext = context as DbContext;
             dbContext.Set<TEntity>().Remove(entity);
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public async Task DeleteByIdAsync(int id)

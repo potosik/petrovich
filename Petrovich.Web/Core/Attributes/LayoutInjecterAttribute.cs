@@ -2,7 +2,7 @@
 
 namespace Petrovich.Web.Core.Attributes
 {
-    public class LayoutInjecterAttribute : ActionFilterAttribute
+    internal class LayoutInjecterAttribute : ActionFilterAttribute
     {
         private readonly string _masterName;
 
@@ -10,7 +10,7 @@ namespace Petrovich.Web.Core.Attributes
         {
             _masterName = masterName;
         }
-
+        
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);

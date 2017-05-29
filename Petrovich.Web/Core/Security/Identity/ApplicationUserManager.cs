@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using Petrovich.Web.Core.Security.DbContext;
 using Petrovich.Web.Core.Security.DbContext.Entities;
 
@@ -34,6 +35,10 @@ namespace Petrovich.Web.Core.Security.Identity
             };
 
             manager.UserLockoutEnabledByDefault = false;
+
+            var dataProtectionProvider = options.DataProtectionProvider;
+            if (dataProtectionProvider != null)
+                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("admin.petrovich"));
 
             return manager;
         }

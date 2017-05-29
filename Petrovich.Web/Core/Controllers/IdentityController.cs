@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Petrovich.Business.Logging;
 using Petrovich.Web.Core.Security.Identity;
 using System.Web;
 
@@ -11,16 +12,11 @@ namespace Petrovich.Web.Core.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public IdentityController()
+        public IdentityController(ILoggingService logging)
+            : base(logging)
         {
         }
-
-        public IdentityController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
+        
         protected ApplicationSignInManager SignInManager
         {
             get

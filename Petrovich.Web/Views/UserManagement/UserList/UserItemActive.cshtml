@@ -1,16 +1,16 @@
 ﻿@model Petrovich.Web.Models.UserManagement.ApplicationUserModel
 
 <tr>
-    <th scope="row">@Model.Id</th>
+    <th scope="row">@Model.UserName</th>
     <td>@Model.Email</td>
     <td>
         @using (Html.BeginForm(PetrovichRoutes.UserManagement.Delete, new { id = Model.Id }, FormMethod.Post, null))
         {
             <div class="btn-group" role="group">
-                <a href="@Url.Action(PetrovichRoutes.UserManagement.Edit, new { id = Model.Id })" class="btn btn-default btn-xs" aria-label="Edit">
+                <a href="@Url.Action(PetrovichRoutes.UserManagement.Edit, new { id = Model.Id })" class="btn btn-default btn-xs" aria-label="Редактировать">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </a>
-                <button type="submit" class="btn btn-danger btn-xs" aria-label="Delete">
+                <button type="submit" class="btn btn-danger btn-xs" aria-label="Удалить">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </div>

@@ -11,6 +11,8 @@ namespace Petrovich.Business.Logging
 {
     public class LoggingService : ILoggingService
     {
+        private const int StackTraceSkip = 6;
+
         private readonly ILogDataSource dataSource;
 
         public LoggingService(ILogDataSource dataSource)
@@ -18,7 +20,7 @@ namespace Petrovich.Business.Logging
             this.dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task LogAsync(LogSeverity severity, string message, string stackTrace = null, string innerExceptionMessage = null)
+        private async Task LogAsync(LogSeverity severity, string message, string stackTrace = null, string innerExceptionMessage = null)
         {
             var logEntity = new Log()
             {
@@ -26,6 +28,7 @@ namespace Petrovich.Business.Logging
                 Message = message,
                 StackTrace = stackTrace,
                 InnerExceptionMessage = innerExceptionMessage,
+                CallStack = new System.Diagnostics.StackTrace(StackTraceSkip).ToString(),
             };
 
             await dataSource.WriteLogAsync(logEntity);
@@ -84,9 +87,19 @@ namespace Petrovich.Business.Logging
             await LogAsync(LogSeverity.None, message);
         }
 
+        public void LogNone(string message)
+        {
+            Task.Run(async () => await LogAsync(LogSeverity.None, message)).Wait();
+        }
+
         private string FormatMessageWithException(string message, Exception ex)
         {
             return $"{message} | Exception: {ex.Message}";
+        }
+
+        public async Task LogInvalidModelAsync(Type type)
+        {
+            await LogInformationAsync($"Invalid model state registered ({ type.FullName }).");
         }
     }
 }
