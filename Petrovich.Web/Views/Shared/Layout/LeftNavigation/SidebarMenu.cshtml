@@ -3,16 +3,16 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     @if (User.Identity.HasClaim(PermissionClaims.PowerAdmin))
     {
-        Html.Partial("Layout/LeftNavigation/SidebarMenu/Administrator");
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Administrator");
     }
 
     @if (User.Identity.HasClaim(PermissionClaims.DataStructureAdmin))
     {
-        Html.Partial("Layout/LeftNavigation/SidebarMenu/DataStructure");
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/DataStructure");
     }
 
     @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
     {
-        Html.Partial("Layout/LeftNavigation/SidebarMenu/Products");
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Products");
     }
 </div>
