@@ -10,8 +10,12 @@ using System.Threading.Tasks;
 
 namespace Petrovich.Context
 {
-    public interface IPetrovichContext : IPetrovichContextBase
+    public interface IPetrovichContextBase : IDisposable
     {
-        IDbSet<Log> Logs { get; set; }
+        DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity;
+
+        void SaveChanges();
+        Task SaveChangesAsync();
+        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

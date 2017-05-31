@@ -18,7 +18,9 @@ namespace Petrovich.Web.Core.Attributes
         {
             var actionName = filterContext.ActionDescriptor.ActionName;
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            logger.LogNone($"Page {actionName}.{controllerName} requested.");
+            var userName = filterContext.HttpContext?.User?.Identity?.Name;
+
+            logger.LogNone($"Page {actionName}.{controllerName} requested by {userName}.");
 
             base.OnActionExecuting(filterContext);
         }
@@ -29,14 +31,15 @@ namespace Petrovich.Web.Core.Attributes
 
             var actionName = filterContext.Controller.GetAction();
             var controllerName = filterContext.Controller.GetController();
+            var userName = filterContext.HttpContext?.User?.Identity?.Name;
 
             if (!filterContext.Canceled)
             {
-                logger.LogNone($"Page {actionName}.{controllerName} displayed.");
+                logger.LogNone($"Page {actionName}.{controllerName} displayed for {userName}.");
             }
             else
             {
-                logger.LogNone($"Page {actionName}.{controllerName} canceled.");
+                logger.LogNone($"Page {actionName}.{controllerName} canceled for {userName}.");
             }
         }
     }

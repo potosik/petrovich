@@ -14,5 +14,10 @@ namespace Petrovich.Web.Core.Extensions
         {
             return ((ClaimsIdentity)identity).FindFirst(PetrovichClaims.UserName.ToString())?.Value;
         }
+
+        public static bool HasClaim(this IIdentity identity, PermissionClaims claim)
+        {
+            return ((ClaimsIdentity)identity).HasClaim(claim.ToString(), claim.ToString());
+        }
     }
 }

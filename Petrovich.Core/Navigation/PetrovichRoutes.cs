@@ -21,6 +21,26 @@
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
         }
 
+        public static class DataStructure
+        {
+            private const string Controller = "DataStructure";
+
+            public static Endpoint CategoryList = new Endpoint(Controller, "CategoryList");
+            public static Endpoint CategoryCreate = new Endpoint(Controller, "CategoryCreate");
+            public static Endpoint CategoryEdit = new Endpoint(Controller, "CategoryEdit");
+            public static Endpoint CategoryDelete = new Endpoint(Controller, "CategoryDelete");
+
+            public static Endpoint SubcategoryList = new Endpoint(Controller, "SubcategoryList");
+            public static Endpoint SubcategoryCreate = new Endpoint(Controller, "SubcategoryCreate");
+            public static Endpoint SubcategoryEdit = new Endpoint(Controller, "SubcategoryEdit");
+            public static Endpoint SubcategoryDelete = new Endpoint(Controller, "SubcategoryDelete");
+
+            public static Endpoint GroupList = new Endpoint(Controller, "GroupList");
+            public static Endpoint GroupCreate = new Endpoint(Controller, "GroupCreate");
+            public static Endpoint GroupEdit = new Endpoint(Controller, "GroupEdit");
+            public static Endpoint GroupDelete = new Endpoint(Controller, "GroupDelete");
+        }
+
         public static class Error
         {
             private const string Controller = "Error";
@@ -28,6 +48,16 @@
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
             public static Endpoint NotFound = new Endpoint(Controller, "NotFound");
             public static Endpoint BadRequest = new Endpoint(Controller, "BadRequest");
+        }
+
+        public static class Products
+        {
+            private const string Controller = "Products";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+            public static Endpoint Create = new Endpoint(Controller, "Create");
+            public static Endpoint Edit = new Endpoint(Controller, "Edit");
+            public static Endpoint Delete = new Endpoint(Controller, "Delete");
         }
 
         public static class UserManagement

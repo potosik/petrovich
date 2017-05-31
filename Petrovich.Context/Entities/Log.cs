@@ -1,4 +1,5 @@
-﻿using Petrovich.Context.Enumerations;
+﻿using Petrovich.Context.Entities.Base;
+using Petrovich.Context.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Petrovich.Context.Entities
 {
-    public class Log
+    public class Log : BaseEntity
     {
         [Key]
         public int LogId { get; set; }

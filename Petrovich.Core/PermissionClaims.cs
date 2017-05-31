@@ -2,7 +2,9 @@
 {
     public enum PermissionClaims
     {
+        DataStructureAdmin,
         PowerAdmin,
+        ProductsAdmin,
         UserManagement,
     }
 }

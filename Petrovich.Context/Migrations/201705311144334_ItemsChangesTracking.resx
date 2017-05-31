@@ -117,20 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DataStructureAdmin" xml:space="preserve">
-    <value>Управление структурой продуктов</value>
+  <data name="Target" xml:space="preserve">
+    <value>H4sIAAAAAAAEAM1Y227jNhB9L9B/EPTUAruW4yDtNpB3kTjJwmicBKvsvjPS2CGWorQkFdjftg/9pP5Ch7qQuvgme9MWfrGomcO5kGdm9Pf3v/wPy5g5LyAkTfjYPRkMXQd4mESUL8ZupuZv37kf3v/8k38dxUvnSyV3quVQk8ux+6xUeu55MnyGmMhBTEORyGSuBmESeyRKvNFw+Id3cuIBQriI5Tj+p4wrGkP+gI+ThIeQqoywWRIBk+U6vglyVOeOxCBTEsLYfQAlkhcaPg9QS8FSuc4FowQNCYDNXYdwniii0MzzzxICFOaLIMUFwh5XKaDcnDAJpfnnVnxfT4Yj7YlnFSuoMJMqiXsCnpyWofHa6gcF2DWhw+BdY5DVSnudB3Ds3iYL12nvcz5hQsusCe0gR6AgB6j5xum8f2NOBB4c/XvjTDKmMgFjDpkShKFS9sRo+CesHpOvgIJno1F0Fv4+nw9/O4vIu7rBaDLKNRZw6UEkKQi1+gRz68Y0ch2vqeq1dY1mU63wdcrV6ch17jLGyBMDcypqcQlUIuAjcBBEQfRAlAKBSZ1GkMe1Y0Bru0kiBLAcym77MaPRml23IwWAFzTfsQDRB11nxK73BJyBlGQBBk8JvO6uMyPLW+AL9YwSZOk6N3QJUbVSAn/mFNkBlZTIdhuuSPj1UeC9ffWtphzzdL3UNIIB/7ccnBDGcidffycB+hRW+1zhwyMy6J5ql6tXNxCZm85pfwsrvR9uou9Z/muyYhY3OdHeo6m8YWRha0Q/rsxiTRUoJuu385V4E12PQLAVhqrOaM1YzyB+AlF6epdwdOkLYRk+DDt5achO+TwRcVmHSpWT7SrXQiTCCI+2C08wMjQkzMifdpNXpKlb0HQQCeUGy4TXNASdtGEnUGZOlkelaVsBHICyh0K6jj0/lnPXnzFjku1cvKJ1qVocb0OP489ImmIOaz1PueIERcMzeRv0bwXiAsML5ZqOwFhrdsJKh3TZeqtLWAQ3VEiFl5k8EX0jJlHcEeskYENwq+1qMW4XexvySlj/b+XZXDmdjxaCjd8NuhRjqc69A2NE0QV1tPJekzAi1jcNk4RlMd/SfmzDaHUCdazWq/0xLWfV4ezq/kimVtaBzGIPi2rFvmFTbX1/tA31vA68QaRHXmz1buTELvfAqupzA6la7I1zuVqLdNkvs6YkN1JrVvsjtc2qr3fRfK91Fdu33etc91ZL36aObdTbFjG7GwpuUa1f0t7umbPDg4WI6zxoQoo0BwYrqSAeaIFB8I1NGEV/rcCMcDoHqYpi7uLcN2rNrf+fGdKTMmK7B8n/aHCjOqw7R7OeA9HaWS3j9FsGNMfEQy6Ontty048b1fgLEeEzEb/EZPlrHeywcewouK0j11HInbHqOLTm6BThg8oHk4Ng7JxylFHtcelQq7rjUw+zNo9I6/rsbje4s4ne1EMX/IlePyVodmFe0XMf2F13qdz36h8Z/SuQdGEh9CdHDqE+uBa0ktHDTxVmdKduUSXSuaWKYAbJhUCqIKHC1yHeh3yMLQeca5x+oim/z1SaqQspcRpijarpe9v3z0eIps3+fX715I9wAc2k+hDe88uMssjYfdNlqU0Q+oCUpIxW4RiPcIuVQSrmz32AyvBdQQpc0+8jxCmyM8h7HpAXOMQ2nABvYUHCVVWRN4PsTkQz7P4VJQtBYlliWH394dzTX87f/wP94ZMtaxcAAA==</value>
   </data>
-  <data name="PowerAdmin" xml:space="preserve">
-    <value>Супер администратор</value>
-  </data>
-  <data name="ProductsAdmin" xml:space="preserve">
-    <value>Управление товарами</value>
-  </data>
-  <data name="TestString" xml:space="preserve">
-    <value>TestString</value>
-    <comment>Used for testing only</comment>
-  </data>
-  <data name="UserManagement" xml:space="preserve">
-    <value>Управление пользователями</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

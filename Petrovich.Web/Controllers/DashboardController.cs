@@ -18,6 +18,9 @@ namespace Petrovich.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
+            await logger.LogNoneAsync("Lol!!!");
+            var a= HttpContext.User.Identity.Name;
+
             return View();
         }
     }
