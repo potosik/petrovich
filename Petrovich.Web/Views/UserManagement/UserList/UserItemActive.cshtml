@@ -7,10 +7,10 @@
         @using (Html.BeginForm(PetrovichRoutes.UserManagement.Delete, new { id = Model.Id }, FormMethod.Post, null))
         {
             <div class="btn-group" role="group">
-                <a href="@Url.Action(PetrovichRoutes.UserManagement.Edit, new { id = Model.Id })" class="btn btn-default btn-xs" aria-label="Редактировать">
+                <a href="@Url.Action(PetrovichRoutes.UserManagement.Edit, new { id = Model.Id })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </a>
-                <button type="submit" class="btn btn-danger btn-xs" aria-label="Удалить">
+                <button type="submit" class="btn btn-danger btn-xs" aria-label="Удалить" title="Удалить">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </div>

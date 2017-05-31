@@ -57,6 +57,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,8 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composition\CompositionModule.cs" />
+    <Compile Include="Entities\Base\BaseEntity.cs" />
+    <Compile Include="Entities\Base\IChangeTrackableEntity.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Enumerations\LogSeverity.cs" />
+    <Compile Include="IPetrovichContextBase.cs" />
     <Compile Include="IPetrovichContext.cs" />
     <Compile Include="Migrations\201705252143428_InitialCreate.cs" />
     <Compile Include="Migrations\201705252143428_InitialCreate.Designer.cs">
@@ -77,7 +81,12 @@
     <Compile Include="Migrations\201705292119589_CallStackAdded.Designer.cs">
       <DependentUpon>201705292119589_CallStackAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705311144334_ItemsChangesTracking.cs" />
+    <Compile Include="Migrations\201705311144334_ItemsChangesTracking.Designer.cs">
+      <DependentUpon>201705311144334_ItemsChangesTracking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PetrovichContextBase.cs" />
     <Compile Include="PetrovichContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +108,12 @@
     <EmbeddedResource Include="Migrations\201705292119589_CallStackAdded.resx">
       <DependentUpon>201705292119589_CallStackAdded.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705311144334_ItemsChangesTracking.resx">
+      <DependentUpon>201705311144334_ItemsChangesTracking.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Migrations\PM Migration command.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

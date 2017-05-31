@@ -61,11 +61,29 @@ namespace Petrovich.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Управление структурой продуктов.
+        /// </summary>
+        internal static string DataStructureAdmin {
+            get {
+                return ResourceManager.GetString("DataStructureAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Супер администратор.
         /// </summary>
         internal static string PowerAdmin {
             get {
                 return ResourceManager.GetString("PowerAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Управление товарами.
+        /// </summary>
+        internal static string ProductsAdmin {
+            get {
+                return ResourceManager.GetString("ProductsAdmin", resourceCulture);
             }
         }
         

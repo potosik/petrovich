@@ -186,7 +186,11 @@
     <Compile Include="Composition\CompositionModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DataStructureSubcategoryController.cs" />
+    <Compile Include="Controllers\DataStructureGroupController.cs" />
+    <Compile Include="Controllers\DataStructureCategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Core\Attributes\LayoutInjecterAttribute.cs" />
     <Compile Include="Core\Attributes\LoggableActionsAttribute.cs" />
@@ -267,6 +271,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DataStructure\" />
+    <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -323,10 +329,19 @@
     <Content Include="Views\Error\BadRequest.cshtml" />
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\UserManagement\UserList\UserItemDeleted.cshtml" />
+    <Content Include="Key.snk" />
+    <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\DataStructure.cshtml" />
+    <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Products.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
