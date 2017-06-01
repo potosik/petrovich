@@ -2,11 +2,8 @@
 using Petrovich.Business.Exceptions;
 using Petrovich.Repositories.DataSources;
 using Petrovich.Repositories.Mappers;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 

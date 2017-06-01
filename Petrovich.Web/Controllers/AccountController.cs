@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Petrovich.Web.Models;
 using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
 using Petrovich.Core.Navigation;

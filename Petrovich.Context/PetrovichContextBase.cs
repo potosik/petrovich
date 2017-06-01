@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Petrovich.Context.Entities;
-using Petrovich.Context.Migrations;
 using Petrovich.Context.Entities.Base;
 using System.Web;
 using System.Threading;

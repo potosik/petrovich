@@ -1,11 +1,7 @@
-﻿using Petrovich.Core;
-using Petrovich.Core.Utils;
-using Petrovich.Web.Core.Security.DbContext.Entities;
-using System;
+﻿using Petrovich.Core.Utils;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using Petrovich.Context.Entities;
 using Petrovich.Context.Migrations;
-using Petrovich.Context.Entities.Base;
-using System.Web;
-using System.Threading;
 
 namespace Petrovich.Context
 {
@@ -20,5 +12,11 @@ namespace Petrovich.Context
         }
 
         public IDbSet<Log> Logs { get; set; }
+
+        public IDbSet<Branch> Branches { get; set; }
+        public IDbSet<Category> Categories { get; set; }
+        public IDbSet<Group> Groups { get; set; }
+
+        public IDbSet<Product> Products { get; set; }
     }
 }

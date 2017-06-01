@@ -1,11 +1,5 @@
-﻿using Petrovich.Core;
-using Petrovich.Web.Core.Extensions;
+﻿using Petrovich.Web.Core.Extensions;
 using Petrovich.Web.Core.Security.DbContext.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Petrovich.Web.Models.UserManagement
 {

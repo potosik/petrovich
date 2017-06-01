@@ -1,10 +1,6 @@
 ﻿using Moq;
 using Petrovich.Business.Logging;
 using Petrovich.Web.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Xunit;
@@ -19,6 +15,34 @@ namespace Petrovich.Web.Tests.Controllers
         public DataStructureControllerTests()
         {
             controller = new DataStructureController(loggingServiceMock.Object);
+        }
+
+        [Fact]
+        public async Task BranchList_ReturnsNotNull()
+        {
+            var resultGet = await controller.BranchList() as ViewResult;
+            Assert.NotNull(resultGet);
+        }
+
+        [Fact]
+        public async Task BranchCreate_ReturnsNotNull()
+        {
+            var resultGet = await controller.BranchCreate() as ViewResult;
+            Assert.NotNull(resultGet);
+        }
+
+        [Fact]
+        public async Task BranchEdit_ReturnsNotNull()
+        {
+            var resultGet = await controller.BranchEdit() as ViewResult;
+            Assert.NotNull(resultGet);
+        }
+
+        [Fact]
+        public async Task BranchDelete_ReturnsNotNull()
+        {
+            var resultGet = await controller.BranchDelete() as ViewResult;
+            Assert.NotNull(resultGet);
         }
 
         [Fact]
@@ -74,34 +98,6 @@ namespace Petrovich.Web.Tests.Controllers
         public async Task GroupDelete_ReturnsNotNull()
         {
             var resultGet = await controller.GroupList() as ViewResult;
-            Assert.NotNull(resultGet);
-        }
-
-        [Fact]
-        public async Task SubcategoryList_ReturnsNotNull()
-        {
-            var resultGet = await controller.SubcategoryList() as ViewResult;
-            Assert.NotNull(resultGet);
-        }
-
-        [Fact]
-        public async Task SubcategoryCreate_ReturnsNotNull()
-        {
-            var resultGet = await controller.SubcategoryCreate() as ViewResult;
-            Assert.NotNull(resultGet);
-        }
-
-        [Fact]
-        public async Task SubcategoryEdit_ReturnsNotNull()
-        {
-            var resultGet = await controller.SubcategoryEdit() as ViewResult;
-            Assert.NotNull(resultGet);
-        }
-
-        [Fact]
-        public async Task SubcategoryDelete_ReturnsNotNull()
-        {
-            var resultGet = await controller.SubcategoryDelete() as ViewResult;
             Assert.NotNull(resultGet);
         }
     }

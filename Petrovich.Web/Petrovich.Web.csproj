@@ -186,10 +186,11 @@
     <Compile Include="Composition\CompositionModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\DataStructureSubcategoryController.cs" />
+    <Compile Include="Controllers\DataStructureBranchController.cs" />
     <Compile Include="Controllers\DataStructureGroupController.cs" />
     <Compile Include="Controllers\DataStructureCategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Core\Attributes\LayoutInjecterAttribute.cs" />
@@ -272,6 +273,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DataStructure\" />
+    <Folder Include="Views\Logging\" />
     <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +334,7 @@
     <Content Include="Key.snk" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\DataStructure.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Products.cshtml" />
+    <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Logging.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

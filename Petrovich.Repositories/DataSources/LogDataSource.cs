@@ -1,10 +1,6 @@
 ﻿using Petrovich.Business.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Petrovich.Business.Models.Enumerations;
 using Petrovich.Business.Models;
 using Petrovich.Repositories.Mappers;
 using System.Data.Entity.Core;

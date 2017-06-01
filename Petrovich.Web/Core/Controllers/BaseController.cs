@@ -1,6 +1,5 @@
 ﻿using Petrovich.Business.Logging;
 using Petrovich.Core.Navigation;
-using System.Net;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Core.Controllers

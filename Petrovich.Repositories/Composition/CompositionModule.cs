@@ -1,9 +1,4 @@
 ﻿using Petrovich.Core.Composition;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using Petrovich.Business.Data;
 using Petrovich.Repositories.DataSources;
@@ -25,6 +20,10 @@ namespace Petrovich.Repositories.Composition
             container.RegisterType<ILogDataSource, LogDataSource>("LogDataSource");
 
             container.RegisterType<ILogRepository, LogRepository>();
+            container.RegisterType<IBranchRepository, BranchRepository>();
+            container.RegisterType<ICategoryRepository, CategoryRepository>();
+            container.RegisterType<IGroupRepository, GroupRepository>();
+            container.RegisterType<IProductRepository, ProductRepository>();
         }
     }
 }
