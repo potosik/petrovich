@@ -118,13 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Branch_InventoryPart_Changed_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена</value>
+    <value>Часть инвентарного номера не может быть изменена.</value>
   </data>
   <data name="Branch_InventoryPart_Duplicate_Error" xml:space="preserve">
-    <value>Раздел с данной частью инвентарного номера уже зарегистрирован</value>
+    <value>Раздел с данной частью инвентарного номера уже зарегистрирован.</value>
   </data>
   <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
-    <value>Часть инвентарного номера должна быть 2 символа</value>
+    <value>Часть инвентарного номера должна быть 2 символа.</value>
+  </data>
+  <data name="Category_BranchNotFound_Error" xml:space="preserve">
+    <value>Выбранный раздел не найден.</value>
+  </data>
+  <data name="Category_InventoryPart_Changed_Error" xml:space="preserve">
+    <value>Часть инвентарного номера не может быть изменена.</value>
+  </data>
+  <data name="Category_InventoryPart_Duplicate_Error" xml:space="preserve">
+    <value>Категория с данной частью инвентарного номера уже зарегистрирована.</value>
+  </data>
+  <data name="Category_NoInventoryPartSlotsAvailable_Error" xml:space="preserve">
+    <value>Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию.</value>
   </data>
   <data name="Critical" xml:space="preserve">
     <value>Критическая ошибка</value>

@@ -209,10 +209,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
-    <Compile Include="Models\Base\IChangeTrackableEntity.cs" />
     <Compile Include="Models\DataStructure\BranchModel.cs" />
+    <Compile Include="Models\DataStructure\CategoryModel.cs" />
     <Compile Include="Models\DataStructure\CreateBranchModel.cs" />
+    <Compile Include="Models\DataStructure\CreateCategoryModel.cs" />
     <Compile Include="Models\DataStructure\EditBranchModel.cs" />
+    <Compile Include="Models\DataStructure\EditCategoryModel.cs" />
     <Compile Include="Models\Logging\LogModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserManagement\CreateApplicationUserModel.cs" />
@@ -349,6 +351,10 @@
     <Content Include="Views\Logging\Index.cshtml" />
     <Content Include="Views\Logging\Details.cshtml" />
     <Content Include="Content\css\Petrovich\Logging.less" />
+    <Content Include="Views\DataStructure\CategoryCreate.cshtml" />
+    <Content Include="Views\DataStructure\CategoryList.cshtml" />
+    <Content Include="Views\DataStructure\CategoryEdit.cshtml" />
+    <Content Include="Views\DataStructure\ChildCategoriesExists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

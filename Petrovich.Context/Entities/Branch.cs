@@ -1,4 +1,5 @@
 ﻿using Petrovich.Context.Entities.Base;
+using Petrovich.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,7 @@ namespace Petrovich.Context.Entities
 
         public string Title { get; set; }
 
-        [StringLength(2, MinimumLength = 2, ErrorMessageResourceName = "Branch_InventoryPart_StringLength_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        [StringLength(Constants.BranchInventoryPartLenght, MinimumLength = Constants.BranchInventoryPartLenght, ErrorMessageResourceName = "Branch_InventoryPart_StringLength_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public string InventoryPart { get; set; }
 
         public virtual ICollection<Category> Categories { get; set; }

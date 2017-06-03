@@ -9,6 +9,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
     {
         public Business.Models.Log ToBusinessEntity(Log entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new Business.Models.Log()
             {
                 LogId = entity.LogId,

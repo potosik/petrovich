@@ -15,9 +15,9 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<BranchCollection> ListBranchesAsync()
+        public async Task<BranchCollection> ListAsync()
         {
-            return await innerDataSource.ListBranchesAsync();
+            return await innerDataSource.ListAsync();
         }
 
         public async Task<Branch> FindByInventoryPartAsync(string inventoryPart)
@@ -25,14 +25,14 @@ namespace Petrovich.Business.PerformanceCounters
             return await innerDataSource.FindByInventoryPartAsync(inventoryPart);
         }
 
-        public async Task<Branch> CreateBranchAsync(Branch branch)
+        public async Task<Branch> CreateAsync(Branch branch)
         {
-            return await innerDataSource.CreateBranchAsync(branch);
+            return await innerDataSource.CreateAsync(branch);
         }
 
-        public async Task<Branch> FindByIdAsync(Guid id)
+        public async Task<Branch> FindAsync(Guid id)
         {
-            return await innerDataSource.FindByIdAsync(id);
+            return await innerDataSource.FindAsync(id);
         }
 
         public async Task<Branch> UpdateAsync(Branch branch)

@@ -29,14 +29,14 @@ namespace Petrovich.Repositories.Tests.DataSources
         }
 
         [Fact]
-        public async Task ListBranchesAsync_WhenEntityExceptionThrown_ShouldThrowDatabseOperationException()
+        public async Task ListAsync_WhenEntityExceptionThrown_ShouldThrowDatabseOperationException()
         {
             branchRepositoryMock.Setup(repository => repository.ListAllAsync())
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.ListBranchesAsync();
+                return dataSource.ListAsync();
             });
         }
 
@@ -53,14 +53,14 @@ namespace Petrovich.Repositories.Tests.DataSources
         }
 
         [Fact]
-        public async Task CreateBranchAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        public async Task CreateAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
         {
             branchRepositoryMock.Setup(repository => repository.CreateAsync(It.IsAny<Context.Entities.Branch>()))
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.CreateBranchAsync(new Business.Models.Branch());
+                return dataSource.CreateAsync(new Business.Models.Branch());
             });
         }
 

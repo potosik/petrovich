@@ -75,7 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BranchRepositoryTests.cs" />
+    <Compile Include="CategoryRepositoryTests.cs" />
     <Compile Include="DataSources\BranchDataSourceTests.cs" />
+    <Compile Include="DataSources\CategoryDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
     <Compile Include="Extensions\MockExtensions.cs" />
     <Compile Include="LogRepositoryTests.cs" />
@@ -98,6 +100,10 @@
     <ProjectReference Include="..\Petrovich.Context\Petrovich.Context.csproj">
       <Project>{2D498F3E-937C-4382-95E4-C0C778A45323}</Project>
       <Name>Petrovich.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.Core\Petrovich.Core.csproj">
+      <Project>{0363A4E5-86AA-4D11-ACDE-273111E82A23}</Project>
+      <Name>Petrovich.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Petrovich.Repositories\Petrovich.Repositories.csproj">
       <Project>{3C3AB191-33DB-4818-AF64-695AF83F2D5E}</Project>

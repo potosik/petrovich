@@ -8,11 +8,18 @@ namespace Petrovich.Repositories.Mappers.Concrete
     {
         public Business.Models.Category ToBusinessEntity(Category entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new Business.Models.Category()
             {
                 CategoryId = entity.CategoryId,
                 Title = entity.Title,
                 InventoryPart = entity.InventoryPart,
+                BranchId = entity.BranchId,
+                BranchTitle = entity.Branch?.Title,
                 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,
@@ -33,6 +40,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 CategoryId = entity.CategoryId,
                 Title = entity.Title,
                 InventoryPart = entity.InventoryPart,
+                BranchId = entity.BranchId,
 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,

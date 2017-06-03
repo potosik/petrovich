@@ -37,7 +37,6 @@ namespace Petrovich.Repositories.Tests
         public async Task FindAsync_ReturnsNull_WhenEntityNotFound()
         {
             var result = await branchRepository.FindAsync(Guid.NewGuid());
-
             Assert.Null(result);
         }
 
@@ -56,7 +55,6 @@ namespace Petrovich.Repositories.Tests
         public async Task FindByInventoryPartAsync_ReturnsNull_WhenEntityNotFound()
         {
             var result = await branchRepository.FindByInventoryPartAsync("AA");
-
             Assert.Null(result);
         }
 
