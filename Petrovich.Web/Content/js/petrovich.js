@@ -10,4 +10,20 @@
             }
         }
     }
+    
+    function Petrovich() {
+        this.init = function () {
+            // initialize delete button confirmation dialog
+            this.delteButtonConfirmation();
+        }
+
+        this.delteButtonConfirmation = function () {
+            $('.btn-delete').click(function () {
+                return confirm("Элемент будет безвозвратно удален\nВы уверены что хотите удалить данный элемент?");
+            });
+        }
+    }
+
+    var petrovich = new Petrovich();
+    petrovich.init();
 })();
