@@ -209,6 +209,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
+    <Compile Include="Models\Base\IChangeTrackableEntity.cs" />
+    <Compile Include="Models\DataStructure\BranchModel.cs" />
+    <Compile Include="Models\DataStructure\CreateBranchModel.cs" />
+    <Compile Include="Models\DataStructure\EditBranchModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserManagement\CreateApplicationUserModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserModel.cs" />
@@ -222,6 +226,11 @@
     <Compile Include="Core\Security\Defaults.cs" />
     <Compile Include="Core\Security\Identity\ApplicationSignInManager.cs" />
     <Compile Include="Core\Security\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DataStructure\" />
     <Folder Include="Views\Logging\" />
     <Folder Include="Views\Products\" />
   </ItemGroup>
@@ -335,6 +343,15 @@
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\DataStructure.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Products.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Logging.cshtml" />
+    <Content Include="Views\DataStructure\BranchList.cshtml" />
+    <Content Include="Views\DataStructure\BranchCreate.cshtml" />
+    <Content Include="Views\DataStructure\BranchEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

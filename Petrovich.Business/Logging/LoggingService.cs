@@ -89,14 +89,14 @@ namespace Petrovich.Business.Logging
             Task.Run(async () => await LogAsync(LogSeverity.None, message)).Wait();
         }
 
-        private string FormatMessageWithException(string message, Exception ex)
-        {
-            return $"{message} | Exception: {ex.Message}";
-        }
-
         public async Task LogInvalidModelAsync(Type type)
         {
             await LogInformationAsync($"Invalid model state registered ({ type.FullName }).");
+        }
+
+        private string FormatMessageWithException(string message, Exception ex)
+        {
+            return $"{message} | Exception: {ex.Message}";
         }
     }
 }

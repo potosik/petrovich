@@ -1,10 +1,11 @@
 ﻿using Petrovich.Business.Models.Base;
+using System;
 
 namespace Petrovich.Business.Models
 {
     public class Group : BaseEntity
     {
-        public int GroupId { get; set; }
+        public Guid GroupId { get; set; }
         public string Title { get; set; }
 
         //public int CategoryId { get; set; }

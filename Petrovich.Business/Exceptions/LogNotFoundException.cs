@@ -5,7 +5,7 @@ namespace Petrovich.Business.Exceptions
     [Serializable]
     public class LogNotFoundException : BusinessException
     {
-        public LogNotFoundException(int id)
+        public LogNotFoundException(Guid id)
             : base(FormatErrorMessage(ErrorCode.LogNotFound, id))
         {
         }

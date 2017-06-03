@@ -64,15 +64,15 @@
     <Compile Include="Data\IGroupDataSource.cs" />
     <Compile Include="Data\ILogDataSource.cs" />
     <Compile Include="Data\IProductDataSource.cs" />
+    <Compile Include="Exceptions\BranchInventoryPartChangedException.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\DatabaseOperationException.cs" />
+    <Compile Include="Exceptions\DuplicateBranchInventoryPartException.cs" />
     <Compile Include="Exceptions\ErrorCode.cs" />
+    <Compile Include="Exceptions\BranchNotFoundException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
-    <Compile Include="IBranchService.cs" />
-    <Compile Include="ICategoryService.cs" />
-    <Compile Include="IGroupService.cs" />
-    <Compile Include="IProductService.cs" />
+    <Compile Include="IDataStructureService.cs" />
     <Compile Include="Logging\Composition\CompositionModule.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingService.cs" />
@@ -100,10 +100,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\BranchService.cs" />
-    <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\GroupService.cs" />
-    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\DataStructureService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

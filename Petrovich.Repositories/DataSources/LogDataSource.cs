@@ -19,16 +19,11 @@ namespace Petrovich.Repositories.DataSources
             this.logMapper = logMapper ?? throw new ArgumentNullException(nameof(logMapper));
         }
 
-        public async Task<Log> FindAsync(int id)
+        public async Task<Log> FindAsync(Guid id)
         {
             try
             {
                 var entity = await logRepository.FindAsync(id);
-                if (entity == null)
-                {
-                    throw new LogNotFoundException(id);
-                }
-
                 return logMapper.ToBusinessEntity(entity);
             }
             catch (EntityException ex)

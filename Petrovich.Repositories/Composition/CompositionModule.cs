@@ -18,6 +18,10 @@ namespace Petrovich.Repositories.Composition
         public void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<ILogDataSource, LogDataSource>("LogDataSource");
+            container.RegisterType<IBranchDataSource, BranchDataSource>("BranchDataSource");
+            container.RegisterType<ICategoryDataSource, CategoryDataSource>("CategoryDataSource");
+            container.RegisterType<IGroupDataSource, GroupDataSource>("GroupDataSource");
+            container.RegisterType<IProductDataSource, ProductDataSource>("ProductDataSource");
 
             container.RegisterType<ILogRepository, LogRepository>();
             container.RegisterType<IBranchRepository, BranchRepository>();

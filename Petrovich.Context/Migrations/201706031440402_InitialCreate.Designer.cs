@@ -7,13 +7,13 @@ namespace Petrovich.Context.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DataStructureOrganized : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DataStructureOrganized));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706011715246_DataStructureOrganized"; }
+            get { return "201706031440402_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

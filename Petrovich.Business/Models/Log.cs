@@ -6,7 +6,7 @@ namespace Petrovich.Business.Models
 {
     public class Log : BaseEntity
     {
-        public int LogId { get; set; }
+        public Guid LogId { get; set; }
         public Guid CorrelationId { get; set; }
         public LogSeverity Severity { get; set; }
         public string Message { get; set; }

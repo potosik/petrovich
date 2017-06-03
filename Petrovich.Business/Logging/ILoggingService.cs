@@ -6,7 +6,7 @@ namespace Petrovich.Business.Logging
     public interface ILoggingService
     {
         Task LogNoneAsync(string message);
-        void LogNone(string v);
+        void LogNone(string message);
 
         Task LogInformationAsync(string message);
         Task LogInformationAsync(Exception ex);

@@ -1,10 +1,11 @@
 ﻿using Petrovich.Business.Models.Base;
+using System;
 
 namespace Petrovich.Business.Models
 {
     public class Category : BaseEntity
     {
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public string Title { get; set; }
         public int InventoryPart { get; set; }
 

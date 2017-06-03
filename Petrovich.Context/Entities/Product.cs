@@ -1,4 +1,5 @@
 ﻿using Petrovich.Context.Entities.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +8,8 @@ namespace Petrovich.Context.Entities
     public class Product : BaseEntity
     {
         [Key]
-        public int ProductId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid ProductId { get; set; }
 
         public string Title { get; set; }
 
@@ -15,12 +17,12 @@ namespace Petrovich.Context.Entities
         public int InventoryPart { get; set; }
 
         [Index]
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         [Index]
-        public int? GroupId { get; set; }
+        public Guid? GroupId { get; set; }
         [ForeignKey("GroupId")]
         public virtual Group Group { get; set; }
     }

@@ -72,7 +72,11 @@
     <Compile Include="Concrete\GroupRepository.cs" />
     <Compile Include="Concrete\LogRepository.cs" />
     <Compile Include="Concrete\ProductRepository.cs" />
+    <Compile Include="DataSources\BranchDataSource.cs" />
+    <Compile Include="DataSources\CategoryDataSource.cs" />
+    <Compile Include="DataSources\GroupDataSource.cs" />
     <Compile Include="DataSources\LogDataSource.cs" />
+    <Compile Include="DataSources\ProductDataSource.cs" />
     <Compile Include="IBaseRepository.cs" />
     <Compile Include="IBranchRepository.cs" />
     <Compile Include="ICategoryRepository.cs" />

@@ -2,6 +2,7 @@
 using Petrovich.Context.Entities;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System;
 
 namespace Petrovich.Repositories.Concrete
 {
@@ -12,9 +13,14 @@ namespace Petrovich.Repositories.Concrete
         {
         }
 
-        public override async Task<Branch> FindAsync(int id)
+        public override async Task<Branch> FindAsync(Guid id)
         {
             return await context.Branches.FirstOrDefaultAsync(item => item.BranchId == id).ConfigureAwait(false);
+        }
+
+        public async Task<Branch> FindByInventoryPartAsync(string inventoryPart)
+        {
+            return await context.Branches.FirstOrDefaultAsync(item => item.InventoryPart == inventoryPart).ConfigureAwait(false);
         }
     }
 }

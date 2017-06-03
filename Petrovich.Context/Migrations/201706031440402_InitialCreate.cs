@@ -1,8 +1,9 @@
 namespace Petrovich.Context.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
-
-    public partial class DataStructureOrganized : DbMigration
+    
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -10,7 +11,7 @@ namespace Petrovich.Context.Migrations
                 "dbo.Branches",
                 c => new
                     {
-                        BranchId = c.Int(nullable: false, identity: true),
+                        BranchId = c.Guid(nullable: false, identity: true),
                         Title = c.String(),
                         InventoryPart = c.String(maxLength: 2),
                         Created = c.DateTime(),
@@ -24,10 +25,10 @@ namespace Petrovich.Context.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        CategoryId = c.Int(nullable: false, identity: true),
+                        CategoryId = c.Guid(nullable: false, identity: true),
                         Title = c.String(),
                         InventoryPart = c.Int(nullable: false),
-                        BranchId = c.Int(nullable: false),
+                        BranchId = c.Guid(nullable: false),
                         Created = c.DateTime(),
                         CreatedBy = c.String(),
                         Modified = c.DateTime(),
@@ -41,9 +42,9 @@ namespace Petrovich.Context.Migrations
                 "dbo.Groups",
                 c => new
                     {
-                        GroupId = c.Int(nullable: false, identity: true),
+                        GroupId = c.Guid(nullable: false, identity: true),
                         Title = c.String(),
-                        CategoryId = c.Int(nullable: false),
+                        CategoryId = c.Guid(nullable: false),
                         Created = c.DateTime(),
                         CreatedBy = c.String(),
                         Modified = c.DateTime(),
@@ -57,11 +58,11 @@ namespace Petrovich.Context.Migrations
                 "dbo.Products",
                 c => new
                     {
-                        ProductId = c.Int(nullable: false, identity: true),
+                        ProductId = c.Guid(nullable: false, identity: true),
                         Title = c.String(),
                         InventoryPart = c.Int(nullable: false),
-                        CategoryId = c.Int(nullable: false),
-                        GroupId = c.Int(),
+                        CategoryId = c.Guid(nullable: false),
+                        GroupId = c.Guid(),
                         Created = c.DateTime(),
                         CreatedBy = c.String(),
                         Modified = c.DateTime(),
@@ -72,6 +73,24 @@ namespace Petrovich.Context.Migrations
                 .ForeignKey("dbo.Groups", t => t.GroupId)
                 .Index(t => t.CategoryId)
                 .Index(t => t.GroupId);
+            
+            CreateTable(
+                "dbo.Logs",
+                c => new
+                    {
+                        LogId = c.Guid(nullable: false, identity: true),
+                        CorrelationId = c.Guid(nullable: false),
+                        Severity = c.Int(nullable: false),
+                        Message = c.String(),
+                        StackTrace = c.String(),
+                        InnerExceptionMessage = c.String(),
+                        CallStack = c.String(),
+                        Created = c.DateTime(),
+                        CreatedBy = c.String(),
+                        Modified = c.DateTime(),
+                        ModifiedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.LogId);
             
         }
         
@@ -85,6 +104,7 @@ namespace Petrovich.Context.Migrations
             DropIndex("dbo.Products", new[] { "CategoryId" });
             DropIndex("dbo.Groups", new[] { "CategoryId" });
             DropIndex("dbo.Categories", new[] { "BranchId" });
+            DropTable("dbo.Logs");
             DropTable("dbo.Products");
             DropTable("dbo.Groups");
             DropTable("dbo.Categories");

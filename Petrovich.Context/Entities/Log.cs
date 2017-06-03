@@ -2,13 +2,15 @@
 using Petrovich.Context.Enumerations;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Petrovich.Context.Entities
 {
     public class Log : BaseEntity
     {
         [Key]
-        public int LogId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid LogId { get; set; }
         public Guid CorrelationId { get; set; }
         public LogSeverity Severity { get; set; }
         public string Message { get; set; }

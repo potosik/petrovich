@@ -1,5 +1,6 @@
 ﻿using Petrovich.Context;
 using Petrovich.Context.Entities;
+using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace Petrovich.Repositories.Concrete
         {
         }
 
-        public override async Task<Category> FindAsync(int id)
+        public override async Task<Category> FindAsync(Guid id)
         {
             return await context.Categories.FirstOrDefaultAsync(item => item.CategoryId == id).ConfigureAwait(false);
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Petrovich.Context.Entities;
 using System.Linq;
+using System;
 
 namespace Petrovich.Repositories.Mappers.Concrete
 {
@@ -8,6 +9,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
     {
         public Business.Models.Branch ToBusinessEntity(Branch entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new Business.Models.Branch()
             {
                 BranchId = entity.BranchId,
@@ -28,6 +34,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
 
         public Branch ToContextEntity(Business.Models.Branch entity)
         {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             return new Branch()
             {
                 BranchId = entity.BranchId,

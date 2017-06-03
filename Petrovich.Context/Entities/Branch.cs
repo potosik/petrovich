@@ -1,13 +1,16 @@
 ﻿using Petrovich.Context.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Petrovich.Context.Entities
 {
     public class Branch : BaseEntity
     {
         [Key]
-        public int BranchId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid BranchId { get; set; }
 
         public string Title { get; set; }
 
