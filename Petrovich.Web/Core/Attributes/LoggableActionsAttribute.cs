@@ -1,10 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Petrovich.Business.Logging;
 using Petrovich.Web.Core.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Core.Attributes

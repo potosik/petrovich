@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Petrovich.Context.Entities;
 using Petrovich.Context.Enumerations;
 
-namespace Petrovich.Repositories.Mappers
+namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class LogMapper : ILogMapper
     {
@@ -15,11 +12,17 @@ namespace Petrovich.Repositories.Mappers
             return new Business.Models.Log()
             {
                 LogId = entity.LogId,
+                CorrelationId = entity.CorrelationId,
                 Severity = (Business.Models.Enumerations.LogSeverity)((int)entity.Severity),
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
                 InnerExceptionMessage = entity.InnerExceptionMessage,
                 CallStack = entity.CallStack,
+
+                Created = entity.Created,
+                CreatedBy = entity.CreatedBy,
+                Modified = entity.Modified,
+                ModifiedBy = entity.ModifiedBy,
             };
         }
 
@@ -33,11 +36,17 @@ namespace Petrovich.Repositories.Mappers
             return new Log()
             {
                 LogId = entity.LogId,
+                CorrelationId = entity.CorrelationId,
                 Severity = (LogSeverity)((int)entity.Severity),
                 Message = entity.Message,
                 StackTrace = entity.StackTrace,
                 InnerExceptionMessage = entity.InnerExceptionMessage,
                 CallStack = entity.CallStack,
+
+                Created = entity.Created,
+                CreatedBy = entity.CreatedBy,
+                Modified = entity.Modified,
+                ModifiedBy = entity.ModifiedBy,
             };
         }
     }

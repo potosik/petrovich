@@ -1,15 +1,13 @@
-﻿using Petrovich.Business.Models.Enumerations;
+﻿using Petrovich.Business.Models.Base;
+using Petrovich.Business.Models.Enumerations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Petrovich.Business.Models
 {
-    public class Log
+    public class Log : BaseEntity
     {
-        public int LogId { get; set; }
+        public Guid LogId { get; set; }
+        public Guid CorrelationId { get; set; }
         public LogSeverity Severity { get; set; }
         public string Message { get; set; }
         public string StackTrace { get; set; }

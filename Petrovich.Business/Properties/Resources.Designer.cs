@@ -79,6 +79,24 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicated branch inventory part &apos;{0}&apos; found on item with id: &apos;{1}&apos;..
+        /// </summary>
+        internal static string E400001 {
+            get {
+                return ResourceManager.GetString("E400001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch inventory part could not be changed for item with id: &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400002 {
+            get {
+                return ResourceManager.GetString("E400002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {
@@ -93,6 +111,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404002 {
             get {
                 return ResourceManager.GetString("E404002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404003 {
+            get {
+                return ResourceManager.GetString("E404003", resourceCulture);
             }
         }
     }

@@ -25,15 +25,15 @@
         {
             private const string Controller = "DataStructure";
 
+            public static Endpoint BranchList = new Endpoint(Controller, "BranchList");
+            public static Endpoint BranchCreate = new Endpoint(Controller, "BranchCreate");
+            public static Endpoint BranchEdit = new Endpoint(Controller, "BranchEdit");
+            public static Endpoint BranchDelete = new Endpoint(Controller, "BranchDelete");
+
             public static Endpoint CategoryList = new Endpoint(Controller, "CategoryList");
             public static Endpoint CategoryCreate = new Endpoint(Controller, "CategoryCreate");
             public static Endpoint CategoryEdit = new Endpoint(Controller, "CategoryEdit");
             public static Endpoint CategoryDelete = new Endpoint(Controller, "CategoryDelete");
-
-            public static Endpoint SubcategoryList = new Endpoint(Controller, "SubcategoryList");
-            public static Endpoint SubcategoryCreate = new Endpoint(Controller, "SubcategoryCreate");
-            public static Endpoint SubcategoryEdit = new Endpoint(Controller, "SubcategoryEdit");
-            public static Endpoint SubcategoryDelete = new Endpoint(Controller, "SubcategoryDelete");
 
             public static Endpoint GroupList = new Endpoint(Controller, "GroupList");
             public static Endpoint GroupCreate = new Endpoint(Controller, "GroupCreate");
@@ -48,6 +48,14 @@
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
             public static Endpoint NotFound = new Endpoint(Controller, "NotFound");
             public static Endpoint BadRequest = new Endpoint(Controller, "BadRequest");
+        }
+
+        public static class Logging
+        {
+            private const string Controller = "Logging";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+            public static Endpoint Details = new Endpoint(Controller, "Details");
         }
 
         public static class Products

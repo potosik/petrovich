@@ -2,6 +2,17 @@
     <h3>Структура данных</h3>
     <ul class="nav side-menu">
         <li>
+            <a><i class="fa fa-user"></i> Раздел <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    @Html.ActionLink("Список разделов", PetrovichRoutes.DataStructure.BranchList)
+                </li>
+                <li>
+                    @Html.ActionLink("Добавить раздел", PetrovichRoutes.DataStructure.BranchCreate)
+                </li>
+            </ul>
+        </li>
+        <li>
             <a><i class="fa fa-user"></i> Категории <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
                 <li>
@@ -9,17 +20,6 @@
                 </li>
                 <li>
                     @Html.ActionLink("Добавить категорию", PetrovichRoutes.DataStructure.CategoryCreate)
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a><i class="fa fa-user"></i> Подкатегория <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li>
-                    @Html.ActionLink("Список подкатегорий", PetrovichRoutes.DataStructure.SubcategoryList)
-                </li>
-                <li>
-                    @Html.ActionLink("Добавить подкатегорию", PetrovichRoutes.DataStructure.SubcategoryCreate)
                 </li>
             </ul>
         </li>

@@ -59,25 +59,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composition\CompositionModule.cs" />
+    <Compile Include="Data\IBranchDataSource.cs" />
+    <Compile Include="Data\ICategoryDataSource.cs" />
+    <Compile Include="Data\IGroupDataSource.cs" />
     <Compile Include="Data\ILogDataSource.cs" />
+    <Compile Include="Data\IProductDataSource.cs" />
+    <Compile Include="Exceptions\BranchInventoryPartChangedException.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\DatabaseOperationException.cs" />
+    <Compile Include="Exceptions\DuplicateBranchInventoryPartException.cs" />
     <Compile Include="Exceptions\ErrorCode.cs" />
+    <Compile Include="Exceptions\BranchNotFoundException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="IDataStructureService.cs" />
     <Compile Include="Logging\Composition\CompositionModule.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingService.cs" />
+    <Compile Include="Models\Base\BaseEntity.cs" />
+    <Compile Include="Models\Base\IChangeTrackableEntity.cs" />
+    <Compile Include="Models\Branch.cs" />
+    <Compile Include="Models\BranchCollection.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryCollection.cs" />
     <Compile Include="Models\Enumerations\LogSeverity.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupCollection.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\LogCollection.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductCollection.cs" />
+    <Compile Include="PerformanceCounters\BranchPerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\CategoryPerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\GroupPerformanceCounter.cs" />
     <Compile Include="PerformanceCounters\LogPerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\ProductPerformanceCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\DataStructureService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

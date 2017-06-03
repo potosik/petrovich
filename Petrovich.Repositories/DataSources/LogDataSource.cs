@@ -1,10 +1,6 @@
 ﻿using Petrovich.Business.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Petrovich.Business.Models.Enumerations;
 using Petrovich.Business.Models;
 using Petrovich.Repositories.Mappers;
 using System.Data.Entity.Core;
@@ -23,16 +19,11 @@ namespace Petrovich.Repositories.DataSources
             this.logMapper = logMapper ?? throw new ArgumentNullException(nameof(logMapper));
         }
 
-        public async Task<Log> FindAsync(int id)
+        public async Task<Log> FindAsync(Guid id)
         {
             try
             {
                 var entity = await logRepository.FindAsync(id);
-                if (entity == null)
-                {
-                    throw new LogNotFoundException(id);
-                }
-
                 return logMapper.ToBusinessEntity(entity);
             }
             catch (EntityException ex)

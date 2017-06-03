@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Petrovich.Web.Models.DataStructure.BranchModel>
+
+@{
+    ViewBag.Title = "Список разделов";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>список зарегистрированных разделов</small></h2>
+        <div class="nav navbar-right">
+            <a href="@Url.Action(PetrovichRoutes.DataStructure.BranchCreate)" class="btn btn-default btn-sm">Добавить раздел</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Часть инвентарного номера</th>
+                    <th>Создан</th>
+                    <th>Отредактирован</th>
+                    <th>Операции</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.InventoryPart)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Modified)</td>
+                        <td>
+                            @using (Html.BeginForm(PetrovichRoutes.DataStructure.BranchDelete, new { id = item.BranchId }, FormMethod.Post, null))
+                            {
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action(PetrovichRoutes.DataStructure.BranchEdit, new { id = item.BranchId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
+                                    <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

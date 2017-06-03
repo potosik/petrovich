@@ -19,14 +19,14 @@
         @if (ViewContext.ActionEquals(PetrovichRoutes.UserManagement.Active.Action))
         {
             <div class="nav navbar-right">
-                <a href="@Url.Action(PetrovichRoutes.UserManagement.Create)" class="btn btn-default btn-sm">Create new</a>
+                <a href="@Url.Action(PetrovichRoutes.UserManagement.Create)" class="btn btn-default btn-sm">Добавить пользователя</a>
             </div>
         }
 
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <table class="table">
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th>Имя</th>

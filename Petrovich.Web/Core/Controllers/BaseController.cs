@@ -1,6 +1,7 @@
 ﻿using Petrovich.Business.Logging;
 using Petrovich.Core.Navigation;
-using System.Net;
+using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Petrovich.Web.Core.Controllers
@@ -34,9 +35,32 @@ namespace Petrovich.Web.Core.Controllers
             return RedirectToAction(PetrovichRoutes.Error.NotFound);
         }
 
+        protected async Task<ActionResult> CreateNotFoundResponseAsync(Exception ex)
+        {
+            await logger.LogErrorAsync(ex);
+            return CreateNotFoundResponse();
+        }
+
         protected ActionResult CreateBadRequestResponse()
         {
             return RedirectToAction(PetrovichRoutes.Error.BadRequest);
+        }
+
+        protected async Task<ActionResult> CreateBadRequestResponseAsync(Exception ex)
+        {
+            await logger.LogErrorAsync(ex);
+            return CreateBadRequestResponse();
+        }
+
+        protected ActionResult CreateInternalServerErrorResponse()
+        {
+            return RedirectToAction(PetrovichRoutes.Error.Index);
+        }
+
+        protected async Task<ActionResult> CreateInternalServerErrorResponseAsync(Exception ex)
+        {
+            await logger.LogCriticalAsync(ex);
+            return CreateInternalServerErrorResponse();
         }
     }
 }

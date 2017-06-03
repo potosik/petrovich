@@ -1,9 +1,7 @@
 using System;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 using Petrovich.Core.Composition;
 using Petrovich.Web.Composition;
-using System.Threading;
 
 namespace Petrovich.Web.App_Start
 {

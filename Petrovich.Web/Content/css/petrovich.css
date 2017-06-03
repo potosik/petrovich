@@ -8,3 +8,11 @@
   list-style: none;
   text-align: left;
 }
+.logs-details .timeline .block {
+  margin-left: 200px;
+  min-height: 65px;
+  padding-top: 20px;
+}
+.logs-details .timeline .tags {
+  width: 180px;
+}

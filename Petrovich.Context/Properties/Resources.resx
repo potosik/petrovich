@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Target" xml:space="preserve">
-    <value>H4sIAAAAAAAEAM1Y227jNhB9L9B/EPTUAlnLdpB2G8i7SB17YTROglV232lpbBNLkVqSCuxv60M/qb/QoS7UzdekQYu8RNTM4dznyH//+Zf/cRMz5xmkooKP3EGv7zrAQxFRvhq5qV6+e+9+/PDjD/4kijfO11Lu0sihJlcjd611cu15KlxDTFQvpqEUSix1LxSxRyLhDfv937zBwAOEcBHLcfzPKdc0huwBH8eCh5DolLC5iICp4hzfBBmqc09iUAkJYeQ+gpbimYbrHmpp2GjXuWGUoCEBsKXrEM6FJhrNvP6iIEBhvgoSPCDsaZsAyi0JU1CYf12Jn+pJf2g88SrFEipMlRbxmYCDyyI0Xlv9RQF2begweBMMst4ar7MAjtw7sXKd9j3XYyaNzI7Q9jIECqqHmhdO5/2FrQgsHPN34YxTplMJIw6ploShUrpgNPwDtk/iG6Dg1XAYXYW/Lpf9X64i8r5uMJqMco0DPHqUIgGpt59hWbkxi1zHa6p6bV2r2VTLfZ1xfTl0nfuUMbJgYKuiFpdACwmfgIMkGqJHojVITOosgiyuHQNa142FlMAyqOraTymNdtx6GCkAbNDsxhzEFLrJSHV+JuAclCIrsHhaYru7zpxs7oCv9BolyMZ1pnQDUXlSAH/hFKcDKmmZHjdck/Dbk8S+ffOrZhzzNNmYMYIBfxsHfa/qqGafpXGzy6rMzNSUkVU1dc7rvjQ2xYdiqp7vN+pEdD0CybYYqnqPNMM+h3gBsvD0XnB06SthKT70OylqyM74Usi4mGyFyuCwykRKIa3w8LDwGCNDQ8Ks/GU3eXmauiPSBJFQbrFseO2K6aQNd0uROVWUStO2HDgAXRWFcp2qfqou3l1j1qRqF3r5MiyXprdna/pzkiSYw9oWLU6cIF+h43fB+cslzjG8UO3YMdZaexPOTmzA1lszFCOYUqn0LdFkQUxHjKO4I9ZJwJ7gltfVYtxeH1XIS2HzfyvPtuVMPloIVfym6FKMwz/zDqwR+V7taGXshTAid6+hsWBpzA8stEMYrd1Sx2q9Oh2zmll1uOr0dCQ7fetA9vAMi2rro2FT7fx0tD0bog68R6R7h++1SqJddV6n7FpkpV3Ch0ZAW8TebkdBq+X9ov2Os+lOP+YirvNoGiMyvRhslYa4ZwR6wXc2ZhT9rQTmhNMlKJ0vFRcZ7bDFyP8/7NhTKmLHKfJ/REmpCetR0nkm1dvJQlNOv6dAM8wlBflqRpqZ/joSyp+JDNdE/hSTzc91sJcRzVfBHSSTZyDvJ4y7WEd3Nx6lFPsYRd7FIzdaCDQ7Ny9nIC/kGt2B4nv1j3j/FhRdVRDmk55DaMJXgZYyhgqWEUd36haVIp1a0STCqNxILFgSanwdYlYyUl/QvQlywWjGH1KdpPpGKeSGrLG1fO/w/RmhatrsP2QFoP4NF9BMii7AA/89pSyydk+7vbIPwhRIMRrQKvyoQbjV1iLlbPwUoCJ8t5AAN0PgCeIEZwSoBx6QZ3iJbciH72BFwm25F/aDHE9EM+z+LSUrSWJVYFT65ocpz/wy9eEfon0n0ssSAAA=</value>
+  <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="DefaultSchema" xml:space="preserve">
-    <value>dbo</value>
+  <data name="Category_InventoryPart_Range_Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Product_InventoryPart_Range_Error" xml:space="preserve">
+    <value />
   </data>
 </root>

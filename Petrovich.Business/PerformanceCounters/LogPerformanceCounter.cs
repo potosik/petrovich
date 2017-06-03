@@ -1,16 +1,11 @@
 ﻿using Petrovich.Business.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Petrovich.Business.Models.Enumerations;
 using Petrovich.Business.Models;
 
 namespace Petrovich.Business.PerformanceCounters
 {
-    public class 
-        LogPerformanceCounter : ILogDataSource
+    public class LogPerformanceCounter : ILogDataSource
     {
         private readonly ILogDataSource innerDataSource;
 
@@ -19,7 +14,7 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<Log> FindAsync(int id)
+        public async Task<Log> FindAsync(Guid id)
         {
             return await innerDataSource.FindAsync(id);
         }

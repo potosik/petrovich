@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="ErrorCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DataStructureServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

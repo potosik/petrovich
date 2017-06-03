@@ -3,6 +3,11 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     @if (User.Identity.HasClaim(PermissionClaims.PowerAdmin))
     {
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Logging");
+    }
+
+    @if (User.Identity.HasClaim(PermissionClaims.UserManagement))
+    {
         @Html.Partial("Layout/LeftNavigation/SidebarMenu/Administrator");
     }
 

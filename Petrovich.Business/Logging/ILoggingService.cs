@@ -1,8 +1,5 @@
-﻿using Petrovich.Business.Models.Enumerations;
+﻿using Petrovich.Business.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Petrovich.Business.Logging
@@ -10,7 +7,7 @@ namespace Petrovich.Business.Logging
     public interface ILoggingService
     {
         Task LogNoneAsync(string message);
-        void LogNone(string v);
+        void LogNone(string message);
 
         Task LogInformationAsync(string message);
         Task LogInformationAsync(Exception ex);
@@ -23,5 +20,8 @@ namespace Petrovich.Business.Logging
         Task LogCriticalAsync(string message, Exception ex);
         
         Task LogInvalidModelAsync(Type type);
+
+        Task<LogCollection> ListLogsAsync();
+        Task<Log> FindAsync(Guid id);
     }
 }

@@ -74,6 +74,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BranchRepositoryTests.cs" />
+    <Compile Include="DataSources\BranchDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
     <Compile Include="Extensions\MockExtensions.cs" />
     <Compile Include="LogRepositoryTests.cs" />

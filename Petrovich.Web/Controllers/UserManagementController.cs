@@ -11,10 +11,8 @@ using Petrovich.Web.Core.Security.Attributes;
 using Petrovich.Web.Core.Security.DbContext.Entities;
 using Petrovich.Web.Models.UserManagement;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
