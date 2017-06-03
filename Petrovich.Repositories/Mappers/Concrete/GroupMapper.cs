@@ -8,6 +8,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
     {
         public Business.Models.Group ToBusinessEntity(Group entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new Business.Models.Group()
             {
                 GroupId = entity.GroupId,

@@ -8,7 +8,5 @@ namespace Petrovich.Business.Models
         public Guid BranchId { get; set; }
         public string Title { get; set; }
         public string InventoryPart { get; set; }
-
-        //public CategoryCollection Categories { get; set; }
     }
 }

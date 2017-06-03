@@ -29,6 +29,7 @@
             public static Endpoint BranchCreate = new Endpoint(Controller, "BranchCreate");
             public static Endpoint BranchEdit = new Endpoint(Controller, "BranchEdit");
             public static Endpoint BranchDelete = new Endpoint(Controller, "BranchDelete");
+            public static Endpoint BranchChildCategoriesExists = new Endpoint(Controller, "ChildCategoriesExists");
 
             public static Endpoint CategoryList = new Endpoint(Controller, "CategoryList");
             public static Endpoint CategoryCreate = new Endpoint(Controller, "CategoryCreate");

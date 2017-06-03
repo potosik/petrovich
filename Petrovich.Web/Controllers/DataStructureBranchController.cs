@@ -55,7 +55,7 @@ namespace Petrovich.Web.Controllers
         {
             return View(new CreateBranchModel());
         }
-        
+
         [HttpPost]
         public async Task<ActionResult> BranchCreate(CreateBranchModel model)
         {
@@ -160,6 +160,10 @@ namespace Petrovich.Web.Controllers
             {
                 ModelState.AddModelError(typeof(BranchInventoryPartChangedException).Name, Properties.Resources.Branch_InventoryPart_Changed_Error);
             }
+            catch (DuplicateBranchInventoryPartException)
+            {
+                ModelState.AddModelError(typeof(DuplicateBranchInventoryPartException).Name, Properties.Resources.Branch_InventoryPart_Duplicate_Error);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -188,6 +192,10 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
+            catch (ChildCategoriesExistsException ex)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.BranchChildCategoriesExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -196,6 +204,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult ChildCategoriesExists()
+        {
+            return View();
         }
     }
 }

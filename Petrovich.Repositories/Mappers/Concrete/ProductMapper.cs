@@ -8,6 +8,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
     {
         public Business.Models.Product ToBusinessEntity(Product entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new Business.Models.Product()
             {
                 ProductId = entity.ProductId,

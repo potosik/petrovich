@@ -22,7 +22,7 @@ namespace Petrovich.Repositories.DataSources
             this.branchMapper = branchMapper ?? throw new ArgumentNullException(nameof(branchMapper));
         }
 
-        public async Task<BranchCollection> ListBranchesAsync()
+        public async Task<BranchCollection> ListAsync()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> CreateBranchAsync(Branch branch)
+        public async Task<Branch> CreateAsync(Branch branch)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> FindByIdAsync(Guid id)
+        public async Task<Branch> FindAsync(Guid id)
         {
             try
             {

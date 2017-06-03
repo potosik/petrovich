@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composition\ICompositionModule.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Navigation\PetrovichRoutes.cs" />
     <Compile Include="Navigation\Endpoint.cs" />
     <Compile Include="PermissionClaims.cs" />

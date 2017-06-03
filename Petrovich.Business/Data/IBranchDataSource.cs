@@ -7,10 +7,10 @@ namespace Petrovich.Business.Data
 {
     public interface IBranchDataSource
     {
-        Task<BranchCollection> ListBranchesAsync();
+        Task<BranchCollection> ListAsync();
         Task<Branch> FindByInventoryPartAsync(string inventoryPart);
-        Task<Branch> CreateBranchAsync(Branch branch);
-        Task<Branch> FindByIdAsync(Guid id);
+        Task<Branch> CreateAsync(Branch branch);
+        Task<Branch> FindAsync(Guid id);
         Task<Branch> UpdateAsync(Branch branch);
         Task DeleteAsync(Branch branch);
     }

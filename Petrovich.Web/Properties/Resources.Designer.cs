@@ -61,7 +61,7 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Часть инвентарного номера не может быть изменена.
+        ///   Looks up a localized string similar to Часть инвентарного номера не может быть изменена..
         /// </summary>
         internal static string Branch_InventoryPart_Changed_Error {
             get {
@@ -70,7 +70,7 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Раздел с данной частью инвентарного номера уже зарегистрирован.
+        ///   Looks up a localized string similar to Раздел с данной частью инвентарного номера уже зарегистрирован..
         /// </summary>
         internal static string Branch_InventoryPart_Duplicate_Error {
             get {
@@ -79,11 +79,47 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Часть инвентарного номера должна быть 2 символа.
+        ///   Looks up a localized string similar to Часть инвентарного номера должна быть 2 символа..
         /// </summary>
         internal static string Branch_InventoryPart_StringLength_Error {
             get {
                 return ResourceManager.GetString("Branch_InventoryPart_StringLength_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранный раздел не найден..
+        /// </summary>
+        internal static string Category_BranchNotFound_Error {
+            get {
+                return ResourceManager.GetString("Category_BranchNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Часть инвентарного номера не может быть изменена..
+        /// </summary>
+        internal static string Category_InventoryPart_Changed_Error {
+            get {
+                return ResourceManager.GetString("Category_InventoryPart_Changed_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Категория с данной частью инвентарного номера уже зарегистрирована..
+        /// </summary>
+        internal static string Category_InventoryPart_Duplicate_Error {
+            get {
+                return ResourceManager.GetString("Category_InventoryPart_Duplicate_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию..
+        /// </summary>
+        internal static string Category_NoInventoryPartSlotsAvailable_Error {
+            get {
+                return ResourceManager.GetString("Category_NoInventoryPartSlotsAvailable_Error", resourceCulture);
             }
         }
         

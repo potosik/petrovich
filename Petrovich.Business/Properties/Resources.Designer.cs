@@ -97,6 +97,42 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicated category inventory part &apos;{0}&apos; with branch id &apos;{1}&apos; found on item with id: &apos;{2}&apos;..
+        /// </summary>
+        internal static string E400003 {
+            get {
+                return ResourceManager.GetString("E400003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no available slots for new categories in branch &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400004 {
+            get {
+                return ResourceManager.GetString("E400004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch inventory part could not be changed for item with id: &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400005 {
+            get {
+                return ResourceManager.GetString("E400005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Child categories exists for branch &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400006 {
+            get {
+                return ResourceManager.GetString("E400006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {
@@ -120,6 +156,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404003 {
             get {
                 return ResourceManager.GetString("E404003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404004 {
+            get {
+                return ResourceManager.GetString("E404004", resourceCulture);
             }
         }
     }
