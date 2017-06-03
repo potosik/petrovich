@@ -1,0 +1,118 @@
+﻿@model Petrovich.Web.Models.Logging.LogModel
+
+@{
+    ViewBag.Title = "Просмотр лог-записи";
+}
+
+<div class="x_panel logs-details">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>подробные сведения о лог-записи</small></h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <ul class="list-unstyled timeline">
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.LogId)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.LogId
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.CorrelationId)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.CorrelationId
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.Severity)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.Severity
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.Message)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.Message
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.StackTrace)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.StackTrace
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.InnerExceptionMessage)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.InnerExceptionMessage
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="block">
+                    <div class="tags">
+                        <a href="" class="tag">
+                            <span>@Html.LabelFor(m => m.CallStack)</span>
+                        </a>
+                    </div>
+                    <div class="block_content">
+                        <p class="excerpt">
+                            @Model.CallStack
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <p class="font-gray-dark text-right small">
+            Создан: <strong>@Model.Created</strong> пользователем <strong>@Model.CreatedBy</strong>
+        </p>
+    </div>
+</div>

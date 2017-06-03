@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Petrovich.Business.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Petrovich.Business.Logging
@@ -19,5 +20,8 @@ namespace Petrovich.Business.Logging
         Task LogCriticalAsync(string message, Exception ex);
         
         Task LogInvalidModelAsync(Type type);
+
+        Task<LogCollection> ListLogsAsync();
+        Task<Log> FindAsync(Guid id);
     }
 }

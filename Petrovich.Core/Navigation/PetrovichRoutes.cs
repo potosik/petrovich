@@ -55,6 +55,7 @@
             private const string Controller = "Logging";
 
             public static Endpoint Index = new Endpoint(Controller, IndexAction);
+            public static Endpoint Details = new Endpoint(Controller, "Details");
         }
 
         public static class Products

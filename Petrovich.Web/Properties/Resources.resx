@@ -126,4 +126,16 @@
   <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
     <value>Часть инвентарного номера должна быть 2 символа</value>
   </data>
+  <data name="Critical" xml:space="preserve">
+    <value>Критическая ошибка</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информационный</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Отсутсвует</value>
+  </data>
 </root>

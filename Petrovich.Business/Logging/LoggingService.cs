@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Petrovich.Business.Models.Enumerations;
 using Petrovich.Business.Models;
 using Petrovich.Business.Data;
+using Petrovich.Business.Exceptions;
 
 namespace Petrovich.Business.Logging
 {
@@ -97,6 +98,27 @@ namespace Petrovich.Business.Logging
         private string FormatMessageWithException(string message, Exception ex)
         {
             return $"{message} | Exception: {ex.Message}";
+        }
+
+        public async Task<LogCollection> ListLogsAsync()
+        {
+            return await dataSource.ListAsync(0, 100);
+        }
+
+        public async Task<Log> FindAsync(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            var log = await dataSource.FindAsync(id);
+            if (log == null)
+            {
+                throw new LogNotFoundException(id);
+            }
+
+            return log;
         }
     }
 }

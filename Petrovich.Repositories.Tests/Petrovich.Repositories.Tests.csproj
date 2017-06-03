@@ -74,11 +74,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseRepositoryTests.cs" />
     <Compile Include="BranchRepositoryTests.cs" />
     <Compile Include="DataSources\BranchDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
-    <Compile Include="DbSet\TestDbSet.cs" />
     <Compile Include="Extensions\MockExtensions.cs" />
     <Compile Include="LogRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

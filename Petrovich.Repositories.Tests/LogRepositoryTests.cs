@@ -42,43 +42,7 @@ namespace Petrovich.Repositories.Tests
 
             Assert.Null(result);
         }
-
-        //[Fact]
-        //public async Task ListAsync_WhenEntitiesFound_ReturnsList()
-        //{
-        //    var fullPage = await logRepository.ListAsync(1, 2);
-        //    var notFullPage = await logRepository.ListAsync(1, 4);
-
-        //    Assert.NotNull(fullPage);
-        //    Assert.NotNull(notFullPage);
-        //    Assert.Equal(2, fullPage.Count);
-        //    Assert.Equal(1, notFullPage.Count);
-        //}
-
-        //[Fact]
-        //public async Task ListAsync_WhenEntitiesNotFound_ReturnsEmptyList()
-        //{
-        //    var result = await logRepository.ListAsync(50, 10);
-
-        //    Assert.NotNull(result);
-        //    Assert.Equal(0, result.Count);
-        //}
-
-        //[Fact]
-        //public async Task ListAsync_WhenItemsFound_OrdersItemsByLogIdDescending()
-        //{
-        //    var result = await logRepository.ListAsync(0, 10);
-
-        //    Assert.NotNull(result);
-        //    Assert.Equal(5, result.Count);
-
-        //    Assert.Equal(5, result[0].LogId);
-        //    Assert.Equal(4, result[1].LogId);
-        //    Assert.Equal(3, result[2].LogId);
-        //    Assert.Equal(2, result[3].LogId);
-        //    Assert.Equal(1, result[4].LogId);
-        //}
-
+        
         public static IEnumerable<Log> GetStubbedData()
         {
             return new List<Log>()

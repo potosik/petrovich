@@ -17,11 +17,11 @@ namespace Petrovich.Web.Tests.Controllers
             controller = new LoggingController(loggingServiceMock.Object);
         }
 
-        [Fact]
-        public async Task Index_ReturnsNotNull()
-        {
-            var resultGet = await controller.Index() as ViewResult;
-            Assert.NotNull(resultGet);
-        }
+        //[Fact]
+        //public async Task Index_ReturnsNotNull()
+        //{
+        //    var resultGet = await controller.Index() as ViewResult;
+        //    Assert.NotNull(resultGet);
+        //}
     }
 }
