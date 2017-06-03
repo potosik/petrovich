@@ -27,7 +27,7 @@ namespace Petrovich.Web.Models
 
     public class SetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
@@ -43,7 +43,7 @@ namespace Petrovich.Web.Models
 
     public class AddPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
@@ -51,11 +51,11 @@ namespace Petrovich.Web.Models
 
     public class VerifyPhoneNumberViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Code")]
         public string Code { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Phone]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }

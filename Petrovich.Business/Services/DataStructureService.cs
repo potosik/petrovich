@@ -113,8 +113,8 @@ namespace Petrovich.Business.Services
             }
 
             await logger.LogNoneAsync($"DeleteBranchAsync: check if child categories exiests for branch {id}.");
-            var categories = await categoryDataSource.IsExistsForBranchIdAsync(id);
-            if (categories)
+            var categoriesExists = await categoryDataSource.IsExistsForBranchAsync(id);
+            if (categoriesExists)
             {
                 await logger.LogInformationAsync($"DeleteBranchAsync: branch '{id}' could not be deleted - child categories exiests for branch.");
                 throw new ChildCategoriesExistsException(id);
@@ -235,9 +235,110 @@ namespace Petrovich.Business.Services
                 await logger.LogInformationAsync($"DeleteCategoryAsync: category not found - {id}.");
                 throw new CategoryNotFoundException(id);
             }
+            
+            await logger.LogNoneAsync($"DeleteCategoryAsync: check if child groups exiests for category {id}.");
+            var groupsExists = await groupDataSource.IsExistsForCategoryAsync(id);
+            if (groupsExists)
+            {
+                await logger.LogInformationAsync($"DeleteCategoryAsync: category '{id}' could not be deleted - child groups exiests for category.");
+                throw new ChildGroupsExistsException(id);
+            }
 
             await logger.LogNoneAsync("DeleteCategoryAsync: deleting category.");
             await categoryDataSource.DeleteAsync(category);
+        }
+
+        public async Task<GroupCollection> ListGroupsAsync()
+        {
+            await logger.LogNoneAsync("ListGroupAsync: listing all groups.");
+            return await groupDataSource.ListAsync();
+        }
+
+        public async Task<Group> CreateGroupAsync(Group group)
+        {
+            if (group == null)
+            {
+                await logger.LogInformationAsync("CreateGroupAsync: group parameter is null.");
+                throw new ArgumentNullException(nameof(group));
+            }
+
+            await logger.LogNoneAsync($"CreateGroupAsync: trying to get category {group.CategoryId}.");
+            var category = await categoryDataSource.FindAsync(group.CategoryId);
+            if (category == null)
+            {
+                await logger.LogInformationAsync($"CreateGroupAsync: category not found - {group.CategoryId}.");
+                throw new CategoryNotFoundException(group.CategoryId);
+            }
+
+            await logger.LogNoneAsync("CreateGroupAsync: creating new group.");
+            return await groupDataSource.CreateAsync(group);
+        }
+
+        public async Task<Group> FindGroupAsync(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"FindGroupAsync: id parameter is {id}.");
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            await logger.LogNoneAsync($"FindGroupAsync: trying to get group by id ({id}).");
+            var group = await groupDataSource.FindAsync(id);
+            if (group == null)
+            {
+                await logger.LogInformationAsync($"FindGroupAsync: group not found - {id}.");
+                throw new GroupNotFoundException(id);
+            }
+
+            return group;
+        }
+
+        public async Task<Group> UpdateGroupAsync(Group group)
+        {
+            if (group.GroupId == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"UpdateGroupAsync: groupId is {group.GroupId}.");
+                throw new ArgumentOutOfRangeException(nameof(group.GroupId));
+            }
+
+            await logger.LogNoneAsync($"UpdateGroupAsync: trying to get group by id ({group.GroupId}).");
+            var dbGroup = await groupDataSource.FindAsync(group.GroupId);
+            if (dbGroup == null)
+            {
+                await logger.LogInformationAsync($"UpdateGroupAsync: group not found - {group.GroupId}.");
+                throw new GroupNotFoundException(group.GroupId);
+            }
+
+            await logger.LogNoneAsync($"UpdateGroupAsync: trying to get category by id ({group.CategoryId}).");
+            var dbCategory = await categoryDataSource.FindAsync(group.CategoryId);
+            if (dbCategory == null)
+            {
+                await logger.LogInformationAsync($"UpdateGroupAsync: category not found - {group.CategoryId}.");
+                throw new CategoryNotFoundException(group.CategoryId);
+            }
+
+            await logger.LogNoneAsync("UpdateGroupAsync: updating group.");
+            return await groupDataSource.UpdateAsync(group);
+        }
+
+        public async Task DeleteGroupAsync(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"DeleteGroupAsync: id parameter is {id}.");
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            await logger.LogNoneAsync($"DeleteGroupAsync: trying to get group by id ({id}).");
+            var group = await groupDataSource.FindAsync(id);
+            if (group == null)
+            {
+                await logger.LogInformationAsync($"DeleteGroupAsync: group not found - {id}.");
+                throw new GroupNotFoundException(id);
+            }
+            
+            await logger.LogNoneAsync("DeleteGroupAsync: deleting group.");
+            await groupDataSource.DeleteAsync(group);
         }
     }
 }

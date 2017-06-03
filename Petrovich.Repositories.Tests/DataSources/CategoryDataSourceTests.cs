@@ -109,6 +109,18 @@ namespace Petrovich.Repositories.Tests.DataSources
         }
 
         [Fact]
+        public async Task FindAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            categoryRepositoryMock.Setup(repository => repository.FindAsync(It.IsAny<Guid>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.FindAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
         public async Task UpdateAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
         {
             categoryRepositoryMock.Setup(repository => repository.FindAsync(It.IsAny<Guid>()))
@@ -133,14 +145,14 @@ namespace Petrovich.Repositories.Tests.DataSources
         }
 
         [Fact]
-        public async Task IsExistsForBranchIdAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        public async Task IsExistsForBranchAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
         {
-            categoryRepositoryMock.Setup(repository => repository.IsExistsForBranchIdAsync(It.IsAny<Guid>()))
+            categoryRepositoryMock.Setup(repository => repository.IsExistsForBranchAsync(It.IsAny<Guid>()))
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.IsExistsForBranchIdAsync(Guid.Empty);
+                return dataSource.IsExistsForBranchAsync(Guid.Empty);
             });
         }
     }

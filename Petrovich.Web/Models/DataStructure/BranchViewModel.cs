@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class BranchModel : IChangeTrackableEntity
+    public class BranchViewModel : IChangeTrackableEntity
     {
         public Guid BranchId { get; set; }
         public string Title { get; set; }
@@ -18,14 +18,14 @@ namespace Petrovich.Web.Models.DataStructure
         public DateTime? Modified { get; set; }
         public string ModifiedBy { get; set; }
 
-        public static BranchModel Create(Branch branch)
+        public static BranchViewModel Create(Branch branch)
         {
             if (branch == null)
             {
                 throw new ArgumentNullException(nameof(branch));
             }
 
-            return new BranchModel()
+            return new BranchViewModel()
             {
                 BranchId = branch.BranchId,
                 Title = branch.Title,

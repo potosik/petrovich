@@ -22,7 +22,7 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task FindAsync_ReturnsCorrectEntity()
+        public async Task FindAsync_WhenEntityFound_ReturnsCorrectEntity()
         {
             var id = new Guid("eb9f3a64-c2c1-4f50-93d2-92414ad2511f");
             var result = await categoryRepository.FindAsync(id);
@@ -72,10 +72,38 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task FindAsync_ReturnsNull_WhenEntityNotFound()
+        public async Task ListUsedInventoryPartsAsync_WhenEntitiesFound_ReturnsList()
         {
-            var result = await categoryRepository.FindAsync(Guid.NewGuid());
-            Assert.Null(result);
+            var result = await categoryRepository.ListUsedInventoryPartsAsync(new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+            Assert.Equal(3, result[0]);
+        }
+
+        [Fact]
+        public async Task ListUsedInventoryPartsAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var contextMock = CreateContext().MockSet(new List<Category>().AsQueryable(), c => c.Categories);
+            var categoryRepository = new CategoryRepository(contextMock.Object);
+            var result = await categoryRepository.ListUsedInventoryPartsAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task IsExistsForBranchAsync_WhenEntitiesFound_ReturnsTrue()
+        {
+            var result = await categoryRepository.IsExistsForBranchAsync(new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task IsExistsForBranchAsync_WhenEntitiesNotFound_ReturnsFalse()
+        {
+            var result = await categoryRepository.IsExistsForBranchAsync(Guid.NewGuid());
+            Assert.False(result);
         }
 
         private static IEnumerable<Category> GetStubbedData()

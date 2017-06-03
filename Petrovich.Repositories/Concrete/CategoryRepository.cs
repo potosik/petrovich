@@ -35,7 +35,7 @@ namespace Petrovich.Repositories.Concrete
             return await context.Categories.Where(item => item.BranchId == branchId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<bool> IsExistsForBranchIdAsync(Guid branchId)
+        public async Task<bool> IsExistsForBranchAsync(Guid branchId)
         {
             return await context.Categories.Where(item => item.BranchId == branchId).AnyAsync().ConfigureAwait(false);
         }

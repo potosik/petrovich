@@ -209,18 +209,21 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
-    <Compile Include="Models\DataStructure\BranchModel.cs" />
-    <Compile Include="Models\DataStructure\CategoryModel.cs" />
-    <Compile Include="Models\DataStructure\CreateBranchModel.cs" />
-    <Compile Include="Models\DataStructure\CreateCategoryModel.cs" />
-    <Compile Include="Models\DataStructure\EditBranchModel.cs" />
-    <Compile Include="Models\DataStructure\EditCategoryModel.cs" />
-    <Compile Include="Models\Logging\LogModel.cs" />
+    <Compile Include="Models\DataStructure\BranchViewModel.cs" />
+    <Compile Include="Models\DataStructure\CategoryViewModel.cs" />
+    <Compile Include="Models\DataStructure\BranchCreateViewModel.cs" />
+    <Compile Include="Models\DataStructure\CategoryCreateViewModel.cs" />
+    <Compile Include="Models\DataStructure\GroupCreateViewModel.cs" />
+    <Compile Include="Models\DataStructure\BranchEditViewModel.cs" />
+    <Compile Include="Models\DataStructure\CategoryEditViewModel.cs" />
+    <Compile Include="Models\DataStructure\GroupEditViewModel.cs" />
+    <Compile Include="Models\DataStructure\GroupViewModel.cs" />
+    <Compile Include="Models\Logging\LogViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UserManagement\CreateApplicationUserModel.cs" />
-    <Compile Include="Models\UserManagement\ApplicationUserModel.cs" />
-    <Compile Include="Models\UserManagement\EditApplicationUserModel.cs" />
-    <Compile Include="Models\UserManagement\IUpdateApplicationUserModel.cs" />
+    <Compile Include="Models\UserManagement\ApplicationUserCreateViewModel.cs" />
+    <Compile Include="Models\UserManagement\ApplicationUserViewModel.cs" />
+    <Compile Include="Models\UserManagement\ApplicationUserEditViewModel.cs" />
+    <Compile Include="Models\UserManagement\IUpdateApplicationUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Security\Attributes\ClaimsAuthorizeAttribute.cs" />
     <Compile Include="Core\Security\AuthenticationConfiguration.cs" />
@@ -355,6 +358,10 @@
     <Content Include="Views\DataStructure\CategoryList.cshtml" />
     <Content Include="Views\DataStructure\CategoryEdit.cshtml" />
     <Content Include="Views\DataStructure\ChildCategoriesExists.cshtml" />
+    <Content Include="Views\DataStructure\GroupList.cshtml" />
+    <Content Include="Views\DataStructure\GroupCreate.cshtml" />
+    <Content Include="Views\DataStructure\GroupEdit.cshtml" />
+    <Content Include="Views\DataStructure\ChildGroupsExists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -78,8 +78,10 @@
     <Compile Include="CategoryRepositoryTests.cs" />
     <Compile Include="DataSources\BranchDataSourceTests.cs" />
     <Compile Include="DataSources\CategoryDataSourceTests.cs" />
+    <Compile Include="DataSources\GroupDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
     <Compile Include="Extensions\MockExtensions.cs" />
+    <Compile Include="GroupRepositoryTests.cs" />
     <Compile Include="LogRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTestsBase.cs" />

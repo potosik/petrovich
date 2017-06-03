@@ -7,5 +7,7 @@ namespace Petrovich.Business.Models
     {
         public Guid GroupId { get; set; }
         public string Title { get; set; }
+        public Guid CategoryId { get; set; }
+        public string CategoryTitle { get; set; }
     }
 }

@@ -142,6 +142,15 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Выбранная категория не найдена..
+        /// </summary>
+        internal static string Group_CategoryNotFound_Error {
+            get {
+                return ResourceManager.GetString("Group_CategoryNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Информационный.
         /// </summary>
         internal static string Information {
@@ -156,6 +165,15 @@ namespace Petrovich.Web.Properties {
         internal static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поле {0} обязательно для заполнения..
+        /// </summary>
+        internal static string Required_Field_Error {
+            get {
+                return ResourceManager.GetString("Required_Field_Error", resourceCulture);
             }
         }
     }

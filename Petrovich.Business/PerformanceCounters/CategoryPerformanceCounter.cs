@@ -49,9 +49,9 @@ namespace Petrovich.Business.PerformanceCounters
             await innerDataSource.DeleteAsync(category);
         }
 
-        public async Task<bool> IsExistsForBranchIdAsync(Guid branchId)
+        public async Task<bool> IsExistsForBranchAsync(Guid branchId)
         {
-            return await innerDataSource.IsExistsForBranchIdAsync(branchId);
+            return await innerDataSource.IsExistsForBranchAsync(branchId);
         }
     }
 }

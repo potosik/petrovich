@@ -7,19 +7,19 @@ using System.Web.Mvc;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class EditCategoryModel
+    public class CategoryEditViewModel
     {
         public Guid CategoryId { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Название")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Часть инвентарного номера")]
         public int InventoryPart { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Раздел")]
         public Guid BranchId { get; set; }
 

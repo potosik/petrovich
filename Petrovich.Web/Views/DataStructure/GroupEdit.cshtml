@@ -1,22 +1,22 @@
-﻿@model Petrovich.Web.Models.DataStructure.EditCategoryModel
+﻿@model Petrovich.Web.Models.DataStructure.EditGroupModel
 
 @{
-    ViewBag.Title = "Редактирование категории";
+    ViewBag.Title = "Редактирование группы";
 }
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@ViewBag.Title <small>редактирование существующей категории</small></h2>
+        <h2>@ViewBag.Title <small>редактирование существующей группы</small></h2>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
         <br>
-        @using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryEdit, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+        @using (Html.BeginForm(PetrovichRoutes.DataStructure.GroupEdit, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.GroupId)
             @Html.HiddenFor(m => m.CategoryId)
-            @Html.HiddenFor(m => m.BranchId)
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
@@ -26,24 +26,17 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.InventoryPart, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                @Html.LabelFor(m => m.CategoryId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <span class="required">*</span>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.TextBoxFor(m => m.InventoryPart, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.BranchId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
-                <span class="required">*</span>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.TextBoxFor(m => m.BranchTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
+                    @Html.TextBoxFor(m => m.CategoryTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
                 </div>
             </div>
             <div class="ln_solid"></div>
             <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                     <button type="submit" class="btn btn-success">Сохранить</button>
-                    @Html.ActionLink("Отмена", PetrovichRoutes.DataStructure.CategoryList, null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Отмена", PetrovichRoutes.DataStructure.GroupList, null, new { @class = "btn btn-default" })
                 </div>
             </div>
             <div class="ln_solid"></div>

@@ -9,6 +9,6 @@ namespace Petrovich.Repositories
     {
         Task<Category> FindByInventoryPartAsync(int inventoryPart, Guid branchId);
         Task<IList<int>> ListUsedInventoryPartsAsync(Guid branchId);
-        Task<bool> IsExistsForBranchIdAsync(Guid branchId);
+        Task<bool> IsExistsForBranchAsync(Guid branchId);
     }
 }

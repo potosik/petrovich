@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class CategoryModel
+    public class CategoryViewModel
     {
         public Guid CategoryId { get; set; }
         public string Title { get; set; }
@@ -19,14 +19,14 @@ namespace Petrovich.Web.Models.DataStructure
         public DateTime? Modified { get; set; }
         public string ModifiedBy { get; set; }
 
-        public static CategoryModel Create(Category category)
+        public static CategoryViewModel Create(Category category)
         {
             if (category == null)
             {
                 throw new ArgumentNullException(nameof(category));
             }
 
-            return new CategoryModel()
+            return new CategoryViewModel()
             {
                 CategoryId = category.CategoryId,
                 Title = category.Title,

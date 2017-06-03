@@ -27,7 +27,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var logs = await logger.ListLogsAsync();
-                var model = logs.Select(item => LogModel.Create(item));
+                var model = logs.Select(item => LogViewModel.Create(item));
                 return View(model);
             }
             catch (ArgumentNullException ex)
@@ -50,7 +50,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var log = await logger.FindAsync(id);
-                return View(LogModel.Create(log));
+                return View(LogViewModel.Create(log));
             }
             catch (ArgumentNullException ex)
             {

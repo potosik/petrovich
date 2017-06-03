@@ -3,15 +3,15 @@ using Petrovich.Web.Core.Security.DbContext.Entities;
 
 namespace Petrovich.Web.Models.UserManagement
 {
-    public class ApplicationUserModel
+    public class ApplicationUserViewModel
     {
         public string Id { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
 
-        public static ApplicationUserModel Create(ApplicationUser user)
+        public static ApplicationUserViewModel Create(ApplicationUser user)
         {
-            return new ApplicationUserModel()
+            return new ApplicationUserViewModel()
             {
                 Id = user.Id,
                 Email = user.Email,

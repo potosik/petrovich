@@ -11,11 +11,13 @@
         NoBranchCategoriesSlots = 400004,
         CategoryInventoryPartChanged = 400005,
         ChildCategoriesExists = 400006,
+        ChildGroupsExists = 400007,
 
         LogNotFound = 404001,
         UserNotFound = 404002,
         BranchNotFound = 404003,
         CategoryNotFound = 404004,
+        GroupNotFound = 404005,
     }
 
 }

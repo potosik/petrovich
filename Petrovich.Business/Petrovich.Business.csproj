@@ -69,11 +69,13 @@
     <Compile Include="Exceptions\CategoryNotFoundException.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\ChildCategoriesExistsException.cs" />
+    <Compile Include="Exceptions\ChildGroupsExistsException.cs" />
     <Compile Include="Exceptions\DatabaseOperationException.cs" />
     <Compile Include="Exceptions\DuplicateCategoryInventoryPartException.cs" />
     <Compile Include="Exceptions\DuplicateBranchInventoryPartException.cs" />
     <Compile Include="Exceptions\ErrorCode.cs" />
     <Compile Include="Exceptions\BranchNotFoundException.cs" />
+    <Compile Include="Exceptions\GroupNotFoundException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\NoBranchCategoriesSlotsException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />

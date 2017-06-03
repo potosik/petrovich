@@ -2,7 +2,7 @@
 
 namespace Petrovich.Web.Models.UserManagement
 {
-    public interface IUpdateApplicationUserModel
+    public interface IUpdateApplicationUserViewModel
     {
         string Id { get; }
         string Email { get; set; }

@@ -22,7 +22,7 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task FindAsync_ReturnsCorrectEntity()
+        public async Task FindAsync_WhenEntityFound_ReturnsCorrectEntity()
         {
             var id = new Guid("eb9f3a64-c2c1-4f50-93d2-92414ad2511f");
             var result = await branchRepository.FindAsync(id);

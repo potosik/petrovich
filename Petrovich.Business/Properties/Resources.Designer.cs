@@ -133,6 +133,15 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Child groups exists for category &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400007 {
+            get {
+                return ResourceManager.GetString("E400007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {
@@ -165,6 +174,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404004 {
             get {
                 return ResourceManager.GetString("E404004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404005 {
+            get {
+                return ResourceManager.GetString("E404005", resourceCulture);
             }
         }
     }

@@ -132,11 +132,11 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<bool> IsExistsForBranchIdAsync(Guid branchId)
+        public async Task<bool> IsExistsForBranchAsync(Guid branchId)
         {
             try
             {
-                return await categoryRepository.IsExistsForBranchIdAsync(branchId);
+                return await categoryRepository.IsExistsForBranchAsync(branchId);
             }
             catch (EntityException ex)
             {

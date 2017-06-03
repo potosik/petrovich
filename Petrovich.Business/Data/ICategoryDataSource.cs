@@ -13,6 +13,6 @@ namespace Petrovich.Business.Data
         Task<Category> FindAsync(Guid id);
         Task<Category> UpdateAsync(Category category);
         Task DeleteAsync(Category category);
-        Task<bool> IsExistsForBranchIdAsync(Guid branchId);
+        Task<bool> IsExistsForBranchAsync(Guid branchId);
     }
 }

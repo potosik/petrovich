@@ -35,6 +35,7 @@
             public static Endpoint CategoryCreate = new Endpoint(Controller, "CategoryCreate");
             public static Endpoint CategoryEdit = new Endpoint(Controller, "CategoryEdit");
             public static Endpoint CategoryDelete = new Endpoint(Controller, "CategoryDelete");
+            public static Endpoint CategoryChildGroupsExists = new Endpoint(Controller, "ChildGroupsExists");
 
             public static Endpoint GroupList = new Endpoint(Controller, "GroupList");
             public static Endpoint GroupCreate = new Endpoint(Controller, "GroupCreate");
