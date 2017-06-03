@@ -19,7 +19,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var categories = await dataStructureService.ListCategoriesAsync();
-                var model = categories.Select(item => CategoryModel.Create(item));
+                var model = categories.Select(item => CategoryViewModel.Create(item));
                 return View(model);
             }
             catch (ArgumentNullException ex)
@@ -39,7 +39,7 @@ namespace Petrovich.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> CategoryCreate()
         {
-            var model = new CreateCategoryModel()
+            var model = new CategoryCreateViewModel()
             {
                 Branches = await CreateBranchesSelectList(),
             };
@@ -48,7 +48,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CategoryCreate(CreateCategoryModel model)
+        public async Task<ActionResult> CategoryCreate(CategoryCreateViewModel model)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var category = await dataStructureService.FindCategoryAsync(id);
-                var model = new EditCategoryModel()
+                var model = new CategoryEditViewModel()
                 {
                     CategoryId = category.CategoryId,
                     Title = category.Title,
@@ -134,7 +134,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CategoryEdit(EditCategoryModel model)
+        public async Task<ActionResult> CategoryEdit(CategoryEditViewModel model)
         {
             try
             {
@@ -196,6 +196,10 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
+            catch (ChildGroupsExistsException)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.CategoryChildGroupsExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -204,6 +208,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult ChildGroupsExists()
+        {
+            return View();
         }
 
         private async Task<List<SelectListItem>> CreateBranchesSelectList()

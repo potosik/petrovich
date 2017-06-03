@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Petrovich.Web.Models.Logging
 {
-    public class LogModel
+    public class LogViewModel
     {
         [Display(Name = "Идентификатор записи")]
         public Guid LogId { get; set; }
@@ -33,14 +33,14 @@ namespace Petrovich.Web.Models.Logging
         public DateTime? Created { get; set; }
         public string CreatedBy { get; set; }
 
-        public static LogModel Create(Log log)
+        public static LogViewModel Create(Log log)
         {
             if (log == null)
             {
                 throw new ArgumentNullException(nameof(log));
             }
 
-            return new LogModel()
+            return new LogViewModel()
             {
                 LogId = log.LogId,
                 CorrelationId = log.CorrelationId,

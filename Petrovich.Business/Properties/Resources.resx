@@ -141,6 +141,9 @@
   <data name="E400006" xml:space="preserve">
     <value>Child categories exists for branch '{0}'.</value>
   </data>
+  <data name="E400007" xml:space="preserve">
+    <value>Child groups exists for category '{0}'.</value>
+  </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
   </data>
@@ -152,5 +155,8 @@
   </data>
   <data name="E404004" xml:space="preserve">
     <value>Category '{0}' not found.</value>
+  </data>
+  <data name="E404005" xml:space="preserve">
+    <value>Group '{0}' not found.</value>
   </data>
 </root>

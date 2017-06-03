@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class CreateCategoryModel
+    public class CategoryCreateViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Название")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Раздел")]
         public Guid BranchId { get; set; }
 

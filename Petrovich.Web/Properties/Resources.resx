@@ -144,10 +144,16 @@
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
+  <data name="Group_CategoryNotFound_Error" xml:space="preserve">
+    <value>Выбранная категория не найдена.</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Информационный</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Отсутсвует</value>
+  </data>
+  <data name="Required_Field_Error" xml:space="preserve">
+    <value>Поле {0} обязательно для заполнения.</value>
   </data>
 </root>

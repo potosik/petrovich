@@ -34,7 +34,7 @@ namespace Petrovich.Web.Controllers
                 .Where(user => !user.LockoutEnabled && user.Email != Defaults.User.Email)
                 .ToListAsync();
 
-            var model = users.Select(user => ApplicationUserModel.Create(user));
+            var model = users.Select(user => ApplicationUserViewModel.Create(user));
             return View("UserList", model);
         }
 
@@ -45,18 +45,18 @@ namespace Petrovich.Web.Controllers
                 .Where(user => user.LockoutEnabled)
                 .ToListAsync();
 
-            var model = users.Select(user => ApplicationUserModel.Create(user));
+            var model = users.Select(user => ApplicationUserViewModel.Create(user));
             return View("UserList", model);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View(new CreateApplicationUserModel());
+            return View(new ApplicationUserCreateViewModel());
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateApplicationUserModel userModel)
+        public async Task<ActionResult> Create(ApplicationUserCreateViewModel userModel)
         {
             if (ModelState.IsValid)
             {
@@ -88,12 +88,12 @@ namespace Petrovich.Web.Controllers
                 return CreateNotFoundResponse();
             }
 
-            var model = EditApplicationUserModel.Create(user);
+            var model = ApplicationUserEditViewModel.Create(user);
             return View(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(EditApplicationUserModel userModel)
+        public async Task<ActionResult> Edit(ApplicationUserEditViewModel userModel)
         {
             if (ModelState.IsValid)
             {
@@ -169,7 +169,7 @@ namespace Petrovich.Web.Controllers
             return RedirectToAction(PetrovichRoutes.UserManagement.Active);
         }
 
-        private async Task<IdentityResult> UpdateApplicationUser(IUpdateApplicationUserModel userModel)
+        private async Task<IdentityResult> UpdateApplicationUser(IUpdateApplicationUserViewModel userModel)
         {
             ApplicationUser user = null;
             IdentityResult result = null;
@@ -228,7 +228,7 @@ namespace Petrovich.Web.Controllers
             return result;
         }
 
-        private void UpdateUserClaims(IUpdateApplicationUserModel userModel, ApplicationUser user)
+        private void UpdateUserClaims(IUpdateApplicationUserViewModel userModel, ApplicationUser user)
         {
             for (int i = user.Claims.Count - 1; i >= 0; i--)
             {

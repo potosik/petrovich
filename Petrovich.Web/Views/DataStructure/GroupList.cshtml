@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Petrovich.Web.Models.DataStructure.GroupModel>
+
+@{
+    ViewBag.Title = "Список групп";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>список зарегистрированных групп</small></h2>
+        <div class="nav navbar-right">
+            <a href="@Url.Action(PetrovichRoutes.DataStructure.GroupCreate)" class="btn btn-default btn-sm">Добавить группу</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Создана</th>
+                    <th>Отредактирована</th>
+                    <th>Операции</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Modified)</td>
+                        <td>
+                            @using (Html.BeginForm(PetrovichRoutes.DataStructure.GroupDelete, new { id = item.GroupId }, FormMethod.Post, null))
+                            {
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action(PetrovichRoutes.DataStructure.GroupEdit, new { id = item.GroupId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    </a>
+                                    <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

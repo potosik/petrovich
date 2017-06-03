@@ -17,6 +17,9 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 GroupId = entity.GroupId,
                 Title = entity.Title,
+                CategoryId = entity.CategoryId,
+
+                CategoryTitle = entity.Category?.Title,
                 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,
@@ -36,6 +39,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 GroupId = entity.GroupId,
                 Title = entity.Title,
+                CategoryId = entity.CategoryId,
 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,

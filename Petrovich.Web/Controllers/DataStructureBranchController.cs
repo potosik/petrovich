@@ -33,7 +33,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var branches = await dataStructureService.ListBranchesAsync();
-                var model = branches.Select(item => BranchModel.Create(item));
+                var model = branches.Select(item => BranchViewModel.Create(item));
                 return View(model);
             }
             catch (ArgumentNullException ex)
@@ -53,11 +53,11 @@ namespace Petrovich.Web.Controllers
         [HttpGet]
         public ActionResult BranchCreate()
         {
-            return View(new CreateBranchModel());
+            return View(new BranchCreateViewModel());
         }
 
         [HttpPost]
-        public async Task<ActionResult> BranchCreate(CreateBranchModel model)
+        public async Task<ActionResult> BranchCreate(BranchCreateViewModel model)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var branch = await dataStructureService.FindBranchAsync(id);
-                var model = new EditBranchModel()
+                var model = new BranchEditViewModel()
                 {
                     BranchId = branch.BranchId,
                     Title = branch.Title,
@@ -131,7 +131,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> BranchEdit(EditBranchModel model)
+        public async Task<ActionResult> BranchEdit(BranchEditViewModel model)
         {
             try
             {
@@ -192,7 +192,7 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
-            catch (ChildCategoriesExistsException ex)
+            catch (ChildCategoriesExistsException)
             {
                 return RedirectToAction(PetrovichRoutes.DataStructure.BranchChildCategoriesExists);
             }

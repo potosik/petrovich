@@ -66,7 +66,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task FindBranchAsync_WhenBranchIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task FindBranchAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -95,7 +95,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task UpdateBranchAsync_WhenBranchIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task UpdateBranchAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -138,7 +138,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task DeleteBranchAsync_WhenBranchIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task DeleteBranchAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -160,7 +160,7 @@ namespace Petrovich.Business.Tests.Services
         {
             branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.Branch());
-            categoryDataSourceMock.Setup(dataSource => dataSource.IsExistsForBranchIdAsync(It.IsAny<Guid>()))
+            categoryDataSourceMock.Setup(dataSource => dataSource.IsExistsForBranchAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(true);
 
             await Assert.ThrowsAsync<ChildCategoriesExistsException>(() =>
@@ -179,7 +179,16 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task CreateCategoryAsync_WhenCategoryWithSameInventoryPartExists_ThrowsDuplicateCategoryInventoryPartException()
+        public async Task CreateCategoryAsync_WhenBranchNotFound_ThrowsBranchNotFoundException()
+        {
+            await Assert.ThrowsAsync<BranchNotFoundException>(() =>
+            {
+                return dataStructureService.CreateCategoryAsync(new Models.Category());
+            });
+        }
+
+        [Fact]
+        public async Task CreateCategoryAsync_WhenCategoryWithSameInventoryPartExist_ThrowsDuplicateCategoryInventoryPartException()
         {
             branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.Branch());
@@ -187,6 +196,20 @@ namespace Petrovich.Business.Tests.Services
                 .ReturnsAsync(new Models.Category());
 
             await Assert.ThrowsAsync<DuplicateCategoryInventoryPartException>(() =>
+            {
+                return dataStructureService.CreateCategoryAsync(new Models.Category());
+            });
+        }
+
+        [Fact]
+        public async Task CreateCategoryAsync_WhenNoSlotsForInventoryPartAvailable_ThrowsNoBranchCategoriesSlotsException()
+        {
+            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Branch());
+            categoryDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Category>()))
+                .ReturnsAsync(new Models.Category());
+
+            await Assert.ThrowsAsync<NoBranchCategoriesSlotsException>(() =>
             {
                 return dataStructureService.CreateCategoryAsync(new Models.Category());
             });
@@ -206,32 +229,9 @@ namespace Petrovich.Business.Tests.Services
 
             Assert.NotNull(result);
         }
-
-        [Fact]
-        public async Task CreateCategoryAsync_WhenNoSlotsForInventoryPartAvailable_ThrowsNoBranchCategoriesSlotsException()
-        {
-            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.Branch());
-            categoryDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Category>()))
-                .ReturnsAsync(new Models.Category());
-            
-            await Assert.ThrowsAsync<NoBranchCategoriesSlotsException>(() =>
-            {
-                return dataStructureService.CreateCategoryAsync(new Models.Category());
-            });
-        }
-
-        [Fact]
-        public async Task CreateCategoryAsync_WhenBranchNotFound_ThrowsBranchNotFoundException()
-        {
-            await Assert.ThrowsAsync<BranchNotFoundException>(() =>
-            {
-                return dataStructureService.CreateCategoryAsync(new Models.Category());
-            });
-        }
         
         [Fact]
-        public async Task FindCategoryAsync_WhenCategoryIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task FindCategoryAsync_WhenCategoryIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -260,7 +260,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task UpdateCategoryAsync_WhenCategoryIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task UpdateCategoryAsync_WhenCategoryIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -319,7 +319,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task DeleteCategoryAsync_WhenCategoryIdIsZero_ThrowsArgumentOutOfRangeException()
+        public async Task DeleteCategoryAsync_WhenCategoryIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
@@ -333,6 +333,143 @@ namespace Petrovich.Business.Tests.Services
             await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
             {
                 return dataStructureService.DeleteCategoryAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task DeleteCategoryAsync_WhenChildGroupsFound_ThrowsChildGroupsExistsException()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.IsExistsForCategoryAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(true);
+
+            await Assert.ThrowsAsync<ChildGroupsExistsException>(() =>
+            {
+                return dataStructureService.DeleteCategoryAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task CreateGroupAsync_WhenGroupIsNull_ThrowsArgumentNullException()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return dataStructureService.CreateGroupAsync(null);
+            });
+        }
+
+        [Fact]
+        public async Task CreateGroupAsync_WhenCategoryNotFound_ThrowsCategoryNotFoundException()
+        {
+            await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
+            {
+                return dataStructureService.CreateGroupAsync(new Models.Group());
+            });
+        }
+
+        [Fact]
+        public async Task CreateGroupAsync_WhenGroupCreated_ReturnsGroup()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Group>()))
+                .ReturnsAsync(new Models.Group());
+
+            var result = await dataStructureService.CreateGroupAsync(new Models.Group());
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task FindGroupAsync_WhenGroupIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return dataStructureService.FindGroupAsync(Guid.Empty);
+            });
+        }
+        
+        [Fact]
+        public async Task FindGroupAsync_WhenGroupNotFound_ThrowsGroupNotFoundException()
+        {
+            await Assert.ThrowsAsync<GroupNotFoundException>(() =>
+            {
+                return dataStructureService.FindGroupAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task FindGroupAsync_WhenGroupFound_ReturnsGroup()
+        {
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Group());
+
+            var result = await dataStructureService.FindGroupAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task UpdateGroupAsync_WhenGroupIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return dataStructureService.UpdateGroupAsync(new Models.Group() { GroupId = Guid.Empty });
+            });
+        }
+
+        [Fact]
+        public async Task UpdateGroupAsync_WhenGroupNotFound_ThrowsGroupNotFoundException()
+        {
+            await Assert.ThrowsAsync<GroupNotFoundException>(() =>
+            {
+                return dataStructureService.UpdateGroupAsync(new Models.Group() { GroupId = Guid.NewGuid() });
+            });
+        }
+
+        [Fact]
+        public async Task UpdateGroupAsync_WhenCategoryNotFound_ThrowsCategoryNotFoundException()
+        {
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Group());
+
+            await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
+            {
+                return dataStructureService.UpdateGroupAsync(new Models.Group() { GroupId = Guid.NewGuid() });
+            });
+        }
+
+        [Fact]
+        public async Task UpdateGroupAsync_WhenGroupUpdated_ReturnsGroup()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Group() { GroupId = Guid.NewGuid() });
+            groupDataSourceMock.Setup(dataSource => dataSource.UpdateAsync(It.IsAny<Models.Group>()))
+                .ReturnsAsync(new Models.Group());
+
+            var result = await dataStructureService.UpdateGroupAsync(new Models.Group() { GroupId = Guid.NewGuid() });
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task DeleteGroupAsync_WhenGroupIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return dataStructureService.DeleteGroupAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task DeleteGroupAsync_WhenGroupNotFound_ThrowsGroupNotFoundException()
+        {
+            await Assert.ThrowsAsync<GroupNotFoundException>(() =>
+            {
+                return dataStructureService.DeleteGroupAsync(Guid.NewGuid());
             });
         }
     }
