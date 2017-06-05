@@ -1,0 +1,115 @@
+﻿@model Petrovich.Web.Models.Products.ProductCreateViewModel
+
+@{
+    ViewBag.Title = "Создание продукта";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>регистрация нового продукта в системе</small></h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <br>
+        @using (Html.BeginForm(PetrovichRoutes.Products.Create, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Название" })
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BranchId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.DropDownListFor(m => m.BranchId, Model.Branches, new { id = "branches", @class = "form-control col-md-7 col-xs-12" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CategoryId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.DropDownListFor(m => m.CategoryId, new List<SelectListItem>(), new { id = "categories", @class = "form-control col-md-7 col-xs-12" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.GroupId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.DropDownListFor(m => m.GroupId, new List<SelectListItem>(), new { id = "groups", @class = "form-control col-md-7 col-xs-12" })
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" class="btn btn-success">Добавить</button>
+                    @Html.ActionLink("Отмена", PetrovichRoutes.Products.Index, null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        (function () {
+            $(function () {
+                var branchesSelect = $('#branches');
+                var categoriesSelect = $('#categories');
+                var groupsSelect = $('#groups');
+
+                branchesSelect.change(function () {
+                    clearCategories();
+                    clearGroups();
+
+                    var selectedBranch = $(this).val();
+                    if (selectedBranch == null || selectedBranch == '') {
+                        return false;
+                    }
+
+                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetCategories)', { branchId: selectedBranch }, function (categories) {
+                        $.each(categories, function (index, category) {
+                            var option = $('<option/>', { value: category.Value, text: category.Text });
+                            categoriesSelect.append(option);
+                        });
+
+                        categoriesSelect.change();
+                    });
+                });
+
+                categoriesSelect.change(function () {
+                    clearGroups();
+
+                    var selectedCategory = $(this).val();
+                    if (selectedCategory == null || selectedCategory == '') {
+                        return false;
+                    }
+
+                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetGroups)', { categoryId: selectedCategory }, function (groups) {
+                        $.each(groups, function (index, group) {
+                            var option = $('<option/>', { value: group.Value, text: group.Text });
+                            groupsSelect.append(option);
+                        });
+                    });
+                });
+
+                branchesSelect.change();
+
+                function clearCategories() {
+                    categoriesSelect.empty();
+                }
+
+                function clearGroups() {
+                    groupsSelect.empty();
+                    groupsSelect.append($('<option />'));
+                }
+            });
+        })();
+    </script>
+}

@@ -73,8 +73,9 @@ namespace Petrovich.Web.Controllers
                     return RedirectToAction(PetrovichRoutes.DataStructure.BranchList);
                 }
             }
-            catch (DuplicateBranchInventoryPartException)
+            catch (DuplicateBranchInventoryPartException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchCreate duplicate branch inventory part found.", ex);
                 ModelState.AddModelError(typeof(DuplicateBranchInventoryPartException).Name, Properties.Resources.Branch_InventoryPart_Duplicate_Error);
             }
             catch (ArgumentNullException ex)
@@ -156,12 +157,14 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
-            catch (BranchInventoryPartChangedException)
+            catch (BranchInventoryPartChangedException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchEdit branch '{model.BranchId}' inventory part changed.", ex);
                 ModelState.AddModelError(typeof(BranchInventoryPartChangedException).Name, Properties.Resources.Branch_InventoryPart_Changed_Error);
             }
-            catch (DuplicateBranchInventoryPartException)
+            catch (DuplicateBranchInventoryPartException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchEdit branch '{model.BranchId}' duplicate inventory found.", ex);
                 ModelState.AddModelError(typeof(DuplicateBranchInventoryPartException).Name, Properties.Resources.Branch_InventoryPart_Duplicate_Error);
             }
             catch (DatabaseOperationException ex)

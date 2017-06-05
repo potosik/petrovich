@@ -220,6 +220,8 @@
     <Compile Include="Models\DataStructure\GroupViewModel.cs" />
     <Compile Include="Models\Logging\LogViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Products\ProductCreateViewModel.cs" />
+    <Compile Include="Models\Products\ProductViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserCreateViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserEditViewModel.cs" />
@@ -287,7 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -362,6 +363,8 @@
     <Content Include="Views\DataStructure\GroupCreate.cshtml" />
     <Content Include="Views\DataStructure\GroupEdit.cshtml" />
     <Content Include="Views\DataStructure\ChildGroupsExists.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

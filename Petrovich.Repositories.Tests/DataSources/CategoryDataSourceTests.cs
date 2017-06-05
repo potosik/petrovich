@@ -145,14 +145,14 @@ namespace Petrovich.Repositories.Tests.DataSources
         }
 
         [Fact]
-        public async Task IsExistsForBranchAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        public async Task ListByBranchIdAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
         {
-            categoryRepositoryMock.Setup(repository => repository.IsExistsForBranchAsync(It.IsAny<Guid>()))
+            categoryRepositoryMock.Setup(repository => repository.ListByBranchIdAsync(It.IsAny<Guid>()))
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.IsExistsForBranchAsync(Guid.Empty);
+                return dataSource.ListByBranchIdAsync(Guid.Empty);
             });
         }
     }

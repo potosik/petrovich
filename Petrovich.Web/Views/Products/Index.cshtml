@@ -1,14 +1,14 @@
-﻿@model IEnumerable<Petrovich.Web.Models.DataStructure.CategoryViewModel>
+﻿@model IEnumerable<Petrovich.Web.Models.Products.ProductViewModel>
 
 @{
-    ViewBag.Title = "Список категорий";
+    ViewBag.Title = "Список продуктов";
 }
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@ViewBag.Title <small>список зарегистрированных категорий</small></h2>
+        <h2>@ViewBag.Title <small>список зарегистрированных продуктов</small></h2>
         <div class="nav navbar-right">
-            <a href="@Url.Action(PetrovichRoutes.DataStructure.CategoryCreate)" class="btn btn-default btn-sm">Добавить категорию</a>
+            <a href="@Url.Action(PetrovichRoutes.Products.Create)" class="btn btn-default btn-sm">Добавить продукт</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -17,10 +17,12 @@
             <thead>
                 <tr>
                     <th>Название</th>
-                    <th>Часть инвентарного номера</th>
+                    <th>Инвентарный номер</th>
                     <th>Раздел</th>
-                    <th>Создана</th>
-                    <th>Отредактирована</th>
+                    <th>Категория</th>
+                    <th>Группа</th>
+                    <th>Создан</th>
+                    <th>Отредактирован</th>
                     <th>Операции</th>
                 </tr>
             </thead>
@@ -29,15 +31,17 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td>@Html.DisplayFor(modelItem => item.InventoryPart)</td>
+                        <td>@Html.DisplayFor(modelItem => item.InventoryNumber)</td>
                         <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.GroupTitle)</td>
                         <td>@Html.DisplayFor(modelItem => item.Created)</td>
                         <td>@Html.DisplayFor(modelItem => item.Modified)</td>
                         <td>
-                            @using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryDelete, new { id = item.CategoryId }, FormMethod.Post, null))
+                            @using (Html.BeginForm(PetrovichRoutes.Products.Delete, new { id = item.ProductId }, FormMethod.Post, null))
                             {
                                 <div class="btn-group" role="group">
-                                    <a href="@Url.Action(PetrovichRoutes.DataStructure.CategoryEdit, new { id = item.CategoryId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
+                                    <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = item.ProductId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                     </a>
                                     <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">

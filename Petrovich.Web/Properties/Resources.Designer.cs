@@ -106,15 +106,6 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Категория с данной частью инвентарного номера уже зарегистрирована..
-        /// </summary>
-        internal static string Category_InventoryPart_Duplicate_Error {
-            get {
-                return ResourceManager.GetString("Category_InventoryPart_Duplicate_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию..
         /// </summary>
         internal static string Category_NoInventoryPartSlotsAvailable_Error {
@@ -165,6 +156,33 @@ namespace Petrovich.Web.Properties {
         internal static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранный раздел не найден..
+        /// </summary>
+        internal static string Product_BranchNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_BranchNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранная категория не найдена..
+        /// </summary>
+        internal static string Product_CategoryNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_CategoryNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранная группа не найдена..
+        /// </summary>
+        internal static string Product_GroupNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_GroupNotFound_Error", resourceCulture);
             }
         }
         

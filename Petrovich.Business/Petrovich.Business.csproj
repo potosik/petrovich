@@ -71,15 +71,18 @@
     <Compile Include="Exceptions\ChildCategoriesExistsException.cs" />
     <Compile Include="Exceptions\ChildGroupsExistsException.cs" />
     <Compile Include="Exceptions\DatabaseOperationException.cs" />
-    <Compile Include="Exceptions\DuplicateCategoryInventoryPartException.cs" />
     <Compile Include="Exceptions\DuplicateBranchInventoryPartException.cs" />
     <Compile Include="Exceptions\ErrorCode.cs" />
     <Compile Include="Exceptions\BranchNotFoundException.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\NoBranchCategoriesSlotsException.cs" />
+    <Compile Include="Exceptions\NoCategoryProductsSlotsException.cs" />
+    <Compile Include="Exceptions\ProductInventoryPartChangedException.cs" />
+    <Compile Include="Exceptions\ProductNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="IDataStructureService.cs" />
+    <Compile Include="IProductService.cs" />
     <Compile Include="Logging\Composition\CompositionModule.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
     <Compile Include="Logging\LoggingService.cs" />
@@ -109,6 +112,7 @@
     </Compile>
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DataStructureService.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

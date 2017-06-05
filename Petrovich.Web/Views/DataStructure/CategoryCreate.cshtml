@@ -1,4 +1,4 @@
-﻿@model Petrovich.Web.Models.DataStructure.CreateCategoryModel
+﻿@model Petrovich.Web.Models.DataStructure.CategoryCreateViewModel
 
 @{
     ViewBag.Title = "Создание категории";
@@ -27,7 +27,7 @@
                 @Html.LabelFor(m => m.BranchId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <span class="required">*</span>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.DropDownListFor(m => m.BranchId, Model.Branches, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Раздел" })
+                    @Html.DropDownListFor(m => m.BranchId, Model.Branches, new { @class = "form-control col-md-7 col-xs-12" })
                 </div>
             </div>
             <div class="ln_solid"></div>

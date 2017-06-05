@@ -39,12 +39,23 @@ namespace Petrovich.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> GroupCreate()
         {
-            var model = new GroupCreateViewModel()
+            try
             {
-                Categories = await CreateGroupsSelectList(),
-            };
+                var model = new GroupCreateViewModel()
+                {
+                    Categories = await CreateGroupsSelectList(),
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
         }
 
         [HttpPost]
@@ -63,9 +74,12 @@ namespace Petrovich.Web.Controllers
                     await dataStructureService.CreateGroupAsync(newGroup);
                     return RedirectToAction(PetrovichRoutes.DataStructure.GroupList);
                 }
+
+                model.Categories = await CreateGroupsSelectList();
             }
-            catch (CategoryNotFoundException)
+            catch (CategoryNotFoundException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.GroupCreate category '{model.CategoryId}' not found.", ex);
                 ModelState.AddModelError(typeof(BranchNotFoundException).Name, Properties.Resources.Group_CategoryNotFound_Error);
             }
             catch (ArgumentNullException ex)
@@ -81,7 +95,6 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.Categories = await CreateGroupsSelectList();
             return View(model);
         }
 
@@ -146,8 +159,9 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
-            catch (CategoryNotFoundException)
+            catch (CategoryNotFoundException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.GroupEdit category '{model.CategoryId}' not found.", ex);
                 ModelState.AddModelError(typeof(CategoryNotFoundException).Name, Properties.Resources.Group_CategoryNotFound_Error);
             }
             catch (GroupNotFoundException ex)

@@ -186,21 +186,7 @@ namespace Petrovich.Business.Tests.Services
                 return dataStructureService.CreateCategoryAsync(new Models.Category());
             });
         }
-
-        [Fact]
-        public async Task CreateCategoryAsync_WhenCategoryWithSameInventoryPartExist_ThrowsDuplicateCategoryInventoryPartException()
-        {
-            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.Branch());
-            categoryDataSourceMock.Setup(dataSource => dataSource.FindByInventoryPartAsync(It.IsAny<int>(), It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.Category());
-
-            await Assert.ThrowsAsync<DuplicateCategoryInventoryPartException>(() =>
-            {
-                return dataStructureService.CreateCategoryAsync(new Models.Category());
-            });
-        }
-
+        
         [Fact]
         public async Task CreateCategoryAsync_WhenNoSlotsForInventoryPartAvailable_ThrowsNoBranchCategoriesSlotsException()
         {
@@ -351,6 +337,38 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
+        public async Task ListCategoriesByBranchIdAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return dataStructureService.ListCategoriesByBranchIdAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task ListCategoriesByBranchIdAsync_WhenBranchNotFound_ThrowsBranchNotFoundException()
+        {
+            await Assert.ThrowsAsync<BranchNotFoundException>(() =>
+            {
+                return dataStructureService.ListCategoriesByBranchIdAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task ListCategoriesByBranchIdAsync_WhenBranchFound_ReturnsCategoryCollection()
+        {
+            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Branch());
+            categoryDataSourceMock.Setup(dataSource => dataSource.ListByBranchIdAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.CategoryCollection());
+
+            var result = await dataStructureService.ListCategoriesByBranchIdAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
         public async Task CreateGroupAsync_WhenGroupIsNull_ThrowsArgumentNullException()
         {
             await Assert.ThrowsAsync<ArgumentNullException>(() =>
@@ -471,6 +489,38 @@ namespace Petrovich.Business.Tests.Services
             {
                 return dataStructureService.DeleteGroupAsync(Guid.NewGuid());
             });
+        }
+
+        [Fact]
+        public async Task ListGroupsByCategoryIdAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return dataStructureService.ListGroupsByCategoryIdAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task ListGroupsByCategoryIdAsync_WhenCategoryNotFound_ThrowsCategoryNotFoundException()
+        {
+            await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
+            {
+                return dataStructureService.ListGroupsByCategoryIdAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task ListGroupsByCategoryIdAsync_WhenCategoryFound_ReturnsGroupCollection()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.ListByCategoryIdAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.GroupCollection());
+
+            var result = await dataStructureService.ListGroupsByCategoryIdAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
         }
     }
 }

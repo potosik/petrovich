@@ -72,7 +72,7 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task ListUsedInventoryPartsAsync_WhenEntitiesFound_ReturnsList()
+        public async Task ListUsedInventoryPartsAsync_WhenCategoriesFound_ReturnsList()
         {
             var result = await categoryRepository.ListUsedInventoryPartsAsync(new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
 
@@ -82,7 +82,7 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task ListUsedInventoryPartsAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        public async Task ListUsedInventoryPartsAsync_WhenCategoriesNotFound_ReturnsEmptyList()
         {
             var contextMock = CreateContext().MockSet(new List<Category>().AsQueryable(), c => c.Categories);
             var categoryRepository = new CategoryRepository(contextMock.Object);
@@ -93,17 +93,35 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task IsExistsForBranchAsync_WhenEntitiesFound_ReturnsTrue()
+        public async Task IsExistsForBranchAsync_WhenCategoriesFound_ReturnsTrue()
         {
             var result = await categoryRepository.IsExistsForBranchAsync(new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
             Assert.True(result);
         }
 
         [Fact]
-        public async Task IsExistsForBranchAsync_WhenEntitiesNotFound_ReturnsFalse()
+        public async Task IsExistsForBranchAsync_WhenCategoriesNotFound_ReturnsFalse()
         {
             var result = await categoryRepository.IsExistsForBranchAsync(Guid.NewGuid());
             Assert.False(result);
+        }
+
+        [Fact]
+        public async Task ListByBranchIdAsync_WhenCategoriesNotFound_ReturnsEmptyList()
+        {
+            var result = await categoryRepository.ListByBranchIdAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ListByBranchIdAsync_WhenCategoriesFound_ReturnsCategoryList()
+        {
+            var result = await categoryRepository.ListByBranchIdAsync(new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
         }
 
         private static IEnumerable<Category> GetStubbedData()

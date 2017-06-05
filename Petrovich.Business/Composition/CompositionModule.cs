@@ -16,6 +16,7 @@ namespace Petrovich.Business.Composition
         public void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IDataStructureService, DataStructureService>();
+            container.RegisterType<IProductService, ProductService>();
 
             container.RegisterType<ILogDataSource, LogPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(ILogDataSource), "LogDataSource")));
             container.RegisterType<IBranchDataSource, BranchPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(IBranchDataSource), "BranchDataSource")));

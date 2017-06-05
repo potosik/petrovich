@@ -68,6 +68,8 @@
             public static Endpoint Create = new Endpoint(Controller, "Create");
             public static Endpoint Edit = new Endpoint(Controller, "Edit");
             public static Endpoint Delete = new Endpoint(Controller, "Delete");
+            public static Endpoint GetCategories = new Endpoint(Controller, "GetCategories");
+            public static Endpoint GetGroups = new Endpoint(Controller, "GetGroups");
         }
 
         public static class UserManagement

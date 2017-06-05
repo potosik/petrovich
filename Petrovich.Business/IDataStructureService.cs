@@ -20,11 +20,13 @@ namespace Petrovich.Business
         Task<Category> FindCategoryAsync(Guid id);
         Task<Category> UpdateCategoryAsync(Category category);
         Task DeleteCategoryAsync(Guid id);
+        Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId);
 
         Task<GroupCollection> ListGroupsAsync();
         Task<Group> CreateGroupAsync(Group group);
         Task<Group> FindGroupAsync(Guid id);
         Task<Group> UpdateGroupAsync(Group group);
         Task DeleteGroupAsync(Guid id);
+        Task<GroupCollection> ListGroupsByCategoryIdAsync(Guid categoryId);
     }
 }

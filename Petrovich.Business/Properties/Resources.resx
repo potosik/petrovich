@@ -130,19 +130,22 @@
     <value>Branch inventory part could not be changed for item with id: '{0}'.</value>
   </data>
   <data name="E400003" xml:space="preserve">
-    <value>Duplicated category inventory part '{0}' with branch id '{1}' found on item with id: '{2}'.</value>
+    <value>Product inventory part could not be changed for item with id: '{0}'.</value>
   </data>
   <data name="E400004" xml:space="preserve">
     <value>There are no available slots for new categories in branch '{0}'.</value>
   </data>
   <data name="E400005" xml:space="preserve">
-    <value>Branch inventory part could not be changed for item with id: '{0}'.</value>
+    <value>Category inventory part could not be changed for item with id: '{0}'.</value>
   </data>
   <data name="E400006" xml:space="preserve">
     <value>Child categories exists for branch '{0}'.</value>
   </data>
   <data name="E400007" xml:space="preserve">
     <value>Child groups exists for category '{0}'.</value>
+  </data>
+  <data name="E400008" xml:space="preserve">
+    <value>There are no available slots for new products in category '{0}'.</value>
   </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
@@ -158,5 +161,8 @@
   </data>
   <data name="E404005" xml:space="preserve">
     <value>Group '{0}' not found.</value>
+  </data>
+  <data name="E404006" xml:space="preserve">
+    <value>Product '{0}' not found.</value>
   </data>
 </root>

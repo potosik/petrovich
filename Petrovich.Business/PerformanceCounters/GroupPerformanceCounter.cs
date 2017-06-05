@@ -43,5 +43,10 @@ namespace Petrovich.Business.PerformanceCounters
         {
             return await innerDataSource.IsExistsForCategoryAsync(categoryId);
         }
+
+        public async Task<GroupCollection> ListByCategoryIdAsync(Guid categoryId)
+        {
+            return await innerDataSource.ListByCategoryIdAsync(categoryId);
+        }
     }
 }

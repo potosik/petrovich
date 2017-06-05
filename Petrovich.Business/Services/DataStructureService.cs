@@ -27,7 +27,7 @@ namespace Petrovich.Business.Services
 
         public async Task<BranchCollection> ListBranchesAsync()
         {
-            await logger.LogNoneAsync("ListBranchesAsync: listing all branches.");
+            await logger.LogNoneAsync("DataStructureService.ListBranchesAsync: listing all branches.");
             return await branchDataSource.ListAsync();
         }
 
@@ -35,19 +35,19 @@ namespace Petrovich.Business.Services
         {
             if (branch == null)
             {
-                await logger.LogInformationAsync("CreateBranchAsync: branch parameter is null.");
+                await logger.LogInformationAsync("DataStructureService.CreateBranchAsync: branch parameter is null.");
                 throw new ArgumentNullException(nameof(branch));
             }
 
-            await logger.LogNoneAsync($"CreateBranchAsync: trying to get branch by inventory part ({branch.InventoryPart}).");
+            await logger.LogNoneAsync($"DataStructureService.CreateBranchAsync: trying to get branch by inventory part ({branch.InventoryPart}).");
             var branchByInventoryPart = await branchDataSource.FindByInventoryPartAsync(branch.InventoryPart);
             if (branchByInventoryPart != null)
             {
-                await logger.LogInformationAsync($"CreateBranchAsync: branch with same inventory part found ({branch.InventoryPart}).");
+                await logger.LogInformationAsync($"DataStructureService.CreateBranchAsync: branch with same inventory part found ({branch.InventoryPart}).");
                 throw new DuplicateBranchInventoryPartException(branch.InventoryPart, branchByInventoryPart.BranchId);
             }
 
-            await logger.LogNoneAsync("CreateBranchAsync: creating new branch.");
+            await logger.LogNoneAsync("DataStructureService.CreateBranchAsync: creating new branch.");
             return await branchDataSource.CreateAsync(branch);
         }
 
@@ -55,15 +55,15 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"FindBranchAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindBranchAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"FindBranchAsync: trying to get branch by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.FindBranchAsync: trying to get branch by id ({id}).");
             var branch = await branchDataSource.FindAsync(id);
             if (branch == null)
             {
-                await logger.LogInformationAsync($"FindBranchAsync: branch not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindBranchAsync: branch not found - {id}.");
                 throw new BranchNotFoundException(id);
             }
 
@@ -74,25 +74,25 @@ namespace Petrovich.Business.Services
         {
             if (branch.BranchId == Guid.Empty)
             {
-                await logger.LogInformationAsync($"UpdateBranchAsync: branchId is {branch.BranchId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateBranchAsync: branchId is {branch.BranchId}.");
                 throw new ArgumentOutOfRangeException(nameof(branch.BranchId));
             }
 
-            await logger.LogNoneAsync($"UpdateBranchAsync: trying to get branch by id ({branch.BranchId}).");
+            await logger.LogNoneAsync($"DataStructureService.UpdateBranchAsync: trying to get branch by id ({branch.BranchId}).");
             var dbBranch = await branchDataSource.FindAsync(branch.BranchId);
             if (dbBranch == null)
             {
-                await logger.LogInformationAsync($"UpdateBranchAsync: branch not found - {branch.BranchId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateBranchAsync: branch not found - {branch.BranchId}.");
                 throw new BranchNotFoundException(branch.BranchId);
             }
 
             if (branch.InventoryPart != dbBranch.InventoryPart)
             {
-                await logger.LogInformationAsync($"UpdateBranchAsync: branch inventory part changed - {branch.InventoryPart} / {dbBranch.InventoryPart}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateBranchAsync: branch inventory part changed - {branch.InventoryPart} / {dbBranch.InventoryPart}.");
                 throw new BranchInventoryPartChangedException(branch.BranchId);
             }
 
-            await logger.LogNoneAsync("UpdateBranchAsync: updating branch.");
+            await logger.LogNoneAsync("DataStructureService.UpdateBranchAsync: updating branch.");
             return await branchDataSource.UpdateAsync(branch);
         }
 
@@ -100,33 +100,33 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"DeleteBranchAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteBranchAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"DeleteBranchAsync: trying to get branch by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.DeleteBranchAsync: trying to get branch by id ({id}).");
             var branch = await branchDataSource.FindAsync(id);
             if (branch == null)
             {
-                await logger.LogInformationAsync($"DeleteBranchAsync: branch not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteBranchAsync: branch not found - {id}.");
                 throw new BranchNotFoundException(id);
             }
 
-            await logger.LogNoneAsync($"DeleteBranchAsync: check if child categories exiests for branch {id}.");
+            await logger.LogNoneAsync($"DataStructureService.DeleteBranchAsync: check if child categories exiests for branch {id}.");
             var categoriesExists = await categoryDataSource.IsExistsForBranchAsync(id);
             if (categoriesExists)
             {
-                await logger.LogInformationAsync($"DeleteBranchAsync: branch '{id}' could not be deleted - child categories exiests for branch.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteBranchAsync: branch '{id}' could not be deleted - child categories exiests for branch.");
                 throw new ChildCategoriesExistsException(id);
             }
 
-            await logger.LogNoneAsync("DeleteBranchAsync: deleting branch.");
+            await logger.LogNoneAsync("DataStructureService.DeleteBranchAsync: deleting branch.");
             await branchDataSource.DeleteAsync(branch);
         }
 
         public async Task<CategoryCollection> ListCategoriesAsync()
         {
-            await logger.LogNoneAsync("ListCategoriesAsync: listing all categories.");
+            await logger.LogNoneAsync("DataStructureService.ListCategoriesAsync: listing all categories.");
             return await categoryDataSource.ListAsync();
         }
 
@@ -134,36 +134,28 @@ namespace Petrovich.Business.Services
         {
             if (category == null)
             {
-                await logger.LogInformationAsync("CreateCategoryAsync: category parameter is null.");
+                await logger.LogInformationAsync("DataStructureService.CreateCategoryAsync: category parameter is null.");
                 throw new ArgumentNullException(nameof(category));
             }
 
-            await logger.LogNoneAsync($"CreateCategoryAsync: trying to get branch {category.BranchId}.");
+            await logger.LogNoneAsync($"DataStructureService.CreateCategoryAsync: trying to get branch {category.BranchId}.");
             var branch = await branchDataSource.FindAsync(category.BranchId);
             if (branch == null)
             {
-                await logger.LogInformationAsync($"CreateCategoryAsync: branch not found - {category.BranchId}.");
+                await logger.LogInformationAsync($"DataStructureService.CreateCategoryAsync: branch not found - {category.BranchId}.");
                 throw new BranchNotFoundException(category.BranchId);
             }
-
-            await logger.LogNoneAsync($"CreateCategoryAsync: trying to get category by inventory part ({category.InventoryPart}).");
-            var categoryByInventoryPart = await categoryDataSource.FindByInventoryPartAsync(category.InventoryPart, category.BranchId);
-            if (categoryByInventoryPart != null)
-            {
-                await logger.LogInformationAsync($"CreateCategoryAsync: category with same inventory part found ({category.InventoryPart}). Branch: {category.BranchId}.");
-                throw new DuplicateCategoryInventoryPartException(category.InventoryPart, category.BranchId, categoryByInventoryPart.CategoryId);
-            }
-
-            await logger.LogNoneAsync($"CreateCategoryAsync: trying to get max inventory number for category {category.BranchId}.");
+            
+            await logger.LogNoneAsync($"DataStructureService.CreateCategoryAsync: trying to get inventory number for category for branch {category.BranchId}.");
             var inventoryPartValue = await categoryDataSource.GetNewInventoryNumberAsync(category.BranchId);
             if (!inventoryPartValue.HasValue)
             {
-                await logger.LogNoneAsync($"CreateCategoryAsync: there are no empty inventory numbers for branch {category.BranchId}.");
+                await logger.LogNoneAsync($"DataStructureService.CreateCategoryAsync: there are no empty inventory numbers for branch {category.BranchId}.");
                 throw new NoBranchCategoriesSlotsException(category.BranchId);
             }
 
             category.InventoryPart = inventoryPartValue.Value;
-            await logger.LogNoneAsync("CreateCategoryAsync: creating new category.");
+            await logger.LogNoneAsync("DataStructureService.CreateCategoryAsync: creating new category.");
             return await categoryDataSource.CreateAsync(category);
         }
 
@@ -171,15 +163,15 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"FindCategoryAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindCategoryAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"FindCategoryAsync: trying to get category by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.FindCategoryAsync: trying to get category by id ({id}).");
             var category = await categoryDataSource.FindAsync(id);
             if (category == null)
             {
-                await logger.LogInformationAsync($"FindCategoryAsync: category not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindCategoryAsync: category not found - {id}.");
                 throw new CategoryNotFoundException(id);
             }
 
@@ -190,33 +182,33 @@ namespace Petrovich.Business.Services
         {
             if (category.CategoryId == Guid.Empty)
             {
-                await logger.LogInformationAsync($"UpdateCategoryAsync: categoryId is {category.CategoryId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: categoryId is {category.CategoryId}.");
                 throw new ArgumentOutOfRangeException(nameof(category.CategoryId));
             }
 
-            await logger.LogNoneAsync($"UpdateCategoryAsync: trying to get branch by id ({category.BranchId}).");
+            await logger.LogNoneAsync($"DataStructureService.UpdateCategoryAsync: trying to get branch by id ({category.BranchId}).");
             var dbBranch = await branchDataSource.FindAsync(category.BranchId);
             if (dbBranch == null)
             {
-                await logger.LogInformationAsync($"UpdateCategoryAsync: branch not found - {category.BranchId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: branch not found - {category.BranchId}.");
                 throw new BranchNotFoundException(category.BranchId);
             }
 
-            await logger.LogNoneAsync($"UpdateCategoryAsync: trying to get category by id ({category.CategoryId}).");
+            await logger.LogNoneAsync($"DataStructureService.UpdateCategoryAsync: trying to get category by id ({category.CategoryId}).");
             var dbCategory = await categoryDataSource.FindAsync(category.CategoryId);
             if (dbCategory == null)
             {
-                await logger.LogInformationAsync($"UpdateCategoryAsync: category not found - {category.CategoryId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: category not found - {category.CategoryId}.");
                 throw new CategoryNotFoundException(category.CategoryId);
             }
 
             if (category.InventoryPart != dbCategory.InventoryPart)
             {
-                await logger.LogInformationAsync($"UpdateCategoryAsync: category inventory part changed - {category.InventoryPart} / {dbCategory.InventoryPart}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: category inventory part changed - {category.InventoryPart} / {dbCategory.InventoryPart}.");
                 throw new CategoryInventoryPartChangedException(category.CategoryId);
             }
 
-            await logger.LogNoneAsync("UpdateCategoryAsync: updating category.");
+            await logger.LogNoneAsync("DataStructureService.UpdateCategoryAsync: updating category.");
             return await categoryDataSource.UpdateAsync(category);
         }
 
@@ -224,33 +216,48 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"DeleteCategoryAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"DeleteCategoryAsync: trying to get category by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.DeleteCategoryAsync: trying to get category by id ({id}).");
             var category = await categoryDataSource.FindAsync(id);
             if (category == null)
             {
-                await logger.LogInformationAsync($"DeleteCategoryAsync: category not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: category not found - {id}.");
                 throw new CategoryNotFoundException(id);
             }
             
-            await logger.LogNoneAsync($"DeleteCategoryAsync: check if child groups exiests for category {id}.");
+            await logger.LogNoneAsync($"DataStructureService.DeleteCategoryAsync: check if child groups exiests for category {id}.");
             var groupsExists = await groupDataSource.IsExistsForCategoryAsync(id);
             if (groupsExists)
             {
-                await logger.LogInformationAsync($"DeleteCategoryAsync: category '{id}' could not be deleted - child groups exiests for category.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: category '{id}' could not be deleted - child groups exiests for category.");
                 throw new ChildGroupsExistsException(id);
             }
 
-            await logger.LogNoneAsync("DeleteCategoryAsync: deleting category.");
+            await logger.LogNoneAsync("DataStructureService.DeleteCategoryAsync: deleting category.");
             await categoryDataSource.DeleteAsync(category);
+        }
+
+        public async Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId)
+        {
+            if (branchId == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"DataStructureService.ListCategoriesByBranchIdAsync: id parameter is {branchId}.");
+                throw new ArgumentOutOfRangeException(nameof(branchId));
+            }
+            
+            await logger.LogNoneAsync($"DataStructureService.ListCategoriesByBranchIdAsync: check if branch exist ({branchId}).");
+            await FindBranchAsync(branchId);
+            
+            await logger.LogNoneAsync($"DataStructureService.ListCategoriesByBranchIdAsync: getting categories by branch id ({branchId}).");
+            return await categoryDataSource.ListByBranchIdAsync(branchId);
         }
 
         public async Task<GroupCollection> ListGroupsAsync()
         {
-            await logger.LogNoneAsync("ListGroupAsync: listing all groups.");
+            await logger.LogNoneAsync("DataStructureService.ListGroupAsync: listing all groups.");
             return await groupDataSource.ListAsync();
         }
 
@@ -258,19 +265,19 @@ namespace Petrovich.Business.Services
         {
             if (group == null)
             {
-                await logger.LogInformationAsync("CreateGroupAsync: group parameter is null.");
+                await logger.LogInformationAsync("DataStructureService.CreateGroupAsync: group parameter is null.");
                 throw new ArgumentNullException(nameof(group));
             }
 
-            await logger.LogNoneAsync($"CreateGroupAsync: trying to get category {group.CategoryId}.");
+            await logger.LogNoneAsync($"DataStructureService.CreateGroupAsync: trying to get category {group.CategoryId}.");
             var category = await categoryDataSource.FindAsync(group.CategoryId);
             if (category == null)
             {
-                await logger.LogInformationAsync($"CreateGroupAsync: category not found - {group.CategoryId}.");
+                await logger.LogInformationAsync($"DataStructureService.CreateGroupAsync: category not found - {group.CategoryId}.");
                 throw new CategoryNotFoundException(group.CategoryId);
             }
 
-            await logger.LogNoneAsync("CreateGroupAsync: creating new group.");
+            await logger.LogNoneAsync("DataStructureService.CreateGroupAsync: creating new group.");
             return await groupDataSource.CreateAsync(group);
         }
 
@@ -278,15 +285,15 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"FindGroupAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindGroupAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"FindGroupAsync: trying to get group by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.FindGroupAsync: trying to get group by id ({id}).");
             var group = await groupDataSource.FindAsync(id);
             if (group == null)
             {
-                await logger.LogInformationAsync($"FindGroupAsync: group not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.FindGroupAsync: group not found - {id}.");
                 throw new GroupNotFoundException(id);
             }
 
@@ -297,27 +304,27 @@ namespace Petrovich.Business.Services
         {
             if (group.GroupId == Guid.Empty)
             {
-                await logger.LogInformationAsync($"UpdateGroupAsync: groupId is {group.GroupId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateGroupAsync: groupId is {group.GroupId}.");
                 throw new ArgumentOutOfRangeException(nameof(group.GroupId));
             }
 
-            await logger.LogNoneAsync($"UpdateGroupAsync: trying to get group by id ({group.GroupId}).");
+            await logger.LogNoneAsync($"DataStructureService.UpdateGroupAsync: trying to get group by id ({group.GroupId}).");
             var dbGroup = await groupDataSource.FindAsync(group.GroupId);
             if (dbGroup == null)
             {
-                await logger.LogInformationAsync($"UpdateGroupAsync: group not found - {group.GroupId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateGroupAsync: group not found - {group.GroupId}.");
                 throw new GroupNotFoundException(group.GroupId);
             }
 
-            await logger.LogNoneAsync($"UpdateGroupAsync: trying to get category by id ({group.CategoryId}).");
+            await logger.LogNoneAsync($"DataStructureService.UpdateGroupAsync: trying to get category by id ({group.CategoryId}).");
             var dbCategory = await categoryDataSource.FindAsync(group.CategoryId);
             if (dbCategory == null)
             {
-                await logger.LogInformationAsync($"UpdateGroupAsync: category not found - {group.CategoryId}.");
+                await logger.LogInformationAsync($"DataStructureService.UpdateGroupAsync: category not found - {group.CategoryId}.");
                 throw new CategoryNotFoundException(group.CategoryId);
             }
 
-            await logger.LogNoneAsync("UpdateGroupAsync: updating group.");
+            await logger.LogNoneAsync("DataStructureService.UpdateGroupAsync: updating group.");
             return await groupDataSource.UpdateAsync(group);
         }
 
@@ -325,20 +332,35 @@ namespace Petrovich.Business.Services
         {
             if (id == Guid.Empty)
             {
-                await logger.LogInformationAsync($"DeleteGroupAsync: id parameter is {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteGroupAsync: id parameter is {id}.");
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
 
-            await logger.LogNoneAsync($"DeleteGroupAsync: trying to get group by id ({id}).");
+            await logger.LogNoneAsync($"DataStructureService.DeleteGroupAsync: trying to get group by id ({id}).");
             var group = await groupDataSource.FindAsync(id);
             if (group == null)
             {
-                await logger.LogInformationAsync($"DeleteGroupAsync: group not found - {id}.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteGroupAsync: group not found - {id}.");
                 throw new GroupNotFoundException(id);
             }
             
-            await logger.LogNoneAsync("DeleteGroupAsync: deleting group.");
+            await logger.LogNoneAsync("DataStructureService.DeleteGroupAsync: deleting group.");
             await groupDataSource.DeleteAsync(group);
+        }
+
+        public async Task<GroupCollection> ListGroupsByCategoryIdAsync(Guid categoryId)
+        {
+            if (categoryId == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"DataStructureService.ListGroupsByCategoryIdAsync: categoryId parameter is {categoryId}.");
+                throw new ArgumentOutOfRangeException(nameof(categoryId));
+            }
+            
+            await logger.LogNoneAsync($"DataStructureService.ListGroupsByCategoryIdAsync: check if category exist ({categoryId}).");
+            await FindCategoryAsync(categoryId);
+
+            await logger.LogNoneAsync($"DataStructureService.ListGroupsByCategoryIdAsync: getting groups by category id ({categoryId}).");
+            return await groupDataSource.ListByCategoryIdAsync(categoryId);
         }
     }
 }

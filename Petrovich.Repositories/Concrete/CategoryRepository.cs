@@ -39,5 +39,10 @@ namespace Petrovich.Repositories.Concrete
         {
             return await context.Categories.Where(item => item.BranchId == branchId).AnyAsync().ConfigureAwait(false);
         }
+
+        public async Task<IList<Category>> ListByBranchIdAsync(Guid branchId)
+        {
+            return await context.Categories.Where(item => item.BranchId == branchId).ToListAsync().ConfigureAwait(false);
+        }
     }
 }
