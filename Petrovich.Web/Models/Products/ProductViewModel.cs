@@ -10,6 +10,7 @@ namespace Petrovich.Web.Models.Products
     {
         public Guid ProductId { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
 
         public string BranchTitle { get; set; }
 
@@ -37,6 +38,7 @@ namespace Petrovich.Web.Models.Products
             {
                 ProductId = product.ProductId,
                 Title = product.Title,
+                Description = product.Description,
 
                 BranchTitle = product.BranchTitle,
 

@@ -70,6 +70,7 @@ namespace Petrovich.Repositories.DataSources
                 var targetProduct = await productRepository.FindAsync(product.ProductId);
 
                 targetProduct.Title = product.Title;
+                targetProduct.Description = product.Description;
                 targetProduct.InventoryPart = product.InventoryPart;
                 targetProduct.CategoryId = product.CategoryId;
                 targetProduct.GroupId = product.GroupId;

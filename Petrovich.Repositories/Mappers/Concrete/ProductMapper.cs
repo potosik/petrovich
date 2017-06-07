@@ -17,6 +17,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 ProductId = entity.ProductId,
                 Title = entity.Title,
+                Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
 
                 BranchTitle = entity.Category?.Branch?.Title,
@@ -48,6 +49,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 ProductId = entity.ProductId,
                 Title = entity.Title,
+                Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
 
                 CategoryId = entity.CategoryId,

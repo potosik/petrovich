@@ -13,6 +13,9 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Название")]
         public string Title { get; set; }
 
+        [Display(Name = "Описание")]
+        public string Description { get; set; }
+
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Раздел")]
         public Guid BranchId { get; set; }

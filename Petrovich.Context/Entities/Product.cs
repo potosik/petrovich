@@ -13,6 +13,7 @@ namespace Petrovich.Context.Entities
         public Guid ProductId { get; set; }
 
         public string Title { get; set; }
+        public string Description { get; set; }
 
         [Range(Constants.ProductInventoryPartMinValue, Constants.ProductInventoryPartMaxValue, ErrorMessageResourceName = "Product_InventoryPart_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public int InventoryPart { get; set; }

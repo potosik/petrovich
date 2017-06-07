@@ -85,6 +85,7 @@ namespace Petrovich.Web.Controllers
                     var newProduct = new Product()
                     {
                         Title = model.Title,
+                        Description = model.Description,
                         CategoryId = model.CategoryId,
                         GroupId = model.GroupId,
                     };
@@ -134,10 +135,30 @@ namespace Petrovich.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Delete()
+        [HttpPost]
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            try
+            {
+                await productService.DeleteAsync(id);
+                return RedirectToAction(PetrovichRoutes.Products.Index);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ProductNotFoundException ex)
+            {
+                return await CreateNotFoundResponseAsync(ex);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
         }
 
         [HttpGet]
