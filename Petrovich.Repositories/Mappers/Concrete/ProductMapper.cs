@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Petrovich.Context.Entities;
 using System.Linq;
+using System;
 
 namespace Petrovich.Repositories.Mappers.Concrete
 {
@@ -17,7 +18,19 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 ProductId = entity.ProductId,
                 Title = entity.Title,
+                Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
+
+                BranchTitle = entity.Category?.Branch?.Title,
+
+                CategoryId = entity.CategoryId,
+                CategoryTitle = entity.Category?.Title,
+
+                GroupId = entity.GroupId,
+                GroupTitle = entity.Group?.Title,
+
+                BranchInventoryPart = entity.Category?.Branch?.InventoryPart,
+                CategoryInventoryPart = entity.Category?.InventoryPart ?? 0,
 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,
@@ -37,7 +50,11 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 ProductId = entity.ProductId,
                 Title = entity.Title,
+                Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
+
+                CategoryId = entity.CategoryId,
+                GroupId = entity.GroupId,
 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,

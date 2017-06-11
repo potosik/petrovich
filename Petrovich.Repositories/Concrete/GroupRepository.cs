@@ -29,5 +29,10 @@ namespace Petrovich.Repositories.Concrete
         {
             return await context.Groups.Where(item => item.CategoryId == categoryId).AnyAsync().ConfigureAwait(false);
         }
+
+        public async Task<IList<Group>> ListByCategoryIdAsync(Guid categoryId)
+        {
+            return await context.Groups.Where(item => item.CategoryId == categoryId).ToListAsync().ConfigureAwait(false);
+        }
     }
 }

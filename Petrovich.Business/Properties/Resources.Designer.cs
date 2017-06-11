@@ -97,7 +97,7 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Duplicated category inventory part &apos;{0}&apos; with branch id &apos;{1}&apos; found on item with id: &apos;{2}&apos;..
+        ///   Looks up a localized string similar to Product inventory part could not be changed for item with id: &apos;{0}&apos;..
         /// </summary>
         internal static string E400003 {
             get {
@@ -115,7 +115,7 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branch inventory part could not be changed for item with id: &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Category inventory part could not be changed for item with id: &apos;{0}&apos;..
         /// </summary>
         internal static string E400005 {
             get {
@@ -138,6 +138,24 @@ namespace Petrovich.Business.Properties {
         internal static string E400007 {
             get {
                 return ResourceManager.GetString("E400007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no available slots for new products in category &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400008 {
+            get {
+                return ResourceManager.GetString("E400008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Child products exists for branch &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400009 {
+            get {
+                return ResourceManager.GetString("E400009", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404005 {
             get {
                 return ResourceManager.GetString("E404005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404006 {
+            get {
+                return ResourceManager.GetString("E404006", resourceCulture);
             }
         }
     }

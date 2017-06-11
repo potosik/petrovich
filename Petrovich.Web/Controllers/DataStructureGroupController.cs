@@ -39,12 +39,23 @@ namespace Petrovich.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> GroupCreate()
         {
-            var model = new GroupCreateViewModel()
+            try
             {
-                Categories = await CreateGroupsSelectList(),
-            };
+                var model = new GroupCreateViewModel()
+                {
+                    Categories = await CreateGroupsSelectList(),
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
         }
 
         [HttpPost]
@@ -63,9 +74,12 @@ namespace Petrovich.Web.Controllers
                     await dataStructureService.CreateGroupAsync(newGroup);
                     return RedirectToAction(PetrovichRoutes.DataStructure.GroupList);
                 }
+
+                model.Categories = await CreateGroupsSelectList();
             }
-            catch (CategoryNotFoundException)
+            catch (CategoryNotFoundException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.GroupCreate category '{model.CategoryId}' not found.", ex);
                 ModelState.AddModelError(typeof(BranchNotFoundException).Name, Properties.Resources.Group_CategoryNotFound_Error);
             }
             catch (ArgumentNullException ex)
@@ -81,7 +95,6 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.Categories = await CreateGroupsSelectList();
             return View(model);
         }
 
@@ -91,22 +104,14 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var group = await dataStructureService.FindGroupAsync(id);
-                var model = new GroupEditViewModel()
-                {
-                    GroupId = group.GroupId,
-                    Title = group.Title,
-                    CategoryId = group.CategoryId,
-
-                    CategoryTitle = group.CategoryTitle,
-
-                    Created = group.Created,
-                    CreatedBy = group.CreatedBy,
-                    Modified = group.Modified,
-                    ModifiedBy = group.ModifiedBy,
-                };
+                var model = GroupEditViewModel.Create(group);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
@@ -146,8 +151,9 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
-            catch (CategoryNotFoundException)
+            catch (CategoryNotFoundException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.GroupEdit category '{model.CategoryId}' not found.", ex);
                 ModelState.AddModelError(typeof(CategoryNotFoundException).Name, Properties.Resources.Group_CategoryNotFound_Error);
             }
             catch (GroupNotFoundException ex)
@@ -182,6 +188,10 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
+            catch (ChildProductsExistsException)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.GroupChildProductsExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -190,6 +200,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult GroupChildProductsExists()
+        {
+            return View();
         }
 
         private async Task<List<SelectListItem>> CreateGroupsSelectList()

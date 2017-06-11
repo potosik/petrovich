@@ -8,5 +8,6 @@ namespace Petrovich.Repositories
     public interface IGroupRepository : IBaseRepository<Group>
     {
         Task<bool> IsExistsForCategoryAsync(Guid categoryId);
+        Task<IList<Group>> ListByCategoryIdAsync(Guid categoryId);
     }
 }

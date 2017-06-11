@@ -143,5 +143,18 @@ namespace Petrovich.Repositories.DataSources
                 throw new DatabaseOperationException(ex);
             }
         }
+
+        public async Task<CategoryCollection> ListByBranchIdAsync(Guid branchId)
+        {
+            try
+            {
+                var categories = await categoryRepository.ListByBranchIdAsync(branchId);
+                return categoryMapper.ToBusinessEntityCollection(categories);
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
     }
 }

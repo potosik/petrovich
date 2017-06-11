@@ -99,5 +99,17 @@ namespace Petrovich.Repositories.Tests.DataSources
                 return dataSource.IsExistsForCategoryAsync(Guid.Empty);
             });
         }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            groupRepositoryMock.Setup(repository => repository.ListByCategoryIdAsync(It.IsAny<Guid>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.ListByCategoryIdAsync(Guid.Empty);
+            });
+        }
     }
 }

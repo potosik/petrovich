@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201706031440402_InitialCreate.Designer.cs">
       <DependentUpon>201706031440402_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706061847285_ProductDescriptionAdded.cs" />
+    <Compile Include="Migrations\201706061847285_ProductDescriptionAdded.Designer.cs">
+      <DependentUpon>201706061847285_ProductDescriptionAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -105,6 +109,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706031440402_InitialCreate.resx">
       <DependentUpon>201706031440402_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061847285_ProductDescriptionAdded.resx">
+      <DependentUpon>201706061847285_ProductDescriptionAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

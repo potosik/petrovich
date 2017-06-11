@@ -14,5 +14,6 @@ namespace Petrovich.Business.Data
         Task<Category> UpdateAsync(Category category);
         Task DeleteAsync(Category category);
         Task<bool> IsExistsForBranchAsync(Guid branchId);
+        Task<CategoryCollection> ListByBranchIdAsync(Guid branchId);
     }
 }

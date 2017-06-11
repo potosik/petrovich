@@ -1,4 +1,6 @@
-﻿@{
+﻿@model System.DateTime
+
+@{
     ViewBag.Title = "Страница не найдена";
 }
 
@@ -13,7 +15,10 @@
                         Страница которую вы ищете не существует, либо была удалена
                     </p>
                     <p>
-                        @Html.ActionLink("na glavnuju", PetrovichRoutes.Dashboard.Index)
+                        Время возникновения ошибки: <strong>@Model.ToLocalTime()</strong>
+                    </p>
+                    <p>
+                        @Html.ActionLink("На главную", PetrovichRoutes.Dashboard.Index)
                     </p>
                 </div>
             </div>

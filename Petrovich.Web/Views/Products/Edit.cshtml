@@ -1,0 +1,73 @@
+﻿@model Petrovich.Web.Models.Products.ProductEditViewModel
+
+@{
+    ViewBag.Title = "Редактирование продукта";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>редактирование существующего продукта</small></h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <br>
+        @using (Html.BeginForm(PetrovichRoutes.Products.Edit, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ProductId)
+            @Html.HiddenFor(m => m.InventoryPart)
+            @Html.HiddenFor(m => m.CategoryId)
+            @Html.HiddenFor(m => m.GroupId)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Название" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Название" })
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BranchTitle, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(m => m.BranchTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.CategoryId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(m => m.CategoryTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.GroupId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <span class="required">*</span>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.TextBoxFor(m => m.GroupTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                    @Html.ActionLink("Отмена", PetrovichRoutes.Products.Index, null, new { @class = "btn btn-default" })
+                </div>
+            </div>
+            <div class="ln_solid"></div>
+            <p class="font-gray-dark text-right small">
+                Создан: <strong>@Model.Created</strong> пользователем <strong>@Model.CreatedBy</strong>
+                <br />
+                Отредактирован: <strong>@Model.Modified</strong> пользователем <strong>@Model.ModifiedBy</strong>
+            </p>
+        }
+    </div>
+</div>

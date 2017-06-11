@@ -48,8 +48,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Moq, Version=4.7.10.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.7.25.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.25\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -80,9 +80,11 @@
     <Compile Include="DataSources\CategoryDataSourceTests.cs" />
     <Compile Include="DataSources\GroupDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
+    <Compile Include="DataSources\ProductDataSourceTests.cs" />
     <Compile Include="Extensions\MockExtensions.cs" />
     <Compile Include="GroupRepositoryTests.cs" />
     <Compile Include="LogRepositoryTests.cs" />
+    <Compile Include="ProductRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryTestsBase.cs" />
     <Compile Include="TestQueryProvider\TestDbAsyncEnumerable.cs" />

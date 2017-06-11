@@ -4,11 +4,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Petrovich.Business.Models;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class BranchEditViewModel
+    public class BranchEditViewModel : BaseViewModel
     {
+        public BranchEditViewModel()
+        {
+        }
+
+        public BranchEditViewModel(IChangeTrackableEntity entity)
+            : base(entity)
+        {
+        }
+
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public Guid BranchId { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -29,12 +40,22 @@ namespace Petrovich.Web.Models.DataStructure
                 _inventoryPart = value.ToUpperInvariant();
             }
         }
-
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? Modified { get; set; }
-        public string ModifiedBy { get; set; }
-
+        
         private string _inventoryPart;
+
+        public static BranchEditViewModel Create(Branch branch)
+        {
+            if (branch == null)
+            {
+                throw new ArgumentNullException(nameof(branch));
+            }
+
+            return new BranchEditViewModel(branch)
+            {
+                BranchId = branch.BranchId,
+                Title = branch.Title,
+                InventoryPart = branch.InventoryPart,
+            };
+        }
     }
 }

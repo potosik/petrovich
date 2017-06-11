@@ -8,6 +8,7 @@ namespace Petrovich.Business.Logging
     {
         Task LogNoneAsync(string message);
         void LogNone(string message);
+        void LogPerformanceMetrics(int eventId, string elapsedTime, string method, string arguments);
 
         Task LogInformationAsync(string message);
         Task LogInformationAsync(Exception ex);

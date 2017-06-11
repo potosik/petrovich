@@ -1,13 +1,25 @@
-﻿using System;
+﻿using Petrovich.Business.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Petrovich.Business.Models;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class GroupEditViewModel
+    public class GroupEditViewModel : BaseViewModel
     {
+        public GroupEditViewModel()
+        {
+        }
+
+        public GroupEditViewModel(IChangeTrackableEntity entity)
+            : base(entity)
+        {
+        }
+
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public Guid GroupId { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -20,9 +32,21 @@ namespace Petrovich.Web.Models.DataStructure
 
         public string CategoryTitle { get; set; }
 
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? Modified { get; set; }
-        public string ModifiedBy { get; set; }
+        public static GroupEditViewModel Create(Group group)
+        {
+            if (group == null)
+            {
+                throw new ArgumentNullException(nameof(group));
+            }
+
+            return new GroupEditViewModel(group)
+            {
+                GroupId = group.GroupId,
+                Title = group.Title,
+                CategoryId = group.CategoryId,
+
+                CategoryTitle = group.CategoryTitle,
+            };
+        }
     }
 }

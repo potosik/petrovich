@@ -53,6 +53,24 @@ namespace Petrovich.Repositories.Tests
             Assert.False(result);
         }
 
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var result = await groupRepository.ListByCategoryIdAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntitiesFound_ReturnsGroupList()
+        {
+            var result = await groupRepository.ListByCategoryIdAsync(new Guid("3c494bcf-172f-4e5c-959c-a41718404491"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+        }
+
         private static IEnumerable<Group> GetStubbedData()
         {
             return new List<Group>()

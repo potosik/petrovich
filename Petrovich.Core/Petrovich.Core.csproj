@@ -60,8 +60,10 @@
   <ItemGroup>
     <Compile Include="Composition\ICompositionModule.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Navigation\PetrovichRoutes.cs" />
     <Compile Include="Navigation\Endpoint.cs" />
+    <Compile Include="Performance\PerformanceMonitor.cs" />
     <Compile Include="PermissionClaims.cs" />
     <Compile Include="PetrovichClaims.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

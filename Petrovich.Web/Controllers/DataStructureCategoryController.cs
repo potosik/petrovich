@@ -39,12 +39,23 @@ namespace Petrovich.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> CategoryCreate()
         {
-            var model = new CategoryCreateViewModel()
+            try
             {
-                Branches = await CreateBranchesSelectList(),
-            };
+                var model = new CategoryCreateViewModel()
+                {
+                    Branches = await CreateBranchesSelectList(),
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
         }
 
         [HttpPost]
@@ -63,17 +74,17 @@ namespace Petrovich.Web.Controllers
                     await dataStructureService.CreateCategoryAsync(newCategory);
                     return RedirectToAction(PetrovichRoutes.DataStructure.CategoryList);
                 }
+
+                model.Branches = await CreateBranchesSelectList();
             }
-            catch (DuplicateCategoryInventoryPartException)
+            catch (BranchNotFoundException ex)
             {
-                ModelState.AddModelError(typeof(DuplicateCategoryInventoryPartException).Name, Properties.Resources.Category_InventoryPart_Duplicate_Error);
-            }
-            catch (BranchNotFoundException)
-            {
+                await logger.LogInformationAsync($"DataStructureController.CategoryCreate branch '{model.BranchId}' not found.", ex);
                 ModelState.AddModelError(typeof(BranchNotFoundException).Name, Properties.Resources.Category_BranchNotFound_Error);
             }
-            catch (NoBranchCategoriesSlotsException)
+            catch (NoBranchCategoriesSlotsException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.CategoryCreate no branch category slots available ('{model.BranchId}').", ex);
                 ModelState.AddModelError(typeof(NoBranchCategoriesSlotsException).Name, Properties.Resources.Category_NoInventoryPartSlotsAvailable_Error);
             }
             catch (ArgumentNullException ex)
@@ -89,7 +100,6 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.Branches = await CreateBranchesSelectList();
             return View(model);
         }
 
@@ -99,23 +109,14 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var category = await dataStructureService.FindCategoryAsync(id);
-                var model = new CategoryEditViewModel()
-                {
-                    CategoryId = category.CategoryId,
-                    Title = category.Title,
-                    InventoryPart = category.InventoryPart,
-                    BranchId = category.BranchId,
-
-                    BranchTitle = category.BranchTitle,
-
-                    Created = category.Created,
-                    CreatedBy = category.CreatedBy,
-                    Modified = category.Modified,
-                    ModifiedBy = category.ModifiedBy,
-                };
+                var model = CategoryEditViewModel.Create(category);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
@@ -160,12 +161,14 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
-            catch (CategoryInventoryPartChangedException)
+            catch (CategoryInventoryPartChangedException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.CategoryEdit category inventory part changed ('{model.CategoryId}').", ex);
                 ModelState.AddModelError(typeof(CategoryInventoryPartChangedException).Name, Properties.Resources.Category_InventoryPart_Changed_Error);
             }
-            catch (BranchNotFoundException)
+            catch (BranchNotFoundException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.CategoryEdit branch '{model.BranchId}' not found.", ex);
                 ModelState.AddModelError(typeof(BranchNotFoundException).Name, Properties.Resources.Category_BranchNotFound_Error);
             }
             catch (DatabaseOperationException ex)
@@ -200,6 +203,10 @@ namespace Petrovich.Web.Controllers
             {
                 return RedirectToAction(PetrovichRoutes.DataStructure.CategoryChildGroupsExists);
             }
+            catch (ChildProductsExistsException)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.CategoryChildProductsExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -208,6 +215,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult CategoryChildProductsExists()
+        {
+            return View();
         }
 
         [HttpGet]

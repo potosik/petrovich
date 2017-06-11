@@ -1,4 +1,6 @@
-﻿@{
+﻿@model System.DateTime
+
+@{
     ViewBag.Title = "Страница не найдена";
 }
 
@@ -8,12 +10,15 @@
             <div class="col-middle">
                 <div class="text-center text-center">
                     <h1 class="error-number">400</h1>
-                    <h2>bad request</h2>
+                    <h2>Неверный запрос</h2>
                     <p>
-                        bad request
+                        Пожалуйста, попробуйте повторить операцию позже
                     </p>
                     <p>
-                        @Html.ActionLink("na glavnuju", PetrovichRoutes.Dashboard.Index)
+                        Время возникновения ошибки: <strong>@Model.ToLocalTime()</strong>
+                    </p>
+                    <p>
+                        @Html.ActionLink("На главную", PetrovichRoutes.Dashboard.Index)
                     </p>
                 </div>
             </div>

@@ -106,15 +106,6 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Категория с данной частью инвентарного номера уже зарегистрирована..
-        /// </summary>
-        internal static string Category_InventoryPart_Duplicate_Error {
-            get {
-                return ResourceManager.GetString("Category_InventoryPart_Duplicate_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию..
         /// </summary>
         internal static string Category_NoInventoryPartSlotsAvailable_Error {
@@ -165,6 +156,69 @@ namespace Petrovich.Web.Properties {
         internal static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль {0} должен содержать не менее {2} символов..
+        /// </summary>
+        internal static string Password_LengthValidation_Error {
+            get {
+                return ResourceManager.GetString("Password_LengthValidation_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль и подтверждение пароля должны совпадать..
+        /// </summary>
+        internal static string Password_MatchConfirmPassword_Error {
+            get {
+                return ResourceManager.GetString("Password_MatchConfirmPassword_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Производительность.
+        /// </summary>
+        internal static string Performance {
+            get {
+                return ResourceManager.GetString("Performance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранный раздел не найден..
+        /// </summary>
+        internal static string Product_BranchNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_BranchNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранная категория не найдена..
+        /// </summary>
+        internal static string Product_CategoryNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_CategoryNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выбранная группа не найдена..
+        /// </summary>
+        internal static string Product_GroupNotFound_Error {
+            get {
+                return ResourceManager.GetString("Product_GroupNotFound_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Часть инвентарного номера не может быть изменена..
+        /// </summary>
+        internal static string Product_InventoryChanged_Error {
+            get {
+                return ResourceManager.GetString("Product_InventoryChanged_Error", resourceCulture);
             }
         }
         

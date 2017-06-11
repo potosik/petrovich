@@ -3,46 +3,68 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Petrovich.Business.Data;
 using Petrovich.Business.Models;
+using Petrovich.Core.Performance;
+using Petrovich.Business.PerformanceCounters.EventSources;
+using Petrovich.Business.Logging;
 
 namespace Petrovich.Business.PerformanceCounters
 {
-    public class BranchPerformanceCounter : IBranchDataSource
+    internal class BranchPerformanceCounter : PerformanceCounterBase, IBranchDataSource
     {
         private readonly IBranchDataSource innerDataSource;
 
-        public BranchPerformanceCounter(IBranchDataSource dataSource)
+        public BranchPerformanceCounter(IBranchDataSource dataSource, ILoggingService loggingService)
+            : base(loggingService)
         {
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
         public async Task<BranchCollection> ListAsync()
         {
-            return await innerDataSource.ListAsync();
+            using (new PerformanceMonitor(EventSource.ListBranches))
+            {
+                return await innerDataSource.ListAsync();
+            }
         }
 
         public async Task<Branch> FindByInventoryPartAsync(string inventoryPart)
         {
-            return await innerDataSource.FindByInventoryPartAsync(inventoryPart);
+            using (new PerformanceMonitor(EventSource.FindBranchByInventoryPart, new { inventoryPart }))
+            {
+                return await innerDataSource.FindByInventoryPartAsync(inventoryPart);
+            }
         }
 
         public async Task<Branch> CreateAsync(Branch branch)
         {
-            return await innerDataSource.CreateAsync(branch);
+            using (new PerformanceMonitor(EventSource.CreateBranch, new { branch }))
+            {
+                return await innerDataSource.CreateAsync(branch);
+            }
         }
 
         public async Task<Branch> FindAsync(Guid id)
         {
-            return await innerDataSource.FindAsync(id);
+            using (new PerformanceMonitor(EventSource.FindBranchById, new { id }))
+            {
+                return await innerDataSource.FindAsync(id);
+            }
         }
 
         public async Task<Branch> UpdateAsync(Branch branch)
         {
-            return await innerDataSource.UpdateAsync(branch);
+            using (new PerformanceMonitor(EventSource.UpdateBranch, new { branch }))
+            {
+                return await innerDataSource.UpdateAsync(branch);
+            }
         }
 
         public async Task DeleteAsync(Branch branch)
         {
-            await innerDataSource.DeleteAsync(branch);
+            using (new PerformanceMonitor(EventSource.DeleteBranch, new { branch }))
+            {
+                await innerDataSource.DeleteAsync(branch);
+            }
         }
     }
 }

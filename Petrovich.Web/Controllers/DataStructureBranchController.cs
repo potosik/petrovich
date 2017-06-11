@@ -73,8 +73,9 @@ namespace Petrovich.Web.Controllers
                     return RedirectToAction(PetrovichRoutes.DataStructure.BranchList);
                 }
             }
-            catch (DuplicateBranchInventoryPartException)
+            catch (DuplicateBranchInventoryPartException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchCreate duplicate branch inventory part found.", ex);
                 ModelState.AddModelError(typeof(DuplicateBranchInventoryPartException).Name, Properties.Resources.Branch_InventoryPart_Duplicate_Error);
             }
             catch (ArgumentNullException ex)
@@ -99,20 +100,14 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var branch = await dataStructureService.FindBranchAsync(id);
-                var model = new BranchEditViewModel()
-                {
-                    BranchId = branch.BranchId,
-                    Title = branch.Title,
-                    InventoryPart = branch.InventoryPart,
-
-                    Created = branch.Created,
-                    CreatedBy = branch.CreatedBy,
-                    Modified = branch.Modified,
-                    ModifiedBy = branch.ModifiedBy,
-                };
+                var model = BranchEditViewModel.Create(branch);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
@@ -156,12 +151,14 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
-            catch (BranchInventoryPartChangedException)
+            catch (BranchInventoryPartChangedException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchEdit branch '{model.BranchId}' inventory part changed.", ex);
                 ModelState.AddModelError(typeof(BranchInventoryPartChangedException).Name, Properties.Resources.Branch_InventoryPart_Changed_Error);
             }
-            catch (DuplicateBranchInventoryPartException)
+            catch (DuplicateBranchInventoryPartException ex)
             {
+                await logger.LogInformationAsync($"DataStructureController.BranchEdit branch '{model.BranchId}' duplicate inventory found.", ex);
                 ModelState.AddModelError(typeof(DuplicateBranchInventoryPartException).Name, Properties.Resources.Branch_InventoryPart_Duplicate_Error);
             }
             catch (DatabaseOperationException ex)
