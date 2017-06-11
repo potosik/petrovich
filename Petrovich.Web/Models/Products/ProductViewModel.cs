@@ -3,11 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Petrovich.Business.Models.Base;
 
 namespace Petrovich.Web.Models.Products
 {
-    public class ProductViewModel
+    public class ProductViewModel : BaseViewModel
     {
+        public ProductViewModel()
+        {
+        }
+
+        public ProductViewModel(IChangeTrackableEntity entity) 
+            : base(entity)
+        {
+        }
+
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -22,11 +32,6 @@ namespace Petrovich.Web.Models.Products
 
         public string InventoryNumber { get; set; }
 
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? Modified { get; set; }
-        public string ModifiedBy { get; set; }
-
         public static ProductViewModel Create(Product product)
         {
             if (product == null)
@@ -34,7 +39,7 @@ namespace Petrovich.Web.Models.Products
                 throw new ArgumentNullException(nameof(product));
             }
 
-            return new ProductViewModel()
+            return new ProductViewModel(product)
             {
                 ProductId = product.ProductId,
                 Title = product.Title,
@@ -49,11 +54,6 @@ namespace Petrovich.Web.Models.Products
                 GroupTitle = product.GroupTitle,
 
                 InventoryNumber = product.InventoryNumber,
-
-                Created = product.Created,
-                CreatedBy = product.CreatedBy,
-                Modified = product.Modified,
-                ModifiedBy = product.ModifiedBy,
             };
         }
     }

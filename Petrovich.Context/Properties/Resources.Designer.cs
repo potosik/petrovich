@@ -61,7 +61,7 @@ namespace Petrovich.Context.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Branch inventory part string length must be {0} characters length..
         /// </summary>
         internal static string Branch_InventoryPart_StringLength_Error {
             get {
@@ -70,7 +70,7 @@ namespace Petrovich.Context.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Category inventory part value must be in range between {0} and {1}..
         /// </summary>
         internal static string Category_InventoryPart_Range_Error {
             get {
@@ -79,7 +79,7 @@ namespace Petrovich.Context.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Product inventory part value must be in range between {0} and {1}..
         /// </summary>
         internal static string Product_InventoryPart_Range_Error {
             get {

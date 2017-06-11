@@ -19,7 +19,8 @@ namespace Petrovich.Business.Tests.Services
         private readonly Mock<IBranchDataSource> branchDataSourceMock;
         private readonly Mock<ICategoryDataSource> categoryDataSourceMock;
         private readonly Mock<IGroupDataSource> groupDataSourceMock;
-        
+        private readonly Mock<IProductDataSource> productDataSourceMock;
+
         private readonly IDataStructureService dataStructureService;
 
         public DataStructureServiceTests()
@@ -29,8 +30,10 @@ namespace Petrovich.Business.Tests.Services
             branchDataSourceMock = new Mock<IBranchDataSource>();
             categoryDataSourceMock = new Mock<ICategoryDataSource>();
             groupDataSourceMock = new Mock<IGroupDataSource>();
+            productDataSourceMock = new Mock<IProductDataSource>();
 
-            dataStructureService = new DataStructureService(branchDataSourceMock.Object, categoryDataSourceMock.Object, groupDataSourceMock.Object, loggingServiceMock.Object);
+            dataStructureService = new DataStructureService(branchDataSourceMock.Object, categoryDataSourceMock.Object, 
+                groupDataSourceMock.Object, productDataSourceMock.Object, loggingServiceMock.Object);
         }
 
         [Fact]
@@ -337,6 +340,20 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
+        public async Task DeleteCategoryAsync_WhenChildProductsExists_ThrowsChildProductsExistsException()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            productDataSourceMock.Setup(dataSource => dataSource.IsExistsForCategoryAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(true);
+
+            await Assert.ThrowsAsync<ChildProductsExistsException>(() =>
+            {
+                return dataStructureService.DeleteCategoryAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
         public async Task ListCategoriesByBranchIdAsync_WhenBranchIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
@@ -486,6 +503,20 @@ namespace Petrovich.Business.Tests.Services
         public async Task DeleteGroupAsync_WhenGroupNotFound_ThrowsGroupNotFoundException()
         {
             await Assert.ThrowsAsync<GroupNotFoundException>(() =>
+            {
+                return dataStructureService.DeleteGroupAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task DeleteGroupAsync_WhenChildProductsExists_ThrowsChildProductsExistsException()
+        {
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Group());
+            productDataSourceMock.Setup(dataSource => dataSource.IsExistsForGroupAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(true);
+
+            await Assert.ThrowsAsync<ChildProductsExistsException>(() =>
             {
                 return dataStructureService.DeleteGroupAsync(Guid.NewGuid());
             });

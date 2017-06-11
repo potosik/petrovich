@@ -16,13 +16,16 @@ namespace Petrovich.Business.Services
         private readonly ICategoryDataSource categoryDataSource;
         private readonly IGroupDataSource groupDataSource;
 
+        private readonly IProductDataSource productDataSource;
+
         public DataStructureService(IBranchDataSource branchDataSource, ICategoryDataSource categoryDataSource, 
-            IGroupDataSource groupDataSource, ILoggingService loggingService)
+            IGroupDataSource groupDataSource, IProductDataSource productDataSource, ILoggingService loggingService)
             : base(loggingService)
         {
             this.branchDataSource = branchDataSource ?? throw new ArgumentNullException(nameof(branchDataSource));
             this.categoryDataSource = categoryDataSource ?? throw new ArgumentNullException(nameof(categoryDataSource));
             this.groupDataSource = groupDataSource ?? throw new ArgumentNullException(nameof(groupDataSource));
+            this.productDataSource = productDataSource ?? throw new ArgumentNullException(nameof(productDataSource));
         }
 
         public async Task<BranchCollection> ListBranchesAsync()
@@ -112,11 +115,11 @@ namespace Petrovich.Business.Services
                 throw new BranchNotFoundException(id);
             }
 
-            await logger.LogNoneAsync($"DataStructureService.DeleteBranchAsync: check if child categories exiests for branch {id}.");
+            await logger.LogNoneAsync($"DataStructureService.DeleteBranchAsync: check if child categories exists for branch {id}.");
             var categoriesExists = await categoryDataSource.IsExistsForBranchAsync(id);
             if (categoriesExists)
             {
-                await logger.LogInformationAsync($"DataStructureService.DeleteBranchAsync: branch '{id}' could not be deleted - child categories exiests for branch.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteBranchAsync: branch '{id}' could not be deleted - child categories exists for branch.");
                 throw new ChildCategoriesExistsException(id);
             }
 
@@ -228,12 +231,20 @@ namespace Petrovich.Business.Services
                 throw new CategoryNotFoundException(id);
             }
             
-            await logger.LogNoneAsync($"DataStructureService.DeleteCategoryAsync: check if child groups exiests for category {id}.");
+            await logger.LogNoneAsync($"DataStructureService.DeleteCategoryAsync: check if child groups exists for category {id}.");
             var groupsExists = await groupDataSource.IsExistsForCategoryAsync(id);
             if (groupsExists)
             {
-                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: category '{id}' could not be deleted - child groups exiests for category.");
+                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: category '{id}' could not be deleted - child groups exists for category.");
                 throw new ChildGroupsExistsException(id);
+            }
+
+            await logger.LogNoneAsync($"DataStructureService.DeleteCategoryAsync: check if child products exists for category {id}.");
+            var productsExists = await productDataSource.IsExistsForCategoryAsync(id);
+            if (productsExists)
+            {
+                await logger.LogInformationAsync($"DataStructureService.DeleteCategoryAsync: category '{id}' could not be deleted - child products exists for category.");
+                throw new ChildProductsExistsException(id);
             }
 
             await logger.LogNoneAsync("DataStructureService.DeleteCategoryAsync: deleting category.");
@@ -343,7 +354,15 @@ namespace Petrovich.Business.Services
                 await logger.LogInformationAsync($"DataStructureService.DeleteGroupAsync: group not found - {id}.");
                 throw new GroupNotFoundException(id);
             }
-            
+
+            await logger.LogNoneAsync($"DataStructureService.DeleteGroupAsync: check if child products exists for group {id}.");
+            var productsExists = await productDataSource.IsExistsForGroupAsync(id);
+            if (productsExists)
+            {
+                await logger.LogInformationAsync($"DataStructureService.DeleteGroupAsync: group '{id}' could not be deleted - child products exists for group.");
+                throw new ChildProductsExistsException(id);
+            }
+
             await logger.LogNoneAsync("DataStructureService.DeleteGroupAsync: deleting group.");
             await groupDataSource.DeleteAsync(group);
         }

@@ -109,23 +109,14 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var category = await dataStructureService.FindCategoryAsync(id);
-                var model = new CategoryEditViewModel()
-                {
-                    CategoryId = category.CategoryId,
-                    Title = category.Title,
-                    InventoryPart = category.InventoryPart,
-                    BranchId = category.BranchId,
-
-                    BranchTitle = category.BranchTitle,
-
-                    Created = category.Created,
-                    CreatedBy = category.CreatedBy,
-                    Modified = category.Modified,
-                    ModifiedBy = category.ModifiedBy,
-                };
+                var model = CategoryEditViewModel.Create(category);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
@@ -212,6 +203,10 @@ namespace Petrovich.Web.Controllers
             {
                 return RedirectToAction(PetrovichRoutes.DataStructure.CategoryChildGroupsExists);
             }
+            catch (ChildProductsExistsException)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.CategoryChildProductsExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -220,6 +215,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult CategoryChildProductsExists()
+        {
+            return View();
         }
 
         [HttpGet]

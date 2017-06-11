@@ -6,5 +6,6 @@
         Information = 1,
         Error = 2,
         Critical = 3,
+        Performance = 4,
     }
 }

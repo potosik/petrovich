@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Business.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,8 +8,17 @@ using System.Web;
 
 namespace Petrovich.Web.Models.Logging
 {
-    public class LogViewModel
+    public class LogViewModel : BaseViewModel
     {
+        public LogViewModel()
+        {
+        }
+
+        public LogViewModel(IChangeTrackableEntity entity)
+            : base(entity)
+        {
+        }
+
         [Display(Name = "Идентификатор записи")]
         public Guid LogId { get; set; }
 
@@ -29,10 +39,7 @@ namespace Petrovich.Web.Models.Logging
 
         [Display(Name = "Call Stack")]
         public string CallStack { get; set; }
-
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-
+        
         public static LogViewModel Create(Log log)
         {
             if (log == null)
@@ -40,7 +47,7 @@ namespace Petrovich.Web.Models.Logging
                 throw new ArgumentNullException(nameof(log));
             }
 
-            return new LogViewModel()
+            return new LogViewModel(log)
             {
                 LogId = log.LogId,
                 CorrelationId = log.CorrelationId,
@@ -49,8 +56,7 @@ namespace Petrovich.Web.Models.Logging
                 StackTrace = log.StackTrace,
                 InnerExceptionMessage = log.InnerExceptionMessage,
                 CallStack = log.CallStack,
-
-                Created = log.Created,
+                
                 CreatedBy = log.CreatedBy ?? "System",
             };
         }

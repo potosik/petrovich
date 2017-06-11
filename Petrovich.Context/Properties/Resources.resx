@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
-    <value />
+    <value>Branch inventory part string length must be {0} characters length.</value>
   </data>
   <data name="Category_InventoryPart_Range_Error" xml:space="preserve">
-    <value />
+    <value>Category inventory part value must be in range between {0} and {1}.</value>
   </data>
   <data name="Product_InventoryPart_Range_Error" xml:space="preserve">
-    <value />
+    <value>Product inventory part value must be in range between {0} and {1}.</value>
   </data>
 </root>

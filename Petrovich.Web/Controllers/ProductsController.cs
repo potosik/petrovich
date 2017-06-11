@@ -23,7 +23,7 @@ namespace Petrovich.Web.Controllers
         private readonly IProductService productService;
         private readonly IDataStructureService dataStructureService;
 
-        public ProductsController(IProductService productService, IDataStructureService dataStructureService, ILoggingService logger) 
+        public ProductsController(IProductService productService, IDataStructureService dataStructureService, ILoggingService logger)
             : base(logger)
         {
             this.productService = productService;
@@ -130,9 +130,92 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Edit()
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            try
+            {
+                var product = await productService.FindAsync(id);
+                var model = ProductEditViewModel.Create(product);
+                return View(model);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ProductNotFoundException ex)
+            {
+                return await CreateNotFoundResponseAsync(ex);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(ProductEditViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var product = new Product()
+                    {
+                        ProductId = model.ProductId,
+                        Title = model.Title,
+                        Description = model.Description,
+                        InventoryPart = model.InventoryPart,
+                        
+                        CategoryId = model.CategoryId,
+                        GroupId = model.GroupId,
+                    };
+
+                    await productService.UpdateAsync(product);
+                    return RedirectToAction(PetrovichRoutes.Products.Index);
+                }
+            }
+            catch (ProductNotFoundException ex)
+            {
+                return await CreateNotFoundResponseAsync(ex);
+            }
+            catch (CategoryNotFoundException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Edit category '{model.CategoryId}' not found.", ex);
+                ModelState.AddModelError(typeof(CategoryNotFoundException).Name, Properties.Resources.Product_CategoryNotFound_Error);
+            }
+            catch (GroupNotFoundException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Edit group '{model.GroupId}' not found.", ex);
+                ModelState.AddModelError(typeof(GroupNotFoundException).Name, Properties.Resources.Product_GroupNotFound_Error);
+            }
+            catch (ProductInventoryPartChangedException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Edit product inventory part is changed ({model.ProductId}).", ex);
+                ModelState.AddModelError(typeof(ProductInventoryPartChangedException).Name, Properties.Resources.Product_InventoryChanged_Error);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (DatabaseOperationException ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                return await CreateInternalServerErrorResponseAsync(ex);
+            }
+
+            return View(model);
         }
 
         [HttpPost]

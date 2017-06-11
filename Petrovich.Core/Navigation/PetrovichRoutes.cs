@@ -36,11 +36,13 @@
             public static Endpoint CategoryEdit = new Endpoint(Controller, "CategoryEdit");
             public static Endpoint CategoryDelete = new Endpoint(Controller, "CategoryDelete");
             public static Endpoint CategoryChildGroupsExists = new Endpoint(Controller, "ChildGroupsExists");
+            public static Endpoint CategoryChildProductsExists = new Endpoint(Controller, "CategoryChildProductsExists");
 
             public static Endpoint GroupList = new Endpoint(Controller, "GroupList");
             public static Endpoint GroupCreate = new Endpoint(Controller, "GroupCreate");
             public static Endpoint GroupEdit = new Endpoint(Controller, "GroupEdit");
             public static Endpoint GroupDelete = new Endpoint(Controller, "GroupDelete");
+            public static Endpoint GroupChildProductsExists = new Endpoint(Controller, "GroupChildProductsExists");
         }
 
         public static class Error

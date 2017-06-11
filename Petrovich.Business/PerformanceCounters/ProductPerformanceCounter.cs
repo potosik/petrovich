@@ -2,56 +2,83 @@
 using System;
 using Petrovich.Business.Models;
 using System.Threading.Tasks;
+using Petrovich.Business.Logging;
+using Petrovich.Core.Performance;
 
 namespace Petrovich.Business.PerformanceCounters
 {
-    public class ProductPerformanceCounter : IProductDataSource
+    internal class ProductPerformanceCounter : PerformanceCounterBase, IProductDataSource
     {
         private readonly IProductDataSource innerDataSource;
 
-        public ProductPerformanceCounter(IProductDataSource dataSource)
+        public ProductPerformanceCounter(IProductDataSource dataSource, ILoggingService loggingService)
+            : base(loggingService)
         {
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
         public async Task<ProductCollection> ListAsync()
         {
-            return await innerDataSource.ListAsync();
+            using (new PerformanceMonitor(EventSource.ListProducts))
+            {
+                return await innerDataSource.ListAsync();
+            }
         }
 
         public async Task<Product> CreateAsync(Product product)
         {
-            return await innerDataSource.CreateAsync(product);
+            using (new PerformanceMonitor(EventSource.CreateProduct, new { product }))
+            {
+                return await innerDataSource.CreateAsync(product);
+            }
         }
 
         public async Task<Product> FindAsync(Guid id)
         {
-            return await innerDataSource.FindAsync(id);
+            using (new PerformanceMonitor(EventSource.FindProductById, new { id }))
+            {
+                return await innerDataSource.FindAsync(id);
+            }
         }
 
         public async Task<Product> UpdateAsync(Product product)
         {
-            return await innerDataSource.UpdateAsync(product);
+            using (new PerformanceMonitor(EventSource.UpdateProduct, new { product }))
+            {
+                return await innerDataSource.UpdateAsync(product);
+            }
         }
 
         public async Task DeleteAsync(Product product)
         {
-            await innerDataSource.DeleteAsync(product);
+            using (new PerformanceMonitor(EventSource.DeleteProduct, new { product }))
+            {
+                await innerDataSource.DeleteAsync(product);
+            }
         }
 
         public async Task<bool> IsExistsForCategoryAsync(Guid categoryId)
         {
-            return await innerDataSource.IsExistsForCategoryAsync(categoryId);
+            using (new PerformanceMonitor(EventSource.IsExistsProductsForCategory, new { categoryId }))
+            {
+                return await innerDataSource.IsExistsForCategoryAsync(categoryId);
+            }
         }
 
         public async Task<bool> IsExistsForGroupAsync(Guid groupId)
         {
-            return await innerDataSource.IsExistsForGroupAsync(groupId);
+            using (new PerformanceMonitor(EventSource.IsExistsProductsForGroup, new { groupId }))
+            {
+                return await innerDataSource.IsExistsForGroupAsync(groupId);
+            }
         }
 
         public async Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
         {
-            return await innerDataSource.GetNewInventoryNumberAsync(categoryId);
+            using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProduct, new { categoryId }))
+            {
+                return await innerDataSource.GetNewInventoryNumberAsync(categoryId);
+            }
         }
     }
 }

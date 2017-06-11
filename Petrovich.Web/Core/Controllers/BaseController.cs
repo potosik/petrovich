@@ -20,6 +20,11 @@ namespace Petrovich.Web.Core.Controllers
             return RedirectToAction(endpoint.Action, endpoint.Controller);
         }
 
+        protected RedirectToRouteResult RedirectToAction(Endpoint endpoint, object routeValues)
+        {
+            return RedirectToAction(endpoint.Action, endpoint.Controller, routeValues);
+        }
+
         protected ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -32,7 +37,7 @@ namespace Petrovich.Web.Core.Controllers
 
         protected ActionResult CreateNotFoundResponse()
         {
-            return RedirectToAction(PetrovichRoutes.Error.NotFound);
+            return RedirectToAction(PetrovichRoutes.Error.NotFound, new { timeUtc = DateTime.UtcNow });
         }
 
         protected async Task<ActionResult> CreateNotFoundResponseAsync(Exception ex)
@@ -43,7 +48,7 @@ namespace Petrovich.Web.Core.Controllers
 
         protected ActionResult CreateBadRequestResponse()
         {
-            return RedirectToAction(PetrovichRoutes.Error.BadRequest);
+            return RedirectToAction(PetrovichRoutes.Error.BadRequest, new { timeUtc = DateTime.UtcNow });
         }
 
         protected async Task<ActionResult> CreateBadRequestResponseAsync(Exception ex)
@@ -54,7 +59,7 @@ namespace Petrovich.Web.Core.Controllers
 
         protected ActionResult CreateInternalServerErrorResponse()
         {
-            return RedirectToAction(PetrovichRoutes.Error.Index);
+            return RedirectToAction(PetrovichRoutes.Error.Index, new { timeUtc = DateTime.UtcNow });
         }
 
         protected async Task<ActionResult> CreateInternalServerErrorResponseAsync(Exception ex)

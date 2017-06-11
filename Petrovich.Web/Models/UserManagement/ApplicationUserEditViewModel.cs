@@ -25,12 +25,12 @@ namespace Petrovich.Web.Models.UserManagement
 
         [DataType(DataType.Password)]
         [Display(Name = "Новый пароль")]
-        [StringLength(100, ErrorMessage = "Пароль {0} должен содержать не менее {2} символов.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 6, ErrorMessageResourceType = typeof(Properties.Resources), ErrorMessageResourceName = "Password_LengthValidation_Error")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердите пароль")]
-        [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля должны совпадать.")]
+        [Compare("Password", ErrorMessageResourceType = typeof(Properties.Resources), ErrorMessageResourceName = "Password_MatchConfirmPassword_Error")]
         public string ConfirmPassword { get; set; }
         
         [Display(Name = "Права доступа")]

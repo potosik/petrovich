@@ -147,6 +147,9 @@
   <data name="E400008" xml:space="preserve">
     <value>There are no available slots for new products in category '{0}'.</value>
   </data>
+  <data name="E400009" xml:space="preserve">
+    <value>Child products exists for branch '{0}'.</value>
+  </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
   </data>

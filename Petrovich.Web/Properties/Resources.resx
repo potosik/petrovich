@@ -150,6 +150,15 @@
   <data name="None" xml:space="preserve">
     <value>Отсутсвует</value>
   </data>
+  <data name="Password_LengthValidation_Error" xml:space="preserve">
+    <value>Пароль {0} должен содержать не менее {2} символов.</value>
+  </data>
+  <data name="Password_MatchConfirmPassword_Error" xml:space="preserve">
+    <value>Пароль и подтверждение пароля должны совпадать.</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Производительность</value>
+  </data>
   <data name="Product_BranchNotFound_Error" xml:space="preserve">
     <value>Выбранный раздел не найден.</value>
   </data>
@@ -158,6 +167,9 @@
   </data>
   <data name="Product_GroupNotFound_Error" xml:space="preserve">
     <value>Выбранная группа не найдена.</value>
+  </data>
+  <data name="Product_InventoryChanged_Error" xml:space="preserve">
+    <value>Часть инвентарного номера не может быть изменена.</value>
   </data>
   <data name="Required_Field_Error" xml:space="preserve">
     <value>Поле {0} обязательно для заполнения.</value>

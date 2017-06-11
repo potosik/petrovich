@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Business.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,20 @@ using System.Web;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class GroupViewModel
+    public class GroupViewModel : BaseViewModel
     {
+        public GroupViewModel()
+        {
+        }
+
+        public GroupViewModel(IChangeTrackableEntity entity)
+            : base(entity)
+        {
+        }
+
         public Guid GroupId { get; set; }
         public string Title { get; set; }
         public string CategoryTitle { get; set; }
-
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? Modified { get; set; }
-        public string ModifiedBy { get; set; }
 
         public static GroupViewModel Create(Group group)
         {
@@ -24,16 +29,11 @@ namespace Petrovich.Web.Models.DataStructure
                 throw new ArgumentNullException(nameof(group));
             }
 
-            return new GroupViewModel()
+            return new GroupViewModel(group)
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
                 CategoryTitle = group.CategoryTitle,
-
-                Created = group.Created,
-                CreatedBy = group.CreatedBy,
-                Modified = group.Modified,
-                ModifiedBy = group.ModifiedBy,
             };
         }
     }

@@ -151,6 +151,15 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Child products exists for branch &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400009 {
+            get {
+                return ResourceManager.GetString("E400009", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {

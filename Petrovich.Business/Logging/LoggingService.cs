@@ -120,5 +120,11 @@ namespace Petrovich.Business.Logging
 
             return log;
         }
+
+        public void LogPerformanceMetrics(int eventId, string elapsedTime, string method, string arguments)
+        {
+            var message = $"METRIC: {elapsedTime} {eventId} {method} {arguments}";
+            Task.Run(async () => await LogAsync(LogSeverity.Performance, message)).Wait();
+        }
     }
 }

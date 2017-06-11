@@ -13,6 +13,7 @@
         ChildCategoriesExists = 400006,
         ChildGroupsExists = 400007,
         NoCategoryProductsSlots = 400008,
+        ChildProductsExists = 400009,
 
         LogNotFound = 404001,
         UserNotFound = 404002,

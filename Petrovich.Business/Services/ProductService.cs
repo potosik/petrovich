@@ -99,7 +99,7 @@ namespace Petrovich.Business.Services
             }
 
             await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get product by id ({product.ProductId}).");
-            var dbProduct = await productDataSource.FindAsync(product.CategoryId);
+            var dbProduct = await productDataSource.FindAsync(product.ProductId);
             if (dbProduct == null)
             {
                 await logger.LogInformationAsync($"ProductService.UpdateAsync: product not found - {product.ProductId}.");

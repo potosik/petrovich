@@ -7,16 +7,20 @@ using System.Web;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class BranchViewModel : IChangeTrackableEntity
+    public class BranchViewModel : BaseViewModel
     {
+        public BranchViewModel()
+        {
+        }
+
+        public BranchViewModel(IChangeTrackableEntity entity)
+            : base(entity)
+        {
+        }
+
         public Guid BranchId { get; set; }
         public string Title { get; set; }
         public string InventoryPart { get; set; }
-
-        public DateTime? Created { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? Modified { get; set; }
-        public string ModifiedBy { get; set; }
 
         public static BranchViewModel Create(Branch branch)
         {
@@ -25,16 +29,11 @@ namespace Petrovich.Web.Models.DataStructure
                 throw new ArgumentNullException(nameof(branch));
             }
 
-            return new BranchViewModel()
+            return new BranchViewModel(branch)
             {
                 BranchId = branch.BranchId,
                 Title = branch.Title,
                 InventoryPart = branch.InventoryPart,
-
-                Created = branch.Created,
-                CreatedBy = branch.CreatedBy,
-                Modified = branch.Modified,
-                ModifiedBy = branch.ModifiedBy,
             };
         }
     }

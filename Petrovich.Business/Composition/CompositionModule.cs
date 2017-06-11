@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Petrovich.Business.Data;
 using Petrovich.Business.PerformanceCounters;
 using Petrovich.Business.Services;
+using Petrovich.Business.Logging;
 
 namespace Petrovich.Business.Composition
 {
@@ -19,10 +20,18 @@ namespace Petrovich.Business.Composition
             container.RegisterType<IProductService, ProductService>();
 
             container.RegisterType<ILogDataSource, LogPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(ILogDataSource), "LogDataSource")));
-            container.RegisterType<IBranchDataSource, BranchPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(IBranchDataSource), "BranchDataSource")));
-            container.RegisterType<ICategoryDataSource, CategoryPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(ICategoryDataSource), "CategoryDataSource")));
-            container.RegisterType<IGroupDataSource, GroupPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(IGroupDataSource), "GroupDataSource")));
-            container.RegisterType<IProductDataSource, ProductPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(IProductDataSource), "ProductDataSource")));
+            container.RegisterType<IBranchDataSource, BranchPerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(IBranchDataSource), "BranchDataSource"), 
+                new ResolvedParameter(typeof(ILoggingService))));
+            container.RegisterType<ICategoryDataSource, CategoryPerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(ICategoryDataSource), "CategoryDataSource"),
+                new ResolvedParameter(typeof(ILoggingService))));
+            container.RegisterType<IGroupDataSource, GroupPerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(IGroupDataSource), "GroupDataSource"),
+                new ResolvedParameter(typeof(ILoggingService))));
+            container.RegisterType<IProductDataSource, ProductPerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(IProductDataSource), "ProductDataSource"),
+                new ResolvedParameter(typeof(ILoggingService))));
         }
     }
 }

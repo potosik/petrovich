@@ -104,22 +104,14 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var group = await dataStructureService.FindGroupAsync(id);
-                var model = new GroupEditViewModel()
-                {
-                    GroupId = group.GroupId,
-                    Title = group.Title,
-                    CategoryId = group.CategoryId,
-
-                    CategoryTitle = group.CategoryTitle,
-
-                    Created = group.Created,
-                    CreatedBy = group.CreatedBy,
-                    Modified = group.Modified,
-                    ModifiedBy = group.ModifiedBy,
-                };
+                var model = GroupEditViewModel.Create(group);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ArgumentNullException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
@@ -196,6 +188,10 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateNotFoundResponseAsync(ex);
             }
+            catch (ChildProductsExistsException)
+            {
+                return RedirectToAction(PetrovichRoutes.DataStructure.GroupChildProductsExists);
+            }
             catch (DatabaseOperationException ex)
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
@@ -204,6 +200,12 @@ namespace Petrovich.Web.Controllers
             {
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
+        }
+
+        [HttpGet]
+        public ActionResult GroupChildProductsExists()
+        {
+            return View();
         }
 
         private async Task<List<SelectListItem>> CreateGroupsSelectList()
