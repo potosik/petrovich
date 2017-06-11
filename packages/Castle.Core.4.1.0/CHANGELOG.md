@@ -1,5 +1,21 @@
 # Castle Core Changelog
 
+## 4.1.0 (2017-06-11)
+
+Breaking Changes:
+* Remove AllowPartiallyTrustedCallersAttribute, which wasn't defined by default (@fir3pho3nixx, #241)
+* Upgrade log4net to v2.0.8 (@fir3pho3nixx, #241)
+
+Enhancements:
+* Add ProxyUtil.IsAccessible to check if a method is accessible to DynamicProxyGenAssembly2 (Blair Conrad, #235)
+* Refactor build engineering to support AppVeyor and TravisCI (@fir3pho3nixx, #241)
+
+Bugfixes:
+* Fix order of class proxy constructor arguments when using multiple mixins (@sebastienros, #230)
+* Fix dependency on "System.ComponentModel.TypeConverter" NuGet package version that does not exist (#239)
+* Fix ParamArrayAttribute not being replicated in proxy (@stakx, #121)
+* Fix System.Net.Mail.SmtpClient is obsolete on Mono warning (#254)
+
 ## 4.0.0 (2017-01-25)
 
 Breaking Changes:
