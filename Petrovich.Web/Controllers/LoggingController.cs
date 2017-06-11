@@ -4,6 +4,7 @@ using Petrovich.Core;
 using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
 using Petrovich.Web.Core.Security.Attributes;
+using Petrovich.Web.Models;
 using Petrovich.Web.Models.Logging;
 using System;
 using System.Linq;
@@ -22,12 +23,14 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1)
         {
             try
             {
-                var logs = await logger.ListLogsAsync();
-                var model = logs.Select(item => LogViewModel.Create(item));
+                var pageIndex = page - 1;
+                var logs = await logger.ListLogsAsync(pageIndex, DefaultPageSize);
+                var items = logs.Select(item => LogViewModel.Create(item));
+                var model = new PagedListViewModel<LogViewModel>(items, page, logs.TotalCount, DefaultPageSize);
                 return View(model);
             }
             catch (ArgumentNullException ex)

@@ -4,6 +4,8 @@ namespace Petrovich.Business.Models
 {
     public class LogCollection : List<Log>
     {
+        public int TotalCount { get; set; }
+
         public LogCollection()
         {
         }

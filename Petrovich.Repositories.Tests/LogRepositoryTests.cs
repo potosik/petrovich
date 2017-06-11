@@ -42,7 +42,33 @@ namespace Petrovich.Repositories.Tests
 
             Assert.Null(result);
         }
-        
+
+        [Fact]
+        public async Task ListAllAsync_ThrowsException()
+        {
+            await Assert.ThrowsAsync<Exception>(() =>
+            {
+                return logRepository.ListAllAsync();
+            });
+        }
+
+        [Fact]
+        public async Task ListAsync_WhenEntitiesFound_ReturnsOnlyEntitiesForLastThreeMonths()
+        {
+            var result = await logRepository.ListAsync(0, 10);
+
+            Assert.Equal(2, result.Count);
+        }
+
+        [Fact]
+        public async Task ListCountAsync_WhenEntitiesFound_ReturnsItsCount()
+        {
+            var result = await logRepository.ListCountAsync();
+
+            Assert.Equal(2, result);
+        }
+
+
         public static IEnumerable<Log> GetStubbedData()
         {
             return new List<Log>()
@@ -55,6 +81,7 @@ namespace Petrovich.Repositories.Tests
                     Message = String.Empty,
                     InnerExceptionMessage = String.Empty,
                     StackTrace = String.Empty,
+                    Created = DateTime.Now.AddMonths(-1),
                 },
                 new Log()
                 {
@@ -64,6 +91,7 @@ namespace Petrovich.Repositories.Tests
                     Message = "Message",
                     InnerExceptionMessage = "Inner exception",
                     StackTrace = "Stack trace",
+                    Created = DateTime.Now.AddMonths(-2),
                 },
                 new Log()
                 {
@@ -73,6 +101,7 @@ namespace Petrovich.Repositories.Tests
                     Message = String.Empty,
                     InnerExceptionMessage = String.Empty,
                     StackTrace = String.Empty,
+                    Created = DateTime.Now.AddMonths(-4),
                 },
                 new Log()
                 {

@@ -219,7 +219,9 @@
     <Compile Include="Models\DataStructure\GroupEditViewModel.cs" />
     <Compile Include="Models\DataStructure\GroupViewModel.cs" />
     <Compile Include="Models\IChangeTrackableViewModel.cs" />
+    <Compile Include="Models\IPagedListViewModel.cs" />
     <Compile Include="Models\Logging\LogViewModel.cs" />
+    <Compile Include="Models\PagedListViewModel.cs" />
     <Compile Include="Models\Products\ProductCreateViewModel.cs" />
     <Compile Include="Models\Products\ProductEditViewModel.cs" />
     <Compile Include="Models\Products\ProductViewModel.cs" />
@@ -369,6 +371,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\DataStructure\CategoryChildProductsExists.cshtml" />
     <Content Include="Views\DataStructure\GroupChildProductsExists.cshtml" />
+    <Content Include="Views\Shared\_PagingNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

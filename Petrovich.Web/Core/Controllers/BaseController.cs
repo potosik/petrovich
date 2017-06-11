@@ -8,6 +8,8 @@ namespace Petrovich.Web.Core.Controllers
 {
     public class BaseController : Controller
     {
+        protected const int DefaultPageSize = 20;
+
         protected readonly ILoggingService logger;
 
         public BaseController(ILoggingService logger)

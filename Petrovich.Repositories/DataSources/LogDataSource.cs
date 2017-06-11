@@ -37,7 +37,10 @@ namespace Petrovich.Repositories.DataSources
             try
             {
                 var entities = await logRepository.ListAsync(pageIndex, pageSize);
-                return logMapper.ToBusinessEntityCollection(entities);
+                var count = await logRepository.ListCountAsync();
+                var collection = logMapper.ToBusinessEntityCollection(entities);
+                collection.TotalCount = count;
+                return collection;
             }
             catch (EntityException ex)
             {

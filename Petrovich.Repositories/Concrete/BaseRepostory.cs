@@ -30,10 +30,10 @@ namespace Petrovich.Repositories.Concrete
             var items = context.Set<TEntity>();
             if (pageSize == 0)
             {
-                return await items.ToListAsync();
+                return await items.ToListAsync().ConfigureAwait(false);
             }
 
-            return await items.OrderByDescending(item => item.Created).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            return await items.OrderByDescending(item => item.Created).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false);
         }
 
         public virtual async Task<TEntity> CreateAsync(TEntity entity)
