@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Petrovich.Web.Models.DataStructure.CategoryViewModel>
+﻿@model Petrovich.Web.Models.PagedListViewModel<Petrovich.Web.Models.DataStructure.CategoryViewModel>
 
 @{
     ViewBag.Title = "Список категорий";
@@ -13,42 +13,49 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Часть инвентарного номера</th>
-                    <th>Раздел</th>
-                    <th>Создана</th>
-                    <th>Отредактирована</th>
-                    <th>Операции</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td>@Html.DisplayFor(modelItem => item.InventoryPart)</td>
-                        <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Created)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Modified)</td>
-                        <td>
-                            @using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryDelete, new { id = item.CategoryId }, FormMethod.Post, null))
+        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                                <th>Часть инвентарного номера</th>
+                                <th>Раздел</th>
+                                <th>Создана</th>
+                                <th>Отредактирована</th>
+                                <th>Операции</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
                             {
-                                <div class="btn-group" role="group">
-                                    <a href="@Url.Action(PetrovichRoutes.DataStructure.CategoryEdit, new { id = item.CategoryId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </a>
-                                    <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </div>
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.InventoryPart)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Created)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Modified)</td>
+                                    <td>
+                                        @using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryDelete, new { id = item.CategoryId }, FormMethod.Post, null))
+                                        {
+                                            <div class="btn-group" role="group">
+                                                <a href="@Url.Action(PetrovichRoutes.DataStructure.CategoryEdit, new { id = item.CategoryId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
+                                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                </a>
+                                                <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        }
+                                    </td>
+                                </tr>
                             }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @Html.Partial("_PagingNavigation", Model)
+        </div>
     </div>
 </div>

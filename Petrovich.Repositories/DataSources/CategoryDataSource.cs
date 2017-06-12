@@ -23,12 +23,15 @@ namespace Petrovich.Repositories.DataSources
             this.categoryMapper = categoryMapper ?? throw new ArgumentNullException(nameof(categoryMapper));
         }
 
-        public async Task<CategoryCollection> ListAsync()
+        public async Task<CategoryCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
-                var categories = await categoryRepository.ListAllAsync();
-                return categoryMapper.ToBusinessEntityCollection(categories);
+                var categories = await categoryRepository.ListAsync(pageIndex, pageSize);
+                var count = await categoryRepository.ListCountAsync();
+                var collection = categoryMapper.ToBusinessEntityCollection(categories);
+                collection.TotalCount = count;
+                return collection;
             }
             catch (EntityException ex)
             {
@@ -149,6 +152,19 @@ namespace Petrovich.Repositories.DataSources
             try
             {
                 var categories = await categoryRepository.ListByBranchIdAsync(branchId);
+                return categoryMapper.ToBusinessEntityCollection(categories);
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<CategoryCollection> ListAllAsync()
+        {
+            try
+            {
+                var categories = await categoryRepository.ListAllAsync();
                 return categoryMapper.ToBusinessEntityCollection(categories);
             }
             catch (EntityException ex)

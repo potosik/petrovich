@@ -1,6 +1,7 @@
 ﻿using Petrovich.Business.Exceptions;
 using Petrovich.Business.Logging;
 using Petrovich.Core;
+using Petrovich.Core.Navigation;
 using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
 using Petrovich.Web.Core.Security.Attributes;
@@ -28,9 +29,9 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var pageIndex = page - 1;
-                var logs = await logger.ListLogsAsync(pageIndex, DefaultPageSize);
+                var logs = await logger.ListAsync(pageIndex, DefaultPageSize);
                 var items = logs.Select(item => LogViewModel.Create(item));
-                var model = new PagedListViewModel<LogViewModel>(items, page, logs.TotalCount, DefaultPageSize);
+                var model = new PagedListViewModel<LogViewModel>(items, PetrovichRoutes.Logging.Index, page, logs.TotalCount, DefaultPageSize);
                 return View(model);
             }
             catch (ArgumentNullException ex)

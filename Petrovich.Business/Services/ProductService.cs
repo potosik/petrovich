@@ -25,10 +25,10 @@ namespace Petrovich.Business.Services
             this.groupDataSource = groupDataSource ?? throw new ArgumentNullException(nameof(groupDataSource));
         }
 
-        public async Task<ProductCollection> ListAsync()
+        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
         {
-            await logger.LogNoneAsync("ProductService.ListAsync: listing all products.");
-            return await productDataSource.ListAsync();
+            await logger.LogNoneAsync($"ProductService.ListAsync: listing products (pageIndex: {pageIndex} pageSize: {pageSize}).");
+            return await productDataSource.ListAsync(pageIndex, pageSize);
         }
 
         public async Task<Product> CreateAsync(Product product)

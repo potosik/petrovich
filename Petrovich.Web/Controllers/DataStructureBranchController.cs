@@ -12,6 +12,7 @@ using Petrovich.Business.Models;
 using System;
 using Petrovich.Core.Navigation;
 using Petrovich.Business.Exceptions;
+using Petrovich.Web.Models;
 
 namespace Petrovich.Web.Controllers
 {
@@ -28,12 +29,14 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> BranchList()
+        public async Task<ActionResult> BranchList(int page = 1)
         {
             try
             {
-                var branches = await dataStructureService.ListBranchesAsync();
-                var model = branches.Select(item => BranchViewModel.Create(item));
+                var pageIndex = page - 1;
+                var branches = await dataStructureService.ListBranchesAsync(pageIndex, DefaultPageSize);
+                var items = branches.Select(item => BranchViewModel.Create(item));
+                var model = new PagedListViewModel<BranchViewModel>(items, PetrovichRoutes.DataStructure.BranchList, page, branches.TotalCount, DefaultPageSize);
                 return View(model);
             }
             catch (ArgumentNullException ex)

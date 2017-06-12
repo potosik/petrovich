@@ -8,18 +8,21 @@ using Petrovich.Web.Models.DataStructure;
 using System.Collections.Generic;
 using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
+using Petrovich.Web.Models;
 
 namespace Petrovich.Web.Controllers
 {
     public partial class DataStructureController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult> GroupList()
+        public async Task<ActionResult> GroupList(int page = 1)
         {
             try
             {
-                var groups = await dataStructureService.ListGroupsAsync();
-                var model = groups.Select(item => GroupViewModel.Create(item));
+                var pageIndex = page - 1;
+                var groups = await dataStructureService.ListGroupsAsync(pageIndex, DefaultPageSize);
+                var items = groups.Select(item => GroupViewModel.Create(item));
+                var model = new PagedListViewModel<GroupViewModel>(items, PetrovichRoutes.DataStructure.GroupList, page, groups.TotalCount, DefaultPageSize);
                 return View(model);
             }
             catch (ArgumentNullException ex)
@@ -210,7 +213,7 @@ namespace Petrovich.Web.Controllers
 
         private async Task<List<SelectListItem>> CreateGroupsSelectList()
         {
-            var branches = await dataStructureService.ListCategoriesAsync();
+            var branches = await dataStructureService.ListAllCategoriesAsync();
             return branches.Select(item => new SelectListItem() { Text = item.Title, Value = item.CategoryId.ToString() }).ToList();
         }
     }

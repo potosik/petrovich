@@ -9,7 +9,7 @@ namespace Petrovich.Business
 {
     public interface IProductService
     {
-        Task<ProductCollection> ListAsync();
+        Task<ProductCollection> ListAsync(int pageIndex, int pageSize);
         Task<Product> CreateAsync(Product product);
         Task<Product> FindAsync(Guid id);
         Task<Product> UpdateAsync(Product product);

@@ -15,6 +15,7 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int FindBranchByIdEventId = 11004;
         public const int UpdateBranchEventId = 11005;
         public const int DeleteBranchEventId = 11006;
+        public const int ListAllBranchesEventId = 11007;
 
         // categories #12
         public const int ListCategoriesEventId = 12001;
@@ -26,6 +27,7 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int DeleteCategoryEventId = 12007;
         public const int IsExistsCategoriesForBranchEventId = 12008;
         public const int ListCategoriesByBranchIdEventId = 12009;
+        public const int ListAllCategoriesEventId = 12010;
 
         // groups #13
         public const int ListGroupsEventId = 13001;

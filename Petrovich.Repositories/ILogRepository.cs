@@ -6,6 +6,5 @@ namespace Petrovich.Repositories
 {
     public interface ILogRepository : IBaseRepository<Log>
     {
-        Task<int> ListCountAsync();
     }
 }

@@ -13,6 +13,7 @@ using Petrovich.Business.Exceptions;
 using System.Collections.Generic;
 using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
+using Petrovich.Web.Models;
 
 namespace Petrovich.Web.Controllers
 {
@@ -31,12 +32,14 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1)
         {
             try
             {
-                var products = await productService.ListAsync();
-                var model = products.Select(item => ProductViewModel.Create(item));
+                var pageIndex = page - 1;
+                var products = await productService.ListAsync(pageIndex, DefaultPageSize);
+                var items = products.Select(item => ProductViewModel.Create(item));
+                var model = new PagedListViewModel<ProductViewModel>(items, PetrovichRoutes.Products.Index, page, products.TotalCount, DefaultPageSize);
                 return View(model);
             }
             catch (ArgumentNullException ex)
@@ -302,7 +305,7 @@ namespace Petrovich.Web.Controllers
 
         private async Task<IList<SelectListItem>> CreateBranchesSelectList()
         {
-            var branches = await dataStructureService.ListBranchesAsync();
+            var branches = await dataStructureService.ListAllBranchesAsync();
             return branches.Select(item => new SelectListItem() { Text = item.Title, Value = item.BranchId.ToString() }).ToList();
         }
 

@@ -36,6 +36,11 @@ namespace Petrovich.Repositories.Concrete
             return await items.OrderByDescending(item => item.Created).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false);
         }
 
+        public virtual async Task<int> ListCountAsync()
+        {
+            return await context.Set<TEntity>().CountAsync().ConfigureAwait(false);
+        }
+
         public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             context.Set<TEntity>().Add(entity);

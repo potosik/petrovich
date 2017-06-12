@@ -6,7 +6,7 @@ namespace Petrovich.Business.Data
 {
     public interface IGroupDataSource
     {
-        Task<GroupCollection> ListAsync();
+        Task<GroupCollection> ListAsync(int pageIndex, int pageSize);
         Task<Group> CreateAsync(Group group);
         Task<Group> FindAsync(Guid id);
         Task<Group> UpdateAsync(Group group);

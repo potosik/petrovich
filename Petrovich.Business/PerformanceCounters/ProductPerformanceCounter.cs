@@ -17,11 +17,11 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<ProductCollection> ListAsync()
+        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
         {
-            using (new PerformanceMonitor(EventSource.ListProducts))
+            using (new PerformanceMonitor(EventSource.ListProducts, new { pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync();
+                return await innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
 

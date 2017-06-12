@@ -22,12 +22,15 @@ namespace Petrovich.Repositories.DataSources
             this.groupMapper = groupMapper ?? throw new ArgumentNullException(nameof(groupMapper));
         }
 
-        public async Task<GroupCollection> ListAsync()
+        public async Task<GroupCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
-                var groups = await groupRepository.ListAllAsync();
-                return groupMapper.ToBusinessEntityCollection(groups);
+                var groups = await groupRepository.ListAsync(pageIndex, pageSize);
+                var count = await groupRepository.ListCountAsync();
+                var collection = groupMapper.ToBusinessEntityCollection(groups);
+                collection.TotalCount = count;
+                return collection;
             }
             catch (EntityException ex)
             {

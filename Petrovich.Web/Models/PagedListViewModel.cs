@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Petrovich.Core.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,10 +16,13 @@ namespace Petrovich.Web.Models
         public int LastItem { get; set; }
 
         public IEnumerable<TViewModel> Items { get; set; }
+        public Endpoint Endpoint { get; set; }
 
-        public PagedListViewModel(IEnumerable<TViewModel> items, int currentPage, int totalCount, int pageSize)
+        public PagedListViewModel(IEnumerable<TViewModel> items, Endpoint endpoint, int currentPage, int totalCount, int pageSize)
         {
             Items = items;
+            Endpoint = endpoint;
+
             CurrentPage = currentPage;
             TotalCount = totalCount;
             TotalPages = (int)Math.Ceiling((double)totalCount / pageSize);

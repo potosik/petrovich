@@ -23,12 +23,15 @@ namespace Petrovich.Repositories.DataSources
             this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
         }
 
-        public async Task<ProductCollection> ListAsync()
+        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
-                var products = await productRepository.ListAllAsync();
-                return productMapper.ToBusinessEntityCollection(products);
+                var products = await productRepository.ListAsync(pageIndex, pageSize);
+                var count = await productRepository.ListCountAsync();
+                var collection = productMapper.ToBusinessEntityCollection(products);
+                collection.TotalCount = count;
+                return collection;
             }
             catch (EntityException ex)
             {

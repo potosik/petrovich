@@ -28,10 +28,10 @@ namespace Petrovich.Business.Services
             this.productDataSource = productDataSource ?? throw new ArgumentNullException(nameof(productDataSource));
         }
 
-        public async Task<BranchCollection> ListBranchesAsync()
+        public async Task<BranchCollection> ListBranchesAsync(int pageIndex, int pageSize)
         {
-            await logger.LogNoneAsync("DataStructureService.ListBranchesAsync: listing all branches.");
-            return await branchDataSource.ListAsync();
+            await logger.LogNoneAsync($"DataStructureService.ListBranchesAsync: listing branches (pageIndex: {pageIndex} pageSize: {pageSize}).");
+            return await branchDataSource.ListAsync(pageIndex, pageSize);
         }
 
         public async Task<Branch> CreateBranchAsync(Branch branch)
@@ -127,10 +127,16 @@ namespace Petrovich.Business.Services
             await branchDataSource.DeleteAsync(branch);
         }
 
-        public async Task<CategoryCollection> ListCategoriesAsync()
+        public async Task<BranchCollection> ListAllBranchesAsync()
         {
-            await logger.LogNoneAsync("DataStructureService.ListCategoriesAsync: listing all categories.");
-            return await categoryDataSource.ListAsync();
+            await logger.LogNoneAsync("DataStructureService.ListAllBranchesAsync: listing all branches.");
+            return await branchDataSource.ListAllAsync();
+        }
+
+        public async Task<CategoryCollection> ListCategoriesAsync(int pageIndex, int pageSize)
+        {
+            await logger.LogNoneAsync($"DataStructureService.ListCategoriesAsync: listing categories (pageIndex: {pageIndex} pageSize: {pageSize}).");
+            return await categoryDataSource.ListAsync(pageIndex, pageSize);
         }
 
         public async Task<Category> CreateCategoryAsync(Category category)
@@ -266,10 +272,16 @@ namespace Petrovich.Business.Services
             return await categoryDataSource.ListByBranchIdAsync(branchId);
         }
 
-        public async Task<GroupCollection> ListGroupsAsync()
+        public async Task<CategoryCollection> ListAllCategoriesAsync()
         {
-            await logger.LogNoneAsync("DataStructureService.ListGroupAsync: listing all groups.");
-            return await groupDataSource.ListAsync();
+            await logger.LogNoneAsync("DataStructureService.ListAllCategoriesAsync: listing all categories.");
+            return await categoryDataSource.ListAllAsync();
+        }
+
+        public async Task<GroupCollection> ListGroupsAsync(int pageIndex, int pageSize)
+        {
+            await logger.LogNoneAsync($"DataStructureService.ListGroupAsync: listing groups (pageIndex: {pageIndex} pageSize: {pageSize}).");
+            return await groupDataSource.ListAsync(pageIndex, pageSize);
         }
 
         public async Task<Group> CreateGroupAsync(Group group)

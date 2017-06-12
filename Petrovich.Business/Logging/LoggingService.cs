@@ -100,7 +100,7 @@ namespace Petrovich.Business.Logging
             return $"{message} | Exception: {ex.Message}";
         }
 
-        public async Task<LogCollection> ListLogsAsync(int pageIndex, int pageSize)
+        public async Task<LogCollection> ListAsync(int pageIndex, int pageSize)
         {
             return await dataSource.ListAsync(pageIndex, pageSize);
         }

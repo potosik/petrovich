@@ -46,5 +46,11 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.DeleteBranchEventId, elapsed.ToString(), "IBranchDataSource.DeleteAsync", message);
         }
+
+        public void ListAllBranchesAsync(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListAllBranchesEventId, elapsed.ToString(), "IBranchDataSource.ListAllAsync", message);
+        }
     }
 }

@@ -17,11 +17,11 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<CategoryCollection> ListAsync()
+        public async Task<CategoryCollection> ListAsync(int pageIndex, int pageSize)
         {
-            using (new PerformanceMonitor(EventSource.ListCategories))
+            using (new PerformanceMonitor(EventSource.ListCategories, new { pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync();
+                return await innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
 
@@ -86,6 +86,14 @@ namespace Petrovich.Business.PerformanceCounters
             using (new PerformanceMonitor(EventSource.ListCategoriesByBranchId, new { branchId }))
             {
                 return await innerDataSource.ListByBranchIdAsync(branchId);
+            }
+        }
+
+        public async Task<CategoryCollection> ListAllAsync()
+        {
+            using (new PerformanceMonitor(EventSource.ListAllCategoriesAsync))
+            {
+                return await innerDataSource.ListAllAsync();
             }
         }
     }

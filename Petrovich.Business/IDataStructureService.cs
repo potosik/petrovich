@@ -9,20 +9,22 @@ namespace Petrovich.Business
 {
     public interface IDataStructureService
     {
-        Task<BranchCollection> ListBranchesAsync();
+        Task<BranchCollection> ListBranchesAsync(int pageIndex, int pageSize);
         Task<Branch> CreateBranchAsync(Branch branch);
         Task<Branch> FindBranchAsync(Guid id);
         Task<Branch> UpdateBranchAsync(Branch branch);
         Task DeleteBranchAsync(Guid id);
+        Task<BranchCollection> ListAllBranchesAsync();
 
-        Task<CategoryCollection> ListCategoriesAsync();
+        Task<CategoryCollection> ListCategoriesAsync(int pageIndex, int pageSize);
         Task<Category> CreateCategoryAsync(Category category);
         Task<Category> FindCategoryAsync(Guid id);
         Task<Category> UpdateCategoryAsync(Category category);
         Task DeleteCategoryAsync(Guid id);
         Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId);
+        Task<CategoryCollection> ListAllCategoriesAsync();
 
-        Task<GroupCollection> ListGroupsAsync();
+        Task<GroupCollection> ListGroupsAsync(int pageIndex, int pageSize);
         Task<Group> CreateGroupAsync(Group group);
         Task<Group> FindGroupAsync(Guid id);
         Task<Group> UpdateGroupAsync(Group group);

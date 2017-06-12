@@ -10,6 +10,7 @@ namespace Petrovich.Repositories
         Task<TEntity> FindAsync(Guid id);
         Task<IList<TEntity>> ListAllAsync();
         Task<IList<TEntity>> ListAsync(int pageIndex, int pageSize);
+        Task<int> ListCountAsync();
 
         Task<TEntity> CreateAsync(TEntity entity);
 

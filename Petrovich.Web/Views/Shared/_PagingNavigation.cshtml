@@ -22,7 +22,7 @@
                 else
                 {
                     <li class="paginate_button previous">
-                        @Html.ActionLink("<", PetrovichRoutes.Logging.Index, new { page = Model.CurrentPage - 1 }, null)
+                        @Html.ActionLink("<", Model.Endpoint, new { page = Model.CurrentPage - 1 }, null)
                     </li>
                 }
 
@@ -38,7 +38,7 @@
                         }
                         else
                         {
-                            @Html.ActionLink(index.ToString(), PetrovichRoutes.Logging.Index, new { page = index }, null)
+                            @Html.ActionLink(index.ToString(), Model.Endpoint, new { page = index }, null)
                         }
                     </li>
                 }
@@ -52,7 +52,7 @@
                 else
                 {
                     <li class="paginate_button next">
-                        @Html.ActionLink(">", PetrovichRoutes.Logging.Index, new { page = Model.CurrentPage + 1 }, null)
+                        @Html.ActionLink(">", Model.Endpoint, new { page = Model.CurrentPage + 1 }, null)
                     </li>
 
                 }

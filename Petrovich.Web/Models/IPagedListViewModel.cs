@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Petrovich.Core.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,7 @@ namespace Petrovich.Web.Models
 
         int StartItem { get; set; }
         int LastItem { get; set; }
+
+        Endpoint Endpoint { get; set; }
     }
 }

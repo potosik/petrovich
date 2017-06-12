@@ -22,12 +22,15 @@ namespace Petrovich.Repositories.DataSources
             this.branchMapper = branchMapper ?? throw new ArgumentNullException(nameof(branchMapper));
         }
 
-        public async Task<BranchCollection> ListAsync()
+        public async Task<BranchCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
-                var branches = await branchRepository.ListAllAsync();
-                return branchMapper.ToBusinessEntityCollection(branches);
+                var branches = await branchRepository.ListAsync(pageIndex, pageSize);
+                var count = await branchRepository.ListCountAsync();
+                var collection = branchMapper.ToBusinessEntityCollection(branches);
+                collection.TotalCount = count;
+                return collection;
             }
             catch (EntityException ex)
             {
@@ -99,6 +102,19 @@ namespace Petrovich.Repositories.DataSources
             {
                 var targetBranch = await branchRepository.FindAsync(branch.BranchId);
                 await branchRepository.DeleteAsync(targetBranch);
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<BranchCollection> ListAllAsync()
+        {
+            try
+            {
+                var branches = await branchRepository.ListAllAsync();
+                return branchMapper.ToBusinessEntityCollection(branches);
             }
             catch (EntityException ex)
             {

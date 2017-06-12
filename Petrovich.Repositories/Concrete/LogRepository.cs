@@ -33,7 +33,7 @@ namespace Petrovich.Repositories.Concrete
             return await context.Logs.Where(item => item.Created >= minDate).OrderByDescending(item => item.Created).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<int> ListCountAsync()
+        public override async Task<int> ListCountAsync()
         {
             var minDate = GetMinLogDate();
             return await context.Logs.Where(item => item.Created >= minDate).CountAsync();

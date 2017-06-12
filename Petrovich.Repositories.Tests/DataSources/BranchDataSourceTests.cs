@@ -31,12 +31,12 @@ namespace Petrovich.Repositories.Tests.DataSources
         [Fact]
         public async Task ListAsync_WhenEntityExceptionThrown_ShouldThrowDatabseOperationException()
         {
-            branchRepositoryMock.Setup(repository => repository.ListAllAsync())
+            branchRepositoryMock.Setup(repository => repository.ListAsync(It.IsAny<int>(), It.IsAny<int>()))
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.ListAsync();
+                return dataSource.ListAsync(1, 1);
             });
         }
 
@@ -85,6 +85,18 @@ namespace Petrovich.Repositories.Tests.DataSources
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
                 return dataSource.DeleteAsync(new Business.Models.Branch());
+            });
+        }
+
+        [Fact]
+        public async Task ListAllAsync_WhenEntityExceptionThrown_ShouldThrowDatabseOperationException()
+        {
+            branchRepositoryMock.Setup(repository => repository.ListAllAsync())
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.ListAllAsync();
             });
         }
     }

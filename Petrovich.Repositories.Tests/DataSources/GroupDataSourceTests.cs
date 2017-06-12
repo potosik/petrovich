@@ -31,12 +31,12 @@ namespace Petrovich.Repositories.Tests.DataSources
         [Fact]
         public async Task ListAsync_WhenEntityExceptionThrown_ShouldThrowDatabseOperationException()
         {
-            groupRepositoryMock.Setup(repository => repository.ListAllAsync())
+            groupRepositoryMock.Setup(repository => repository.ListAsync(It.IsAny<int>(), It.IsAny<int>()))
                 .ThrowsAsync(new EntityException());
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.ListAsync();
+                return dataSource.ListAsync(1, 1);
             });
         }
 

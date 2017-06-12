@@ -4,6 +4,8 @@ namespace Petrovich.Business.Models
 {
     public class GroupCollection : List<Group>
     {
+        public int TotalCount { get; set; }
+
         public GroupCollection()
         {
         }
