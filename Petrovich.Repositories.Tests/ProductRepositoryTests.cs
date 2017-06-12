@@ -89,6 +89,38 @@ namespace Petrovich.Repositories.Tests
             Assert.Equal(0, result.Count);
         }
 
+        [Fact]
+        public async Task SearchFastAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var result = await productRepository.SearchFastAsync("ImpossibleToFind", 10);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task SearchFastAsync_WhenEntitiesFound_RetursList()
+        {
+            var result = await productRepository.SearchFastAsync("1", 10);
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+        }
+
+        [Fact]
+        public async Task SearchFastCountAsync_WhenEntitiesNotFound_ReturnsZero()
+        {
+            var result = await productRepository.SearchFastCountAsync("ImpossibleToFind");
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public async Task SearchFastCountAsync_WhenEntitiesFound_RetursCount()
+        {
+            var result = await productRepository.SearchFastCountAsync("1");
+            Assert.Equal(1, result);
+        }
+
         private static IEnumerable<Product> GetStubbedData()
         {
             return new List<Product>()

@@ -253,7 +253,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var categories = await CreateCategoriesSelectList(branchId);
-                return Json(categories, JsonRequestBehavior.AllowGet);
+                return JsonAllowGet(new JsonResponse(result: categories));
             }
             catch (BranchNotFoundException ex)
             {
@@ -272,7 +272,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return Json(new List<SelectListItem>(), JsonRequestBehavior.AllowGet);
+            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
         }
 
         [HttpGet]
@@ -281,7 +281,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var groups = await CreateGroupsSelectList(categoryId);
-                return Json(groups, JsonRequestBehavior.AllowGet);
+                return JsonAllowGet(new JsonResponse(result: groups));
             }
             catch (CategoryNotFoundException ex)
             {
@@ -300,7 +300,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return Json(new List<SelectListItem>(), JsonRequestBehavior.AllowGet);
+            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
         }
 
         private async Task<IList<SelectListItem>> CreateBranchesSelectList()

@@ -154,5 +154,15 @@ namespace Petrovich.Business.Services
             await logger.LogNoneAsync("ProductService.DeleteAsync: deleting product.");
             await productDataSource.DeleteAsync(product);
         }
+
+        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        {
+            if (String.IsNullOrWhiteSpace(query))
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            return await productDataSource.SearchFastAsync(query, count);
+        }
     }
 }

@@ -52,5 +52,11 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListAllBranchesEventId, elapsed.ToString(), "IBranchDataSource.ListAllAsync", message);
         }
+
+        internal void ProductSearchFast(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ProductSearchFastEventId, elapsed.ToString(), "IBranchDataSource.SearchFastAsync", message);
+        }
     }
 }

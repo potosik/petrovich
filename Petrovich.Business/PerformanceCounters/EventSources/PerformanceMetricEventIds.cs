@@ -47,5 +47,6 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int IsExistsProductsForCategoryEventId = 14006;
         public const int IsExistsProductsForGroupEventId = 14007;
         public const int GetNewInventoryNumberForProductEventId = 14008;
+        public const int ProductSearchFastEventId = 14009;
     }
 }

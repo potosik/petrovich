@@ -147,5 +147,21 @@ namespace Petrovich.Repositories.DataSources
                 throw new DatabaseOperationException(ex);
             }
         }
+
+        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        {
+            try
+            {
+                var products = await productRepository.SearchFastAsync(query, count);
+                var totalCount = await productRepository.SearchFastCountAsync(query);
+                var collection = productMapper.ToBusinessEntityCollection(products);
+                collection.TotalCount = totalCount;
+                return collection;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
     }
 }

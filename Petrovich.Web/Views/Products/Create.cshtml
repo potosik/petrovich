@@ -79,7 +79,10 @@
                         return false;
                     }
 
-                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetCategories)', { branchId: selectedBranch }, function (categories) {
+                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetCategories)', { branchId: selectedBranch }, function (response) {
+                        if (!response.Success) return;
+
+                        var categories = response.Result;
                         $.each(categories, function (index, category) {
                             var option = $('<option/>', { value: category.Value, text: category.Text });
                             categoriesSelect.append(option);
@@ -97,7 +100,10 @@
                         return false;
                     }
 
-                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetGroups)', { categoryId: selectedCategory }, function (groups) {
+                    $.getJSON('@Url.Action(PetrovichRoutes.Products.GetGroups)', { categoryId: selectedCategory }, function (response) {
+                        if (!response.Success) return;
+
+                        var groups = response.Result;
                         $.each(groups, function (index, group) {
                             var option = $('<option/>', { value: group.Value, text: group.Text });
                             groupsSelect.append(option);

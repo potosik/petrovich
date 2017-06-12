@@ -111,5 +111,17 @@ namespace Petrovich.Repositories.Tests.DataSources
                 return dataSource.IsExistsForGroupAsync(Guid.Empty);
             });
         }
+
+        [Fact]
+        public async Task SearchFastAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            productRepositoryMock.Setup(repository => repository.SearchFastAsync(It.IsAny<string>(), It.IsAny<int>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.SearchFastAsync(string.Empty, 0);
+            });
+        }
     }
 }

@@ -80,5 +80,13 @@ namespace Petrovich.Business.PerformanceCounters
                 return await innerDataSource.GetNewInventoryNumberAsync(categoryId);
             }
         }
+
+        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        {
+            using (new PerformanceMonitor(EventSource.ProductSearchFast, new { query, count }))
+            {
+                return await innerDataSource.SearchFastAsync(query, count);
+            }
+        }
     }
 }

@@ -209,5 +209,19 @@ namespace Petrovich.Business.Tests.Services
                 return productService.DeleteAsync(Guid.NewGuid());
             });
         }
+
+        [Fact]
+        public async Task SearchFastAsync_WhenQueryStringIsNullOrEmpty_ThrowsArgumentNullException()
+        {
+            await Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return productService.SearchFastAsync(null, 0);
+            });
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() =>
+            {
+                return productService.SearchFastAsync(String.Empty, 0);
+            });
+        }
     }
 }
