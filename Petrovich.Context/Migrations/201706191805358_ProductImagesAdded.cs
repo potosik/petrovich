@@ -7,7 +7,6 @@ namespace Petrovich.Context.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Products", "ImageFull", c => c.String());
             AddColumn("dbo.Products", "ImageDefault", c => c.String());
             AddColumn("dbo.Products", "ImageSmall", c => c.String());
         }
@@ -16,7 +15,6 @@ namespace Petrovich.Context.Migrations
         {
             DropColumn("dbo.Products", "ImageSmall");
             DropColumn("dbo.Products", "ImageDefault");
-            DropColumn("dbo.Products", "ImageFull");
         }
     }
 }

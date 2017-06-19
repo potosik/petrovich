@@ -83,6 +83,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ProductCreateViewModel model, HttpPostedFileBase file)
         {
             try
@@ -95,7 +96,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Description = model.Description,
 
-                        ImageFull = image.GetFullImageString(),
+                        ImageFull = image.GetFullImageByteArray(),
                         ImageDefault = image.GetDefaultImageString(),
                         ImageSmall = image.GetSmallImageString(),
 
@@ -180,6 +181,7 @@ namespace Petrovich.Web.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ProductEditViewModel model, HttpPostedFileBase file)
         {
             try
@@ -194,7 +196,7 @@ namespace Petrovich.Web.Controllers
                         Description = model.Description,
                         InventoryPart = model.InventoryPart,
 
-                        ImageFull = image.GetFullImageString() ?? model.ImageFull,
+                        ImageFull = image.GetFullImageByteArray() ?? model.ImageFull.FromBase64String(),
                         ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,
                         ImageSmall = image.GetSmallImageString() ?? model.ImageSmall,
 
@@ -247,6 +249,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             try

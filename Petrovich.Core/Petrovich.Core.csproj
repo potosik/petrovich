@@ -61,8 +61,10 @@
   <ItemGroup>
     <Compile Include="Composition\ICompositionModule.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Navigation\PetrovichRoutes.cs" />
     <Compile Include="Navigation\Endpoint.cs" />
     <Compile Include="Performance\PerformanceMonitor.cs" />

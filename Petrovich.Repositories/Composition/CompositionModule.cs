@@ -28,6 +28,7 @@ namespace Petrovich.Repositories.Composition
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IGroupRepository, GroupRepository>();
             container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IFullImageRepository, FullImageRepository>();
         }
     }
 }

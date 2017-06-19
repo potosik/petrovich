@@ -56,6 +56,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ApplicationUserCreateViewModel userModel)
         {
             if (ModelState.IsValid)
@@ -93,6 +94,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ApplicationUserEditViewModel userModel)
         {
             if (ModelState.IsValid)
@@ -124,6 +126,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             if (id.Equals(Guid.Empty))
@@ -147,6 +150,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Restore(Guid id)
         {
             if (id.Equals(Guid.Empty))

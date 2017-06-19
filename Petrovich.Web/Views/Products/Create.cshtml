@@ -11,7 +11,7 @@
     </div>
     <div class="x_content">
         <br>
-        @using (Html.BeginForm(PetrovichRoutes.Products.Create, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+        @using (Html.BeginForm(PetrovichRoutes.Products.Create, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })

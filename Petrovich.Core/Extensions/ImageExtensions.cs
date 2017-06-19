@@ -10,9 +10,9 @@ namespace Petrovich.Core.Extensions
 {
     public static class ImageExtensions
     {
-        public static string GetFullImageString(this Image image)
+        public static byte[] GetFullImageByteArray(this Image image)
         {
-            return ImageUtils.GetFullImageString(image);
+            return ImageUtils.GetFullImageByteArray(image);
         }
 
         public static string GetDefaultImageString(this Image image)

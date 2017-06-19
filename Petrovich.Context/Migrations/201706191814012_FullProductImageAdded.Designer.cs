@@ -7,13 +7,13 @@ namespace Petrovich.Context.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ProductImagesAdded : IMigrationMetadata
+    public sealed partial class FullProductImageAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ProductImagesAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FullProductImageAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706161149266_ProductImagesAdded"; }
+            get { return "201706191814012_FullProductImageAdded"; }
         }
         
         string IMigrationMetadata.Source

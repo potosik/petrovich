@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Petrovich.Business.Models;
+using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Models.Products
 {
@@ -69,7 +70,7 @@ namespace Petrovich.Web.Models.Products
                 Description = product.Description,
                 InventoryPart = product.InventoryPart,
 
-                ImageFull = product.ImageFull,
+                ImageFull = product.ImageFull.ToBase64String(),
                 ImageDefault = product.ImageDefault,
                 ImageSmall = product.ImageSmall,
 

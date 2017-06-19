@@ -69,6 +69,7 @@
     <Compile Include="Concrete\BaseRepostory.cs" />
     <Compile Include="Concrete\BranchRepository.cs" />
     <Compile Include="Concrete\CategoryRepository.cs" />
+    <Compile Include="Concrete\FullImageRepository.cs" />
     <Compile Include="Concrete\GroupRepository.cs" />
     <Compile Include="Concrete\LogRepository.cs" />
     <Compile Include="Concrete\ProductRepository.cs" />
@@ -80,10 +81,12 @@
     <Compile Include="IBaseRepository.cs" />
     <Compile Include="IBranchRepository.cs" />
     <Compile Include="ICategoryRepository.cs" />
+    <Compile Include="IFullImageRepository.cs" />
     <Compile Include="IGroupRepository.cs" />
     <Compile Include="ILogRepository.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="Mappers\Composition\CompositionModule.cs" />
+    <Compile Include="Mappers\Concrete\FullImageMapper.cs" />
     <Compile Include="Mappers\IBaseMapper.cs" />
     <Compile Include="Mappers\Concrete\BranchMapper.cs" />
     <Compile Include="Mappers\IBranchMapper.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Mappers\ICategoryMapper.cs" />
     <Compile Include="Mappers\Concrete\GroupMapper.cs" />
     <Compile Include="Mappers\IGroupMapper.cs" />
+    <Compile Include="Mappers\IFullImageMapper.cs" />
     <Compile Include="Mappers\ILogMapper.cs" />
     <Compile Include="Mappers\Concrete\ProductMapper.cs" />
     <Compile Include="Mappers\IProductMapper.cs" />

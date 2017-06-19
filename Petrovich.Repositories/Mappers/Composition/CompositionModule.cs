@@ -15,6 +15,7 @@ namespace Petrovich.Repositories.Mappers.Composition
             container.RegisterType<ICategoryMapper, CategoryMapper>();
             container.RegisterType<IGroupMapper, GroupMapper>();
             container.RegisterType<IProductMapper, ProductMapper>();
+            container.RegisterType<IFullImageMapper, FullImageMapper>();
         }
     }
 }

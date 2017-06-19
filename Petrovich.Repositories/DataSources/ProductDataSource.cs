@@ -15,12 +15,17 @@ namespace Petrovich.Repositories.DataSources
     public class ProductDataSource : IProductDataSource
     {
         private readonly IProductRepository productRepository;
+        private readonly IFullImageRepository fullImageRepository;
         private readonly IProductMapper productMapper;
+        private readonly IFullImageMapper fullImageMapper;
 
-        public ProductDataSource(IProductRepository productRepository, IProductMapper productMapper)
+        public ProductDataSource(IProductRepository productRepository, IFullImageRepository fullImageRepository, 
+            IProductMapper productMapper, IFullImageMapper fullImageMapper)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+            this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
             this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
+            this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
         }
 
         public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
@@ -44,6 +49,12 @@ namespace Petrovich.Repositories.DataSources
             try
             {
                 var contextProduct = productMapper.ToContextEntity(product);
+                if (product.ImageFull != null)
+                {
+                    var image = fullImageMapper.CreateContextEntity(product.ImageFull);
+                    contextProduct.FullImageId = (await fullImageRepository.CreateAsync(image)).FullImageId;
+                }
+
                 var newProduct = await productRepository.CreateAsync(contextProduct);
                 return productMapper.ToBusinessEntity(newProduct);
             }
@@ -75,11 +86,25 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.InventoryPart = product.InventoryPart;
-                targetProduct.ImageFull = product.ImageFull;
                 targetProduct.ImageDefault = product.ImageDefault;
                 targetProduct.ImageSmall = product.ImageSmall;
                 targetProduct.CategoryId = product.CategoryId;
                 targetProduct.GroupId = product.GroupId;
+
+                if (product.ImageFull != null)
+                {
+                    if (targetProduct.FullImageId.HasValue)
+                    {
+                        var image = await fullImageRepository.FindAsync(targetProduct.FullImageId.Value);
+                        image.Content = product.ImageFull;
+                        await fullImageRepository.UpdateAsync(image);
+                    }
+                    else
+                    {
+                        var image = fullImageMapper.CreateContextEntity(product.ImageFull);
+                        targetProduct.FullImageId = (await fullImageRepository.CreateAsync(image)).FullImageId;
+                    }
+                }
 
                 await productRepository.UpdateAsync(targetProduct);
                 return productMapper.ToBusinessEntity(targetProduct);

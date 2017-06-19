@@ -62,6 +62,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CategoryCreate(CategoryCreateViewModel model)
         {
             try
@@ -138,6 +139,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CategoryEdit(CategoryEditViewModel model)
         {
             try
@@ -187,6 +189,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CategoryDelete(Guid id)
         {
             try

@@ -20,6 +20,10 @@
             @Html.HiddenFor(m => m.CategoryId)
             @Html.HiddenFor(m => m.GroupId)
 
+            @Html.HiddenFor(m => m.ImageFull)
+            @Html.HiddenFor(m => m.ImageDefault)
+            @Html.HiddenFor(m => m.ImageSmall)
+
             <div class="form-group">
                 @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <span class="required">*</span>
@@ -44,7 +48,7 @@
                             </a>
                         </div>
                     }
-                    @Html.TextBox("file", "", new { @class = "form-control col-md-7 col-xs-12", type = "file", placeholder = "IMAGE" })
+                    @Html.TextBox("file", "", new { @class = "form-control col-md-7 col-xs-12", type = "file" })
                 </div>
             </div>
             <div class="ln_solid"></div>

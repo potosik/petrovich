@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Petrovich.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -12,22 +13,12 @@ namespace Petrovich.Core.Utils
 {
     public static class ImageUtils
     {
-        public static string GetFullImageString(Image image)
+        public static byte[] GetFullImageByteArray(Image image)
         {
-            return GetImageString(image, Constants.Base64Images.BigWidth, Constants.Base64Images.BigHeight);
+            return GetByteArray(image, Constants.Base64Images.BigWidth, Constants.Base64Images.BigHeight);
         }
 
-        public static string GetDefaultImageString(Image image)
-        {
-            return GetImageString(image, Constants.Base64Images.DefaultWidth, Constants.Base64Images.DefaultHeight);
-        }
-
-        public static string GetSmallImageString(Image image)
-        {
-            return GetImageString(image, Constants.Base64Images.SmallWidth, Constants.Base64Images.SmallHeight);
-        }
-
-        public static string GetImageString(Image image, int width, int height)
+        private static byte[] GetByteArray(Image image, int width, int height)
         {
             if (image == null)
             {
@@ -35,7 +26,16 @@ namespace Petrovich.Core.Utils
             }
 
             var sizedImage = ResizeImage(image, width, height);
-            return ToBase64String(sizedImage);
+            return ToByteArray(sizedImage);
+        }
+
+        private static byte[] ToByteArray(Bitmap image)
+        {
+            using (var stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Png);
+                return stream.ToArray();
+            }
         }
 
         private static Bitmap ResizeImage(Image image, int width, int height)
@@ -63,13 +63,19 @@ namespace Petrovich.Core.Utils
             return destImage;
         }
 
-        private static string ToBase64String(Bitmap image)
+        public static string GetDefaultImageString(Image image)
         {
-            using (var stream = new MemoryStream())
-            {
-                image.Save(stream, ImageFormat.Png);
-                return Convert.ToBase64String(stream.ToArray());
-            }
+            return GetImageString(image, Constants.Base64Images.DefaultWidth, Constants.Base64Images.DefaultHeight);
+        }
+
+        public static string GetSmallImageString(Image image)
+        {
+            return GetImageString(image, Constants.Base64Images.SmallWidth, Constants.Base64Images.SmallHeight);
+        }
+
+        public static string GetImageString(Image image, int width, int height)
+        {
+            return GetByteArray(image, width, height).ToBase64String();
         }
     }
 }
