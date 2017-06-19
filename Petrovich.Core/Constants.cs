@@ -19,5 +19,15 @@ namespace Petrovich.Core
         public const int ProductInventoryPartMaxValue = 99999;
         public const int ProductInventoryPartMaxCount = 99999;
         public const string ProductInventoryPartStringFormat = "D5";
+
+        public static class Base64Images
+        {
+            public const int BigWidth = 1024;
+            public const int BigHeight = 1024;
+            public const int DefaultWidth = 256;
+            public const int DefaultHeight = 256;
+            public const int SmallWidth = 64;
+            public const int SmallHeight = 64;
+        }
     }
 }

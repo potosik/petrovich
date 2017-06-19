@@ -14,6 +14,7 @@
         ChildGroupsExists = 400007,
         NoCategoryProductsSlots = 400008,
         ChildProductsExists = 400009,
+        InvalidImageFormat = 400010,
 
         LogNotFound = 404001,
         UserNotFound = 404002,
@@ -21,6 +22,7 @@
         CategoryNotFound = 404004,
         GroupNotFound = 404005,
         ProductNotFound = 404006,
+        ImageNotFound = 404007,
     }
 
 }

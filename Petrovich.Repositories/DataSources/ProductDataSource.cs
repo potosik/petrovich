@@ -75,6 +75,9 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.InventoryPart = product.InventoryPart;
+                targetProduct.ImageFull = product.ImageFull;
+                targetProduct.ImageDefault = product.ImageDefault;
+                targetProduct.ImageSmall = product.ImageSmall;
                 targetProduct.CategoryId = product.CategoryId;
                 targetProduct.GroupId = product.GroupId;
 
@@ -152,7 +155,9 @@ namespace Petrovich.Repositories.DataSources
         {
             try
             {
+                var a = DateTime.Now.ToString("o");
                 var products = await productRepository.SearchFastAsync(query, count);
+                var b = DateTime.Now.ToString("o");
                 var totalCount = await productRepository.SearchFastCountAsync(query);
                 var collection = productMapper.ToBusinessEntityCollection(products);
                 collection.TotalCount = totalCount;

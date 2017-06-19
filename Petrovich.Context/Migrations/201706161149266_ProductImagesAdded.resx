@@ -117,64 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Branch_InventoryPart_Changed_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Branch_InventoryPart_Duplicate_Error" xml:space="preserve">
-    <value>Раздел с данной частью инвентарного номера уже зарегистрирован.</value>
-  </data>
-  <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
-    <value>Часть инвентарного номера должна быть 2 символа.</value>
-  </data>
-  <data name="Category_BranchNotFound_Error" xml:space="preserve">
-    <value>Выбранный раздел не найден.</value>
-  </data>
-  <data name="Category_InventoryPart_Changed_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
-  </data>
-  <data name="Category_NoInventoryPartSlotsAvailable_Error" xml:space="preserve">
-    <value>Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию.</value>
-  </data>
-  <data name="Critical" xml:space="preserve">
-    <value>Критическая ошибка</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Ошибка</value>
-  </data>
-  <data name="Group_CategoryNotFound_Error" xml:space="preserve">
-    <value>Выбранная категория не найдена.</value>
-  </data>
-  <data name="Image_InvalidFormat_Error" xml:space="preserve">
-    <value>Неизвестный или недопустимый формат изображения.</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Информационный</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>Отсутсвует</value>
-  </data>
-  <data name="Password_LengthValidation_Error" xml:space="preserve">
-    <value>Пароль {0} должен содержать не менее {2} символов.</value>
-  </data>
-  <data name="Password_MatchConfirmPassword_Error" xml:space="preserve">
-    <value>Пароль и подтверждение пароля должны совпадать.</value>
-  </data>
-  <data name="Performance" xml:space="preserve">
-    <value>Производительность</value>
-  </data>
-  <data name="Product_BranchNotFound_Error" xml:space="preserve">
-    <value>Выбранный раздел не найден.</value>
-  </data>
-  <data name="Product_CategoryNotFound_Error" xml:space="preserve">
-    <value>Выбранная категория не найдена.</value>
-  </data>
-  <data name="Product_GroupNotFound_Error" xml:space="preserve">
-    <value>Выбранная группа не найдена.</value>
-  </data>
-  <data name="Product_InventoryChanged_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
-  </data>
-  <data name="Required_Field_Error" xml:space="preserve">
-    <value>Поле {0} обязательно для заполнения.</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

@@ -18,7 +18,7 @@ namespace Petrovich.Web.Controllers
     [Authorize]
     public class SearchController : BaseController
     {
-        private const int MaxFastResultsCount = 10;
+        private const int MaxFastResultsCount = 5;
 
         private readonly IProductService productService;
 

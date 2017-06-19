@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Models;
+using System.Web;
+using System.Drawing;
+using Petrovich.Web.Core.Extensions;
+using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Controllers
 {
@@ -79,16 +83,22 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(ProductCreateViewModel model)
+        public async Task<ActionResult> Create(ProductCreateViewModel model, HttpPostedFileBase file)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var image = file.GetImage();
                     var newProduct = new Product()
                     {
                         Title = model.Title,
                         Description = model.Description,
+
+                        ImageFull = image.GetFullImageString(),
+                        ImageDefault = image.GetDefaultImageString(),
+                        ImageSmall = image.GetSmallImageString(),
+
                         CategoryId = model.CategoryId,
                         GroupId = model.GroupId,
                     };
@@ -100,6 +110,11 @@ namespace Petrovich.Web.Controllers
                 model.Branches = await CreateBranchesSelectList();
                 model.Categories = await CreateCategoriesSelectList(model.BranchId);
                 model.Groups = await CreateGroupsSelectList(model.CategoryId);
+            }
+            catch (InvalidImageFormatException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Create invalid image format.", ex);
+                ModelState.AddModelError(typeof(InvalidImageFormatException).Name, Properties.Resources.Image_InvalidFormat_Error);
             }
             catch (BranchNotFoundException ex)
             {
@@ -165,19 +180,24 @@ namespace Petrovich.Web.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Edit(ProductEditViewModel model)
+        public async Task<ActionResult> Edit(ProductEditViewModel model, HttpPostedFileBase file)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var image = file.GetImage();
                     var product = new Product()
                     {
                         ProductId = model.ProductId,
                         Title = model.Title,
                         Description = model.Description,
                         InventoryPart = model.InventoryPart,
-                        
+
+                        ImageFull = image.GetFullImageString() ?? model.ImageFull,
+                        ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,
+                        ImageSmall = image.GetSmallImageString() ?? model.ImageSmall,
+
                         CategoryId = model.CategoryId,
                         GroupId = model.GroupId,
                     };
@@ -185,6 +205,11 @@ namespace Petrovich.Web.Controllers
                     await productService.UpdateAsync(product);
                     return RedirectToAction(PetrovichRoutes.Products.Index);
                 }
+            }
+            catch (InvalidImageFormatException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Edit invalid image format.", ex);
+                ModelState.AddModelError(typeof(InvalidImageFormatException).Name, Properties.Resources.Image_InvalidFormat_Error);
             }
             catch (ProductNotFoundException ex)
             {

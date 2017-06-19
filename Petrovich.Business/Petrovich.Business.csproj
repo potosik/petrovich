@@ -79,6 +79,8 @@
     <Compile Include="Exceptions\ErrorCode.cs" />
     <Compile Include="Exceptions\BranchNotFoundException.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
+    <Compile Include="Exceptions\ImageNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidImageFormatException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\NoBranchCategoriesSlotsException.cs" />
     <Compile Include="Exceptions\NoCategoryProductsSlotsException.cs" />

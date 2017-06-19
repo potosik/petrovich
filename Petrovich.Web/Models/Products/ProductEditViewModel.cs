@@ -29,6 +29,15 @@ namespace Petrovich.Web.Models.Products
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
+        
+        [Display(Name = "Фотография")]
+        public string ImageFull { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string ImageDefault { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string ImageSmall { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Инвентарный номер")]
@@ -59,6 +68,10 @@ namespace Petrovich.Web.Models.Products
                 Title = product.Title,
                 Description = product.Description,
                 InventoryPart = product.InventoryPart,
+
+                ImageFull = product.ImageFull,
+                ImageDefault = product.ImageDefault,
+                ImageSmall = product.ImageSmall,
 
                 BranchTitle = product.BranchTitle,
 

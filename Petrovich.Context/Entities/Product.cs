@@ -18,6 +18,10 @@ namespace Petrovich.Context.Entities
         [Range(Constants.ProductInventoryPartMinValue, Constants.ProductInventoryPartMaxValue, ErrorMessageResourceName = "Product_InventoryPart_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public int InventoryPart { get; set; }
 
+        public string ImageFull { get; set; }
+        public string ImageDefault { get; set; }
+        public string ImageSmall { get; set; }
+
         [Index]
         public Guid CategoryId { get; set; }
         [ForeignKey("CategoryId")]

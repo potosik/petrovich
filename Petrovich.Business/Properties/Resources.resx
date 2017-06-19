@@ -150,6 +150,9 @@
   <data name="E400009" xml:space="preserve">
     <value>Child products exists for branch '{0}'.</value>
   </data>
+  <data name="E400010" xml:space="preserve">
+    <value>Image format is not supported for file '{0}'.</value>
+  </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
   </data>
@@ -167,5 +170,8 @@
   </data>
   <data name="E404006" xml:space="preserve">
     <value>Product '{0}' not found.</value>
+  </data>
+  <data name="E404007" xml:space="preserve">
+    <value>Image not found for {0} '{1}'.</value>
   </data>
 </root>

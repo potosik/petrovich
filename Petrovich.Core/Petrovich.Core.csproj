@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,6 +62,7 @@
     <Compile Include="Composition\ICompositionModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Navigation\PetrovichRoutes.cs" />
     <Compile Include="Navigation\Endpoint.cs" />
     <Compile Include="Performance\PerformanceMonitor.cs" />
@@ -74,6 +76,7 @@
     </Compile>
     <Compile Include="Utils\ClaimUtils.cs" />
     <Compile Include="Utils\EnumUtils.cs" />
+    <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\LocalizationUtils.cs" />
   </ItemGroup>
   <ItemGroup>

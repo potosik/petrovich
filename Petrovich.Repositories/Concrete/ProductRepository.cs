@@ -37,7 +37,8 @@ namespace Petrovich.Repositories.Concrete
 
         public async Task<IList<Product>> SearchFastAsync(string query, int count)
         {
-            return await context.Products.Where(item => item.Title.IndexOf(query) > -1).ToListAsync().ConfigureAwait(false);
+            var q = context.Products.Where(item => item.Title.Contains(query)).OrderByDescending(item => item.Modified).Take(count);
+            return await context.Products.Where(item => item.Title.Contains(query)).Take(count).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<int> SearchFastCountAsync(string query)

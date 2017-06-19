@@ -142,6 +142,15 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Неизвестный или недопустимый формат изображения..
+        /// </summary>
+        internal static string Image_InvalidFormat_Error {
+            get {
+                return ResourceManager.GetString("Image_InvalidFormat_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Информационный.
         /// </summary>
         internal static string Information {

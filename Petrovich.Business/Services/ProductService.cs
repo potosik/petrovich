@@ -164,5 +164,16 @@ namespace Petrovich.Business.Services
 
             return await productDataSource.SearchFastAsync(query, count);
         }
+
+        public async Task<string> FindImageAsync(Guid id)
+        {
+            var product = await FindAsync(id);
+            if (String.IsNullOrWhiteSpace(product.ImageFull))
+            {
+                throw new ImageNotFoundException(ImageNotFoundException.ObjectType.Product, id);
+            }
+
+            return product.ImageFull;
+        }
     }
 }
