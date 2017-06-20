@@ -154,5 +154,26 @@ namespace Petrovich.Business.Services
             await logger.LogNoneAsync("ProductService.DeleteAsync: deleting product.");
             await productDataSource.DeleteAsync(product);
         }
+
+        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        {
+            if (String.IsNullOrWhiteSpace(query))
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            return await productDataSource.SearchFastAsync(query, count);
+        }
+
+        public async Task<string> FindImageAsync(Guid id)
+        {
+            //var product = await FindAsync(id);
+            //if (String.IsNullOrWhiteSpace(product.ImageFull))
+            //{
+            //    throw new ImageNotFoundException(ImageNotFoundException.ObjectType.Product, id);
+            //}
+
+            return null;//product.ImageFull;
+        }
     }
 }

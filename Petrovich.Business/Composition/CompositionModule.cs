@@ -18,6 +18,7 @@ namespace Petrovich.Business.Composition
         {
             container.RegisterType<IDataStructureService, DataStructureService>();
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IFullImageService, FullImageService>();
 
             container.RegisterType<ILogDataSource, LogPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(ILogDataSource), "LogDataSource")));
             container.RegisterType<IBranchDataSource, BranchPerformanceCounter>(new InjectionConstructor(
@@ -31,6 +32,9 @@ namespace Petrovich.Business.Composition
                 new ResolvedParameter(typeof(ILoggingService))));
             container.RegisterType<IProductDataSource, ProductPerformanceCounter>(new InjectionConstructor(
                 new ResolvedParameter(typeof(IProductDataSource), "ProductDataSource"),
+                new ResolvedParameter(typeof(ILoggingService))));
+            container.RegisterType<IFullImageDataSource, FullImagePerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(IFullImageDataSource), "FullImageDataSource"),
                 new ResolvedParameter(typeof(ILoggingService))));
         }
     }

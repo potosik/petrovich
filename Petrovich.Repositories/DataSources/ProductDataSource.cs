@@ -15,12 +15,19 @@ namespace Petrovich.Repositories.DataSources
     public class ProductDataSource : IProductDataSource
     {
         private readonly IProductRepository productRepository;
+        //private readonly IFullImageRepository fullImageRepository;
         private readonly IProductMapper productMapper;
+        //private readonly IFullImageMapper fullImageMapper;
+        private readonly IFullImageDataSource fullImageDataSource;
 
-        public ProductDataSource(IProductRepository productRepository, IProductMapper productMapper)
+        public ProductDataSource(IProductRepository productRepository,/* IFullImageRepository fullImageRepository, */
+            IProductMapper productMapper/*, IFullImageMapper fullImageMapper*/, IFullImageDataSource fullImageDataSource)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
+            //this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
             this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
+            //this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
+            this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
         }
 
         public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
@@ -44,6 +51,11 @@ namespace Petrovich.Repositories.DataSources
             try
             {
                 var contextProduct = productMapper.ToContextEntity(product);
+                if (product.ImageFull != null)
+                {
+                    contextProduct.FullImageId = await fullImageDataSource.CreateAsync(product.ImageFull);
+                }
+
                 var newProduct = await productRepository.CreateAsync(contextProduct);
                 return productMapper.ToBusinessEntity(newProduct);
             }
@@ -75,8 +87,15 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.InventoryPart = product.InventoryPart;
+                targetProduct.ImageDefault = product.ImageDefault;
+                targetProduct.ImageSmall = product.ImageSmall;
                 targetProduct.CategoryId = product.CategoryId;
                 targetProduct.GroupId = product.GroupId;
+
+                if (product.ImageFull != null)
+                {
+                    targetProduct.FullImageId = await fullImageDataSource.UpdateOrCreateAsync(product.ImageFull, targetProduct.FullImageId);
+                }
 
                 await productRepository.UpdateAsync(targetProduct);
                 return productMapper.ToBusinessEntity(targetProduct);
@@ -141,6 +160,24 @@ namespace Petrovich.Repositories.DataSources
                 }
 
                 return null;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        {
+            try
+            {
+                var a = DateTime.Now.ToString("o");
+                var products = await productRepository.SearchFastAsync(query, count);
+                var b = DateTime.Now.ToString("o");
+                var totalCount = await productRepository.SearchFastCountAsync(query);
+                var collection = productMapper.ToBusinessEntityCollection(products);
+                collection.TotalCount = totalCount;
+                return collection;
             }
             catch (EntityException ex)
             {

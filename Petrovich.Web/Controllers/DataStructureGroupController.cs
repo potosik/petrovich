@@ -62,6 +62,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> GroupCreate(GroupCreateViewModel model)
         {
             try
@@ -133,6 +134,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> GroupEdit(GroupEditViewModel model)
         {
             try
@@ -176,6 +178,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> GroupDelete(Guid id)
         {
             try

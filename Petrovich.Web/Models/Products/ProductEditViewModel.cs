@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Petrovich.Business.Models;
+using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Models.Products
 {
@@ -29,6 +30,17 @@ namespace Petrovich.Web.Models.Products
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
+
+        public Guid? ImageFullId { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string ImageFull { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string ImageDefault { get; set; }
+
+        [Display(Name = "Фотография")]
+        public string ImageSmall { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Инвентарный номер")]
@@ -59,6 +71,12 @@ namespace Petrovich.Web.Models.Products
                 Title = product.Title,
                 Description = product.Description,
                 InventoryPart = product.InventoryPart,
+
+                ImageFullId = product.ImageFullId,
+                ImageFull = product.ImageFull.ToBase64String(),
+
+                ImageDefault = product.ImageDefault,
+                ImageSmall = product.ImageSmall,
 
                 BranchTitle = product.BranchTitle,
 

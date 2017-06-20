@@ -70,6 +70,7 @@
     <Compile Include="Entities\Base\BaseEntity.cs" />
     <Compile Include="Entities\Base\IChangeTrackableEntity.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\FullImage.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -84,6 +85,14 @@
     <Compile Include="Migrations\201706061847285_ProductDescriptionAdded.cs" />
     <Compile Include="Migrations\201706061847285_ProductDescriptionAdded.Designer.cs">
       <DependentUpon>201706061847285_ProductDescriptionAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706191805358_ProductImagesAdded.cs" />
+    <Compile Include="Migrations\201706191805358_ProductImagesAdded.Designer.cs">
+      <DependentUpon>201706191805358_ProductImagesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706191814012_FullProductImageAdded.cs" />
+    <Compile Include="Migrations\201706191814012_FullProductImageAdded.Designer.cs">
+      <DependentUpon>201706191814012_FullProductImageAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
@@ -112,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706061847285_ProductDescriptionAdded.resx">
       <DependentUpon>201706061847285_ProductDescriptionAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706191805358_ProductImagesAdded.resx">
+      <DependentUpon>201706191805358_ProductImagesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706191814012_FullProductImageAdded.resx">
+      <DependentUpon>201706191814012_FullProductImageAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Logging;
 using Petrovich.Core.Navigation;
+using Petrovich.Web.Models;
 using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -68,6 +69,11 @@ namespace Petrovich.Web.Core.Controllers
         {
             await logger.LogCriticalAsync(ex);
             return CreateInternalServerErrorResponse();
+        }
+
+        protected JsonResult JsonAllowGet(JsonResponse response)
+        {
+            return Json(response, JsonRequestBehavior.AllowGet);
         }
     }
 }

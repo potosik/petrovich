@@ -64,6 +64,7 @@
     <Compile Include="Composition\CompositionModule.cs" />
     <Compile Include="Data\IBranchDataSource.cs" />
     <Compile Include="Data\ICategoryDataSource.cs" />
+    <Compile Include="Data\IFullImageDataSource.cs" />
     <Compile Include="Data\IGroupDataSource.cs" />
     <Compile Include="Data\ILogDataSource.cs" />
     <Compile Include="Data\IProductDataSource.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Exceptions\ErrorCode.cs" />
     <Compile Include="Exceptions\BranchNotFoundException.cs" />
     <Compile Include="Exceptions\GroupNotFoundException.cs" />
+    <Compile Include="Exceptions\FullImageNotFoundException.cs" />
+    <Compile Include="Exceptions\InvalidImageFormatException.cs" />
     <Compile Include="Exceptions\LogNotFoundException.cs" />
     <Compile Include="Exceptions\NoBranchCategoriesSlotsException.cs" />
     <Compile Include="Exceptions\NoCategoryProductsSlotsException.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Exceptions\ProductNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
     <Compile Include="IDataStructureService.cs" />
+    <Compile Include="IFullImageService.cs" />
     <Compile Include="IProductService.cs" />
     <Compile Include="Logging\Composition\CompositionModule.cs" />
     <Compile Include="Logging\ILoggingService.cs" />
@@ -105,12 +109,14 @@
     <Compile Include="Models\ProductCollection.cs" />
     <Compile Include="PerformanceCounters\BranchPerformanceCounter.cs" />
     <Compile Include="PerformanceCounters\CategoryPerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\EventSources\FullImageEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\GroupEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\CategoryEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\ProductEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\PerformanceEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\BranchEventSource.cs" />
     <Compile Include="PerformanceCounters\EventSources\PerformanceMetricEventIds.cs" />
+    <Compile Include="PerformanceCounters\FullImagePerformanceCounter.cs" />
     <Compile Include="PerformanceCounters\GroupPerformanceCounter.cs" />
     <Compile Include="PerformanceCounters\LogPerformanceCounter.cs" />
     <Compile Include="PerformanceCounters\PerformanceCounterBase.cs" />
@@ -123,6 +129,7 @@
     </Compile>
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DataStructureService.cs" />
+    <Compile Include="Services\FullImageService.cs" />
     <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>

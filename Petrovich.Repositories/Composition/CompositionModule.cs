@@ -22,12 +22,14 @@ namespace Petrovich.Repositories.Composition
             container.RegisterType<ICategoryDataSource, CategoryDataSource>("CategoryDataSource");
             container.RegisterType<IGroupDataSource, GroupDataSource>("GroupDataSource");
             container.RegisterType<IProductDataSource, ProductDataSource>("ProductDataSource");
+            container.RegisterType<IFullImageDataSource, FullImageDataSource>("FullImageDataSource");
 
             container.RegisterType<ILogRepository, LogRepository>();
             container.RegisterType<IBranchRepository, BranchRepository>();
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IGroupRepository, GroupRepository>();
             container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IFullImageRepository, FullImageRepository>();
         }
     }
 }

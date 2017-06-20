@@ -47,5 +47,11 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int IsExistsProductsForCategoryEventId = 14006;
         public const int IsExistsProductsForGroupEventId = 14007;
         public const int GetNewInventoryNumberForProductEventId = 14008;
+        public const int ProductSearchFastEventId = 14009;
+
+        // fullimage #15
+        public const int CreateFullImageEventId = 15001;
+        public const int UpdateOrCreateFullImageEventId = 15002;
+        public const int FindFullImageEventId = 15003;
     }
 }

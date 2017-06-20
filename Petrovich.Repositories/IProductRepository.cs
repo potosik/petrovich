@@ -10,5 +10,7 @@ namespace Petrovich.Repositories
         Task<bool> IsExistsForCategoryAsync(Guid categoryId);
         Task<bool> IsExistsForGroupAsync(Guid groupId);
         Task<IList<int>> ListUsedInventoryPartsAsync(Guid categoryId);
+        Task<IList<Product>> SearchFastAsync(string query, int count);
+        Task<int> SearchFastCountAsync(string query);
     }
 }

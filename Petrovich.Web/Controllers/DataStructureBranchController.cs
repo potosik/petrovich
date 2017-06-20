@@ -60,6 +60,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> BranchCreate(BranchCreateViewModel model)
         {
             try
@@ -129,6 +130,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> BranchEdit(BranchEditViewModel model)
         {
             try
@@ -177,6 +179,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> BranchDelete(Guid id)
         {
             try

@@ -160,6 +160,15 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image format is not supported for file &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400010 {
+            get {
+                return ResourceManager.GetString("E400010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {
@@ -210,6 +219,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404006 {
             get {
                 return ResourceManager.GetString("E404006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404007 {
+            get {
+                return ResourceManager.GetString("E404007", resourceCulture);
             }
         }
     }

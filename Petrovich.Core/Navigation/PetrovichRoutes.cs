@@ -54,6 +54,13 @@
             public static Endpoint BadRequest = new Endpoint(Controller, "BadRequest");
         }
 
+        public static class Images
+        {
+            private const string Controller = "Images";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+        }
+
         public static class Logging
         {
             private const string Controller = "Logging";
@@ -72,6 +79,14 @@
             public static Endpoint Delete = new Endpoint(Controller, "Delete");
             public static Endpoint GetCategories = new Endpoint(Controller, "GetCategories");
             public static Endpoint GetGroups = new Endpoint(Controller, "GetGroups");
+            public static Endpoint Details = new Endpoint(Controller, "Details");
+        }
+
+        public static class Search
+        {
+            private const string Controller = "Search";
+
+            public static Endpoint Fast = new Endpoint(Controller, "Fast");
         }
 
         public static class UserManagement

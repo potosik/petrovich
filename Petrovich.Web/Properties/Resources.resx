@@ -144,6 +144,9 @@
   <data name="Group_CategoryNotFound_Error" xml:space="preserve">
     <value>Выбранная категория не найдена.</value>
   </data>
+  <data name="Image_InvalidFormat_Error" xml:space="preserve">
+    <value>Неизвестный или недопустимый формат изображения.</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Информационный</value>
   </data>

@@ -24,7 +24,7 @@
             <div class="top_nav">
                 @Html.Partial("Layout/TopNavigation")
             </div>
-            
+
             <div class="right_col" role="main">
                 <div class="@ViewBag.PageClass">
                     <div class="page-title">
@@ -34,7 +34,7 @@
                         <div class="title_right">
                             <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Поиск...">
+                                    <input id="searchBox" type="text" class="form-control" placeholder="Поиск продуктов...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -62,10 +62,47 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @Scripts.Render("~/bundles/common")
+
+    <script type="text/javascript">
+        (function () {
+            window._pageData = {
+                fastSearchUri: '@Url.Action(PetrovichRoutes.Search.Fast)',
+                fastSearchMinLength: 2,
+                defaultDebounce: 500,
+                noImageUri: '@Url.Content("~/Content/img/no-image.png")',
+            }
+        })();
+    </script>
     
     @Scripts.Render("~/bundles/theme")
     @Scripts.Render("~/bundles/petrovich")
 
     @RenderSection("scripts", required: false)
+
+    <script id="searchBoxItemTemplate" type="x-tmpl-mustache">
+        <div class="fastsearch-item-wrapper">
+            <div class="fastsearch-item">
+                <div class="fs-image">
+                    {{ #ImageSmall }}
+                        @Html.Partial("_Base64Image", "{{ ImageSmall }}")
+                    {{ /ImageSmall }}
+                    {{ ^ImageSmall }}
+                        <img src="{{ ImageSmallUri }}" />
+                    {{ /ImageSmall }}
+                </div>
+                <div class="fs-information">
+                    <div class="fs-header">
+                        <h4>
+                            {{ Title }}
+                            <small>{{ InventoryNumber }}</small>
+                        </h4>
+                    </div>
+                    <div class="fs-structure">
+                        <small>{{ BranchTitle }} / {{ CategoryTitle }} {{ GroupInformation }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
 </body>
 </html>

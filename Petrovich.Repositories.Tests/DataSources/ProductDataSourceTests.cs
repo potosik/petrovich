@@ -17,6 +17,7 @@ namespace Petrovich.Repositories.Tests.DataSources
     {
         private readonly Mock<IProductRepository> productRepositoryMock;
         private readonly Mock<IProductMapper> productMapperMock;
+        private readonly Mock<IFullImageDataSource> fullImageDataSourceMock;
 
         private readonly IProductDataSource dataSource;
 
@@ -24,8 +25,9 @@ namespace Petrovich.Repositories.Tests.DataSources
         {
             productRepositoryMock = new Mock<IProductRepository>();
             productMapperMock = new Mock<IProductMapper>();
+            fullImageDataSourceMock = new Mock<IFullImageDataSource>();
 
-            dataSource = new ProductDataSource(productRepositoryMock.Object, productMapperMock.Object);
+            dataSource = new ProductDataSource(productRepositoryMock.Object, productMapperMock.Object, fullImageDataSourceMock.Object);
         }
 
         [Fact]
@@ -109,6 +111,18 @@ namespace Petrovich.Repositories.Tests.DataSources
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
                 return dataSource.IsExistsForGroupAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task SearchFastAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            productRepositoryMock.Setup(repository => repository.SearchFastAsync(It.IsAny<string>(), It.IsAny<int>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.SearchFastAsync(string.Empty, 0);
             });
         }
     }

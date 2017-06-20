@@ -14,6 +14,10 @@ using System.Collections.Generic;
 using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Models;
+using System.Web;
+using System.Drawing;
+using Petrovich.Web.Core.Extensions;
+using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Controllers
 {
@@ -79,16 +83,23 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(ProductCreateViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(ProductCreateViewModel model, HttpPostedFileBase file)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var image = file.GetImage();
                     var newProduct = new Product()
                     {
                         Title = model.Title,
                         Description = model.Description,
+
+                        ImageFull = image.GetFullImageByteArray(),
+                        ImageDefault = image.GetDefaultImageString(),
+                        ImageSmall = image.GetSmallImageString(),
+
                         CategoryId = model.CategoryId,
                         GroupId = model.GroupId,
                     };
@@ -100,6 +111,11 @@ namespace Petrovich.Web.Controllers
                 model.Branches = await CreateBranchesSelectList();
                 model.Categories = await CreateCategoriesSelectList(model.BranchId);
                 model.Groups = await CreateGroupsSelectList(model.CategoryId);
+            }
+            catch (InvalidImageFormatException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Create invalid image format.", ex);
+                ModelState.AddModelError(typeof(InvalidImageFormatException).Name, Properties.Resources.Image_InvalidFormat_Error);
             }
             catch (BranchNotFoundException ex)
             {
@@ -165,19 +181,25 @@ namespace Petrovich.Web.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> Edit(ProductEditViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ProductEditViewModel model, HttpPostedFileBase file)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    var image = file.GetImage();
                     var product = new Product()
                     {
                         ProductId = model.ProductId,
                         Title = model.Title,
                         Description = model.Description,
                         InventoryPart = model.InventoryPart,
-                        
+
+                        ImageFull = image.GetFullImageByteArray() ?? model.ImageFull.FromBase64String(),
+                        ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,
+                        ImageSmall = image.GetSmallImageString() ?? model.ImageSmall,
+
                         CategoryId = model.CategoryId,
                         GroupId = model.GroupId,
                     };
@@ -185,6 +207,11 @@ namespace Petrovich.Web.Controllers
                     await productService.UpdateAsync(product);
                     return RedirectToAction(PetrovichRoutes.Products.Index);
                 }
+            }
+            catch (InvalidImageFormatException ex)
+            {
+                await logger.LogInformationAsync($"ProductsController.Edit invalid image format.", ex);
+                ModelState.AddModelError(typeof(InvalidImageFormatException).Name, Properties.Resources.Image_InvalidFormat_Error);
             }
             catch (ProductNotFoundException ex)
             {
@@ -222,6 +249,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(Guid id)
         {
             try
@@ -253,7 +281,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var categories = await CreateCategoriesSelectList(branchId);
-                return Json(categories, JsonRequestBehavior.AllowGet);
+                return JsonAllowGet(new JsonResponse(result: categories));
             }
             catch (BranchNotFoundException ex)
             {
@@ -272,7 +300,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return Json(new List<SelectListItem>(), JsonRequestBehavior.AllowGet);
+            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
         }
 
         [HttpGet]
@@ -281,7 +309,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var groups = await CreateGroupsSelectList(categoryId);
-                return Json(groups, JsonRequestBehavior.AllowGet);
+                return JsonAllowGet(new JsonResponse(result: groups));
             }
             catch (CategoryNotFoundException ex)
             {
@@ -300,7 +328,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return Json(new List<SelectListItem>(), JsonRequestBehavior.AllowGet);
+            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
         }
 
         private async Task<IList<SelectListItem>> CreateBranchesSelectList()

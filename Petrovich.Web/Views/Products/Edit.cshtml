@@ -4,14 +4,14 @@
     ViewBag.Title = "Редактирование продукта";
 }
 
-<div class="x_panel">
+<div class="x_panel product-edit">
     <div class="x_title">
         <h2>@ViewBag.Title <small>редактирование существующего продукта</small></h2>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
         <br>
-        @using (Html.BeginForm(PetrovichRoutes.Products.Edit, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+        @using (Html.BeginForm(PetrovichRoutes.Products.Edit, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype="multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -19,6 +19,11 @@
             @Html.HiddenFor(m => m.InventoryPart)
             @Html.HiddenFor(m => m.CategoryId)
             @Html.HiddenFor(m => m.GroupId)
+
+            @Html.HiddenFor(m => m.ImageFullId)
+            @Html.HiddenFor(m => m.ImageFull)
+            @Html.HiddenFor(m => m.ImageDefault)
+            @Html.HiddenFor(m => m.ImageSmall)
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
@@ -31,6 +36,20 @@
                 @Html.LabelFor(m => m.Description, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Название" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ImageDefault, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" }) 
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @if(!String.IsNullOrWhiteSpace(Model.ImageDefault) && Model.ImageFullId.HasValue)
+                    {
+                        <div class="preview">
+                            <a href="@Url.Action(PetrovichRoutes.Images.Index, new { id = Model.ImageFullId })" target="_blank">
+                                @Html.Partial("_Base64Image", Model.ImageDefault)
+                            </a>
+                        </div>
+                    }
+                    @Html.TextBox("file", "", new { @class = "form-control col-md-7 col-xs-12", type = "file" })
                 </div>
             </div>
             <div class="ln_solid"></div>

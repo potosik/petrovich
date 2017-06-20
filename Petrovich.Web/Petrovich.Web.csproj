@@ -190,8 +190,10 @@
     <Compile Include="Controllers\DataStructureGroupController.cs" />
     <Compile Include="Controllers\DataStructureCategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Core\Attributes\LayoutInjecterAttribute.cs" />
     <Compile Include="Core\Attributes\LoggableActionsAttribute.cs" />
@@ -199,7 +201,9 @@
     <Compile Include="Core\Controllers\IdentityController.cs" />
     <Compile Include="Core\Extensions\ClaimsExtensions.cs" />
     <Compile Include="Core\Extensions\ControllerExtensions.cs" />
+    <Compile Include="Core\Extensions\EndpointExtension.cs" />
     <Compile Include="Core\Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Core\Extensions\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Core\Extensions\IIdentityExtensions.cs" />
     <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\ViewContextExtensions.cs" />
@@ -220,11 +224,13 @@
     <Compile Include="Models\DataStructure\GroupViewModel.cs" />
     <Compile Include="Models\IChangeTrackableViewModel.cs" />
     <Compile Include="Models\IPagedListViewModel.cs" />
+    <Compile Include="Models\JsonResponse.cs" />
     <Compile Include="Models\Logging\LogViewModel.cs" />
     <Compile Include="Models\PagedListViewModel.cs" />
     <Compile Include="Models\Products\ProductCreateViewModel.cs" />
     <Compile Include="Models\Products\ProductEditViewModel.cs" />
     <Compile Include="Models\Products\ProductViewModel.cs" />
+    <Compile Include="Models\Search\ProductFastViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserCreateViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserViewModel.cs" />
     <Compile Include="Models\UserManagement\ApplicationUserEditViewModel.cs" />
@@ -247,6 +253,7 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\jquery-ui.min.css" />
     <Content Include="Content\css\petrovich.css">
       <DependentUpon>petrovich.less</DependentUpon>
     </Content>
@@ -261,7 +268,14 @@
     </Content>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\jquery-ui\ui-icons_444444_256x240.png" />
+    <Content Include="Content\img\jquery-ui\ui-icons_555555_256x240.png" />
+    <Content Include="Content\img\jquery-ui\ui-icons_777620_256x240.png" />
+    <Content Include="Content\img\jquery-ui\ui-icons_777777_256x240.png" />
+    <Content Include="Content\img\jquery-ui\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\img\jquery-ui\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\no-image.png" />
     <Content Include="Content\img\profile.png" />
     <Content Include="Content\js\petrovich.min.js">
       <DependentUpon>petrovich.js</DependentUpon>
@@ -275,6 +289,10 @@
     <Content Include="Content\js\theme.js" />
     <Content Include="Content\js\vendor\jquery.js" />
     <Content Include="Content\js\vendor\jquery.min.js" />
+    <Content Include="Content\js\vendor\jquery-ui.min.js" />
+    <Content Include="Content\js\vendor\jquery-ui.js" />
+    <Content Include="Content\js\vendor\mustache.js" />
+    <Content Include="Content\js\vendor\mustache.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -292,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -372,6 +391,10 @@
     <Content Include="Views\DataStructure\CategoryChildProductsExists.cshtml" />
     <Content Include="Views\DataStructure\GroupChildProductsExists.cshtml" />
     <Content Include="Views\Shared\_PagingNavigation.cshtml" />
+    <Content Include="Content\css\Petrovich\FastSearch.less" />
+    <Content Include="Views\Shared\_Base64Image.cshtml" />
+    <Content Include="Content\css\Petrovich\Product.less" />
+    <Content Include="Views\Images\FullSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
