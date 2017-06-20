@@ -75,6 +75,7 @@
     <Compile Include="Concrete\ProductRepository.cs" />
     <Compile Include="DataSources\BranchDataSource.cs" />
     <Compile Include="DataSources\CategoryDataSource.cs" />
+    <Compile Include="DataSources\FullImageDataSource.cs" />
     <Compile Include="DataSources\GroupDataSource.cs" />
     <Compile Include="DataSources\LogDataSource.cs" />
     <Compile Include="DataSources\ProductDataSource.cs" />

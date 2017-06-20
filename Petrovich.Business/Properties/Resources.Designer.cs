@@ -223,7 +223,7 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Image not found for {0} &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Image &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404007 {
             get {

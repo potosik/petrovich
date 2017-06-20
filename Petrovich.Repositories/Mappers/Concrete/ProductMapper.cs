@@ -21,7 +21,9 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
 
-                //ImageFull = entity.ImageFull,
+                ImageFullId = entity.Image?.FullImageId,
+                ImageFull = entity.Image?.Content,
+
                 ImageDefault = entity.ImageDefault,
                 ImageSmall = entity.ImageSmall,
 
@@ -57,7 +59,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
 
-                //ImageFull = entity.ImageFull,
+                FullImageId = entity.ImageFullId,
                 ImageDefault = entity.ImageDefault,
                 ImageSmall = entity.ImageSmall,
 

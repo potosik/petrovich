@@ -30,7 +30,9 @@ namespace Petrovich.Web.Models.Products
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
-        
+
+        public Guid? ImageFullId { get; set; }
+
         [Display(Name = "Фотография")]
         public string ImageFull { get; set; }
 
@@ -70,7 +72,9 @@ namespace Petrovich.Web.Models.Products
                 Description = product.Description,
                 InventoryPart = product.InventoryPart,
 
+                ImageFullId = product.ImageFullId,
                 ImageFull = product.ImageFull.ToBase64String(),
+
                 ImageDefault = product.ImageDefault,
                 ImageSmall = product.ImageSmall,
 

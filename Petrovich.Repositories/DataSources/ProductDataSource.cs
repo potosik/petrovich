@@ -15,17 +15,19 @@ namespace Petrovich.Repositories.DataSources
     public class ProductDataSource : IProductDataSource
     {
         private readonly IProductRepository productRepository;
-        private readonly IFullImageRepository fullImageRepository;
+        //private readonly IFullImageRepository fullImageRepository;
         private readonly IProductMapper productMapper;
-        private readonly IFullImageMapper fullImageMapper;
+        //private readonly IFullImageMapper fullImageMapper;
+        private readonly IFullImageDataSource fullImageDataSource;
 
-        public ProductDataSource(IProductRepository productRepository, IFullImageRepository fullImageRepository, 
-            IProductMapper productMapper, IFullImageMapper fullImageMapper)
+        public ProductDataSource(IProductRepository productRepository,/* IFullImageRepository fullImageRepository, */
+            IProductMapper productMapper/*, IFullImageMapper fullImageMapper*/, IFullImageDataSource fullImageDataSource)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-            this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
+            //this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
             this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
-            this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
+            //this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
+            this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
         }
 
         public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
@@ -51,8 +53,7 @@ namespace Petrovich.Repositories.DataSources
                 var contextProduct = productMapper.ToContextEntity(product);
                 if (product.ImageFull != null)
                 {
-                    var image = fullImageMapper.CreateContextEntity(product.ImageFull);
-                    contextProduct.FullImageId = (await fullImageRepository.CreateAsync(image)).FullImageId;
+                    contextProduct.FullImageId = await fullImageDataSource.CreateAsync(product.ImageFull);
                 }
 
                 var newProduct = await productRepository.CreateAsync(contextProduct);
@@ -93,17 +94,7 @@ namespace Petrovich.Repositories.DataSources
 
                 if (product.ImageFull != null)
                 {
-                    if (targetProduct.FullImageId.HasValue)
-                    {
-                        var image = await fullImageRepository.FindAsync(targetProduct.FullImageId.Value);
-                        image.Content = product.ImageFull;
-                        await fullImageRepository.UpdateAsync(image);
-                    }
-                    else
-                    {
-                        var image = fullImageMapper.CreateContextEntity(product.ImageFull);
-                        targetProduct.FullImageId = (await fullImageRepository.CreateAsync(image)).FullImageId;
-                    }
+                    targetProduct.FullImageId = await fullImageDataSource.UpdateOrCreateAsync(product.ImageFull, targetProduct.FullImageId);
                 }
 
                 await productRepository.UpdateAsync(targetProduct);

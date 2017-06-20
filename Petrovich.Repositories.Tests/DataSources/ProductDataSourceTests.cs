@@ -16,20 +16,18 @@ namespace Petrovich.Repositories.Tests.DataSources
     public class ProductDataSourceTests
     {
         private readonly Mock<IProductRepository> productRepositoryMock;
-        private readonly Mock<IFullImageRepository> fullImageRepositoryMock;
         private readonly Mock<IProductMapper> productMapperMock;
-        private readonly Mock<IFullImageMapper> fullImageMapperMock;
+        private readonly Mock<IFullImageDataSource> fullImageDataSourceMock;
 
         private readonly IProductDataSource dataSource;
 
         public ProductDataSourceTests()
         {
             productRepositoryMock = new Mock<IProductRepository>();
-            fullImageRepositoryMock = new Mock<IFullImageRepository>();
             productMapperMock = new Mock<IProductMapper>();
-            fullImageMapperMock = new Mock<IFullImageMapper>();
+            fullImageDataSourceMock = new Mock<IFullImageDataSource>();
 
-            dataSource = new ProductDataSource(productRepositoryMock.Object, fullImageRepositoryMock.Object, productMapperMock.Object, fullImageMapperMock.Object);
+            dataSource = new ProductDataSource(productRepositoryMock.Object, productMapperMock.Object, fullImageDataSourceMock.Object);
         }
 
         [Fact]

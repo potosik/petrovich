@@ -22,7 +22,7 @@
         CategoryNotFound = 404004,
         GroupNotFound = 404005,
         ProductNotFound = 404006,
-        ImageNotFound = 404007,
+        FullImageNotFound = 404007,
     }
 
 }

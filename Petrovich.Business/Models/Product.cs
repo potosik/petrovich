@@ -11,7 +11,9 @@ namespace Petrovich.Business.Models
         public string Description { get; set; }
         public int InventoryPart { get; set; }
 
+        public Guid? ImageFullId { get; set; }
         public byte[] ImageFull { get; set; }
+
         public string ImageDefault { get; set; }
         public string ImageSmall { get; set; }
 

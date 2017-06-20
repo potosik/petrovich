@@ -78,6 +78,7 @@
     <Compile Include="CategoryRepositoryTests.cs" />
     <Compile Include="DataSources\BranchDataSourceTests.cs" />
     <Compile Include="DataSources\CategoryDataSourceTests.cs" />
+    <Compile Include="DataSources\FullImageDataSourceTests.cs" />
     <Compile Include="DataSources\GroupDataSourceTests.cs" />
     <Compile Include="DataSources\LogDataSourceTests.cs" />
     <Compile Include="DataSources\ProductDataSourceTests.cs" />

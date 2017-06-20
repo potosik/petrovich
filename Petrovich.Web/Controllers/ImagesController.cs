@@ -9,6 +9,7 @@ using Petrovich.Business.Logging;
 using Petrovich.Web.Core.Attributes;
 using Petrovich.Business.Exceptions;
 using Petrovich.Business;
+using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Controllers
 {
@@ -16,35 +17,27 @@ namespace Petrovich.Web.Controllers
     [Authorize]
     public class ImagesController : BaseController
     {
-        private readonly IProductService productService;
+        private readonly IFullImageService fullImageService;
 
-        public ImagesController(IProductService productService, ILoggingService logger) 
+        public ImagesController(IFullImageService fullImageService, ILoggingService logger) 
             : base(logger)
         {
-            this.productService = productService;
+            this.fullImageService = fullImageService;
         }
 
         [LayoutInjecter("_LayoutEmptyWhite")]
-        public async Task<ActionResult> Product(Guid id)
+        public async Task<ActionResult> Index(Guid id)
         {
             try
             {
-                var image = await productService.FindImageAsync(id);
-                return View("FullSize", model: image);
-            }
-            catch (ImageNotFoundException ex)
-            {
-                return await CreateNotFoundResponseAsync(ex);
+                var image = await fullImageService.FindAsync(id);
+                return View("FullSize", model: image.ToBase64String());
             }
             catch (ArgumentOutOfRangeException ex)
             {
                 return await CreateBadRequestResponseAsync(ex);
             }
-            catch (ArgumentNullException ex)
-            {
-                return await CreateBadRequestResponseAsync(ex);
-            }
-            catch (ProductNotFoundException ex)
+            catch (FullImageNotFoundException ex)
             {
                 return await CreateNotFoundResponseAsync(ex);
             }

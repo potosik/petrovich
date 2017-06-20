@@ -69,6 +69,7 @@
     <Compile Include="ErrorCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DataStructureServiceTests.cs" />
+    <Compile Include="Services\FullImageServiceTests.cs" />
     <Compile Include="Services\ProductServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
