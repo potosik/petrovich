@@ -43,6 +43,7 @@
                                     <td>
                                         @using (Html.BeginForm(PetrovichRoutes.Products.Delete, new { id = item.ProductId }, FormMethod.Post, null))
                                         {
+                                            @Html.AntiForgeryToken()
                                             <div class="btn-group" role="group">
                                                 <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = item.ProductId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
