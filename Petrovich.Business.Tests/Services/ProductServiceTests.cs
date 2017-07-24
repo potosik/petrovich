@@ -91,6 +91,23 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
+        public async Task CreateAsync_WhenPurchaseYearIsNotSpecified_PurchaseMonthSouldBeNull()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
+            productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Product>()))
+                .ReturnsAsync(new Models.Product());
+
+            var result = await productService.CreateAsync(new Models.Product() { PurchaseMonth = 1 });
+
+            Assert.NotNull(result);
+            Assert.Null(result.PurchaseYear);
+            Assert.Null(result.PurchaseMonth);
+        }
+
+        [Fact]
         public async Task FindAsync_WhenProductIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>

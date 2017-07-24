@@ -15,18 +15,13 @@ namespace Petrovich.Repositories.DataSources
     public class ProductDataSource : IProductDataSource
     {
         private readonly IProductRepository productRepository;
-        //private readonly IFullImageRepository fullImageRepository;
         private readonly IProductMapper productMapper;
-        //private readonly IFullImageMapper fullImageMapper;
         private readonly IFullImageDataSource fullImageDataSource;
 
-        public ProductDataSource(IProductRepository productRepository,/* IFullImageRepository fullImageRepository, */
-            IProductMapper productMapper/*, IFullImageMapper fullImageMapper*/, IFullImageDataSource fullImageDataSource)
+        public ProductDataSource(IProductRepository productRepository, IProductMapper productMapper, IFullImageDataSource fullImageDataSource)
         {
             this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-            //this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
             this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
-            //this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
             this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
         }
 
