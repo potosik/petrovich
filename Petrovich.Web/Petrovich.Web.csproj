@@ -395,6 +395,7 @@
     <Content Include="Views\Shared\_Base64Image.cshtml" />
     <Content Include="Content\css\Petrovich\Product.less" />
     <Content Include="Views\Images\FullSize.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

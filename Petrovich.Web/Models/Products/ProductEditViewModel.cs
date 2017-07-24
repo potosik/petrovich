@@ -31,6 +31,14 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
+        [Display(Name = "Год закупки")]
+        [Range(2000, 2100, ErrorMessageResourceName = "Product_PurchaseYear_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        public int? PurchaseYear { get; set; }
+
+        [Display(Name = "Месяц закупки")]
+        [Range(1, 12, ErrorMessageResourceName = "Product_PurchaseMonth_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        public int? PurchaseMonth { get; set; }
+
         public Guid? ImageFullId { get; set; }
 
         [Display(Name = "Фотография")]
@@ -71,6 +79,9 @@ namespace Petrovich.Web.Models.Products
                 Title = product.Title,
                 Description = product.Description,
                 InventoryPart = product.InventoryPart,
+
+                PurchaseYear = product.PurchaseYear,
+                PurchaseMonth = product.PurchaseMonth,
 
                 ImageFullId = product.ImageFullId,
                 ImageFull = product.ImageFull.ToBase64String(),

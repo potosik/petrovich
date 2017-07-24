@@ -35,7 +35,19 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Название" })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Описание" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PurchaseYear, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(m => m.PurchaseYear, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Год закупки" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.PurchaseMonth, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(m => m.PurchaseMonth, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Месяц закупки" })
                 </div>
             </div>
             <div class="form-group">

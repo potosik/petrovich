@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201706191814012_FullProductImageAdded.Designer.cs">
       <DependentUpon>201706191814012_FullProductImageAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707241013014_PurchasingProductInformation.cs" />
+    <Compile Include="Migrations\201707241013014_PurchasingProductInformation.Designer.cs">
+      <DependentUpon>201707241013014_PurchasingProductInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706191814012_FullProductImageAdded.resx">
       <DependentUpon>201706191814012_FullProductImageAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707241013014_PurchasingProductInformation.resx">
+      <DependentUpon>201707241013014_PurchasingProductInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -96,6 +96,9 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Description = model.Description,
 
+                        PurchaseYear = model.PurchaseYear,
+                        PurchaseMonth = model.PurchaseMonth,
+
                         ImageFull = image.GetFullImageByteArray(),
                         ImageDefault = image.GetDefaultImageString(),
                         ImageSmall = image.GetSmallImageString(),
@@ -195,6 +198,9 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Description = model.Description,
                         InventoryPart = model.InventoryPart,
+
+                        PurchaseYear = model.PurchaseYear,
+                        PurchaseMonth = model.PurchaseMonth,
 
                         ImageFull = image.GetFullImageByteArray() ?? model.ImageFull.FromBase64String(),
                         ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,

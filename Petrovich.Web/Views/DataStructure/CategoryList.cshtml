@@ -32,13 +32,14 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.InventoryPart)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.InventoryPartString)</td>
                                     <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Created)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Modified)</td>
                                     <td>
                                         @using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryDelete, new { id = item.CategoryId }, FormMethod.Post, null))
                                         {
+                                            @Html.AntiForgeryToken()
                                             <div class="btn-group" role="group">
                                                 <a href="@Url.Action(PetrovichRoutes.DataStructure.CategoryEdit, new { id = item.CategoryId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

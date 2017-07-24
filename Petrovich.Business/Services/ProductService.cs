@@ -67,6 +67,8 @@ namespace Petrovich.Business.Services
             }
 
             product.InventoryPart = inventoryPartValue.Value;
+            ValidatePurchasingInformation(product);
+
             await logger.LogNoneAsync("ProductService.CreateAsync: creating new product.");
             return await productDataSource.CreateAsync(product);
         }
@@ -131,6 +133,8 @@ namespace Petrovich.Business.Services
                 throw new ProductInventoryPartChangedException(product.ProductId);
             }
 
+            ValidatePurchasingInformation(product);
+
             await logger.LogNoneAsync("ProductService.UpdateAsync: updating product.");
             return await productDataSource.UpdateAsync(product);
         }
@@ -174,6 +178,14 @@ namespace Petrovich.Business.Services
             //}
 
             return null;//product.ImageFull;
+        }
+        
+        private void ValidatePurchasingInformation(Product product)
+        {
+            if (!product.PurchaseYear.HasValue)
+            {
+                product.PurchaseMonth = null;
+            }
         }
     }
 }

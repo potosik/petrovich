@@ -22,6 +22,11 @@ namespace Petrovich.Context.Entities
         public string ImageSmall { get; set; }
 
         [Index]
+        public int? PurchaseYear { get; set; }
+        [Index]
+        public int? PurchaseMonth { get; set; }
+
+        [Index]
         public Guid CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }

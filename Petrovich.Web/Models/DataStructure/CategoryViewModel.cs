@@ -21,6 +21,7 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid CategoryId { get; set; }
         public string Title { get; set; }
         public int InventoryPart { get; set; }
+        public string InventoryPartString { get { return InventoryPart.ToString("D2"); } }
         public string BranchTitle { get; set; }
 
         public static CategoryViewModel Create(Category category)

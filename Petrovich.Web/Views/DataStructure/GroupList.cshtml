@@ -37,6 +37,7 @@
                                     <td>
                                         @using (Html.BeginForm(PetrovichRoutes.DataStructure.GroupDelete, new { id = item.GroupId }, FormMethod.Post, null))
                                         {
+                                            @Html.AntiForgeryToken()
                                             <div class="btn-group" role="group">
                                                 <a href="@Url.Action(PetrovichRoutes.DataStructure.GroupEdit, new { id = item.GroupId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

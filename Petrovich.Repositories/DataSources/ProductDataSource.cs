@@ -87,6 +87,8 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.InventoryPart = product.InventoryPart;
+                targetProduct.PurchaseYear = product.PurchaseYear;
+                targetProduct.PurchaseMonth = product.PurchaseMonth;
                 targetProduct.ImageDefault = product.ImageDefault;
                 targetProduct.ImageSmall = product.ImageSmall;
                 targetProduct.CategoryId = product.CategoryId;

@@ -232,6 +232,24 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Месяц закупки должен быть в диапазоне от {0} до {1}..
+        /// </summary>
+        internal static string Product_PurchaseMonth_Range_Error {
+            get {
+                return ResourceManager.GetString("Product_PurchaseMonth_Range_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Год закупки должен быть в диапазоне от {0} до {1}..
+        /// </summary>
+        internal static string Product_PurchaseYear_Range_Error {
+            get {
+                return ResourceManager.GetString("Product_PurchaseYear_Range_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Поле {0} обязательно для заполнения..
         /// </summary>
         internal static string Required_Field_Error {

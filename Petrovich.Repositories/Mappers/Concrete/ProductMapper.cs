@@ -21,6 +21,9 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
 
+                PurchaseYear = entity.PurchaseYear,
+                PurchaseMonth = entity.PurchaseMonth,
+
                 ImageFullId = entity.Image?.FullImageId,
                 ImageFull = entity.Image?.Content,
 
@@ -58,6 +61,9 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Title = entity.Title,
                 Description = entity.Description,
                 InventoryPart = entity.InventoryPart,
+
+                PurchaseYear = entity.PurchaseYear,
+                PurchaseMonth = entity.PurchaseMonth,
 
                 FullImageId = entity.ImageFullId,
                 ImageDefault = entity.ImageDefault,
