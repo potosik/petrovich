@@ -14,11 +14,13 @@ namespace Petrovich.Web.Models.Products
     {
         public ProductEditViewModel()
         {
+            Groups = new List<SelectListItem>();
         }
 
         public ProductEditViewModel(IChangeTrackableEntity entity) 
             : base(entity)
         {
+            Groups = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -64,7 +66,9 @@ namespace Petrovich.Web.Models.Products
 
         [Display(Name = "Группа")]
         public Guid? GroupId { get; set; }
-        public string GroupTitle { get; set; }
+
+        public IList<SelectListItem> Groups { get; set; }
+
 
         public static ProductEditViewModel Create(Product product)
         {
@@ -95,7 +99,6 @@ namespace Petrovich.Web.Models.Products
                 CategoryTitle = product.CategoryTitle,
 
                 GroupId = product.GroupId,
-                GroupTitle = product.GroupTitle,
             };
         }
     }

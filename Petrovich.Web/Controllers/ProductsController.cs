@@ -158,6 +158,7 @@ namespace Petrovich.Web.Controllers
             {
                 var product = await productService.FindAsync(id);
                 var model = ProductEditViewModel.Create(product);
+                model.Groups = await CreateGroupsSelectList(product.CategoryId);
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -251,6 +252,7 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
+            model.Groups = await CreateGroupsSelectList(model.CategoryId);
             return View(model);
         }
 
