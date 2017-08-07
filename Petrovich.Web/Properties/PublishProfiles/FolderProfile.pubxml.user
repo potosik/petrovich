@@ -305,7 +305,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/24/2017 13:55:40</publishTime>
     </File>
     <File Include="Content/css/petrovich.css">
-      <publishTime>07/24/2017 13:55:40</publishTime>
+      <publishTime>07/25/2017 11:02:54</publishTime>
     </File>
     <File Include="Content/css/petrovich.less">
       <publishTime>07/24/2017 13:55:40</publishTime>
@@ -329,13 +329,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/css/theme.css">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>07/25/2017 11:02:55</publishTime>
     </File>
     <File Include="Content/css/theme.less">
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/css/theme.min.css">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>07/25/2017 11:02:55</publishTime>
     </File>
     <File Include="Content/fonts/fontawesome-webfont.eot">
       <publishTime>05/23/2017 21:37:39</publishTime>
@@ -398,16 +398,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/js/petrovich.js">
-      <publishTime>07/24/2017 13:55:40</publishTime>
+      <publishTime>07/25/2017 11:03:08</publishTime>
     </File>
     <File Include="Content/js/petrovich.min.js">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>07/25/2017 11:02:56</publishTime>
     </File>
     <File Include="Content/js/theme.js">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>07/25/2017 11:02:57</publishTime>
     </File>
     <File Include="Content/js/theme.min.js">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>07/25/2017 11:02:57</publishTime>
     </File>
     <File Include="Content/js/vendor/bootstrap.js">
       <publishTime>05/23/2017 21:37:39</publishTime>
