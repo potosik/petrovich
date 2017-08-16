@@ -121,6 +121,42 @@ namespace Petrovich.Repositories.Tests
             Assert.Equal(1, result);
         }
 
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var result = await productRepository.ListByCategoryIdAsync(Guid.Empty);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntitiesFound_ReturnsList()
+        {
+            var result = await productRepository.ListByCategoryIdAsync(new Guid("fb24ca7d-7ad1-4e39-83a1-f5ed2d72431d"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+        }
+
+        [Fact]
+        public async Task ListByGroupIdAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var result = await productRepository.ListByGroupIdAsync(Guid.Empty);
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ListByGroupIdAsync_WhenEntitiesFound_ReturnsList()
+        {
+            var result = await productRepository.ListByGroupIdAsync(new Guid("34440db9-3c4b-4e6d-b162-d2fe2ea862e7"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+        }
+
         private static IEnumerable<Product> GetStubbedData()
         {
             return new List<Product>()

@@ -10,7 +10,7 @@ using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Models.Products
 {
-    public class ProductEditViewModel : BaseViewModel
+    public class ProductEditViewModel : ChangeTrackableViewModel
     {
         public ProductEditViewModel()
         {

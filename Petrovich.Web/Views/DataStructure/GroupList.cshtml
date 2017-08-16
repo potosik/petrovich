@@ -27,6 +27,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (!Model.Items.Any())
+                            {
+                                <tr>
+                                    <td colspan="3">Нет элементов для отображения</td>
+                                </tr>
+                            }
+
                             @foreach (var item in Model.Items)
                             {
                                 <tr>

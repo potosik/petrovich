@@ -12,5 +12,7 @@ namespace Petrovich.Repositories
         Task<IList<int>> ListUsedInventoryPartsAsync(Guid categoryId);
         Task<IList<Product>> SearchFastAsync(string query, int count);
         Task<int> SearchFastCountAsync(string query);
+        Task<IList<Product>> ListByCategoryIdAsync(Guid categoryId);
+        Task<IList<Product>> ListByGroupIdAsync(Guid groupId);
     }
 }

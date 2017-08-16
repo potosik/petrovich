@@ -8,17 +8,21 @@
 <div class="x_panel product-details">
     <div class="x_title x_navigation">
         <small>
-            <a href="#@Model.BranchId">@Model.BranchTitle</a>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Branches)">Разделы</a>
         </small>
         <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
         <small>
-            <a href="#@Model.CategoryId">@Model.CategoryTitle</a>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Categories, new { branchId = Model.BranchId })">@Model.BranchTitle</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Groups, new { branchId = Model.BranchId, categoryId = Model.CategoryId })">@Model.CategoryTitle</a>
         </small>
         @if (Model.GroupId.HasValue)
         {
             <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
             <small>
-                <a href="#@Model.GroupId">@Model.GroupTitle</a>
+                <a href="@Url.Action(PetrovichRoutes.Manager.Products, new { branchId = Model.BranchId, categoryId = Model.CategoryId, groupId = Model.GroupId })">@Model.GroupTitle</a>
             </small>
         }
         <div class="clearfix"></div>

@@ -168,17 +168,6 @@ namespace Petrovich.Business.Services
 
             return await productDataSource.SearchFastAsync(query, count);
         }
-
-        public async Task<string> FindImageAsync(Guid id)
-        {
-            //var product = await FindAsync(id);
-            //if (String.IsNullOrWhiteSpace(product.ImageFull))
-            //{
-            //    throw new ImageNotFoundException(ImageNotFoundException.ObjectType.Product, id);
-            //}
-
-            return null;//product.ImageFull;
-        }
         
         private void ValidatePurchasingInformation(Product product)
         {
@@ -186,6 +175,46 @@ namespace Petrovich.Business.Services
             {
                 product.PurchaseMonth = null;
             }
+        }
+
+        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        {
+            if (categoryId == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"ProductService.ListByCategoryIdAsync: categoryId parameter is {categoryId}.");
+                throw new ArgumentOutOfRangeException(nameof(categoryId));
+            }
+
+            await logger.LogNoneAsync($"ProductService.ListByCategoryIdAsync: trying to get category by id ({categoryId}).");
+            var category = await categoryDataSource.FindAsync(categoryId);
+            if (category == null)
+            {
+                await logger.LogInformationAsync($"ProductService.ListByCategoryIdAsync: category not found - {categoryId}.");
+                throw new CategoryNotFoundException(categoryId);
+            }
+
+            await logger.LogNoneAsync($"ProductService.ListByCategoryIdAsync: listing products by category '{category.CategoryId}'");
+            return await productDataSource.ListByCategoryIdAsync(category.CategoryId);
+        }
+
+        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        {
+            if (groupId == Guid.Empty)
+            {
+                await logger.LogInformationAsync($"ProductService.ListByGroupIdAsync: groupId parameter is {groupId}.");
+                throw new ArgumentOutOfRangeException(nameof(groupId));
+            }
+
+            await logger.LogNoneAsync($"ProductService.ListByGroupIdAsync: trying to get group by id ({groupId}).");
+            var group = await groupDataSource.FindAsync(groupId);
+            if (group == null)
+            {
+                await logger.LogInformationAsync($"ProductService.ListByGroupIdAsync: group not found - {groupId}.");
+                throw new GroupNotFoundException(groupId);
+            }
+
+            await logger.LogNoneAsync($"ProductService.ListByGroupIdAsync: listing products by category '{group.GroupId}'");
+            return await productDataSource.ListByGroupIdAsync(group.GroupId);
         }
     }
 }

@@ -1,3 +1,10 @@
 ﻿@model System.String
 
-<img src="data:image/png;base64,@Model" />
+@if (String.IsNullOrWhiteSpace(Model))
+{
+    <img src="@Url.Content("~/Content/img/no-image.png")" />
+}
+else
+{
+    <img src="data:image/png;base64,@Model" />
+}

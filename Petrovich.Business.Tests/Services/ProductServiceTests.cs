@@ -240,5 +240,41 @@ namespace Petrovich.Business.Tests.Services
                 return productService.SearchFastAsync(String.Empty, 0);
             });
         }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenCategoryIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return productService.ListByCategoryIdAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenCategoryNotFound_ThrowsCategoryNotFoundException()
+        {
+            await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
+            {
+                return productService.ListByCategoryIdAsync(Guid.NewGuid());
+            });
+        }
+
+        [Fact]
+        public async Task ListByGroupIdAsync_WhenGroupIdIsEmpty_ThrowsArgumentOutOfRangeException()
+        {
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
+            {
+                return productService.ListByGroupIdAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task ListByGroupIdAsync_WhenGroupNotFound_ThrowsGroupNotFoundException()
+        {
+            await Assert.ThrowsAsync<GroupNotFoundException>(() =>
+            {
+                return productService.ListByGroupIdAsync(Guid.NewGuid());
+            });
+        }
     }
 }

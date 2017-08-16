@@ -168,12 +168,38 @@ namespace Petrovich.Repositories.DataSources
         {
             try
             {
-                var a = DateTime.Now.ToString("o");
                 var products = await productRepository.SearchFastAsync(query, count);
-                var b = DateTime.Now.ToString("o");
                 var totalCount = await productRepository.SearchFastCountAsync(query);
                 var collection = productMapper.ToBusinessEntityCollection(products);
                 collection.TotalCount = totalCount;
+                return collection;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        {
+            try
+            {
+                var products = await productRepository.ListByCategoryIdAsync(categoryId);
+                var collection = productMapper.ToBusinessEntityCollection(products);
+                return collection;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        {
+            try
+            {
+                var products = await productRepository.ListByGroupIdAsync(groupId);
+                var collection = productMapper.ToBusinessEntityCollection(products);
                 return collection;
             }
             catch (EntityException ex)

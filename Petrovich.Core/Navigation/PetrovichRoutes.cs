@@ -73,6 +73,10 @@
         {
             private const string Controller = "Manager";
 
+            public static Endpoint Branches = new Endpoint(Controller, "Branches");
+            public static Endpoint Categories = new Endpoint(Controller, "Categories");
+            public static Endpoint Groups = new Endpoint(Controller, "Groups");
+            public static Endpoint Products = new Endpoint(Controller, "Products");
             public static Endpoint ProductDetails = new Endpoint(Controller, "ProductDetails");
         }
 

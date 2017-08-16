@@ -59,5 +59,23 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.GetNewInventoryNumberForProductEventId, elapsed.ToString(), "IProductDataSource.GetNewInventoryNumberAsync", message);
         }
+
+        public void ProductSearchFast(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ProductSearchFastEventId, elapsed.ToString(), "IBranchDataSource.SearchFastAsync", message);
+        }
+
+        public void ListProductsByCategoryId(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListProductsByCategoryIdEventId, elapsed.ToString(), "IBranchDataSource.ListByCategoryIdAsync", message);
+        }
+
+        public void ListProductsByGroupId(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListProductsByGroupIdEventId, elapsed.ToString(), "IBranchDataSource.ListByGroupIdAsync", message);
+        }
     }
 }

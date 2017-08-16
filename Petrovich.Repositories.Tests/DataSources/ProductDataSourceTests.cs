@@ -125,5 +125,29 @@ namespace Petrovich.Repositories.Tests.DataSources
                 return dataSource.SearchFastAsync(string.Empty, 0);
             });
         }
+
+        [Fact]
+        public async Task ListByCategoryIdAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            productRepositoryMock.Setup(repository => repository.ListByCategoryIdAsync(It.IsAny<Guid>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.ListByCategoryIdAsync(Guid.Empty);
+            });
+        }
+
+        [Fact]
+        public async Task ListByGroupIdAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
+        {
+            productRepositoryMock.Setup(repository => repository.ListByGroupIdAsync(It.IsAny<Guid>()))
+                .ThrowsAsync(new EntityException());
+
+            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
+            {
+                return dataSource.ListByGroupIdAsync(Guid.Empty);
+            });
+        }
     }
 }

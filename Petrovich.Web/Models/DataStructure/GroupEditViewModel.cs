@@ -8,7 +8,7 @@ using Petrovich.Business.Models;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class GroupEditViewModel : BaseViewModel
+    public class GroupEditViewModel : ChangeTrackableViewModel
     {
         public GroupEditViewModel()
         {

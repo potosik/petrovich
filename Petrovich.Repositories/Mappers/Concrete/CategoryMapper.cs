@@ -20,6 +20,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 InventoryPart = entity.InventoryPart,
                 BranchId = entity.BranchId,
                 BranchTitle = entity.Branch?.Title,
+                BranchInventoryPart = entity.Branch?.InventoryPart,
                 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,

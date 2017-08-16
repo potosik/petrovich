@@ -88,5 +88,21 @@ namespace Petrovich.Business.PerformanceCounters
                 return await innerDataSource.SearchFastAsync(query, count);
             }
         }
+
+        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        {
+            using (new PerformanceMonitor(EventSource.ListProductsByCategoryId, new { categoryId }))
+            {
+                return await innerDataSource.ListByCategoryIdAsync(categoryId);
+            }
+        }
+
+        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        {
+            using (new PerformanceMonitor(EventSource.ListProductsByGroupId, new { groupId }))
+            {
+                return await innerDataSource.ListByGroupIdAsync(groupId);
+            }
+        }
     }
 }

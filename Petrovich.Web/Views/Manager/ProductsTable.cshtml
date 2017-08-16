@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Petrovich.Web.Models.Manager.ProductViewModel>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Название</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="3">Нет элементов для отображения</td>
+            </tr>
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = item.ProductId })">@item.Title</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

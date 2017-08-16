@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class CategoryViewModel : BaseViewModel
+    public class CategoryViewModel : ChangeTrackableViewModel
     {
         public CategoryViewModel()
         {
