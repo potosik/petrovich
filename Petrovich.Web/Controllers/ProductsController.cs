@@ -22,7 +22,7 @@ using Petrovich.Core.Extensions;
 namespace Petrovich.Web.Controllers
 {
     [LoggableActions]
-    [ClaimsAuthorize(Claims = new[] { PermissionClaims.ProductsAdmin })]
+    [ClaimsAuthorize(Claims = new[] { PermissionClaims.ProductsAdmin, PermissionClaims.PowerAdmin })]
     public class ProductsController : BaseController
     {
         private readonly IProductService productService;

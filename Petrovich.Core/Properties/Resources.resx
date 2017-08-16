@@ -120,6 +120,9 @@
   <data name="DataStructureAdmin" xml:space="preserve">
     <value>Управление структурой продуктов</value>
   </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Менеджер заявок</value>
+  </data>
   <data name="PowerAdmin" xml:space="preserve">
     <value>Супер администратор</value>
   </data>

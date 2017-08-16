@@ -30,6 +30,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 ImageDefault = entity.ImageDefault,
                 ImageSmall = entity.ImageSmall,
 
+                BranchId = entity.Category != null ? entity.Category.BranchId : Guid.Empty,
                 BranchTitle = entity.Category?.Branch?.Title,
 
                 CategoryId = entity.CategoryId,

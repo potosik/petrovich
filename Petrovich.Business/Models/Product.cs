@@ -20,6 +20,7 @@ namespace Petrovich.Business.Models
         public string ImageDefault { get; set; }
         public string ImageSmall { get; set; }
 
+        public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }
 
         public Guid CategoryId { get; set; }

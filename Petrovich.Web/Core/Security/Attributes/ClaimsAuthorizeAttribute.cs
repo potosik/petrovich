@@ -21,13 +21,13 @@ namespace Petrovich.Web.Core.Security.Attributes
             {
                 return false;
             }
-
+            
             foreach (var claim in Claims)
             {
                 var claimString = claim.ToString();
-                if (!claimsIdentity.HasClaim(claimString, claimString))
+                if (claimsIdentity.HasClaim(claimString, claimString))
                 {
-                    return false;
+                    return base.AuthorizeCore(httpContext);
                 }
             }
 

@@ -1,12 +1,17 @@
 ﻿@import "Variables.less";
 
+@fast-search-item-wrapper-max-width: 700px;
 @fast-search-h4-margin: 5px;
+
+.fastsearch-item-wrapper {
+    max-width: @fast-search-item-wrapper-max-width;
+    overflow: hidden;
+}
 
 .fastsearch-item {
     display: flex;
 
     .fs-image {
-
     }
 
     .fs-information {

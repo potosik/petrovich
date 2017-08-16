@@ -36,7 +36,7 @@ namespace Petrovich.Web.Models.Search
                 InventoryNumber = product.InventoryNumber,
                 ImageSmall = product.ImageSmall,
 
-                SelfUri = PetrovichRoutes.Products.Details.GetLink(new { id = product.ProductId }),
+                SelfUri = PetrovichRoutes.Manager.ProductDetails.GetLink(new { id = product.ProductId }),
 
                 BranchTitle = product.BranchTitle,
                 CategoryTitle = product.CategoryTitle,

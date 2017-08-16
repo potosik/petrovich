@@ -192,6 +192,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\LoggingController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Models\Logging\LogViewModel.cs" />
     <Compile Include="Models\PagedListViewModel.cs" />
     <Compile Include="Models\Products\ProductCreateViewModel.cs" />
+    <Compile Include="Models\Manager\ProductDetailsViewModel.cs" />
     <Compile Include="Models\Products\ProductEditViewModel.cs" />
     <Compile Include="Models\Products\ProductViewModel.cs" />
     <Compile Include="Models\Search\ProductFastViewModel.cs" />
@@ -396,6 +398,7 @@
     <Content Include="Content\css\Petrovich\Product.less" />
     <Content Include="Views\Images\FullSize.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Manager\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

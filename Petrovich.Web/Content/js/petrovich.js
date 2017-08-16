@@ -53,7 +53,17 @@
                 delay: _pageData.defaultDebounce,
                 select: function select(event, ui) {
                     window.location.href = ui.item.SelfUri;
+                },
+                appendTo: "#searchBoxResults",
+                open: function () {
+                    $("#searchBoxResults > ul").css({
+                        left: "auto",
+                        right: 0
+                    });
+
                 }
+            }).focus(function () {
+                $(this).autocomplete("search", this.value);
             }).autocomplete("instance")._renderItem = function (ul, item) {
                 var template = $("#searchBoxItemTemplate").html();
                 var rendered = Mustache.to_html(template, item);

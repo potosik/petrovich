@@ -19,17 +19,7 @@ namespace Petrovich.Web
 
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            CultureInfo newCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
-
-            var date = "dd.MM.yyyy";
-            var time = "HH:mm:ss";
-            newCulture.DateTimeFormat.ShortDatePattern = date;
-            newCulture.DateTimeFormat.ShortTimePattern = time;
-            newCulture.DateTimeFormat.LongDatePattern = date;
-            newCulture.DateTimeFormat.LongTimePattern = time;
-            newCulture.DateTimeFormat.FullDateTimePattern = $"{date} {time}";
-            
-            Thread.CurrentThread.CurrentCulture = newCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("ru-RU");
         }
     }
 }

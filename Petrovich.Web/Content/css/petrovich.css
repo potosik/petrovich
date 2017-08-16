@@ -1,4 +1,8 @@
-﻿.profile_info_full {
+﻿html,
+body {
+  min-width: 600px;
+}
+.profile_info_full {
   width: 95%;
 }
 .profile_info h2 {
@@ -10,6 +14,17 @@
 }
 .ui-menu .ui-menu-item {
   list-style-image: none;
+}
+.x_navigation a:hover {
+  text-decoration: underline;
+}
+ul.stats-overview {
+  text-align: center;
+  padding-left: 0;
+}
+.fastsearch-item-wrapper {
+  max-width: 700px;
+  overflow: hidden;
 }
 .fastsearch-item {
   display: flex;
@@ -35,4 +50,7 @@
 .product-edit .preview img {
   width: 128px;
   height: 128px;
+}
+.product-details .administration-bar {
+  text-align: right;
 }

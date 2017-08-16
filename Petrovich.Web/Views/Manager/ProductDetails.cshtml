@@ -1,0 +1,64 @@
+﻿@model Petrovich.Web.Models.Manager.ProductDetailsViewModel
+@using Petrovich.Core
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="x_panel product-details">
+    <div class="x_title x_navigation">
+        <small>
+            <a href="#@Model.BranchId">@Model.BranchTitle</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>
+            <a href="#@Model.CategoryId">@Model.CategoryTitle</a>
+        </small>
+        @if (Model.GroupId.HasValue)
+        {
+            <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+            <small>
+                <a href="#@Model.GroupId">@Model.GroupTitle</a>
+            </small>
+        }
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="product-image">
+                <a href="@Url.Action(PetrovichRoutes.Images.Index, new { id = Model.ImageFullId })" title="@Model.Title" target="_blank">
+                    @Html.Partial("_Base64Image", Model.ImageDefault)
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+            @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
+            {
+                <section class="administration-bar">
+                    <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редктировать</a>
+                </section>
+            }
+            <section class="stats">
+                <ul class="stats-overview">
+                    <li>
+                        <span class="name">Инвентарный номер</span>
+                        <span class="value text-success">@Model.InventoryNumber</span>
+                    </li>
+                    <li>
+                        <span class="name">Дата закупки</span>
+                        <span class="value text-success">@Model.PurchaseDate</span>
+                    </li>
+                </ul>
+            </section>
+            <section class="panel">
+                <div class="x_title">
+                    <h2>Описание продукта</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <p>@Model.Description</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

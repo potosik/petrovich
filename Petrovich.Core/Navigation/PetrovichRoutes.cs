@@ -69,6 +69,13 @@
             public static Endpoint Details = new Endpoint(Controller, "Details");
         }
 
+        public static class Manager
+        {
+            private const string Controller = "Manager";
+
+            public static Endpoint ProductDetails = new Endpoint(Controller, "ProductDetails");
+        }
+
         public static class Products
         {
             private const string Controller = "Products";
@@ -79,7 +86,6 @@
             public static Endpoint Delete = new Endpoint(Controller, "Delete");
             public static Endpoint GetCategories = new Endpoint(Controller, "GetCategories");
             public static Endpoint GetGroups = new Endpoint(Controller, "GetGroups");
-            public static Endpoint Details = new Endpoint(Controller, "Details");
         }
 
         public static class Search

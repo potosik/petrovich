@@ -19,7 +19,7 @@ using System.Web.Mvc;
 namespace Petrovich.Web.Controllers
 {
     [LoggableActions]
-    [ClaimsAuthorize(Claims = new[] { PermissionClaims.UserManagement })]
+    [ClaimsAuthorize(Claims = new[] { PermissionClaims.UserManagement, PermissionClaims.PowerAdmin })]
     public class UserManagementController : IdentityController
     {
         public UserManagementController(ILoggingService logging)
