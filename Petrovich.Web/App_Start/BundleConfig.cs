@@ -8,7 +8,8 @@ namespace Petrovich.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/Content/js/vendor/jquery.js")
-                .Include("~/Content/js/vendor/jquery-ui.js"));
+                .Include("~/Content/js/vendor/jquery-ui.js")
+                .Include("~/Content/js/vendor/jquery-ui.datepicker.ru.js"));
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Content/js/vendor/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/common").Include(

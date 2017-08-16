@@ -18,12 +18,14 @@
     function Petrovich() {
         this.init = function () {
             // initialize delete button confirmation dialog
-            this.delteButtonConfirmation();
+            this.deleteButtonConfirmation();
             // initialize search box logic
             this.searchBoxInitialization();
+            // initialize purchase date picker
+            this.purchaseDatePickerInitialization();
         };
 
-        this.delteButtonConfirmation = function () {
+        this.deleteButtonConfirmation = function () {
             $('.btn-delete').click(function () {
                 return confirm("Элемент будет безвозвратно удален\nВы уверены что хотите удалить данный элемент?");
             });
@@ -70,6 +72,37 @@
                 return $("<li>").append(rendered).appendTo(ul);
             };
         };
+
+        this.purchaseDatePickerInitialization = function () {
+            var element = $('#purchasePicker');
+            var monthControl = $('#purchasemonth');
+            var yearControl = $('#purchaseyear');
+            var month = parseInt(monthControl.val());
+            var year = parseInt(yearControl.val());
+            var defaultDate = undefined;
+
+            if (month && year && !isNaN(month) && !isNaN(year)) {
+                defaultDate = new Date(year, month - 1, 1);
+            }
+            
+            $('#purchasePicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'MM yy',
+                closeText: 'Готово',
+                defaultDate: defaultDate,
+                onClose: function (dateText, inst) {
+                    monthControl.val(inst.selectedMonth + 1);
+                    yearControl.val(inst.selectedYear);
+                    $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+                }
+            });
+
+            if (defaultDate) {
+                element.datepicker("setDate", new Date(year, month - 1, 1));
+            }
+        }
     }
 
     var petrovich = new Petrovich();

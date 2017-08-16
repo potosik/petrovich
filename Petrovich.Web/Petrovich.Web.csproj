@@ -296,6 +296,8 @@
     <Content Include="Content\js\vendor\bootstrap.min.js" />
     <Content Include="Content\js\petrovich.js" />
     <Content Include="Content\js\theme.js" />
+    <Content Include="Content\js\vendor\jquery-ui.datepicker.ru.min.js" />
+    <Content Include="Content\js\vendor\jquery-ui.datepicker.ru.js" />
     <Content Include="Content\js\vendor\jquery.js" />
     <Content Include="Content\js\vendor\jquery.min.js" />
     <Content Include="Content\js\vendor\jquery-ui.min.js" />

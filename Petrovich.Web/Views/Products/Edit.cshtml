@@ -11,7 +11,7 @@
     </div>
     <div class="x_content">
         <br>
-        @using (Html.BeginForm(PetrovichRoutes.Products.Edit, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype="multipart/form-data" }))
+        @using (Html.BeginForm(PetrovichRoutes.Products.Edit, FormMethod.Post, new { @class = "form-horizontal form-label-left", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -38,21 +38,22 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PurchaseYear, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Дата закупки</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.EditorFor(m => m.PurchaseYear, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Год закупки" })
+                    @Html.HiddenFor(m => m.PurchaseMonth, new { id = "purchasemonth" })
+                    @Html.HiddenFor(m => m.PurchaseYear, new { id = "purchaseyear" })
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <input id="purchasePicker" type="text" class="form-control col-md-7 col-xs-12" placeholder="Дата закупки" autocomplete="off">
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PurchaseMonth, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                @Html.LabelFor(m => m.ImageDefault, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.EditorFor(m => m.PurchaseMonth, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Месяц закупки" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ImageDefault, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" }) 
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    @if(!String.IsNullOrWhiteSpace(Model.ImageDefault) && Model.ImageFullId.HasValue)
+                    @if (!String.IsNullOrWhiteSpace(Model.ImageDefault) && Model.ImageFullId.HasValue)
                     {
                         <div class="preview">
                             <a href="@Url.Action(PetrovichRoutes.Images.Index, new { id = Model.ImageFullId })" target="_blank">
@@ -100,3 +101,10 @@
         }
     </div>
 </div>
+
+<style type="text/css">
+    .ui-datepicker-calendar,
+    button.ui-datepicker-current {
+        display: none;
+    }
+</style>
