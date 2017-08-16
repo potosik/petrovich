@@ -9,7 +9,7 @@ using Petrovich.Business.Models;
 
 namespace Petrovich.Web.Models.DataStructure
 {
-    public class CategoryEditViewModel : BaseViewModel
+    public class CategoryEditViewModel : ChangeTrackableViewModel
     {
         public CategoryEditViewModel()
         {

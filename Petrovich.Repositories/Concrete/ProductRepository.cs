@@ -45,5 +45,15 @@ namespace Petrovich.Repositories.Concrete
         {
             return await context.Products.Where(item => item.Title.IndexOf(query) > -1).CountAsync().ConfigureAwait(false);
         }
+
+        public async Task<IList<Product>> ListByCategoryIdAsync(Guid categoryId)
+        {
+            return await context.Products.Where(item => item.CategoryId == categoryId).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IList<Product>> ListByGroupIdAsync(Guid groupId)
+        {
+            return await context.Products.Where(item => item.GroupId == groupId).ToListAsync().ConfigureAwait(false);
+        }
     }
 }

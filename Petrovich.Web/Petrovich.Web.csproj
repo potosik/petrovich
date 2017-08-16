@@ -227,6 +227,13 @@
     <Compile Include="Models\IPagedListViewModel.cs" />
     <Compile Include="Models\JsonResponse.cs" />
     <Compile Include="Models\Logging\LogViewModel.cs" />
+    <Compile Include="Models\Manager\BranchViewModel.cs" />
+    <Compile Include="Models\Manager\CategoriesViewModel.cs" />
+    <Compile Include="Models\Manager\CategoryViewModel.cs" />
+    <Compile Include="Models\Manager\GroupsViewModel.cs" />
+    <Compile Include="Models\Manager\GroupViewModel.cs" />
+    <Compile Include="Models\Manager\ProductsViewModel.cs" />
+    <Compile Include="Models\Manager\ProductViewModel.cs" />
     <Compile Include="Models\PagedListViewModel.cs" />
     <Compile Include="Models\Products\ProductCreateViewModel.cs" />
     <Compile Include="Models\Manager\ProductDetailsViewModel.cs" />
@@ -397,8 +404,15 @@
     <Content Include="Views\Shared\_Base64Image.cshtml" />
     <Content Include="Content\css\Petrovich\Product.less" />
     <Content Include="Views\Images\FullSize.cshtml" />
+    <Content Include="Content\css\Petrovich\Manager.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Manager\ProductDetails.cshtml" />
+    <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Manager.cshtml" />
+    <Content Include="Views\Manager\Branches.cshtml" />
+    <Content Include="Views\Manager\Categories.cshtml" />
+    <Content Include="Views\Manager\Groups.cshtml" />
+    <Content Include="Views\Manager\ProductsTable.cshtml" />
+    <Content Include="Views\Manager\Products.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

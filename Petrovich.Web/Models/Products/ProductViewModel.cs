@@ -7,7 +7,7 @@ using Petrovich.Business.Models.Base;
 
 namespace Petrovich.Web.Models.Products
 {
-    public class ProductViewModel : BaseViewModel
+    public class ProductViewModel : ChangeTrackableViewModel
     {
         public ProductViewModel()
         {

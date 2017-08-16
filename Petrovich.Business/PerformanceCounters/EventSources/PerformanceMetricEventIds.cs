@@ -48,6 +48,8 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int IsExistsProductsForGroupEventId = 14007;
         public const int GetNewInventoryNumberForProductEventId = 14008;
         public const int ProductSearchFastEventId = 14009;
+        public const int ListProductsByCategoryIdEventId = 14010;
+        public const int ListProductsByGroupIdEventId = 14011;
 
         // fullimage #15
         public const int CreateFullImageEventId = 15001;

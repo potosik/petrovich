@@ -5,7 +5,7 @@ using Petrovich.Core.Utils;
 
 namespace Petrovich.Web.Models.Manager
 {
-    public class ProductDetailsViewModel : BaseViewModel
+    public class ProductDetailsViewModel : ChangeTrackableViewModel
     {
         public ProductDetailsViewModel()
         {
@@ -50,7 +50,7 @@ namespace Petrovich.Web.Models.Manager
                 PurchaseDate = DateTimeUtils.CreatePurchaseDate(product.PurchaseYear, product.PurchaseMonth),
 
                 ImageFullId = product.ImageFullId,
-                ImageDefault = product.ImageDefault,
+                ImageDefault = product.ImageDefault ?? String.Empty,
 
                 BranchId = product.BranchId,
                 BranchTitle = product.BranchTitle,

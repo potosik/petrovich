@@ -15,6 +15,7 @@ namespace Petrovich.Business
         Task<Product> UpdateAsync(Product product);
         Task DeleteAsync(Guid id);
         Task<ProductCollection> SearchFastAsync(string query, int count);
-        Task<string> FindImageAsync(Guid id);
+        Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId);
+        Task<ProductCollection> ListByGroupIdAsync(Guid groupId);
     }
 }

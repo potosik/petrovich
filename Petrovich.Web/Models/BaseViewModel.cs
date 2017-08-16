@@ -7,13 +7,13 @@ using Petrovich.Core.Extensions;
 
 namespace Petrovich.Web.Models
 {
-    public class BaseViewModel : IChangeTrackableViewModel
+    public class ChangeTrackableViewModel : IChangeTrackableViewModel
     {
-        public BaseViewModel()
+        public ChangeTrackableViewModel()
         {
         }
 
-        public BaseViewModel(IChangeTrackableEntity entity)
+        public ChangeTrackableViewModel(IChangeTrackableEntity entity)
         {
             if (entity == null)
             {

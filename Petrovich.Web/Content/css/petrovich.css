@@ -54,3 +54,6 @@ ul.stats-overview {
 .product-details .administration-bar {
   text-align: right;
 }
+.manager .x_content a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,33 @@
+﻿@model Petrovich.Web.Models.Manager.ProductsViewModel
+
+@{
+    ViewBag.Title = "Продукты";
+}
+
+<div class="x_panel manager">
+    <div class="x_title">
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Branches)">Разделы</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Categories, new { branchId = Model.BranchId })">@Model.BranchTitle</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Groups, new { branchId = Model.BranchId, categoryId = Model.CategoryId })">@Model.CategoryTitle</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>@Model.GroupTitle</small>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Partial("ProductsTable", Model.Products)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

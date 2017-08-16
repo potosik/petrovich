@@ -15,5 +15,7 @@ namespace Petrovich.Business.Data
         Task<bool> IsExistsForGroupAsync(Guid groupId);
         Task<int?> GetNewInventoryNumberAsync(Guid categoryId);
         Task<ProductCollection> SearchFastAsync(string query, int count);
+        Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId);
+        Task<ProductCollection> ListByGroupIdAsync(Guid groupId);
     }
 }

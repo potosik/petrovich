@@ -1,0 +1,68 @@
+﻿@model Petrovich.Web.Models.Manager.GroupsViewModel
+
+@{
+    ViewBag.Title = "Группы / Продукты";
+}
+
+<div class="x_panel manager">
+    <div class="x_title">
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Branches)">Разделы</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>
+            <a href="@Url.Action(PetrovichRoutes.Manager.Categories, new { branchId = Model.BranchId })">@Model.BranchTitle</a>
+        </small>
+        <span>&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;</span>
+        <small>@Model.CategoryTitle</small>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="x_title">
+            <h2>Группы</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Название</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Groups.Any())
+                            {
+                                <tr>
+                                    <td colspan="3">Нет элементов для отображения</td>
+                                </tr>
+                            }
+
+                            @foreach (var item in Model.Groups)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="@Url.Action(PetrovichRoutes.Manager.Products, new { branchId = Model.BranchId, categoryId = Model.CategoryId, groupId = item.GroupId })">@item.Title</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="x_title">
+            <h2>Продукты</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    @Html.Partial("ProductsTable", Model.Products)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

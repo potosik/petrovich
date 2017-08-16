@@ -11,5 +11,6 @@ namespace Petrovich.Business.Models
 
         public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }
+        public string BranchInventoryPart { get; set; }
     }
 }

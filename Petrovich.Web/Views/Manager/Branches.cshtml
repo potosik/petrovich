@@ -1,12 +1,12 @@
-﻿@model Petrovich.Web.Models.PagedListViewModel<Petrovich.Web.Models.Logging.LogViewModel>
+﻿@model IEnumerable<Petrovich.Web.Models.Manager.BranchViewModel>
 
 @{
-    ViewBag.Title = "Просмотр логов";
+    ViewBag.Title = "Разделы";
 }
 
-<div class="x_panel">
+<div class="x_panel manager">
     <div class="x_title">
-        <h2>@ViewBag.Title <small>лог-записи работы системы</small></h2>
+        <small>Разделы</small>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -16,36 +16,31 @@
                     <table class="table table-hover table-striped">
                         <thead>
                             <tr>
-                                <th>Уровень</th>
-                                <th>Сообщение</th>
-                                <th>Дата создания</th>
+                                <th>Название</th>
+                                <th>Инвентарные номера</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (!Model.Items.Any())
+                            @if (!Model.Any())
                             {
                                 <tr>
                                     <td colspan="3">Нет элементов для отображения</td>
                                 </tr>
                             }
 
-                            @foreach (var item in Model.Items)
+                            @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
-                                        <a href="@Url.Action(PetrovichRoutes.Logging.Details, new { id = item.LogId })" aria-label="Редактировать" title="Редактировать">
-                                            @item.Severity
-                                        </a>
+                                        <a href="@Url.Action(PetrovichRoutes.Manager.Categories, new { branchId = item.BranchId })">@item.Title</a>
                                     </td>
-                                    <td>@item.Message</td>
-                                    <td>@item.Created</td>
+                                    <td>@item.InventoryNumbers</td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
-            @Html.Partial("_PagingNavigation", Model)
         </div>
     </div>
 </div>

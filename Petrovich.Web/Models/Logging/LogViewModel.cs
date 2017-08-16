@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Petrovich.Web.Models.Logging
 {
-    public class LogViewModel : BaseViewModel
+    public class LogViewModel : ChangeTrackableViewModel
     {
         public LogViewModel()
         {
