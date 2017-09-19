@@ -21,6 +21,8 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid CategoryId { get; set; }
         public string Title { get; set; }
         public int InventoryPart { get; set; }
+        public double? BasePrice { get; set; }
+        public int? PriceType { get; set; }
         public string InventoryPartString { get { return InventoryPart.ToString("D2"); } }
         public string BranchTitle { get; set; }
 
@@ -35,6 +37,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 CategoryId = category.CategoryId,
                 Title = category.Title,
+                BasePrice = category.BasePrice,
                 InventoryPart = category.InventoryPart,
                 BranchTitle = category.BranchTitle,
             };

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Models;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Web.Controllers
 {
@@ -72,6 +73,8 @@ namespace Petrovich.Web.Controllers
                     var newGroup = new Group()
                     {
                         Title = model.Title,
+                        BasePrice = model.BasePrice,
+                        PriceType = (PriceType)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 
@@ -145,6 +148,8 @@ namespace Petrovich.Web.Controllers
                     {
                         GroupId = model.GroupId,
                         Title = model.Title,
+                        BasePrice = model.BasePrice,
+                        PriceType = (PriceType)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 

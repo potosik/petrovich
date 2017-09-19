@@ -9,6 +9,7 @@ using Petrovich.Repositories.Mappers;
 using System.Data.Entity.Core;
 using Petrovich.Business.Exceptions;
 using Petrovich.Core;
+using Petrovich.Context.Enumerations;
 
 namespace Petrovich.Repositories.DataSources
 {
@@ -111,6 +112,8 @@ namespace Petrovich.Repositories.DataSources
 
                 targetCategory.Title = category.Title;
                 targetCategory.InventoryPart = category.InventoryPart;
+                targetCategory.BasePrice = category.BasePrice;
+                targetCategory.PriceType = (PriceType)((int)category.PriceType);
                 targetCategory.BranchId = category.BranchId;
 
                 await categoryRepository.UpdateAsync(targetCategory);

@@ -19,6 +19,7 @@ namespace Petrovich.Web.Models.Manager
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public double? Price { get; set; }
         public string InventoryNumber { get; set; }
         public string PurchaseDate { get; set; }
 
@@ -46,6 +47,7 @@ namespace Petrovich.Web.Models.Manager
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
+                Price = product.Price,
                 InventoryNumber = product.InventoryNumber,
                 PurchaseDate = DateTimeUtils.CreatePurchaseDate(product.PurchaseYear, product.PurchaseMonth),
 

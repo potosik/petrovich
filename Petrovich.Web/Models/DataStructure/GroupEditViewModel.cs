@@ -26,6 +26,12 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Название")]
         public string Title { get; set; }
 
+        [Display(Name = "Базовая цена товаров")]
+        public double? BasePrice { get; set; }
+
+        [Display(Name = "Ценовой срок")]
+        public int? PriceType { get; set; }
+
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Категория")]
         public Guid CategoryId { get; set; }
@@ -43,6 +49,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
+                BasePrice = group.BasePrice,
                 CategoryId = group.CategoryId,
 
                 CategoryTitle = group.CategoryTitle,

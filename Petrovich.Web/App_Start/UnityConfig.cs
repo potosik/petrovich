@@ -2,6 +2,7 @@ using System;
 using Microsoft.Practices.Unity;
 using Petrovich.Core.Composition;
 using Petrovich.Web.Composition;
+using System.Linq;
 
 namespace Petrovich.Web.App_Start
 {
@@ -13,7 +14,6 @@ namespace Petrovich.Web.App_Start
         private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
         {
             var container = new UnityContainer();
-            RegisterTypes(container);
             RegisterTypes(container, new CompositionModule());
             return container;
         });
@@ -22,17 +22,12 @@ namespace Petrovich.Web.App_Start
         {
             return container.Value;
         }
-
-        public static void RegisterTypes(IUnityContainer container)
-        {
-            //container.RegisterType<IProductRepository, ProductRepository>();
-        }
-
+        
         private static void RegisterTypes(UnityContainer container, ICompositionModule compositionModule)
         {
             compositionModule.RegisterTypes(container);
 
-            if (compositionModule.InnerModules != null && compositionModule.InnerModules.Length > 0)
+            if (compositionModule.InnerModules != null && compositionModule.InnerModules.Any())
             {
                 foreach (var module in compositionModule.InnerModules)
                 {

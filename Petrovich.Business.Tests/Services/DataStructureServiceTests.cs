@@ -220,6 +220,40 @@ namespace Petrovich.Business.Tests.Services
         }
         
         [Fact]
+        public async Task CreateCategoryAsync_WhenBasePriceIsNotSpecified_PriceTypeShouldBeNull()
+        {
+            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Branch());
+            categoryDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
+            categoryDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Category>()))
+                .ReturnsAsync(new Models.Category());
+
+            var result = await dataStructureService.CreateCategoryAsync(new Models.Category() { PriceType = Models.Enumerations.PriceType.Month });
+
+            Assert.NotNull(result);
+            Assert.Null(result.BasePrice);
+            Assert.Null(result.PriceType);
+        }
+
+        [Fact]
+        public async Task CreateCategoryAsync_WhenBasePriceTypeIsNotSpecified_PriceShouldBeNull()
+        {
+            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Branch());
+            categoryDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
+            categoryDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Category>()))
+                .ReturnsAsync(new Models.Category());
+
+            var result = await dataStructureService.CreateCategoryAsync(new Models.Category() { BasePrice = 1f });
+
+            Assert.NotNull(result);
+            Assert.Null(result.BasePrice);
+            Assert.Null(result.PriceType);
+        }
+
+        [Fact]
         public async Task FindCategoryAsync_WhenCategoryIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
@@ -414,6 +448,36 @@ namespace Petrovich.Business.Tests.Services
             var result = await dataStructureService.CreateGroupAsync(new Models.Group());
 
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task CreateGroupAsync_WhenPriceIsNotSpecified_PriceTypeShouldBeNull()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Group>()))
+                .ReturnsAsync(new Models.Group());
+
+            var result = await dataStructureService.CreateGroupAsync(new Models.Group() { PriceType = Models.Enumerations.PriceType.Month });
+
+            Assert.NotNull(result);
+            Assert.Null(result.BasePrice);
+            Assert.Null(result.PriceType);
+        }
+
+        [Fact]
+        public async Task CreateGroupAsync_WhenBasePriceTypeIsNotSpecified_PriceShouldBeNull()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.Category());
+            groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Group>()))
+                .ReturnsAsync(new Models.Group());
+
+            var result = await dataStructureService.CreateGroupAsync(new Models.Group() { BasePrice = 1f });
+
+            Assert.NotNull(result);
+            Assert.Null(result.BasePrice);
+            Assert.Null(result.PriceType);
         }
 
         [Fact]

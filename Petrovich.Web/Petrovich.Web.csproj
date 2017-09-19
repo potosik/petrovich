@@ -302,6 +302,8 @@
     <Content Include="Content\js\vendor\jquery.min.js" />
     <Content Include="Content\js\vendor\jquery-ui.min.js" />
     <Content Include="Content\js\vendor\jquery-ui.js" />
+    <Content Include="Content\js\vendor\jquery.smartcart.js" />
+    <Content Include="Content\js\vendor\jquery.smartcart.min.js" />
     <Content Include="Content\js\vendor\mustache.js" />
     <Content Include="Content\js\vendor\mustache.min.js" />
     <Content Include="favicon.ico" />

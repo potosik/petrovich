@@ -101,6 +101,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryCollection.cs" />
     <Compile Include="Models\Enumerations\LogSeverity.cs" />
+    <Compile Include="Models\Enumerations\PriceType.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupCollection.cs" />
     <Compile Include="Models\Log.cs" />

@@ -1,4 +1,5 @@
 ﻿using Petrovich.Context.Entities.Base;
+using Petrovich.Context.Enumerations;
 using Petrovich.Core;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace Petrovich.Context.Entities
 
         public string Title { get; set; }
         public string Description { get; set; }
+        public double? Price { get; set; }
+        public PriceType? PriceType { get; set; }
 
         [Range(Constants.ProductInventoryPartMinValue, Constants.ProductInventoryPartMaxValue, ErrorMessageResourceName = "Product_InventoryPart_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public int InventoryPart { get; set; }

@@ -19,6 +19,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 ProductId = entity.ProductId,
                 Title = entity.Title,
                 Description = entity.Description,
+                Price = entity.Price,
+                PriceType = (Business.Models.Enumerations.PriceType)((int)entity.PriceType),
                 InventoryPart = entity.InventoryPart,
 
                 PurchaseYear = entity.PurchaseYear,
@@ -61,6 +63,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 ProductId = entity.ProductId,
                 Title = entity.Title,
                 Description = entity.Description,
+                Price = entity.Price,
+                PriceType = (Context.Enumerations.PriceType)((int)entity.PriceType),
                 InventoryPart = entity.InventoryPart,
 
                 PurchaseYear = entity.PurchaseYear,

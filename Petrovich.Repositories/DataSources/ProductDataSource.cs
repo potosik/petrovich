@@ -9,6 +9,7 @@ using Petrovich.Business.Models;
 using System.Data.Entity.Core;
 using Petrovich.Business.Exceptions;
 using Petrovich.Core;
+using Petrovich.Context.Enumerations;
 
 namespace Petrovich.Repositories.DataSources
 {
@@ -81,6 +82,8 @@ namespace Petrovich.Repositories.DataSources
 
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
+                targetProduct.Price = product.Price;
+                targetProduct.PriceType = (PriceType)((int)product.PriceType);
                 targetProduct.InventoryPart = product.InventoryPart;
                 targetProduct.PurchaseYear = product.PurchaseYear;
                 targetProduct.PurchaseMonth = product.PurchaseMonth;

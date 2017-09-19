@@ -8,6 +8,7 @@ using Petrovich.Business.Models;
 using Petrovich.Repositories.Mappers;
 using System.Data.Entity.Core;
 using Petrovich.Business.Exceptions;
+using Petrovich.Context.Enumerations;
 
 namespace Petrovich.Repositories.DataSources
 {
@@ -72,6 +73,8 @@ namespace Petrovich.Repositories.DataSources
                 var targetGroup = await groupRepository.FindAsync(group.GroupId);
 
                 targetGroup.Title = group.Title;
+                targetGroup.BasePrice = group.BasePrice;
+                targetGroup.PriceType = (PriceType)((int)group.PriceType);
                 targetGroup.CategoryId = group.CategoryId;
 
                 await groupRepository.UpdateAsync(targetGroup);

@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models.Base;
+using Petrovich.Business.Models.Enumerations;
 using Petrovich.Core;
 using System;
 
@@ -9,6 +10,8 @@ namespace Petrovich.Business.Models
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public double? Price { get; set; }
+        public PriceType? PriceType { get; set; }
         public int InventoryPart { get; set; }
 
         public int? PurchaseYear { get; set; }

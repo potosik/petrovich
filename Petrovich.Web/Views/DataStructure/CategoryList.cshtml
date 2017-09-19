@@ -21,6 +21,7 @@
                             <tr>
                                 <th>Название</th>
                                 <th>Часть инвентарного номера</th>
+                                <th>Базовая цена</th>
                                 <th>Раздел</th>
                                 <th>Создана</th>
                                 <th>Отредактирована</th>
@@ -40,6 +41,7 @@
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                     <td>@Html.DisplayFor(modelItem => item.InventoryPartString)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.BasePrice)</td>
                                     <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Created)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Modified)</td>

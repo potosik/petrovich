@@ -12,8 +12,9 @@ namespace Petrovich.Web
                 .Include("~/Content/js/vendor/jquery-ui.datepicker.ru.js"));
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Content/js/vendor/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/common").Include(
-                "~/Content/js/vendor/mustache.js"));
+            bundles.Add(new ScriptBundle("~/bundles/common")
+                .Include("~/Content/js/vendor/mustache.js")
+                .Include("~/Content/js/vendor/jquery.smartcart.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/theme").Include("~/Content/js/theme.js"));
             bundles.Add(new ScriptBundle("~/bundles/petrovich").Include("~/Content/js/petrovich.js"));

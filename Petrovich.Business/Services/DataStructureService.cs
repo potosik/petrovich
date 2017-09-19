@@ -164,6 +164,8 @@ namespace Petrovich.Business.Services
             }
 
             category.InventoryPart = inventoryPartValue.Value;
+            ValidatePricingInformation(category);
+
             await logger.LogNoneAsync("DataStructureService.CreateCategoryAsync: creating new category.");
             return await categoryDataSource.CreateAsync(category);
         }
@@ -217,6 +219,8 @@ namespace Petrovich.Business.Services
                 throw new CategoryInventoryPartChangedException(category.CategoryId);
             }
 
+            ValidatePricingInformation(category);
+
             await logger.LogNoneAsync("DataStructureService.UpdateCategoryAsync: updating category.");
             return await categoryDataSource.UpdateAsync(category);
         }
@@ -255,6 +259,15 @@ namespace Petrovich.Business.Services
 
             await logger.LogNoneAsync("DataStructureService.DeleteCategoryAsync: deleting category.");
             await categoryDataSource.DeleteAsync(category);
+        }
+
+        private void ValidatePricingInformation(Category category)
+        {
+            if (!category.BasePrice.HasValue || !category.PriceType.HasValue)
+            {
+                category.BasePrice = null;
+                category.PriceType = null;
+            }
         }
 
         public async Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId)
@@ -299,6 +312,8 @@ namespace Petrovich.Business.Services
                 await logger.LogInformationAsync($"DataStructureService.CreateGroupAsync: category not found - {group.CategoryId}.");
                 throw new CategoryNotFoundException(group.CategoryId);
             }
+
+            ValidatePricingInformation(group);
 
             await logger.LogNoneAsync("DataStructureService.CreateGroupAsync: creating new group.");
             return await groupDataSource.CreateAsync(group);
@@ -347,6 +362,8 @@ namespace Petrovich.Business.Services
                 throw new CategoryNotFoundException(group.CategoryId);
             }
 
+            ValidatePricingInformation(group);
+
             await logger.LogNoneAsync("DataStructureService.UpdateGroupAsync: updating group.");
             return await groupDataSource.UpdateAsync(group);
         }
@@ -377,6 +394,15 @@ namespace Petrovich.Business.Services
 
             await logger.LogNoneAsync("DataStructureService.DeleteGroupAsync: deleting group.");
             await groupDataSource.DeleteAsync(group);
+        }
+
+        private void ValidatePricingInformation(Group group)
+        {
+            if (!group.BasePrice.HasValue || !group.PriceType.HasValue)
+            {
+                group.BasePrice = null;
+                group.PriceType = null;
+            }
         }
 
         public async Task<GroupCollection> ListGroupsByCategoryIdAsync(Guid categoryId)

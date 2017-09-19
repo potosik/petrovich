@@ -9,6 +9,7 @@ using Petrovich.Business.Models;
 using Petrovich.Core.Navigation;
 using System.Collections.Generic;
 using Petrovich.Web.Models;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Web.Controllers
 {
@@ -72,6 +73,8 @@ namespace Petrovich.Web.Controllers
                     var newCategory = new Category()
                     {
                         Title = model.Title,
+                        BasePrice = model.BasePrice,
+                        PriceType = (PriceType)model.PriceType,
                         BranchId = model.BranchId,
                     };
 
@@ -151,6 +154,8 @@ namespace Petrovich.Web.Controllers
                         CategoryId = model.CategoryId,
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
+                        BasePrice = model.BasePrice,
+                        PriceType = (PriceType)model.PriceType,
                         BranchId = model.BranchId,
                     };
 

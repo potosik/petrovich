@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>Название</th>
+                                <th>Базовая цена</th>
                                 <th>Категория</th>
                                 <th>Создана</th>
                                 <th>Отредактирована</th>
@@ -38,6 +39,7 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.BasePrice)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Created)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Modified)</td>

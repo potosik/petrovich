@@ -1,4 +1,5 @@
 ﻿using Petrovich.Context.Entities.Base;
+using Petrovich.Context.Enumerations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,6 +14,9 @@ namespace Petrovich.Context.Entities
         public Guid GroupId { get; set; }
 
         public string Title { get; set; }
+
+        public double? BasePrice { get; set; }
+        public PriceType? PriceType { get; set; }
 
         [Index]
         public Guid CategoryId { get; set; }

@@ -39,7 +39,7 @@
             @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
             {
                 <section class="administration-bar">
-                    <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редктировать</a>
+                    <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редактировать</a>
                 </section>
             }
             <section class="stats">

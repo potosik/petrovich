@@ -33,6 +33,12 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
+        [Display(Name = "Цена")]
+        public double? Price { get; set; }
+
+        [Display(Name = "Ценовой срок")]
+        public int? PriceType { get; set; }
+
         [Display(Name = "Год закупки")]
         [Range(2000, 2100, ErrorMessageResourceName = "Product_PurchaseYear_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public int? PurchaseYear { get; set; }
@@ -82,6 +88,7 @@ namespace Petrovich.Web.Models.Products
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
+                Price = product.Price,
                 InventoryPart = product.InventoryPart,
 
                 PurchaseYear = product.PurchaseYear,

@@ -76,6 +76,7 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Branch.cs" />
     <Compile Include="Enumerations\LogSeverity.cs" />
+    <Compile Include="Enumerations\PriceType.cs" />
     <Compile Include="IPetrovichContextBase.cs" />
     <Compile Include="IPetrovichContext.cs" />
     <Compile Include="Migrations\201706031440402_InitialCreate.cs" />
@@ -97,6 +98,18 @@
     <Compile Include="Migrations\201707241013014_PurchasingProductInformation.cs" />
     <Compile Include="Migrations\201707241013014_PurchasingProductInformation.Designer.cs">
       <DependentUpon>201707241013014_PurchasingProductInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191707071_CategoryBasePriceAdded.cs" />
+    <Compile Include="Migrations\201709191707071_CategoryBasePriceAdded.Designer.cs">
+      <DependentUpon>201709191707071_CategoryBasePriceAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191755166_GroupBasePriceAdded.cs" />
+    <Compile Include="Migrations\201709191755166_GroupBasePriceAdded.Designer.cs">
+      <DependentUpon>201709191755166_GroupBasePriceAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709191824105_ProductPriceAdded.cs" />
+    <Compile Include="Migrations\201709191824105_ProductPriceAdded.Designer.cs">
+      <DependentUpon>201709191824105_ProductPriceAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
@@ -134,6 +147,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707241013014_PurchasingProductInformation.resx">
       <DependentUpon>201707241013014_PurchasingProductInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191707071_CategoryBasePriceAdded.resx">
+      <DependentUpon>201709191707071_CategoryBasePriceAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191755166_GroupBasePriceAdded.resx">
+      <DependentUpon>201709191755166_GroupBasePriceAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709191824105_ProductPriceAdded.resx">
+      <DependentUpon>201709191824105_ProductPriceAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

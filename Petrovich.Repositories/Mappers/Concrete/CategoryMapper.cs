@@ -18,6 +18,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 CategoryId = entity.CategoryId,
                 Title = entity.Title,
                 InventoryPart = entity.InventoryPart,
+                BasePrice = entity.BasePrice,
+                PriceType = (Business.Models.Enumerations.PriceType)((int)entity.PriceType),
                 BranchId = entity.BranchId,
                 BranchTitle = entity.Branch?.Title,
                 BranchInventoryPart = entity.Branch?.InventoryPart,
@@ -41,6 +43,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 CategoryId = entity.CategoryId,
                 Title = entity.Title,
                 InventoryPart = entity.InventoryPart,
+                BasePrice = entity.BasePrice,
+                PriceType = (Context.Enumerations.PriceType)((int)entity.PriceType),
                 BranchId = entity.BranchId,
 
                 Created = entity.Created,

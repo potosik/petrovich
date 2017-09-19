@@ -18,6 +18,7 @@ using System.Web;
 using System.Drawing;
 using Petrovich.Web.Core.Extensions;
 using Petrovich.Core.Extensions;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Web.Controllers
 {
@@ -95,6 +96,8 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         Description = model.Description,
+                        Price = model.Price,
+                        PriceType = (PriceType)model.PriceType,
 
                         PurchaseYear = model.PurchaseYear,
                         PurchaseMonth = model.PurchaseMonth,
@@ -198,6 +201,8 @@ namespace Petrovich.Web.Controllers
                         ProductId = model.ProductId,
                         Title = model.Title,
                         Description = model.Description,
+                        Price = model.Price,
+                        PriceType = (PriceType)model.PriceType,
                         InventoryPart = model.InventoryPart,
 
                         PurchaseYear = model.PurchaseYear,

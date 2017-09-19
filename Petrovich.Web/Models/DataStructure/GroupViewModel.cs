@@ -20,6 +20,8 @@ namespace Petrovich.Web.Models.DataStructure
 
         public Guid GroupId { get; set; }
         public string Title { get; set; }
+        public double? BasePrice { get; set; }
+        public int? PriceType { get; set; }
         public string CategoryTitle { get; set; }
 
         public static GroupViewModel Create(Group group)
@@ -33,6 +35,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
+                BasePrice = group.BasePrice,
                 CategoryTitle = group.CategoryTitle,
             };
         }
