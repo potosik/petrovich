@@ -1,7 +1,10 @@
 ﻿using Petrovich.Business.Logging;
+using Petrovich.Business.Models.Enumerations;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -74,6 +77,21 @@ namespace Petrovich.Web.Core.Controllers
         protected JsonResult JsonAllowGet(JsonResponse response)
         {
             return Json(response, JsonRequestBehavior.AllowGet);
+        }
+
+        protected List<SelectListItem> CreatePriceTypeSelectList()
+        {
+            var values = Enum.GetValues(typeof(PriceType));
+            var list = new List<SelectListItem>() { new SelectListItem() };
+
+            foreach (PriceType value in values)
+            {
+                var iValue = (int)value;
+                var text = Properties.Resources.ResourceManager.GetString($"PriceType_{value}");
+                list.Add(new SelectListItem() { Text = text, Value = iValue.ToString() });
+            }
+
+            return list;
         }
     }
 }

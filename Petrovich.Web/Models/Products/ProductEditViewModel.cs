@@ -15,12 +15,14 @@ namespace Petrovich.Web.Models.Products
         public ProductEditViewModel()
         {
             Groups = new List<SelectListItem>();
+            PriceTypes = new List<SelectListItem>();
         }
 
         public ProductEditViewModel(IChangeTrackableEntity entity) 
             : base(entity)
         {
             Groups = new List<SelectListItem>();
+            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -33,7 +35,7 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [Display(Name = "Цена")]
+        [Display(Name = "Цена (BYN)")]
         public double? Price { get; set; }
 
         [Display(Name = "Ценовой срок")]
@@ -74,6 +76,7 @@ namespace Petrovich.Web.Models.Products
         public Guid? GroupId { get; set; }
 
         public IList<SelectListItem> Groups { get; set; }
+        public IList<SelectListItem> PriceTypes { get; set; }
 
 
         public static ProductEditViewModel Create(Product product)
@@ -89,6 +92,7 @@ namespace Petrovich.Web.Models.Products
                 Title = product.Title,
                 Description = product.Description,
                 Price = product.Price,
+                PriceType = (int?)product.PriceType,
                 InventoryPart = product.InventoryPart,
 
                 PurchaseYear = product.PurchaseYear,

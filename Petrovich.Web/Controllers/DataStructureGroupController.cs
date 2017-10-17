@@ -48,6 +48,7 @@ namespace Petrovich.Web.Controllers
                 var model = new GroupCreateViewModel()
                 {
                     Categories = await CreateGroupsSelectList(),
+                    PriceTypes = CreatePriceTypeSelectList(),
                 };
 
                 return View(model);
@@ -74,7 +75,7 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         BasePrice = model.BasePrice,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 
@@ -83,6 +84,7 @@ namespace Petrovich.Web.Controllers
                 }
 
                 model.Categories = await CreateGroupsSelectList();
+                model.PriceTypes = CreatePriceTypeSelectList();
             }
             catch (CategoryNotFoundException ex)
             {
@@ -112,6 +114,7 @@ namespace Petrovich.Web.Controllers
             {
                 var group = await dataStructureService.FindGroupAsync(id);
                 var model = GroupEditViewModel.Create(group);
+                model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -149,7 +152,7 @@ namespace Petrovich.Web.Controllers
                         GroupId = model.GroupId,
                         Title = model.Title,
                         BasePrice = model.BasePrice,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 
@@ -179,6 +182,7 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
+            model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }
 
@@ -221,8 +225,21 @@ namespace Petrovich.Web.Controllers
 
         private async Task<List<SelectListItem>> CreateGroupsSelectList()
         {
-            var branches = await dataStructureService.ListAllCategoriesAsync();
-            return branches.Select(item => new SelectListItem() { Text = item.Title, Value = item.CategoryId.ToString() }).ToList();
+            try
+            {
+                var branches = await dataStructureService.ListAllCategoriesAsync();
+                return branches.Select(item => new SelectListItem() { Text = item.Title, Value = item.CategoryId.ToString() }).ToList();
+            }
+            catch (DatabaseOperationException ex)
+            {
+                await logger.LogErrorAsync(ex);
+            }
+            catch (Exception ex)
+            {
+                await logger.LogCriticalAsync(ex);
+            }
+
+            return new List<SelectListItem>();
         }
     }
 }

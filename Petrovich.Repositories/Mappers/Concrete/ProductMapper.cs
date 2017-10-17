@@ -20,7 +20,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Title = entity.Title,
                 Description = entity.Description,
                 Price = entity.Price,
-                PriceType = (Business.Models.Enumerations.PriceType)((int)entity.PriceType),
+                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceType>(entity.PriceType),
                 InventoryPart = entity.InventoryPart,
 
                 PurchaseYear = entity.PurchaseYear,
@@ -64,7 +64,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Title = entity.Title,
                 Description = entity.Description,
                 Price = entity.Price,
-                PriceType = (Context.Enumerations.PriceType)((int)entity.PriceType),
+                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, Context.Enumerations.PriceType>(entity.PriceType),
                 InventoryPart = entity.InventoryPart,
 
                 PurchaseYear = entity.PurchaseYear,

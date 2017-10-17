@@ -196,6 +196,33 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to В день.
+        /// </summary>
+        internal static string PriceType_Day {
+            get {
+                return ResourceManager.GetString("PriceType_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В месяц.
+        /// </summary>
+        internal static string PriceType_Month {
+            get {
+                return ResourceManager.GetString("PriceType_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За неделю.
+        /// </summary>
+        internal static string PriceType_Week {
+            get {
+                return ResourceManager.GetString("PriceType_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Выбранный раздел не найден..
         /// </summary>
         internal static string Product_BranchNotFound_Error {

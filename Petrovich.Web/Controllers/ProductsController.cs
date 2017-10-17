@@ -69,6 +69,7 @@ namespace Petrovich.Web.Controllers
                 var model = new ProductCreateViewModel()
                 {
                     Branches = await CreateBranchesSelectList(),
+                    PriceTypes = CreatePriceTypeSelectList(),
                 };
 
                 return View(model);
@@ -97,7 +98,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Description = model.Description,
                         Price = model.Price,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
 
                         PurchaseYear = model.PurchaseYear,
                         PurchaseMonth = model.PurchaseMonth,
@@ -117,6 +118,7 @@ namespace Petrovich.Web.Controllers
                 model.Branches = await CreateBranchesSelectList();
                 model.Categories = await CreateCategoriesSelectList(model.BranchId);
                 model.Groups = await CreateGroupsSelectList(model.CategoryId);
+                model.PriceTypes = CreatePriceTypeSelectList();
             }
             catch (InvalidImageFormatException ex)
             {
@@ -162,6 +164,7 @@ namespace Petrovich.Web.Controllers
                 var product = await productService.FindAsync(id);
                 var model = ProductEditViewModel.Create(product);
                 model.Groups = await CreateGroupsSelectList(product.CategoryId);
+                model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -202,7 +205,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Description = model.Description,
                         Price = model.Price,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
                         InventoryPart = model.InventoryPart,
 
                         PurchaseYear = model.PurchaseYear,
@@ -258,6 +261,7 @@ namespace Petrovich.Web.Controllers
             }
 
             model.Groups = await CreateGroupsSelectList(model.CategoryId);
+            model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }
 

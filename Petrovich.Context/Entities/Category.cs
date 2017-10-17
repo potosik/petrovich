@@ -15,6 +15,7 @@ namespace Petrovich.Context.Entities
         public Guid CategoryId { get; set; }
 
         public string Title { get; set; }
+
         public double? BasePrice { get; set; }
         public PriceType? PriceType { get; set; }
 

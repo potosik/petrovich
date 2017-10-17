@@ -16,7 +16,7 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [Display(Name = "Цена")]
+        [Display(Name = "Цена (BYN)")]
         public double? Price { get; set; }
 
         [Display(Name = "Ценовой срок")]
@@ -44,6 +44,7 @@ namespace Petrovich.Web.Models.Products
         public IList<SelectListItem> Branches { get; set; }
         public IList<SelectListItem> Categories { get; set; }
         public IList<SelectListItem> Groups { get; set; }
+        public IList<SelectListItem> PriceTypes { get; set; }
 
         public ProductCreateViewModel()
         {
@@ -53,6 +54,7 @@ namespace Petrovich.Web.Models.Products
             Branches = new List<SelectListItem>();
             Categories = new List<SelectListItem>();
             Groups = new List<SelectListItem>();
+            PriceTypes = new List<SelectListItem>();
         }
     }
 }

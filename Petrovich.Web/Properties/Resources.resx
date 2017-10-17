@@ -162,6 +162,15 @@
   <data name="Performance" xml:space="preserve">
     <value>Производительность</value>
   </data>
+  <data name="PriceType_Day" xml:space="preserve">
+    <value>В день</value>
+  </data>
+  <data name="PriceType_Month" xml:space="preserve">
+    <value>В месяц</value>
+  </data>
+  <data name="PriceType_Week" xml:space="preserve">
+    <value>За неделю</value>
+  </data>
   <data name="Product_BranchNotFound_Error" xml:space="preserve">
     <value>Выбранный раздел не найден.</value>
   </data>

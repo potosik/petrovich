@@ -48,6 +48,7 @@ namespace Petrovich.Web.Controllers
                 var model = new CategoryCreateViewModel()
                 {
                     Branches = await CreateBranchesSelectList(),
+                    PriceTypes = CreatePriceTypeSelectList(),
                 };
 
                 return View(model);
@@ -74,7 +75,7 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         BasePrice = model.BasePrice,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
                         BranchId = model.BranchId,
                     };
 
@@ -83,6 +84,7 @@ namespace Petrovich.Web.Controllers
                 }
 
                 model.Branches = await CreateBranchesSelectList();
+                model.PriceTypes = CreatePriceTypeSelectList();
             }
             catch (BranchNotFoundException ex)
             {
@@ -117,6 +119,7 @@ namespace Petrovich.Web.Controllers
             {
                 var category = await dataStructureService.FindCategoryAsync(id);
                 var model = CategoryEditViewModel.Create(category);
+                model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -155,7 +158,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
                         BasePrice = model.BasePrice,
-                        PriceType = (PriceType)model.PriceType,
+                        PriceType = (PriceType?)model.PriceType,
                         BranchId = model.BranchId,
                     };
 
@@ -190,6 +193,7 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
+            model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }
 

@@ -13,11 +13,13 @@ namespace Petrovich.Web.Models.DataStructure
     {
         public CategoryEditViewModel()
         {
+            PriceTypes = new List<SelectListItem>();
         }
 
         public CategoryEditViewModel(IChangeTrackableEntity entity)
             : base(entity)
         {
+            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -31,7 +33,7 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Часть инвентарного номера")]
         public int InventoryPart { get; set; }
 
-        [Display(Name = "Базовая цена товаров")]
+        [Display(Name = "Базовая цена товаров (BYN)")]
         public double? BasePrice { get; set; }
 
         [Display(Name = "Ценовой срок")]
@@ -42,6 +44,8 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid BranchId { get; set; }
 
         public string BranchTitle { get; set; }
+
+        public List<SelectListItem> PriceTypes { get; set; }
 
         public static CategoryEditViewModel Create(Category category)
         {
@@ -56,6 +60,7 @@ namespace Petrovich.Web.Models.DataStructure
                 Title = category.Title,
                 InventoryPart = category.InventoryPart,
                 BasePrice = category.BasePrice,
+                PriceType = (int?)category.PriceType,
                 BranchId = category.BranchId,
 
                 BranchTitle = category.BranchTitle,

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using System.Web.Mvc;
 
 namespace Petrovich.Web.Models.DataStructure
 {
@@ -12,11 +13,13 @@ namespace Petrovich.Web.Models.DataStructure
     {
         public GroupEditViewModel()
         {
+            PriceTypes = new List<SelectListItem>();
         }
 
         public GroupEditViewModel(IChangeTrackableEntity entity)
             : base(entity)
         {
+            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -26,7 +29,7 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Название")]
         public string Title { get; set; }
 
-        [Display(Name = "Базовая цена товаров")]
+        [Display(Name = "Базовая цена товаров (BYN)")]
         public double? BasePrice { get; set; }
 
         [Display(Name = "Ценовой срок")]
@@ -37,6 +40,8 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid CategoryId { get; set; }
 
         public string CategoryTitle { get; set; }
+
+        public List<SelectListItem> PriceTypes { get; set; }
 
         public static GroupEditViewModel Create(Group group)
         {
@@ -50,6 +55,7 @@ namespace Petrovich.Web.Models.DataStructure
                 GroupId = group.GroupId,
                 Title = group.Title,
                 BasePrice = group.BasePrice,
+                PriceType = (int?)group.PriceType,
                 CategoryId = group.CategoryId,
 
                 CategoryTitle = group.CategoryTitle,

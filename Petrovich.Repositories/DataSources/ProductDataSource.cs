@@ -83,7 +83,7 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.Price = product.Price;
-                targetProduct.PriceType = (PriceType)((int)product.PriceType);
+                targetProduct.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(product.PriceType);
                 targetProduct.InventoryPart = product.InventoryPart;
                 targetProduct.PurchaseYear = product.PurchaseYear;
                 targetProduct.PurchaseMonth = product.PurchaseMonth;

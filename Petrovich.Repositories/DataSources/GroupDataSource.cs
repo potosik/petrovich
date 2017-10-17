@@ -74,7 +74,7 @@ namespace Petrovich.Repositories.DataSources
 
                 targetGroup.Title = group.Title;
                 targetGroup.BasePrice = group.BasePrice;
-                targetGroup.PriceType = (PriceType)((int)group.PriceType);
+                targetGroup.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(group.PriceType);
                 targetGroup.CategoryId = group.CategoryId;
 
                 await groupRepository.UpdateAsync(targetGroup);
