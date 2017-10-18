@@ -119,10 +119,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2017 10:53:01</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.dll">
-      <publishTime>10/18/2017 12:57:45</publishTime>
+      <publishTime>10/18/2017 13:01:43</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.pdb">
-      <publishTime>10/18/2017 12:57:45</publishTime>
+      <publishTime>10/18/2017 13:01:43</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/11/2017 14:34:55</publishTime>
@@ -401,10 +401,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/js/petrovich.js">
-      <publishTime>10/18/2017 12:57:07</publishTime>
+      <publishTime>10/18/2017 13:01:17</publishTime>
     </File>
     <File Include="Content/js/petrovich.min.js">
-      <publishTime>07/25/2017 11:02:56</publishTime>
+      <publishTime>10/18/2017 13:01:17</publishTime>
     </File>
     <File Include="Content/js/theme.js">
       <publishTime>07/25/2017 11:02:57</publishTime>

@@ -59,12 +59,11 @@
                     window.location.href = ui.item.SelfUri;
                 },
                 appendTo: "#searchBoxResults",
-                open: function () {
+                open: function open() {
                     $("#searchBoxResults > ul").css({
                         left: "auto",
                         right: 0
                     });
-
                 }
             }).focus(function () {
                 $(this).autocomplete("search", this.value);
@@ -94,7 +93,7 @@
                 dateFormat: 'MM yy',
                 closeText: 'Готово',
                 defaultDate: defaultDate,
-                onClose: function (dateText, inst) {
+                onClose: function onClose(dateText, inst) {
                     monthControl.val(inst.selectedMonth + 1);
                     yearControl.val(inst.selectedYear);
                     $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
@@ -108,7 +107,7 @@
 
         this.inputMasksInitialization = function () {
             $('#price').inputmask('9{1,7},99', { numericInput: true });
-        }
+        };
     }
 
     var petrovich = new Petrovich();
