@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models.DataStructure
         {
         }
 
-        public BranchEditViewModel(IChangeTrackableEntity entity)
+        public BranchEditViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
         }
@@ -43,7 +43,7 @@ namespace Petrovich.Web.Models.DataStructure
         
         private string _inventoryPart;
 
-        public static BranchEditViewModel Create(Branch branch)
+        public static BranchEditViewModel Create(BranchModel branch)
         {
             if (branch == null)
             {

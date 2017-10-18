@@ -23,13 +23,13 @@ namespace Petrovich.Repositories.DataSources
             this.groupMapper = groupMapper ?? throw new ArgumentNullException(nameof(groupMapper));
         }
 
-        public async Task<GroupCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
                 var groups = await groupRepository.ListAsync(pageIndex, pageSize);
                 var count = await groupRepository.ListCountAsync();
-                var collection = groupMapper.ToBusinessEntityCollection(groups);
+                var collection = groupMapper.ToGroupModelCollection(groups);
                 collection.TotalCount = count;
                 return collection;
             }
@@ -39,13 +39,13 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Group> CreateAsync(Group group)
+        public async Task<GroupModel> CreateAsync(GroupModel group)
         {
             try
             {
-                var contextGroup = groupMapper.ToContextEntity(group);
+                var contextGroup = groupMapper.ToContextGroup(group);
                 var newGroup = await groupRepository.CreateAsync(contextGroup);
-                return groupMapper.ToBusinessEntity(newGroup);
+                return groupMapper.ToGroupModel(newGroup);
             }
             catch (EntityException ex)
             {
@@ -53,12 +53,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Group> FindAsync(Guid id)
+        public async Task<GroupModel> FindAsync(Guid id)
         {
             try
             {
                 var group = await groupRepository.FindAsync(id);
-                return groupMapper.ToBusinessEntity(group);
+                return groupMapper.ToGroupModel(group);
             }
             catch (EntityException ex)
             {
@@ -66,7 +66,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Group> UpdateAsync(Group group)
+        public async Task<GroupModel> UpdateAsync(GroupModel group)
         {
             try
             {
@@ -74,11 +74,11 @@ namespace Petrovich.Repositories.DataSources
 
                 targetGroup.Title = group.Title;
                 targetGroup.BasePrice = group.Price;
-                targetGroup.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(group.PriceType);
+                targetGroup.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(group.PriceType);
                 targetGroup.CategoryId = group.CategoryId;
 
                 await groupRepository.UpdateAsync(targetGroup);
-                return groupMapper.ToBusinessEntity(targetGroup);
+                return groupMapper.ToGroupModel(targetGroup);
             }
             catch (EntityException ex)
             {
@@ -86,7 +86,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task DeleteAsync(Group group)
+        public async Task DeleteAsync(GroupModel group)
         {
             try
             {
@@ -111,12 +111,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<GroupCollection> ListByCategoryIdAsync(Guid categoryId)
+        public async Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             try
             {
                 var groups = await groupRepository.ListByCategoryIdAsync(categoryId);
-                return groupMapper.ToBusinessEntityCollection(groups);
+                return groupMapper.ToGroupModelCollection(groups);
             }
             catch (EntityException ex)
             {

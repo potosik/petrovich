@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
 
@@ -6,51 +7,51 @@ namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class CategoryMapper : ICategoryMapper
     {
-        public Business.Models.Category ToBusinessEntity(Category entity)
+        public CategoryModel ToCategoryModel(Category category)
         {
-            if (entity == null)
+            if (category == null)
             {
                 return null;
             }
 
-            return new Business.Models.Category()
+            return new CategoryModel()
             {
-                CategoryId = entity.CategoryId,
-                Title = entity.Title,
-                InventoryPart = entity.InventoryPart,
-                Price = entity.BasePrice,
-                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceType>(entity.PriceType),
-                BranchId = entity.BranchId,
-                BranchTitle = entity.Branch?.Title,
-                BranchInventoryPart = entity.Branch?.InventoryPart,
+                CategoryId = category.CategoryId,
+                Title = category.Title,
+                InventoryPart = category.InventoryPart,
+                Price = category.BasePrice,
+                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(category.PriceType),
+                BranchId = category.BranchId,
+                BranchTitle = category.Branch?.Title,
+                BranchInventoryPart = category.Branch?.InventoryPart,
                 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = category.Created,
+                CreatedBy = category.CreatedBy,
+                Modified = category.Modified,
+                ModifiedBy = category.ModifiedBy,
             };
         }
 
-        public Business.Models.CategoryCollection ToBusinessEntityCollection(IEnumerable<Category> entities)
+        public CategoryModelCollection ToCategoryModelCollection(IEnumerable<Category> categories)
         {
-            return new Business.Models.CategoryCollection(entities.Select(item => ToBusinessEntity(item)));
+            return new CategoryModelCollection(categories.Select(item => ToCategoryModel(item)));
         }
 
-        public Category ToContextEntity(Business.Models.Category entity)
+        public Category ToContextCategory(CategoryModel categoryModel)
         {
             return new Category()
             {
-                CategoryId = entity.CategoryId,
-                Title = entity.Title,
-                InventoryPart = entity.InventoryPart,
-                BasePrice = entity.Price,
-                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, Context.Enumerations.PriceType>(entity.PriceType),
-                BranchId = entity.BranchId,
+                CategoryId = categoryModel.CategoryId,
+                Title = categoryModel.Title,
+                InventoryPart = categoryModel.InventoryPart,
+                BasePrice = categoryModel.Price,
+                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(categoryModel.PriceType),
+                BranchId = categoryModel.BranchId,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = categoryModel.Created,
+                CreatedBy = categoryModel.CreatedBy,
+                Modified = categoryModel.Modified,
+                ModifiedBy = categoryModel.ModifiedBy,
             };
         }
     }

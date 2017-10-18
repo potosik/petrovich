@@ -71,11 +71,11 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newCategory = new Category()
+                    var newCategory = new CategoryModel()
                     {
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         BranchId = model.BranchId,
                     };
 
@@ -152,13 +152,13 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var category = new Category()
+                    var category = new CategoryModel()
                     {
                         CategoryId = model.CategoryId,
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
                         Price = model.BasePrice,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         BranchId = model.BranchId,
                     };
 

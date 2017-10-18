@@ -22,13 +22,13 @@ namespace Petrovich.Repositories.DataSources
             this.branchMapper = branchMapper ?? throw new ArgumentNullException(nameof(branchMapper));
         }
 
-        public async Task<BranchCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<BranchModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
                 var branches = await branchRepository.ListAsync(pageIndex, pageSize);
                 var count = await branchRepository.ListCountAsync();
-                var collection = branchMapper.ToBusinessEntityCollection(branches);
+                var collection = branchMapper.ToBranchModelCollection(branches);
                 collection.TotalCount = count;
                 return collection;
             }
@@ -38,12 +38,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> FindByInventoryPartAsync(string inventoryPart)
+        public async Task<BranchModel> FindByInventoryPartAsync(string inventoryPart)
         {
             try
             {
                 var branch = await branchRepository.FindByInventoryPartAsync(inventoryPart);
-                return branchMapper.ToBusinessEntity(branch);
+                return branchMapper.ToBranchModel(branch);
             }
             catch (EntityException ex)
             {
@@ -51,13 +51,13 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> CreateAsync(Branch branch)
+        public async Task<BranchModel> CreateAsync(BranchModel branch)
         {
             try
             {
-                var contextBranch = branchMapper.ToContextEntity(branch);
+                var contextBranch = branchMapper.ToContextBranch(branch);
                 var newBranch = await branchRepository.CreateAsync(contextBranch);
-                return branchMapper.ToBusinessEntity(newBranch);
+                return branchMapper.ToBranchModel(newBranch);
             }
             catch (EntityException ex)
             {
@@ -65,12 +65,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> FindAsync(Guid id)
+        public async Task<BranchModel> FindAsync(Guid id)
         {
             try
             {
                 var branch = await branchRepository.FindAsync(id);
-                return branchMapper.ToBusinessEntity(branch);
+                return branchMapper.ToBranchModel(branch);
             }
             catch (EntityException ex)
             {
@@ -78,7 +78,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Branch> UpdateAsync(Branch branch)
+        public async Task<BranchModel> UpdateAsync(BranchModel branch)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace Petrovich.Repositories.DataSources
                 targetBranch.InventoryPart = branch.InventoryPart;
 
                 await branchRepository.UpdateAsync(targetBranch);
-                return branchMapper.ToBusinessEntity(targetBranch);
+                return branchMapper.ToBranchModel(targetBranch);
             }
             catch (EntityException ex)
             {
@@ -96,7 +96,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task DeleteAsync(Branch branch)
+        public async Task DeleteAsync(BranchModel branch)
         {
             try
             {
@@ -109,12 +109,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<BranchCollection> ListAllAsync()
+        public async Task<BranchModelCollection> ListAllAsync()
         {
             try
             {
                 var branches = await branchRepository.ListAllAsync();
-                return branchMapper.ToBusinessEntityCollection(branches);
+                return branchMapper.ToBranchModelCollection(branches);
             }
             catch (EntityException ex)
             {

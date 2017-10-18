@@ -35,13 +35,13 @@ namespace Petrovich.Web.Controllers
             {
                 var items = await productService.SearchFastAsync(q, MaxFastResultsCount);
                 var products = items.Select(item => ProductFastViewModel.Create(item));
-                return JsonAllowGet(new JsonResponse(result: products));
+                return JsonAllowGet(new JsonResponseViewModel(result: products));
             }
             catch (Exception ex)
             {
-                var errorMessage = JsonResponse.FormatExceptionMessage(ex);
+                var errorMessage = JsonResponseViewModel.FormatExceptionMessage(ex);
                 await logger.LogErrorAsync(errorMessage);
-                return JsonAllowGet(new JsonResponse(errorMessage: errorMessage));
+                return JsonAllowGet(new JsonResponseViewModel(errorMessage: errorMessage));
             }
         }
     }

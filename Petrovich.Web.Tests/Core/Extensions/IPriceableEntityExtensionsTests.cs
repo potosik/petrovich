@@ -16,7 +16,7 @@ namespace Petrovich.Web.Tests.Core.Extensions
         [Fact]
         public void GetPriceInformation_WhenPriceIsNull_ShouldReturnPriceNotAvailableString()
         {
-            var entity = new TestEntity() { Price = null, PriceType = PriceType.Day };
+            var entity = new TestEntity() { Price = null, PriceType = PriceTypeBusiness.Day };
             var result = entity.GetPriceInformation();
 
             Assert.NotNull(result);
@@ -46,17 +46,17 @@ namespace Petrovich.Web.Tests.Core.Extensions
         [Fact]
         public void GetPriceInformation_WhenPriceAndPriceTypeNotNull_ShouldReturnPriceNotAvailableString()
         {
-            var entity = new TestEntity() { Price = 12.3f, PriceType = PriceType.Month };
+            var entity = new TestEntity() { Price = 12.3f, PriceType = PriceTypeBusiness.Month };
             var result = entity.GetPriceInformation();
 
             Assert.NotNull(result);
             Assert.Equal("12,30 BYN / месяц", result);
         }
 
-        private class TestEntity : IPriceableEntity
+        private class TestEntity : IPriceableEntityModel
         {
             public double? Price { get; set; }
-            public PriceType? PriceType { get; set; }
+            public PriceTypeBusiness? PriceType { get; set; }
         }
     }
 }

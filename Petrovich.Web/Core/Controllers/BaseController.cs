@@ -74,17 +74,17 @@ namespace Petrovich.Web.Core.Controllers
             return CreateInternalServerErrorResponse();
         }
 
-        protected JsonResult JsonAllowGet(JsonResponse response)
+        protected JsonResult JsonAllowGet(JsonResponseViewModel response)
         {
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
         protected List<SelectListItem> CreatePriceTypeSelectList()
         {
-            var values = Enum.GetValues(typeof(PriceType));
+            var values = Enum.GetValues(typeof(PriceTypeBusiness));
             var list = new List<SelectListItem>() { new SelectListItem() };
 
-            foreach (PriceType value in values)
+            foreach (PriceTypeBusiness value in values)
             {
                 var iValue = (int)value;
                 var text = Properties.Resources.ResourceManager.GetString($"PriceType_{value}");

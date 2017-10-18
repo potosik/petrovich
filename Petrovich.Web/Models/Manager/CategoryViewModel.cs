@@ -12,7 +12,7 @@ namespace Petrovich.Web.Models.Manager
         public string Title { get; set; }
         public string InventoryNumbers { get; set; }
         
-        public static CategoryViewModel Create(Category category)
+        public static CategoryViewModel Create(CategoryModel category)
         {
             if (category == null)
             {

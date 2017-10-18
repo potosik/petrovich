@@ -3,7 +3,7 @@ using System;
 
 namespace Petrovich.Business.Models
 {
-    public class Branch : BaseEntity
+    public class BranchModel : BaseEntityModel
     {
         public Guid BranchId { get; set; }
         public string Title { get; set; }

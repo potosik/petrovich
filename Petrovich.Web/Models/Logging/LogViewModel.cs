@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models.Logging
         {
         }
 
-        public LogViewModel(IChangeTrackableEntity entity)
+        public LogViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
         }
@@ -40,7 +40,7 @@ namespace Petrovich.Web.Models.Logging
         [Display(Name = "Call Stack")]
         public string CallStack { get; set; }
         
-        public static LogViewModel Create(Log log)
+        public static LogViewModel Create(LogModel log)
         {
             if (log == null)
             {

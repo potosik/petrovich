@@ -11,7 +11,7 @@ namespace Petrovich.Web.Models.Manager
         {
         }
 
-        public ProductDetailsViewModel(IChangeTrackableEntity entity) 
+        public ProductDetailsViewModel(IChangeTrackableEntityModel entity) 
             : base(entity)
         {
         }
@@ -35,7 +35,7 @@ namespace Petrovich.Web.Models.Manager
         public Guid? GroupId { get; set; }
         public string GroupTitle { get; set; }
 
-        public static ProductDetailsViewModel Create(Product product)
+        public static ProductDetailsViewModel Create(ProductModel product)
         {
             if (product == null)
             {

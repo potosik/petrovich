@@ -7,7 +7,7 @@ namespace Petrovich.Web.Core.Extensions
 {
     public static class IPriceableEntityExtensions
     {
-        public static string GetPriceInformation(this IPriceableEntity entity)
+        public static string GetPriceInformation(this IPriceableEntityModel entity)
         {
             if (!entity.Price.HasValue || !entity.PriceType.HasValue)
             {

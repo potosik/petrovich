@@ -19,12 +19,12 @@ namespace Petrovich.Repositories.DataSources
             this.logMapper = logMapper ?? throw new ArgumentNullException(nameof(logMapper));
         }
 
-        public async Task<Log> FindAsync(Guid id)
+        public async Task<LogModel> FindAsync(Guid id)
         {
             try
             {
                 var entity = await logRepository.FindAsync(id);
-                return logMapper.ToBusinessEntity(entity);
+                return logMapper.ToLogModel(entity);
             }
             catch (EntityException ex)
             {
@@ -32,13 +32,13 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<LogCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<LogModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
                 var entities = await logRepository.ListAsync(pageIndex, pageSize);
                 var count = await logRepository.ListCountAsync();
-                var collection = logMapper.ToBusinessEntityCollection(entities);
+                var collection = logMapper.ToLogModelCollection(entities);
                 collection.TotalCount = count;
                 return collection;
             }
@@ -48,11 +48,11 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task WriteLogAsync(Log entity)
+        public async Task WriteLogAsync(LogModel entity)
         {
             try
             {
-                var mappedEntity = logMapper.ToContextEntity(entity);
+                var mappedEntity = logMapper.ToContextLog(entity);
                 await logRepository.CreateAsync(mappedEntity);
             }
             catch (EntityException ex)

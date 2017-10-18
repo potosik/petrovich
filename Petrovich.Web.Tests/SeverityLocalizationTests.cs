@@ -14,7 +14,7 @@ namespace Petrovich.Web.Tests
         [Fact]
         public void TestForMissingOrDuplicateSeverityResourceStrings()
         {
-            var enumNames = EnumUtils.GetValues<LogSeverity>().ToArray();
+            var enumNames = EnumUtils.GetValues<LogSeverityBusiness>().ToArray();
             var enumValues = new List<string>();
             var resManager = new System.Resources.ResourceManager("Petrovich.Web.Properties.Resources", typeof(Startup).Assembly);
 
@@ -45,7 +45,7 @@ namespace Petrovich.Web.Tests
         [Fact]
         public void TestForMissingOrDuplicatePrityTypeResourceStrings()
         {
-            var enumNames = EnumUtils.GetValues<PriceType>().ToArray();
+            var enumNames = EnumUtils.GetValues<PriceTypeBusiness>().ToArray();
             var enumValues = new List<string>();
             var resManager = new System.Resources.ResourceManager("Petrovich.Web.Properties.Resources", typeof(Startup).Assembly);
 

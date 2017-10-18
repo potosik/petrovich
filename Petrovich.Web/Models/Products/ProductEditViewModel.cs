@@ -18,7 +18,7 @@ namespace Petrovich.Web.Models.Products
             PriceTypes = new List<SelectListItem>();
         }
 
-        public ProductEditViewModel(IChangeTrackableEntity entity) 
+        public ProductEditViewModel(IChangeTrackableEntityModel entity) 
             : base(entity)
         {
             Groups = new List<SelectListItem>();
@@ -79,7 +79,7 @@ namespace Petrovich.Web.Models.Products
         public IList<SelectListItem> PriceTypes { get; set; }
 
 
-        public static ProductEditViewModel Create(Product product)
+        public static ProductEditViewModel Create(ProductModel product)
         {
             if (product == null)
             {

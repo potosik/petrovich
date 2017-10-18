@@ -22,7 +22,7 @@ namespace Petrovich.Business.Logging
         
         Task LogInvalidModelAsync(Type type);
 
-        Task<LogCollection> ListAsync(int pageIndex, int pageSize);
-        Task<Log> FindAsync(Guid id);
+        Task<LogModelCollection> ListAsync(int pageIndex, int pageSize);
+        Task<LogModel> FindAsync(Guid id);
     }
 }

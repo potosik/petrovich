@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
 
@@ -6,49 +7,49 @@ namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class GroupMapper : IGroupMapper
     {
-        public Business.Models.Group ToBusinessEntity(Group entity)
+        public GroupModel ToGroupModel(Group group)
         {
-            if (entity == null)
+            if (group == null)
             {
                 return null;
             }
 
-            return new Business.Models.Group()
+            return new GroupModel()
             {
-                GroupId = entity.GroupId,
-                Title = entity.Title,
-                Price = entity.BasePrice,
-                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceType>(entity.PriceType),
-                CategoryId = entity.CategoryId,
+                GroupId = group.GroupId,
+                Title = group.Title,
+                Price = group.BasePrice,
+                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(group.PriceType),
+                CategoryId = group.CategoryId,
 
-                CategoryTitle = entity.Category?.Title,
+                CategoryTitle = group.Category?.Title,
                 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = group.Created,
+                CreatedBy = group.CreatedBy,
+                Modified = group.Modified,
+                ModifiedBy = group.ModifiedBy,
             };
         }
 
-        public Business.Models.GroupCollection ToBusinessEntityCollection(IEnumerable<Group> entities)
+        public GroupModelCollection ToGroupModelCollection(IEnumerable<Group> groups)
         {
-            return new Business.Models.GroupCollection(entities.Select(item => ToBusinessEntity(item)));
+            return new GroupModelCollection(groups.Select(item => ToGroupModel(item)));
         }
 
-        public Group ToContextEntity(Business.Models.Group entity)
+        public Group ToContextGroup(GroupModel groupModel)
         {
             return new Group()
             {
-                GroupId = entity.GroupId,
-                Title = entity.Title,
-                BasePrice = entity.Price,
-                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, Context.Enumerations.PriceType>(entity.PriceType),
-                CategoryId = entity.CategoryId,
+                GroupId = groupModel.GroupId,
+                Title = groupModel.Title,
+                BasePrice = groupModel.Price,
+                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(groupModel.PriceType),
+                CategoryId = groupModel.CategoryId,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = groupModel.Created,
+                CreatedBy = groupModel.CreatedBy,
+                Modified = groupModel.Modified,
+                ModifiedBy = groupModel.ModifiedBy,
             };
         }
     }

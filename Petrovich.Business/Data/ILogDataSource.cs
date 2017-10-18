@@ -6,8 +6,8 @@ namespace Petrovich.Business.Data
 {
     public interface ILogDataSource
     {
-        Task<Log> FindAsync(Guid id);
-        Task<LogCollection> ListAsync(int pageIndex, int pageSize);
-        Task WriteLogAsync(Log entity);
+        Task<LogModel> FindAsync(Guid id);
+        Task<LogModelCollection> ListAsync(int pageIndex, int pageSize);
+        Task WriteLogAsync(LogModel entity);
     }
 }

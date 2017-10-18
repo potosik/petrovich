@@ -8,7 +8,7 @@ namespace Petrovich.Web.Models
 {
     public interface IChangeTrackableViewModel
     {
-        void MapChangeTrackingFields(IChangeTrackableEntity entity);
+        void MapChangeTrackingFields(IChangeTrackableEntityModel entity);
 
         DateTime? Created { get; set; }
         string CreatedBy { get; set; }

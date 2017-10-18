@@ -2,15 +2,15 @@
 
 namespace Petrovich.Business.Models
 {
-    public class CategoryCollection : List<Category>
+    public class CategoryModelCollection : List<CategoryModel>
     {
         public int TotalCount { get; set; }
 
-        public CategoryCollection()
+        public CategoryModelCollection()
         {
         }
 
-        public CategoryCollection(IEnumerable<Category> categories)
+        public CategoryModelCollection(IEnumerable<CategoryModel> categories)
             : base(categories)
         {
         }

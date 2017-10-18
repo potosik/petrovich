@@ -89,7 +89,6 @@
     <Compile Include="Mappers\Composition\CompositionModule.cs" />
     <Compile Include="Mappers\Concrete\FullImageMapper.cs" />
     <Compile Include="Mappers\EnumMapper.cs" />
-    <Compile Include="Mappers\IBaseMapper.cs" />
     <Compile Include="Mappers\Concrete\BranchMapper.cs" />
     <Compile Include="Mappers\IBranchMapper.cs" />
     <Compile Include="Mappers\Concrete\CategoryMapper.cs" />

@@ -11,7 +11,7 @@ namespace Petrovich.Web.Models.Manager
         public Guid GroupId { get; set; }
         public string Title { get; set; }
 
-        public static GroupViewModel Create(Group item)
+        public static GroupViewModel Create(GroupModel item)
         {
             if (item == null)
             {

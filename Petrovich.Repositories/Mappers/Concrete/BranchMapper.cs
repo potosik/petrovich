@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
 using System;
@@ -7,48 +8,48 @@ namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class BranchMapper : IBranchMapper
     {
-        public Business.Models.Branch ToBusinessEntity(Branch entity)
+        public BranchModel ToBranchModel(Branch branch)
         {
-            if (entity == null)
+            if (branch == null)
             {
                 return null;
             }
 
-            return new Business.Models.Branch()
+            return new BranchModel()
             {
-                BranchId = entity.BranchId,
-                Title = entity.Title,
-                InventoryPart = entity.InventoryPart,
+                BranchId = branch.BranchId,
+                Title = branch.Title,
+                InventoryPart = branch.InventoryPart,
                 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = branch.Created,
+                CreatedBy = branch.CreatedBy,
+                Modified = branch.Modified,
+                ModifiedBy = branch.ModifiedBy,
             };
         }
 
-        public Business.Models.BranchCollection ToBusinessEntityCollection(IEnumerable<Branch> entities)
+        public BranchModelCollection ToBranchModelCollection(IEnumerable<Branch> branches)
         {
-            return new Business.Models.BranchCollection(entities.Select(item => ToBusinessEntity(item)));
+            return new BranchModelCollection(branches.Select(item => ToBranchModel(item)));
         }
 
-        public Branch ToContextEntity(Business.Models.Branch entity)
+        public Branch ToContextBranch(BranchModel branchModel)
         {
-            if (entity == null)
+            if (branchModel == null)
             {
-                throw new ArgumentNullException(nameof(entity));
+                throw new ArgumentNullException(nameof(branchModel));
             }
 
             return new Branch()
             {
-                BranchId = entity.BranchId,
-                Title = entity.Title,
-                InventoryPart = entity.InventoryPart,
+                BranchId = branchModel.BranchId,
+                Title = branchModel.Title,
+                InventoryPart = branchModel.InventoryPart,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = branchModel.Created,
+                CreatedBy = branchModel.CreatedBy,
+                Modified = branchModel.Modified,
+                ModifiedBy = branchModel.ModifiedBy,
             };
         }
     }

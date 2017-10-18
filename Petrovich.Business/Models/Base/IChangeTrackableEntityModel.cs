@@ -2,7 +2,7 @@
 
 namespace Petrovich.Business.Models.Base
 {
-    public interface IChangeTrackableEntity
+    public interface IChangeTrackableEntityModel
     {
         DateTime? Created { get; set; }
         string CreatedBy { get; set; }

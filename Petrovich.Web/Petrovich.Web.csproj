@@ -227,7 +227,7 @@
     <Compile Include="Models\DataStructure\GroupViewModel.cs" />
     <Compile Include="Models\IChangeTrackableViewModel.cs" />
     <Compile Include="Models\IPagedListViewModel.cs" />
-    <Compile Include="Models\JsonResponse.cs" />
+    <Compile Include="Models\JsonResponseViewModel.cs" />
     <Compile Include="Models\Logging\LogViewModel.cs" />
     <Compile Include="Models\Manager\BranchViewModel.cs" />
     <Compile Include="Models\Manager\CategoriesViewModel.cs" />

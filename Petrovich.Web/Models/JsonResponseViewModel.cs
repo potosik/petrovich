@@ -6,28 +6,28 @@ using System.Web;
 
 namespace Petrovich.Web.Models
 {
-    public class JsonResponse
+    public class JsonResponseViewModel
     {
         public bool Success { get; set; }
         public object Result { get; set; }
         public string ErrorMessage { get; set; }
 
-        public JsonResponse()
+        public JsonResponseViewModel()
             : this(true, null, null)
         {
         }
 
-        public JsonResponse(string errorMessage)
+        public JsonResponseViewModel(string errorMessage)
             : this(false, null, errorMessage)
         {
         }
 
-        public JsonResponse(object result)
+        public JsonResponseViewModel(object result)
             : this(true, result, null)
         {
         }
 
-        public JsonResponse(bool success, object result, string errorMessage)
+        public JsonResponseViewModel(bool success, object result, string errorMessage)
         {
             Success = success;
             Result = result;

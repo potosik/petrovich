@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
 using System;
@@ -16,77 +17,77 @@ namespace Petrovich.Repositories.Mappers.Concrete
             this.groupMapper = groupMapper;
         }
 
-        public Business.Models.Product ToBusinessEntity(Product entity)
+        public ProductModel ToProductModel(Product product)
         {
-            if (entity == null)
+            if (product == null)
             {
                 return null;
             }
 
-            return new Business.Models.Product()
+            return new ProductModel()
             {
-                ProductId = entity.ProductId,
-                Title = entity.Title,
-                Description = entity.Description,
-                Price = entity.Price,
-                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceType>(entity.PriceType),
-                InventoryPart = entity.InventoryPart,
+                ProductId = product.ProductId,
+                Title = product.Title,
+                Description = product.Description,
+                Price = product.Price,
+                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(product.PriceType),
+                InventoryPart = product.InventoryPart,
 
-                PurchaseYear = entity.PurchaseYear,
-                PurchaseMonth = entity.PurchaseMonth,
+                PurchaseYear = product.PurchaseYear,
+                PurchaseMonth = product.PurchaseMonth,
 
-                ImageFullId = entity.Image?.FullImageId,
-                ImageFull = entity.Image?.Content,
+                ImageFullId = product.Image?.FullImageId,
+                ImageFull = product.Image?.Content,
 
-                ImageDefault = entity.ImageDefault,
-                ImageSmall = entity.ImageSmall,
+                ImageDefault = product.ImageDefault,
+                ImageSmall = product.ImageSmall,
 
-                BranchId = entity.Category != null ? entity.Category.BranchId : Guid.Empty,
-                BranchTitle = entity.Category?.Branch?.Title,
+                BranchId = product.Category != null ? product.Category.BranchId : Guid.Empty,
+                BranchTitle = product.Category?.Branch?.Title,
 
-                Category = categoryMapper.ToBusinessEntity(entity.Category),
-                Group = groupMapper.ToBusinessEntity(entity.Group),
+                Category = categoryMapper.ToCategoryModel(product.Category),
+                Group = groupMapper.ToGroupModel(product.Group),
 
-                BranchInventoryPart = entity.Category?.Branch?.InventoryPart,
-                CategoryInventoryPart = entity.Category?.InventoryPart ?? 0,
+                BranchInventoryPart = product.Category?.Branch?.InventoryPart,
+                CategoryInventoryPart = product.Category?.InventoryPart ?? 0,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = product.Created,
+                CreatedBy = product.CreatedBy,
+                Modified = product.Modified,
+                ModifiedBy = product.ModifiedBy,
             };
         }
 
-        public Business.Models.ProductCollection ToBusinessEntityCollection(IEnumerable<Product> entities)
+        public ProductModelCollection ToProductModelCollection(IEnumerable<Product> products)
         {
-            return new Business.Models.ProductCollection(entities.Select(item => ToBusinessEntity(item)));
+            return new ProductModelCollection(products.Select(item => ToProductModel(item)));
         }
 
-        public Product ToContextEntity(Business.Models.Product entity)
+        public Product ToContextProduct(ProductModel productModel)
         {
             return new Product()
             {
-                ProductId = entity.ProductId,
-                Title = entity.Title,
-                Description = entity.Description,
-                Price = entity.Price,
-                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, Context.Enumerations.PriceType>(entity.PriceType),
-                InventoryPart = entity.InventoryPart,
+                ProductId = productModel.ProductId,
+                Title = productModel.Title,
+                Description = productModel.Description,
+                Price = productModel.Price,
+                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(productModel.PriceType),
+                InventoryPart = productModel.InventoryPart,
 
-                PurchaseYear = entity.PurchaseYear,
-                PurchaseMonth = entity.PurchaseMonth,
+                PurchaseYear = productModel.PurchaseYear,
+                PurchaseMonth = productModel.PurchaseMonth,
 
-                FullImageId = entity.ImageFullId,
-                ImageDefault = entity.ImageDefault,
-                ImageSmall = entity.ImageSmall,
+                FullImageId = productModel.ImageFullId,
+                ImageDefault = productModel.ImageDefault,
+                ImageSmall = productModel.ImageSmall,
 
-                CategoryId = entity.Category.CategoryId,
-                GroupId = entity.Group?.GroupId,
+                CategoryId = productModel.Category.CategoryId,
+                GroupId = productModel.Group?.GroupId,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = productModel.Created,
+                CreatedBy = productModel.CreatedBy,
+                Modified = productModel.Modified,
+                ModifiedBy = productModel.ModifiedBy,
             };
         }
     }

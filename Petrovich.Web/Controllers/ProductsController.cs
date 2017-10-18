@@ -93,12 +93,12 @@ namespace Petrovich.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     var image = file.GetImage();
-                    var newProduct = new Product()
+                    var newProduct = new ProductModel()
                     {
                         Title = model.Title,
                         Description = model.Description,
                         Price = model.Price,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
 
                         PurchaseYear = model.PurchaseYear,
                         PurchaseMonth = model.PurchaseMonth,
@@ -107,8 +107,8 @@ namespace Petrovich.Web.Controllers
                         ImageDefault = image.GetDefaultImageString(),
                         ImageSmall = image.GetSmallImageString(),
 
-                        Category = new Category() { CategoryId = model.CategoryId },
-                        Group = model.GroupId.HasValue ? new Group() { GroupId = model.GroupId.Value } : null,
+                        Category = new CategoryModel() { CategoryId = model.CategoryId },
+                        Group = model.GroupId.HasValue ? new GroupModel() { GroupId = model.GroupId.Value } : null,
                     };
 
                     await productService.CreateAsync(newProduct);
@@ -199,13 +199,13 @@ namespace Petrovich.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     var image = file.GetImage();
-                    var product = new Product()
+                    var product = new ProductModel()
                     {
                         ProductId = model.ProductId,
                         Title = model.Title,
                         Description = model.Description,
                         Price = model.Price,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         InventoryPart = model.InventoryPart,
 
                         PurchaseYear = model.PurchaseYear,
@@ -215,8 +215,8 @@ namespace Petrovich.Web.Controllers
                         ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,
                         ImageSmall = image.GetSmallImageString() ?? model.ImageSmall,
 
-                        Category = new Category() { CategoryId = model.CategoryId },
-                        Group = model.GroupId.HasValue ? new Group() { GroupId = model.GroupId.Value } : null,
+                        Category = new CategoryModel() { CategoryId = model.CategoryId },
+                        Group = model.GroupId.HasValue ? new GroupModel() { GroupId = model.GroupId.Value } : null,
                     };
 
                     await productService.UpdateAsync(product);
@@ -298,7 +298,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var categories = await CreateCategoriesSelectList(branchId);
-                return JsonAllowGet(new JsonResponse(result: categories));
+                return JsonAllowGet(new JsonResponseViewModel(result: categories));
             }
             catch (BranchNotFoundException ex)
             {
@@ -317,7 +317,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
+            return JsonAllowGet(new JsonResponseViewModel(result: new List<SelectListItem>()));
         }
 
         [HttpGet]
@@ -326,7 +326,7 @@ namespace Petrovich.Web.Controllers
             try
             {
                 var groups = await CreateGroupsSelectList(categoryId);
-                return JsonAllowGet(new JsonResponse(result: groups));
+                return JsonAllowGet(new JsonResponseViewModel(result: groups));
             }
             catch (CategoryNotFoundException ex)
             {
@@ -345,7 +345,7 @@ namespace Petrovich.Web.Controllers
                 await logger.LogErrorAsync($"ProductController.GetCategories unexpected exception occured.", ex);
             }
 
-            return JsonAllowGet(new JsonResponse(result: new List<SelectListItem>()));
+            return JsonAllowGet(new JsonResponseViewModel(result: new List<SelectListItem>()));
         }
 
         private async Task<IList<SelectListItem>> CreateBranchesSelectList()

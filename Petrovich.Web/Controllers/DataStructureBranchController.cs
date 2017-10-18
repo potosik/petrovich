@@ -67,7 +67,7 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newBranch = new Branch()
+                    var newBranch = new BranchModel()
                     {
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
@@ -137,7 +137,7 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var branch = new Branch()
+                    var branch = new BranchModel()
                     {
                         BranchId = model.BranchId,
                         Title = model.Title,

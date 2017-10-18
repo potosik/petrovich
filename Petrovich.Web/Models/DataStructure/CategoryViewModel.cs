@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models.DataStructure
         {
         }
 
-        public CategoryViewModel(IChangeTrackableEntity entity)
+        public CategoryViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
         }
@@ -26,7 +26,7 @@ namespace Petrovich.Web.Models.DataStructure
         public string InventoryPartString { get { return InventoryPart.ToString("D2"); } }
         public string BranchTitle { get; set; }
 
-        public static CategoryViewModel Create(Category category)
+        public static CategoryViewModel Create(CategoryModel category)
         {
             if (category == null)
             {

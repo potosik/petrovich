@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models.DataStructure
         {
         }
 
-        public GroupViewModel(IChangeTrackableEntity entity)
+        public GroupViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
         }
@@ -24,7 +24,7 @@ namespace Petrovich.Web.Models.DataStructure
         public string Price { get; set; }
         public string CategoryTitle { get; set; }
 
-        public static GroupViewModel Create(Group group)
+        public static GroupViewModel Create(GroupModel group)
         {
             if (group == null)
             {

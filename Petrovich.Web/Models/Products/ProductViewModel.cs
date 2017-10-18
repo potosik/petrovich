@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models.Products
         {
         }
 
-        public ProductViewModel(IChangeTrackableEntity entity) 
+        public ProductViewModel(IChangeTrackableEntityModel entity) 
             : base(entity)
         {
         }
@@ -35,7 +35,7 @@ namespace Petrovich.Web.Models.Products
 
         public string InventoryNumber { get; set; }
 
-        public static ProductViewModel Create(Product product)
+        public static ProductViewModel Create(ProductModel product)
         {
             if (product == null)
             {

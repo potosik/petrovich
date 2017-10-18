@@ -13,7 +13,7 @@ namespace Petrovich.Web.Models
         {
         }
 
-        public ChangeTrackableViewModel(IChangeTrackableEntity entity)
+        public ChangeTrackableViewModel(IChangeTrackableEntityModel entity)
         {
             if (entity == null)
             {
@@ -28,7 +28,7 @@ namespace Petrovich.Web.Models
         public DateTime? Modified { get; set; }
         public string ModifiedBy { get; set; }
 
-        public void MapChangeTrackingFields(IChangeTrackableEntity entity)
+        public void MapChangeTrackingFields(IChangeTrackableEntityModel entity)
         {
             Created = entity.Created.ToLocalTimeIfHasValue();
             CreatedBy = entity.CreatedBy;

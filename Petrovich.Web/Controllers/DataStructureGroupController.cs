@@ -71,11 +71,11 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newGroup = new Group()
+                    var newGroup = new GroupModel()
                     {
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 
@@ -147,12 +147,12 @@ namespace Petrovich.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var group = new Group()
+                    var group = new GroupModel()
                     {
                         GroupId = model.GroupId,
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceType?)model.PriceType,
+                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 

@@ -2,15 +2,15 @@
 
 namespace Petrovich.Business.Models
 {
-    public class ProductCollection : List<Product>
+    public class ProductModelCollection : List<ProductModel>
     {
         public int TotalCount { get; set; }
 
-        public ProductCollection()
+        public ProductModelCollection()
         {
         }
 
-        public ProductCollection(IEnumerable<Product> products)
+        public ProductModelCollection(IEnumerable<ProductModel> products)
             : base(products)
         {
         }

@@ -2,15 +2,15 @@
 
 namespace Petrovich.Business.Models
 {
-    public class GroupCollection : List<Group>
+    public class GroupModelCollection : List<GroupModel>
     {
         public int TotalCount { get; set; }
 
-        public GroupCollection()
+        public GroupModelCollection()
         {
         }
 
-        public GroupCollection(IEnumerable<Group> groups)
+        public GroupModelCollection(IEnumerable<GroupModel> groups)
             : base(groups)
         {
         }

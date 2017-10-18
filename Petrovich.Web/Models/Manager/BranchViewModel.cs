@@ -12,7 +12,7 @@ namespace Petrovich.Web.Models.Manager
         public string Title { get; set; }
         public string InventoryNumbers { get; set; }
 
-        public static BranchViewModel Create(Branch branch)
+        public static BranchViewModel Create(BranchModel branch)
         {
             if (branch == null)
             {

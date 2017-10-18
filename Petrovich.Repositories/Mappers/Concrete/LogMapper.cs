@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using Petrovich.Context.Enumerations;
 
@@ -7,51 +8,51 @@ namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class LogMapper : ILogMapper
     {
-        public Business.Models.Log ToBusinessEntity(Log entity)
+        public LogModel ToLogModel(Log log)
         {
-            if (entity == null)
+            if (log == null)
             {
                 return null;
             }
 
-            return new Business.Models.Log()
+            return new LogModel()
             {
-                LogId = entity.LogId,
-                CorrelationId = entity.CorrelationId,
-                Severity = (Business.Models.Enumerations.LogSeverity)((int)entity.Severity),
-                Message = entity.Message,
-                StackTrace = entity.StackTrace,
-                InnerExceptionMessage = entity.InnerExceptionMessage,
-                CallStack = entity.CallStack,
+                LogId = log.LogId,
+                CorrelationId = log.CorrelationId,
+                Severity = (Business.Models.Enumerations.LogSeverityBusiness)((int)log.Severity),
+                Message = log.Message,
+                StackTrace = log.StackTrace,
+                InnerExceptionMessage = log.InnerExceptionMessage,
+                CallStack = log.CallStack,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = log.Created,
+                CreatedBy = log.CreatedBy,
+                Modified = log.Modified,
+                ModifiedBy = log.ModifiedBy,
             };
         }
 
-        public Business.Models.LogCollection ToBusinessEntityCollection(IEnumerable<Log> entities)
+        public LogModelCollection ToLogModelCollection(IEnumerable<Log> logs)
         {
-            return new Business.Models.LogCollection(entities.Select(item => ToBusinessEntity(item)));
+            return new LogModelCollection(logs.Select(item => ToLogModel(item)));
         }
 
-        public Log ToContextEntity(Business.Models.Log entity)
+        public Log ToContextLog(LogModel logModel)
         {
             return new Log()
             {
-                LogId = entity.LogId,
-                CorrelationId = entity.CorrelationId,
-                Severity = (LogSeverity)((int)entity.Severity),
-                Message = entity.Message,
-                StackTrace = entity.StackTrace,
-                InnerExceptionMessage = entity.InnerExceptionMessage,
-                CallStack = entity.CallStack,
+                LogId = logModel.LogId,
+                CorrelationId = logModel.CorrelationId,
+                Severity = (LogSeverity)((int)logModel.Severity),
+                Message = logModel.Message,
+                StackTrace = logModel.StackTrace,
+                InnerExceptionMessage = logModel.InnerExceptionMessage,
+                CallStack = logModel.CallStack,
 
-                Created = entity.Created,
-                CreatedBy = entity.CreatedBy,
-                Modified = entity.Modified,
-                ModifiedBy = entity.ModifiedBy,
+                Created = logModel.Created,
+                CreatedBy = logModel.CreatedBy,
+                Modified = logModel.Modified,
+                ModifiedBy = logModel.ModifiedBy,
             };
         }
     }

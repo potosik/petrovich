@@ -26,13 +26,13 @@ namespace Petrovich.Repositories.DataSources
             this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
         }
 
-        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
                 var products = await productRepository.ListAsync(pageIndex, pageSize);
                 var count = await productRepository.ListCountAsync();
-                var collection = productMapper.ToBusinessEntityCollection(products);
+                var collection = productMapper.ToProductModelCollection(products);
                 collection.TotalCount = count;
                 return collection;
             }
@@ -42,18 +42,18 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Product> CreateAsync(Product product)
+        public async Task<ProductModel> CreateAsync(ProductModel product)
         {
             try
             {
-                var contextProduct = productMapper.ToContextEntity(product);
+                var contextProduct = productMapper.ToContextProduct(product);
                 if (product.ImageFull != null)
                 {
                     contextProduct.FullImageId = await fullImageDataSource.CreateAsync(product.ImageFull);
                 }
 
                 var newProduct = await productRepository.CreateAsync(contextProduct);
-                return productMapper.ToBusinessEntity(newProduct);
+                return productMapper.ToProductModel(newProduct);
             }
             catch (EntityException ex)
             {
@@ -61,12 +61,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Product> FindAsync(Guid id)
+        public async Task<ProductModel> FindAsync(Guid id)
         {
             try
             {
                 var product = await productRepository.FindAsync(id);
-                return productMapper.ToBusinessEntity(product);
+                return productMapper.ToProductModel(product);
             }
             catch (EntityException ex)
             {
@@ -74,7 +74,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Product> UpdateAsync(Product product)
+        public async Task<ProductModel> UpdateAsync(ProductModel product)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Title = product.Title;
                 targetProduct.Description = product.Description;
                 targetProduct.Price = product.Price;
-                targetProduct.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(product.PriceType);
+                targetProduct.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(product.PriceType);
                 targetProduct.InventoryPart = product.InventoryPart;
                 targetProduct.PurchaseYear = product.PurchaseYear;
                 targetProduct.PurchaseMonth = product.PurchaseMonth;
@@ -98,7 +98,7 @@ namespace Petrovich.Repositories.DataSources
                 }
 
                 await productRepository.UpdateAsync(targetProduct);
-                return productMapper.ToBusinessEntity(targetProduct);
+                return productMapper.ToProductModel(targetProduct);
             }
             catch (EntityException ex)
             {
@@ -106,7 +106,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task DeleteAsync(Product product)
+        public async Task DeleteAsync(ProductModel product)
         {
             try
             {
@@ -167,13 +167,13 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
             try
             {
                 var products = await productRepository.SearchFastAsync(query, count);
                 var totalCount = await productRepository.SearchFastCountAsync(query);
-                var collection = productMapper.ToBusinessEntityCollection(products);
+                var collection = productMapper.ToProductModelCollection(products);
                 collection.TotalCount = totalCount;
                 return collection;
             }
@@ -183,12 +183,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        public async Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             try
             {
                 var products = await productRepository.ListByCategoryIdAsync(categoryId);
-                var collection = productMapper.ToBusinessEntityCollection(products);
+                var collection = productMapper.ToProductModelCollection(products);
                 return collection;
             }
             catch (EntityException ex)
@@ -197,12 +197,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        public async Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
         {
             try
             {
                 var products = await productRepository.ListByGroupIdAsync(groupId);
-                var collection = productMapper.ToBusinessEntityCollection(products);
+                var collection = productMapper.ToProductModelCollection(products);
                 return collection;
             }
             catch (EntityException ex)

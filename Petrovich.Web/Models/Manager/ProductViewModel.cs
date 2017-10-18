@@ -13,7 +13,7 @@ namespace Petrovich.Web.Models.Manager
         public string Title { get; set; }
         public string Price { get; set; }
 
-        public static ProductViewModel Create(Product product)
+        public static ProductViewModel Create(ProductModel product)
         {
             if (product == null)
             {

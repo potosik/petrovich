@@ -17,7 +17,7 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<GroupCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListGroups, new { pageIndex, pageSize }))
             {
@@ -25,7 +25,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Group> CreateAsync(Group group)
+        public async Task<GroupModel> CreateAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.CreateGroup, new { group }))
             {
@@ -33,7 +33,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Group> FindAsync(Guid id)
+        public async Task<GroupModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindGroupById, new { id }))
             {
@@ -41,7 +41,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Group> UpdateAsync(Group group)
+        public async Task<GroupModel> UpdateAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.UpdateGroup, new { group }))
             {
@@ -49,7 +49,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task DeleteAsync(Group group)
+        public async Task DeleteAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.DeleteGroup, new { group }))
             {
@@ -65,7 +65,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<GroupCollection> ListByCategoryIdAsync(Guid categoryId)
+        public async Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.ListGroupsByCategoryId, new { categoryId }))
             {

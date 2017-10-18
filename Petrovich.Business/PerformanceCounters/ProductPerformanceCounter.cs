@@ -17,7 +17,7 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListProducts, new { pageIndex, pageSize }))
             {
@@ -25,7 +25,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Product> CreateAsync(Product product)
+        public async Task<ProductModel> CreateAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.CreateProduct, new { product }))
             {
@@ -33,7 +33,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Product> FindAsync(Guid id)
+        public async Task<ProductModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindProductById, new { id }))
             {
@@ -41,7 +41,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Product> UpdateAsync(Product product)
+        public async Task<ProductModel> UpdateAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.UpdateProduct, new { product }))
             {
@@ -49,7 +49,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task DeleteAsync(Product product)
+        public async Task DeleteAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.DeleteProduct, new { product }))
             {
@@ -81,7 +81,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
             using (new PerformanceMonitor(EventSource.ProductSearchFast, new { query, count }))
             {
@@ -89,7 +89,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        public async Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.ListProductsByCategoryId, new { categoryId }))
             {
@@ -97,7 +97,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        public async Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
         {
             using (new PerformanceMonitor(EventSource.ListProductsByGroupId, new { groupId }))
             {

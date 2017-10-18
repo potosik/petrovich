@@ -11,21 +11,21 @@ namespace Petrovich.Web.Tests.Core.Extensions
 {
     public class ProductExtensionsTests
     {
-        private Product product = new Product()
+        private ProductModel product = new ProductModel()
         {
             Price = 12.3f,
-            PriceType = Business.Models.Enumerations.PriceType.Month,
+            PriceType = Business.Models.Enumerations.PriceTypeBusiness.Month,
 
-            Group = new Group()
+            Group = new GroupModel()
             {
                 Price = 45.6f,
-                PriceType = Business.Models.Enumerations.PriceType.Day,
+                PriceType = Business.Models.Enumerations.PriceTypeBusiness.Day,
             },
 
-            Category = new Category()
+            Category = new CategoryModel()
             {
                 Price = 78.9f,
-                PriceType = Business.Models.Enumerations.PriceType.Week,
+                PriceType = Business.Models.Enumerations.PriceTypeBusiness.Week,
             }
         };
 

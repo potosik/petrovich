@@ -50,7 +50,7 @@ namespace Petrovich.Repositories.Tests.DataSources
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.CreateAsync(new Business.Models.Product());
+                return dataSource.CreateAsync(new Business.Models.ProductModel());
             });
         }
 
@@ -74,7 +74,7 @@ namespace Petrovich.Repositories.Tests.DataSources
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.UpdateAsync(new Business.Models.Product());
+                return dataSource.UpdateAsync(new Business.Models.ProductModel());
             });
         }
 
@@ -86,7 +86,7 @@ namespace Petrovich.Repositories.Tests.DataSources
 
             await Assert.ThrowsAsync<DatabaseOperationException>(() =>
             {
-                return dataSource.DeleteAsync(new Business.Models.Product());
+                return dataSource.DeleteAsync(new Business.Models.ProductModel());
             });
         }
 

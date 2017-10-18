@@ -16,7 +16,7 @@ namespace Petrovich.Web.Models.DataStructure
             PriceTypes = new List<SelectListItem>();
         }
 
-        public GroupEditViewModel(IChangeTrackableEntity entity)
+        public GroupEditViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
             PriceTypes = new List<SelectListItem>();
@@ -43,7 +43,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public List<SelectListItem> PriceTypes { get; set; }
 
-        public static GroupEditViewModel Create(Group group)
+        public static GroupEditViewModel Create(GroupModel group)
         {
             if (group == null)
             {

@@ -17,7 +17,7 @@ namespace Petrovich.Web.Tests.Models
         [Fact]
         public void FormatExceptionMessage_WhenExceptionIsNull_ReturnsEmptyString()
         {
-            var result = JsonResponse.FormatExceptionMessage(null);
+            var result = JsonResponseViewModel.FormatExceptionMessage(null);
 
             Assert.NotNull(result);
             Assert.Equal("", result);
@@ -26,7 +26,7 @@ namespace Petrovich.Web.Tests.Models
         [Fact]
         public void FormatExceptionMessage_WhenExceptionHasOneLevel_ReturnsExceptionMessageAndType()
         {
-            var result = JsonResponse.FormatExceptionMessage(new ArgumentNullException());
+            var result = JsonResponseViewModel.FormatExceptionMessage(new ArgumentNullException());
 
             Assert.NotNull(result);
             Assert.Equal($"Type: {ExceptionTypeName}{NewLineSymbols}{ExceptionMessage}{NewLineSymbols}", result);
@@ -40,7 +40,7 @@ namespace Petrovich.Web.Tests.Models
                                 new ArgumentNullException(ExceptionMessage, 
                                     new ArgumentNullException()));
 
-            var result = JsonResponse.FormatExceptionMessage(exception);
+            var result = JsonResponseViewModel.FormatExceptionMessage(exception);
 
             Assert.NotNull(result);
             Assert.Equal(expectedString, result);

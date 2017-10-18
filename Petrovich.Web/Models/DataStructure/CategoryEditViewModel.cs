@@ -16,7 +16,7 @@ namespace Petrovich.Web.Models.DataStructure
             PriceTypes = new List<SelectListItem>();
         }
 
-        public CategoryEditViewModel(IChangeTrackableEntity entity)
+        public CategoryEditViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
             PriceTypes = new List<SelectListItem>();
@@ -47,7 +47,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public List<SelectListItem> PriceTypes { get; set; }
 
-        public static CategoryEditViewModel Create(Category category)
+        public static CategoryEditViewModel Create(CategoryModel category)
         {
             if (category == null)
             {

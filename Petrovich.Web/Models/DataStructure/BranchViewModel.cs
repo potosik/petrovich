@@ -13,7 +13,7 @@ namespace Petrovich.Web.Models.DataStructure
         {
         }
 
-        public BranchViewModel(IChangeTrackableEntity entity)
+        public BranchViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
         }
@@ -22,7 +22,7 @@ namespace Petrovich.Web.Models.DataStructure
         public string Title { get; set; }
         public string InventoryPart { get; set; }
 
-        public static BranchViewModel Create(Branch branch)
+        public static BranchViewModel Create(BranchModel branch)
         {
             if (branch == null)
             {

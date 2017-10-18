@@ -19,7 +19,7 @@ namespace Petrovich.Web.Models.Manager
         
         public IEnumerable<ProductViewModel> Products { get; set; }
 
-        public static ProductsViewModel Create(Branch branch, Category category, Group group, ProductCollection products)
+        public static ProductsViewModel Create(BranchModel branch, CategoryModel category, GroupModel group, ProductModelCollection products)
         {
             if (branch == null)
             {

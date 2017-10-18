@@ -12,7 +12,7 @@ namespace Petrovich.Web.Models.Manager
         public string BranchTitle { get; set; }
         public IEnumerable<CategoryViewModel> Categories { get; set; }
 
-        internal static object Create(Branch branch, CategoryCollection categories)
+        internal static object Create(BranchModel branch, CategoryModelCollection categories)
         {
             return new CategoriesViewModel()
             {

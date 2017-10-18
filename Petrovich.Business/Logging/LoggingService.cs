@@ -18,9 +18,9 @@ namespace Petrovich.Business.Logging
             this.dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        private async Task LogAsync(LogSeverity severity, string message, string stackTrace = null, string innerExceptionMessage = null)
+        private async Task LogAsync(LogSeverityBusiness severity, string message, string stackTrace = null, string innerExceptionMessage = null)
         {
-            var logEntity = new Log()
+            var logEntity = new LogModel()
             {
                 Severity = severity,
                 Message = message,
@@ -34,60 +34,60 @@ namespace Petrovich.Business.Logging
 
         public async Task LogCriticalAsync(string message)
         {
-            await LogAsync(LogSeverity.Critical, message);
+            await LogAsync(LogSeverityBusiness.Critical, message);
         }
 
         public async Task LogCriticalAsync(Exception ex)
         {
-            await LogAsync(LogSeverity.Critical, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Critical, null, ex.Message, ex.InnerException?.Message);
         }
 
         public async Task LogCriticalAsync(string message, Exception ex)
         {
             var formattedMessage = FormatMessageWithException(message, ex);
-            await LogAsync(LogSeverity.Critical, formattedMessage, ex.StackTrace, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Critical, formattedMessage, ex.StackTrace, ex.InnerException?.Message);
         }
 
         public async Task LogErrorAsync(string message)
         {
-            await LogAsync(LogSeverity.Error, message);
+            await LogAsync(LogSeverityBusiness.Error, message);
         }
 
         public async Task LogErrorAsync(Exception ex)
         {
-            await LogAsync(LogSeverity.Error, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Error, null, ex.Message, ex.InnerException?.Message);
         }
 
         public async Task LogErrorAsync(string message, Exception ex)
         {
             var formattedMessage = FormatMessageWithException(message, ex);
-            await LogAsync(LogSeverity.Error, formattedMessage, ex.StackTrace, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Error, formattedMessage, ex.StackTrace, ex.InnerException?.Message);
         }
 
         public async Task LogInformationAsync(string message)
         {
-            await LogAsync(LogSeverity.Information, message);
+            await LogAsync(LogSeverityBusiness.Information, message);
         }
 
         public async Task LogInformationAsync(Exception ex)
         {
-            await LogAsync(LogSeverity.Information, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Information, null, ex.Message, ex.InnerException?.Message);
         }
 
         public async Task LogInformationAsync(string message, Exception ex)
         {
             var formattedMessage = FormatMessageWithException(message, ex);
-            await LogAsync(LogSeverity.Information, formattedMessage, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Information, formattedMessage, ex.Message, ex.InnerException?.Message);
         }
 
         public async Task LogNoneAsync(string message)
         {
-            await LogAsync(LogSeverity.None, message);
+            await LogAsync(LogSeverityBusiness.None, message);
         }
 
         public void LogNone(string message)
         {
-            Task.Run(async () => await LogAsync(LogSeverity.None, message)).Wait();
+            Task.Run(async () => await LogAsync(LogSeverityBusiness.None, message)).Wait();
         }
 
         public async Task LogInvalidModelAsync(Type type)
@@ -100,12 +100,12 @@ namespace Petrovich.Business.Logging
             return $"{message} | Exception: {ex.Message}";
         }
 
-        public async Task<LogCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<LogModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             return await dataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task<Log> FindAsync(Guid id)
+        public async Task<LogModel> FindAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -124,7 +124,7 @@ namespace Petrovich.Business.Logging
         public void LogPerformanceMetrics(int eventId, string elapsedTime, string method, string arguments)
         {
             var message = $"METRIC: {elapsedTime} {eventId} {method} {arguments}";
-            Task.Run(async () => await LogAsync(LogSeverity.Performance, message)).Wait();
+            Task.Run(async () => await LogAsync(LogSeverityBusiness.Performance, message)).Wait();
         }
     }
 }

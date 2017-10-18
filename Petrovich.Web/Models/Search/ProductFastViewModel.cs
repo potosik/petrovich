@@ -22,7 +22,7 @@ namespace Petrovich.Web.Models.Search
         public string CategoryTitle { get; set; }
         public string GroupTitle { get; set; }
         
-        public static ProductFastViewModel Create(Product product)
+        public static ProductFastViewModel Create(ProductModel product)
         {
             if (product == null)
             {

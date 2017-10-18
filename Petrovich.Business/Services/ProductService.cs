@@ -25,13 +25,13 @@ namespace Petrovich.Business.Services
             this.groupDataSource = groupDataSource ?? throw new ArgumentNullException(nameof(groupDataSource));
         }
 
-        public async Task<ProductCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             await logger.LogNoneAsync($"ProductService.ListAsync: listing products (pageIndex: {pageIndex} pageSize: {pageSize}).");
             return await productDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task<Product> CreateAsync(Product product)
+        public async Task<ProductModel> CreateAsync(ProductModel product)
         {
             if (product == null)
             {
@@ -74,7 +74,7 @@ namespace Petrovich.Business.Services
             return await productDataSource.CreateAsync(product);
         }
 
-        public async Task<Product> FindAsync(Guid id)
+        public async Task<ProductModel> FindAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -93,7 +93,7 @@ namespace Petrovich.Business.Services
             return product;
         }
 
-        public async Task<Product> UpdateAsync(Product product)
+        public async Task<ProductModel> UpdateAsync(ProductModel product)
         {
             if (product.ProductId == Guid.Empty)
             {
@@ -161,7 +161,7 @@ namespace Petrovich.Business.Services
             await productDataSource.DeleteAsync(product);
         }
 
-        public async Task<ProductCollection> SearchFastAsync(string query, int count)
+        public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
             if (String.IsNullOrWhiteSpace(query))
             {
@@ -171,7 +171,7 @@ namespace Petrovich.Business.Services
             return await productDataSource.SearchFastAsync(query, count);
         }
         
-        private void ValidatePurchasingInformation(Product product)
+        private void ValidatePurchasingInformation(ProductModel product)
         {
             if (!product.PurchaseYear.HasValue)
             {
@@ -179,7 +179,7 @@ namespace Petrovich.Business.Services
             }
         }
 
-        private void ValidatePricingInformation(Product product)
+        private void ValidatePricingInformation(ProductModel product)
         {
             if (!product.Price.HasValue || !product.PriceType.HasValue)
             {
@@ -188,7 +188,7 @@ namespace Petrovich.Business.Services
             }
         }
 
-        public async Task<ProductCollection> ListByCategoryIdAsync(Guid categoryId)
+        public async Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             if (categoryId == Guid.Empty)
             {
@@ -208,7 +208,7 @@ namespace Petrovich.Business.Services
             return await productDataSource.ListByCategoryIdAsync(category.CategoryId);
         }
 
-        public async Task<ProductCollection> ListByGroupIdAsync(Guid groupId)
+        public async Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
         {
             if (groupId == Guid.Empty)
             {

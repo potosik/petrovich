@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Petrovich.Business.Models.Base
 {
-    public interface IPriceableEntity
+    public interface IPriceableEntityModel
     {
         double? Price { get; set; }
-        PriceType? PriceType { get; set; }
+        PriceTypeBusiness? PriceType { get; set; }
     }
 }

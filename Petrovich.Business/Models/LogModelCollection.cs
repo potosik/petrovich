@@ -2,16 +2,16 @@
 
 namespace Petrovich.Business.Models
 {
-    public class BranchCollection : List<Branch>
+    public class LogModelCollection : List<LogModel>
     {
         public int TotalCount { get; set; }
 
-        public BranchCollection()
+        public LogModelCollection()
         {
         }
 
-        public BranchCollection(IEnumerable<Branch> branches)
-            : base(branches)
+        public LogModelCollection(IEnumerable<LogModel> logs)
+            : base(logs)
         {
         }
     }

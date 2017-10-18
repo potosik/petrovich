@@ -17,7 +17,7 @@ namespace Petrovich.Web.Models.Manager
         public IEnumerable<GroupViewModel> Groups { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
 
-        internal static GroupsViewModel Create(Branch branch, Category category, GroupCollection groups, ProductCollection products)
+        internal static GroupsViewModel Create(BranchModel branch, CategoryModel category, GroupModelCollection groups, ProductModelCollection products)
         {
             if (branch == null)
             {

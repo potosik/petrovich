@@ -9,26 +9,26 @@ namespace Petrovich.Business
 {
     public interface IDataStructureService
     {
-        Task<BranchCollection> ListBranchesAsync(int pageIndex, int pageSize);
-        Task<Branch> CreateBranchAsync(Branch branch);
-        Task<Branch> FindBranchAsync(Guid id);
-        Task<Branch> UpdateBranchAsync(Branch branch);
+        Task<BranchModelCollection> ListBranchesAsync(int pageIndex, int pageSize);
+        Task<BranchModel> CreateBranchAsync(BranchModel branch);
+        Task<BranchModel> FindBranchAsync(Guid id);
+        Task<BranchModel> UpdateBranchAsync(BranchModel branch);
         Task DeleteBranchAsync(Guid id);
-        Task<BranchCollection> ListAllBranchesAsync();
+        Task<BranchModelCollection> ListAllBranchesAsync();
 
-        Task<CategoryCollection> ListCategoriesAsync(int pageIndex, int pageSize);
-        Task<Category> CreateCategoryAsync(Category category);
-        Task<Category> FindCategoryAsync(Guid id);
-        Task<Category> UpdateCategoryAsync(Category category);
+        Task<CategoryModelCollection> ListCategoriesAsync(int pageIndex, int pageSize);
+        Task<CategoryModel> CreateCategoryAsync(CategoryModel category);
+        Task<CategoryModel> FindCategoryAsync(Guid id);
+        Task<CategoryModel> UpdateCategoryAsync(CategoryModel category);
         Task DeleteCategoryAsync(Guid id);
-        Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId);
-        Task<CategoryCollection> ListAllCategoriesAsync();
+        Task<CategoryModelCollection> ListCategoriesByBranchIdAsync(Guid branchId);
+        Task<CategoryModelCollection> ListAllCategoriesAsync();
 
-        Task<GroupCollection> ListGroupsAsync(int pageIndex, int pageSize);
-        Task<Group> CreateGroupAsync(Group group);
-        Task<Group> FindGroupAsync(Guid id);
-        Task<Group> UpdateGroupAsync(Group group);
+        Task<GroupModelCollection> ListGroupsAsync(int pageIndex, int pageSize);
+        Task<GroupModel> CreateGroupAsync(GroupModel group);
+        Task<GroupModel> FindGroupAsync(Guid id);
+        Task<GroupModel> UpdateGroupAsync(GroupModel group);
         Task DeleteGroupAsync(Guid id);
-        Task<GroupCollection> ListGroupsByCategoryIdAsync(Guid categoryId);
+        Task<GroupModelCollection> ListGroupsByCategoryIdAsync(Guid categoryId);
     }
 }

@@ -17,7 +17,7 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<CategoryCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListCategories, new { pageIndex, pageSize }))
             {
@@ -25,7 +25,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Category> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
+        public async Task<CategoryModel> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
         {
             using (new PerformanceMonitor(EventSource.FindCategoryByInventoryPart, new { inventoryPart, branchId }))
             {
@@ -33,7 +33,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Category> CreateAsync(Category category)
+        public async Task<CategoryModel> CreateAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.CreateCategory, new { category }))
             {
@@ -49,7 +49,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Category> FindAsync(Guid id)
+        public async Task<CategoryModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindCategoryById, new { id }))
             {
@@ -57,7 +57,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Category> UpdateAsync(Category category)
+        public async Task<CategoryModel> UpdateAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.UpdateCategory, new { category }))
             {
@@ -65,7 +65,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task DeleteAsync(Category category)
+        public async Task DeleteAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.DeleteCategory, new { category }))
             {
@@ -81,7 +81,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<CategoryCollection> ListByBranchIdAsync(Guid branchId)
+        public async Task<CategoryModelCollection> ListByBranchIdAsync(Guid branchId)
         {
             using (new PerformanceMonitor(EventSource.ListCategoriesByBranchId, new { branchId }))
             {
@@ -89,7 +89,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<CategoryCollection> ListAllAsync()
+        public async Task<CategoryModelCollection> ListAllAsync()
         {
             using (new PerformanceMonitor(EventSource.ListAllCategoriesAsync))
             {

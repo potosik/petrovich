@@ -14,17 +14,17 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<Log> FindAsync(Guid id)
+        public async Task<LogModel> FindAsync(Guid id)
         {
             return await innerDataSource.FindAsync(id);
         }
 
-        public async Task<LogCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<LogModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             return await innerDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task WriteLogAsync(Log entity)
+        public async Task WriteLogAsync(LogModel entity)
         {
             await innerDataSource.WriteLogAsync(entity);
         }

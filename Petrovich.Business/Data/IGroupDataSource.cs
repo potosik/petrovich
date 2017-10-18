@@ -6,12 +6,12 @@ namespace Petrovich.Business.Data
 {
     public interface IGroupDataSource
     {
-        Task<GroupCollection> ListAsync(int pageIndex, int pageSize);
-        Task<Group> CreateAsync(Group group);
-        Task<Group> FindAsync(Guid id);
-        Task<Group> UpdateAsync(Group group);
-        Task DeleteAsync(Group group);
+        Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize);
+        Task<GroupModel> CreateAsync(GroupModel group);
+        Task<GroupModel> FindAsync(Guid id);
+        Task<GroupModel> UpdateAsync(GroupModel group);
+        Task DeleteAsync(GroupModel group);
         Task<bool> IsExistsForCategoryAsync(Guid categoryId);
-        Task<GroupCollection> ListByCategoryIdAsync(Guid categoryId);
+        Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId);
     }
 }

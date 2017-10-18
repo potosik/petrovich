@@ -24,13 +24,13 @@ namespace Petrovich.Repositories.DataSources
             this.categoryMapper = categoryMapper ?? throw new ArgumentNullException(nameof(categoryMapper));
         }
 
-        public async Task<CategoryCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             try
             {
                 var categories = await categoryRepository.ListAsync(pageIndex, pageSize);
                 var count = await categoryRepository.ListCountAsync();
-                var collection = categoryMapper.ToBusinessEntityCollection(categories);
+                var collection = categoryMapper.ToCategoryModelCollection(categories);
                 collection.TotalCount = count;
                 return collection;
             }
@@ -40,12 +40,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Category> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
+        public async Task<CategoryModel> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
         {
             try
             {
                 var category = await categoryRepository.FindByInventoryPartAsync(inventoryPart, branchId);
-                return categoryMapper.ToBusinessEntity(category);
+                return categoryMapper.ToCategoryModel(category);
             }
             catch (EntityException ex)
             {
@@ -53,13 +53,13 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Category> CreateAsync(Category category)
+        public async Task<CategoryModel> CreateAsync(CategoryModel category)
         {
             try
             {
-                var contextCategory = categoryMapper.ToContextEntity(category);
+                var contextCategory = categoryMapper.ToContextCategory(category);
                 var newCategory = await categoryRepository.CreateAsync(contextCategory);
-                return categoryMapper.ToBusinessEntity(newCategory);
+                return categoryMapper.ToCategoryModel(newCategory);
             }
             catch (EntityException ex)
             {
@@ -91,12 +91,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Category> FindAsync(Guid id)
+        public async Task<CategoryModel> FindAsync(Guid id)
         {
             try
             {
                 var category = await categoryRepository.FindAsync(id);
-                return categoryMapper.ToBusinessEntity(category);
+                return categoryMapper.ToCategoryModel(category);
             }
             catch (EntityException ex)
             {
@@ -104,7 +104,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<Category> UpdateAsync(Category category)
+        public async Task<CategoryModel> UpdateAsync(CategoryModel category)
         {
             try
             {
@@ -113,11 +113,11 @@ namespace Petrovich.Repositories.DataSources
                 targetCategory.Title = category.Title;
                 targetCategory.InventoryPart = category.InventoryPart;
                 targetCategory.BasePrice = category.Price;
-                targetCategory.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(category.PriceType);
+                targetCategory.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(category.PriceType);
                 targetCategory.BranchId = category.BranchId;
 
                 await categoryRepository.UpdateAsync(targetCategory);
-                return categoryMapper.ToBusinessEntity(targetCategory);
+                return categoryMapper.ToCategoryModel(targetCategory);
             }
             catch (EntityException ex)
             {
@@ -125,7 +125,7 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task DeleteAsync(Category category)
+        public async Task DeleteAsync(CategoryModel category)
         {
             try
             {
@@ -150,12 +150,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<CategoryCollection> ListByBranchIdAsync(Guid branchId)
+        public async Task<CategoryModelCollection> ListByBranchIdAsync(Guid branchId)
         {
             try
             {
                 var categories = await categoryRepository.ListByBranchIdAsync(branchId);
-                return categoryMapper.ToBusinessEntityCollection(categories);
+                return categoryMapper.ToCategoryModelCollection(categories);
             }
             catch (EntityException ex)
             {
@@ -163,12 +163,12 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<CategoryCollection> ListAllAsync()
+        public async Task<CategoryModelCollection> ListAllAsync()
         {
             try
             {
                 var categories = await categoryRepository.ListAllAsync();
-                return categoryMapper.ToBusinessEntityCollection(categories);
+                return categoryMapper.ToCategoryModelCollection(categories);
             }
             catch (EntityException ex)
             {

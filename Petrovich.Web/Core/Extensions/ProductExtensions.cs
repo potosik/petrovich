@@ -9,7 +9,7 @@ namespace Petrovich.Web.Core.Extensions
 {
     public static class ProductExtensions
     {
-        public static string GetHierarchicalPrice(this Product product)
+        public static string GetHierarchicalPrice(this ProductModel product)
         {
             var result = product.GetPriceInformation();
             if (result != Resources.Price_Format_NotAvailable)

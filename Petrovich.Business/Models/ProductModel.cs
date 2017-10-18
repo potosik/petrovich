@@ -5,14 +5,14 @@ using System;
 
 namespace Petrovich.Business.Models
 {
-    public class Product : BaseEntity, IPriceableEntity
+    public class ProductModel : BaseEntityModel, IPriceableEntityModel
     {
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
         public double? Price { get; set; }
-        public PriceType? PriceType { get; set; }
+        public PriceTypeBusiness? PriceType { get; set; }
 
         public int InventoryPart { get; set; }
 
@@ -28,8 +28,8 @@ namespace Petrovich.Business.Models
         public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }
 
-        public Category Category { get; set; }
-        public Group Group { get; set; }
+        public CategoryModel Category { get; set; }
+        public GroupModel Group { get; set; }
 
         public string BranchInventoryPart { get; set; }
         public int CategoryInventoryPart { get; set; }

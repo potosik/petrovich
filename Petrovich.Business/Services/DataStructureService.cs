@@ -28,13 +28,13 @@ namespace Petrovich.Business.Services
             this.productDataSource = productDataSource ?? throw new ArgumentNullException(nameof(productDataSource));
         }
 
-        public async Task<BranchCollection> ListBranchesAsync(int pageIndex, int pageSize)
+        public async Task<BranchModelCollection> ListBranchesAsync(int pageIndex, int pageSize)
         {
             await logger.LogNoneAsync($"DataStructureService.ListBranchesAsync: listing branches (pageIndex: {pageIndex} pageSize: {pageSize}).");
             return await branchDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task<Branch> CreateBranchAsync(Branch branch)
+        public async Task<BranchModel> CreateBranchAsync(BranchModel branch)
         {
             if (branch == null)
             {
@@ -54,7 +54,7 @@ namespace Petrovich.Business.Services
             return await branchDataSource.CreateAsync(branch);
         }
 
-        public async Task<Branch> FindBranchAsync(Guid id)
+        public async Task<BranchModel> FindBranchAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -73,7 +73,7 @@ namespace Petrovich.Business.Services
             return branch;
         }
 
-        public async Task<Branch> UpdateBranchAsync(Branch branch)
+        public async Task<BranchModel> UpdateBranchAsync(BranchModel branch)
         {
             if (branch.BranchId == Guid.Empty)
             {
@@ -127,19 +127,19 @@ namespace Petrovich.Business.Services
             await branchDataSource.DeleteAsync(branch);
         }
 
-        public async Task<BranchCollection> ListAllBranchesAsync()
+        public async Task<BranchModelCollection> ListAllBranchesAsync()
         {
             await logger.LogNoneAsync("DataStructureService.ListAllBranchesAsync: listing all branches.");
             return await branchDataSource.ListAllAsync();
         }
 
-        public async Task<CategoryCollection> ListCategoriesAsync(int pageIndex, int pageSize)
+        public async Task<CategoryModelCollection> ListCategoriesAsync(int pageIndex, int pageSize)
         {
             await logger.LogNoneAsync($"DataStructureService.ListCategoriesAsync: listing categories (pageIndex: {pageIndex} pageSize: {pageSize}).");
             return await categoryDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task<Category> CreateCategoryAsync(Category category)
+        public async Task<CategoryModel> CreateCategoryAsync(CategoryModel category)
         {
             if (category == null)
             {
@@ -170,7 +170,7 @@ namespace Petrovich.Business.Services
             return await categoryDataSource.CreateAsync(category);
         }
 
-        public async Task<Category> FindCategoryAsync(Guid id)
+        public async Task<CategoryModel> FindCategoryAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -189,7 +189,7 @@ namespace Petrovich.Business.Services
             return category;
         }
 
-        public async Task<Category> UpdateCategoryAsync(Category category)
+        public async Task<CategoryModel> UpdateCategoryAsync(CategoryModel category)
         {
             if (category.CategoryId == Guid.Empty)
             {
@@ -261,7 +261,7 @@ namespace Petrovich.Business.Services
             await categoryDataSource.DeleteAsync(category);
         }
 
-        private void ValidatePricingInformation(Category category)
+        private void ValidatePricingInformation(CategoryModel category)
         {
             if (!category.Price.HasValue || !category.PriceType.HasValue)
             {
@@ -270,7 +270,7 @@ namespace Petrovich.Business.Services
             }
         }
 
-        public async Task<CategoryCollection> ListCategoriesByBranchIdAsync(Guid branchId)
+        public async Task<CategoryModelCollection> ListCategoriesByBranchIdAsync(Guid branchId)
         {
             if (branchId == Guid.Empty)
             {
@@ -285,19 +285,19 @@ namespace Petrovich.Business.Services
             return await categoryDataSource.ListByBranchIdAsync(branchId);
         }
 
-        public async Task<CategoryCollection> ListAllCategoriesAsync()
+        public async Task<CategoryModelCollection> ListAllCategoriesAsync()
         {
             await logger.LogNoneAsync("DataStructureService.ListAllCategoriesAsync: listing all categories.");
             return await categoryDataSource.ListAllAsync();
         }
 
-        public async Task<GroupCollection> ListGroupsAsync(int pageIndex, int pageSize)
+        public async Task<GroupModelCollection> ListGroupsAsync(int pageIndex, int pageSize)
         {
             await logger.LogNoneAsync($"DataStructureService.ListGroupAsync: listing groups (pageIndex: {pageIndex} pageSize: {pageSize}).");
             return await groupDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task<Group> CreateGroupAsync(Group group)
+        public async Task<GroupModel> CreateGroupAsync(GroupModel group)
         {
             if (group == null)
             {
@@ -319,7 +319,7 @@ namespace Petrovich.Business.Services
             return await groupDataSource.CreateAsync(group);
         }
 
-        public async Task<Group> FindGroupAsync(Guid id)
+        public async Task<GroupModel> FindGroupAsync(Guid id)
         {
             if (id == Guid.Empty)
             {
@@ -338,7 +338,7 @@ namespace Petrovich.Business.Services
             return group;
         }
 
-        public async Task<Group> UpdateGroupAsync(Group group)
+        public async Task<GroupModel> UpdateGroupAsync(GroupModel group)
         {
             if (group.GroupId == Guid.Empty)
             {
@@ -396,7 +396,7 @@ namespace Petrovich.Business.Services
             await groupDataSource.DeleteAsync(group);
         }
 
-        private void ValidatePricingInformation(Group group)
+        private void ValidatePricingInformation(GroupModel group)
         {
             if (!group.Price.HasValue || !group.PriceType.HasValue)
             {
@@ -405,7 +405,7 @@ namespace Petrovich.Business.Services
             }
         }
 
-        public async Task<GroupCollection> ListGroupsByCategoryIdAsync(Guid categoryId)
+        public async Task<GroupModelCollection> ListGroupsByCategoryIdAsync(Guid categoryId)
         {
             if (categoryId == Guid.Empty)
             {

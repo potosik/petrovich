@@ -19,7 +19,7 @@ namespace Petrovich.Business.PerformanceCounters
             innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
         }
 
-        public async Task<BranchCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<BranchModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListBranches, new { pageIndex, pageSize }))
             {
@@ -27,7 +27,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Branch> FindByInventoryPartAsync(string inventoryPart)
+        public async Task<BranchModel> FindByInventoryPartAsync(string inventoryPart)
         {
             using (new PerformanceMonitor(EventSource.FindBranchByInventoryPart, new { inventoryPart }))
             {
@@ -35,7 +35,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Branch> CreateAsync(Branch branch)
+        public async Task<BranchModel> CreateAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.CreateBranch, new { branch }))
             {
@@ -43,7 +43,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Branch> FindAsync(Guid id)
+        public async Task<BranchModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindBranchById, new { id }))
             {
@@ -51,7 +51,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<Branch> UpdateAsync(Branch branch)
+        public async Task<BranchModel> UpdateAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.UpdateBranch, new { branch }))
             {
@@ -59,7 +59,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task DeleteAsync(Branch branch)
+        public async Task DeleteAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.DeleteBranch, new { branch }))
             {
@@ -67,7 +67,7 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<BranchCollection> ListAllAsync()
+        public async Task<BranchModelCollection> ListAllAsync()
         {
             using (new PerformanceMonitor(EventSource.ListAllBranchesAsync))
             {
