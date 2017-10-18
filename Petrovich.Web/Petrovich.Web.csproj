@@ -207,6 +207,7 @@
     <Compile Include="Core\Extensions\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Core\Extensions\IIdentityExtensions.cs" />
     <Compile Include="Core\Extensions\IPriceableEntityExtensions.cs" />
+    <Compile Include="Core\Extensions\ProductExtensions.cs" />
     <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\ViewContextExtensions.cs" />
     <Compile Include="Global.asax.cs">

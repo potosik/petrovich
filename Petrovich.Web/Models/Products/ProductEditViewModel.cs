@@ -106,10 +106,10 @@ namespace Petrovich.Web.Models.Products
 
                 BranchTitle = product.BranchTitle,
 
-                CategoryId = product.CategoryId,
-                CategoryTitle = product.CategoryTitle,
+                CategoryId = product.Category.CategoryId,
+                CategoryTitle = product.Category.Title,
 
-                GroupId = product.GroupId,
+                GroupId = product.Group?.GroupId,
             };
         }
     }

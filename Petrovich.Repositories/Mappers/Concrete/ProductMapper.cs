@@ -7,6 +7,15 @@ namespace Petrovich.Repositories.Mappers.Concrete
 {
     public class ProductMapper : IProductMapper
     {
+        private readonly ICategoryMapper categoryMapper;
+        private readonly IGroupMapper groupMapper;
+
+        public ProductMapper(ICategoryMapper categoryMapper, IGroupMapper groupMapper)
+        {
+            this.categoryMapper = categoryMapper;
+            this.groupMapper = groupMapper;
+        }
+
         public Business.Models.Product ToBusinessEntity(Product entity)
         {
             if (entity == null)
@@ -35,11 +44,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 BranchId = entity.Category != null ? entity.Category.BranchId : Guid.Empty,
                 BranchTitle = entity.Category?.Branch?.Title,
 
-                CategoryId = entity.CategoryId,
-                CategoryTitle = entity.Category?.Title,
-
-                GroupId = entity.GroupId,
-                GroupTitle = entity.Group?.Title,
+                Category = categoryMapper.ToBusinessEntity(entity.Category),
+                Group = groupMapper.ToBusinessEntity(entity.Group),
 
                 BranchInventoryPart = entity.Category?.Branch?.InventoryPart,
                 CategoryInventoryPart = entity.Category?.InventoryPart ?? 0,
@@ -74,8 +80,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 ImageDefault = entity.ImageDefault,
                 ImageSmall = entity.ImageSmall,
 
-                CategoryId = entity.CategoryId,
-                GroupId = entity.GroupId,
+                CategoryId = entity.Category.CategoryId,
+                GroupId = entity.Group?.GroupId,
 
                 Created = entity.Created,
                 CreatedBy = entity.CreatedBy,

@@ -51,11 +51,11 @@ namespace Petrovich.Web.Models.Products
 
                 BranchTitle = product.BranchTitle,
 
-                CategoryId = product.CategoryId,
-                CategoryTitle = product.CategoryTitle,
+                CategoryId = product.Category.CategoryId,
+                CategoryTitle = product.Category.Title,
 
-                GroupId = product.GroupId,
-                GroupTitle = product.GroupTitle,
+                GroupId = product.Group?.GroupId,
+                GroupTitle = product.Group?.Title,
 
                 InventoryNumber = product.InventoryNumber,
             };

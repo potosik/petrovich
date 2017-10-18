@@ -47,7 +47,7 @@ namespace Petrovich.Business.Tests.Services
         {
             await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
             {
-                return productService.CreateAsync(new Models.Product());
+                return productService.CreateAsync(new Models.Product() { Category = new Models.Category() });
             });
         }
 
@@ -59,7 +59,7 @@ namespace Petrovich.Business.Tests.Services
 
             await Assert.ThrowsAsync<GroupNotFoundException>(() =>
             {
-                return productService.CreateAsync(new Models.Product() { GroupId = Guid.NewGuid() });
+                return productService.CreateAsync(new Models.Product() { Category = new Models.Category(), Group = new Models.Group() { GroupId = Guid.NewGuid() } });
             });
         }
 
@@ -71,7 +71,7 @@ namespace Petrovich.Business.Tests.Services
 
             await Assert.ThrowsAsync<NoCategoryProductsSlotsException>(() =>
             {
-                return productService.CreateAsync(new Models.Product());
+                return productService.CreateAsync(new Models.Product() { Category = new Models.Category() });
             });
         }
 
@@ -85,7 +85,7 @@ namespace Petrovich.Business.Tests.Services
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Product>()))
                 .ReturnsAsync(new Models.Product());
 
-            var result = await productService.CreateAsync(new Models.Product());
+            var result = await productService.CreateAsync(new Models.Product() { Category = new Models.Category() });
 
             Assert.NotNull(result);
         }
@@ -100,7 +100,7 @@ namespace Petrovich.Business.Tests.Services
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Product>()))
                 .ReturnsAsync(new Models.Product());
 
-            var result = await productService.CreateAsync(new Models.Product() { PurchaseMonth = 1 });
+            var result = await productService.CreateAsync(new Models.Product() { PurchaseMonth = 1, Category = new Models.Category() });
 
             Assert.NotNull(result);
             Assert.Null(result.PurchaseYear);
@@ -117,7 +117,7 @@ namespace Petrovich.Business.Tests.Services
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Product>()))
                 .ReturnsAsync(new Models.Product());
 
-            var result = await productService.CreateAsync(new Models.Product() { PriceType = Models.Enumerations.PriceType.Month });
+            var result = await productService.CreateAsync(new Models.Product() { PriceType = Models.Enumerations.PriceType.Month, Category = new Models.Category() });
 
             Assert.NotNull(result);
             Assert.Null(result.Price);
@@ -134,7 +134,7 @@ namespace Petrovich.Business.Tests.Services
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Product>()))
                 .ReturnsAsync(new Models.Product());
 
-            var result = await productService.CreateAsync(new Models.Product() { Price = 1f });
+            var result = await productService.CreateAsync(new Models.Product() { Price = 1f, Category = new Models.Category() });
 
             Assert.NotNull(result);
             Assert.Null(result.Price);
@@ -175,7 +175,7 @@ namespace Petrovich.Business.Tests.Services
         {
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
             {
-                return productService.UpdateAsync(new Models.Product() { CategoryId = Guid.Empty });
+                return productService.UpdateAsync(new Models.Product() { Category = new Models.Category() { CategoryId = Guid.Empty } });
             });
         }
 
@@ -196,7 +196,7 @@ namespace Petrovich.Business.Tests.Services
 
             await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
             {
-                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid() });
+                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid(), Category = new Models.Category() });
             });
         }
 
@@ -210,7 +210,7 @@ namespace Petrovich.Business.Tests.Services
 
             await Assert.ThrowsAsync<GroupNotFoundException>(() =>
             {
-                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid(), GroupId = Guid.NewGuid() });
+                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid(), Category = new Models.Category(), Group = new Models.Group() { GroupId = Guid.NewGuid() } });
             });
         }
         
@@ -224,7 +224,7 @@ namespace Petrovich.Business.Tests.Services
 
             await Assert.ThrowsAsync<ProductInventoryPartChangedException>(() =>
             {
-                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid() });
+                return productService.UpdateAsync(new Models.Product() { ProductId = Guid.NewGuid(), Category = new Models.Category() });
             });
         }
 
@@ -238,7 +238,7 @@ namespace Petrovich.Business.Tests.Services
             productDataSourceMock.Setup(dataSource => dataSource.UpdateAsync(It.IsAny<Models.Product>()))
                 .ReturnsAsync(new Models.Product());
 
-            var result = await productService.UpdateAsync(new Models.Product() {  ProductId = Guid.NewGuid() });
+            var result = await productService.UpdateAsync(new Models.Product() {  ProductId = Guid.NewGuid(), Category = new Models.Category() });
 
             Assert.NotNull(result);
         }

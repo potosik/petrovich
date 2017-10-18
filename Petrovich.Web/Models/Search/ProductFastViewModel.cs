@@ -39,8 +39,8 @@ namespace Petrovich.Web.Models.Search
                 SelfUri = PetrovichRoutes.Manager.ProductDetails.GetLink(new { id = product.ProductId }),
 
                 BranchTitle = product.BranchTitle,
-                CategoryTitle = product.CategoryTitle,
-                GroupTitle = product.GroupTitle,
+                CategoryTitle = product.Category.Title,
+                GroupTitle = product.Group?.Title,
             };
         }
     }

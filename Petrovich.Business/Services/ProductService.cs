@@ -39,31 +39,31 @@ namespace Petrovich.Business.Services
                 throw new ArgumentNullException(nameof(product));
             }
 
-            await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get category {product.CategoryId}.");
-            var category = await categoryDataSource.FindAsync(product.CategoryId);
+            await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get category {product.Category.CategoryId}.");
+            var category = await categoryDataSource.FindAsync(product.Category.CategoryId);
             if (category == null)
             {
-                await logger.LogInformationAsync($"ProductService.CreateAsync: category not found - {product.CategoryId}.");
-                throw new CategoryNotFoundException(product.CategoryId);
+                await logger.LogInformationAsync($"ProductService.CreateAsync: category not found - {product.Category.CategoryId}.");
+                throw new CategoryNotFoundException(product.Category.CategoryId);
             }
 
-            if (product.GroupId.HasValue)
+            if (product.Group != null)
             {
-                await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get group {product.GroupId.Value}.");
-                var group = await groupDataSource.FindAsync(product.GroupId.Value);
+                await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get group {product.Group.GroupId}.");
+                var group = await groupDataSource.FindAsync(product.Group.GroupId);
                 if (group == null)
                 {
-                    await logger.LogInformationAsync($"ProductService.CreateAsync: group not found - {product.GroupId.Value}.");
-                    throw new GroupNotFoundException(product.GroupId.Value);
+                    await logger.LogInformationAsync($"ProductService.CreateAsync: group not found - {product.Group.GroupId}.");
+                    throw new GroupNotFoundException(product.Group.GroupId);
                 }
             }
             
-            await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get inventory number for product for category {product.CategoryId}.");
-            var inventoryPartValue = await productDataSource.GetNewInventoryNumberAsync(product.CategoryId);
+            await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get inventory number for product for category {product.Category.CategoryId}.");
+            var inventoryPartValue = await productDataSource.GetNewInventoryNumberAsync(product.Category.CategoryId);
             if (!inventoryPartValue.HasValue)
             {
-                await logger.LogNoneAsync($"ProductService.CreateAsync: there are no empty inventory numbers for category {product.CategoryId}.");
-                throw new NoCategoryProductsSlotsException(product.CategoryId);
+                await logger.LogNoneAsync($"ProductService.CreateAsync: there are no empty inventory numbers for category {product.Category.CategoryId}.");
+                throw new NoCategoryProductsSlotsException(product.Category.CategoryId);
             }
 
             product.InventoryPart = inventoryPartValue.Value;
@@ -109,22 +109,22 @@ namespace Petrovich.Business.Services
                 throw new ProductNotFoundException(product.ProductId);
             }
 
-            await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get category by id ({product.CategoryId}).");
-            var dbCategory = await categoryDataSource.FindAsync(product.CategoryId);
+            await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get category by id ({product.Category.CategoryId}).");
+            var dbCategory = await categoryDataSource.FindAsync(product.Category.CategoryId);
             if (dbCategory == null)
             {
-                await logger.LogInformationAsync($"ProductService.UpdateAsync: category not found - {product.CategoryId}.");
-                throw new CategoryNotFoundException(product.CategoryId);
+                await logger.LogInformationAsync($"ProductService.UpdateAsync: category not found - {product.Category.CategoryId}.");
+                throw new CategoryNotFoundException(product.Category.CategoryId);
             }
 
-            if (product.GroupId.HasValue)
+            if (product.Group != null)
             {
-                await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get group by id ({product.GroupId.Value}).");
-                var dbGroup = await groupDataSource.FindAsync(product.GroupId.Value);
+                await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get group by id ({product.Group.GroupId}).");
+                var dbGroup = await groupDataSource.FindAsync(product.Group.GroupId);
                 if (dbGroup == null)
                 {
-                    await logger.LogInformationAsync($"ProductService.UpdateAsync: group not found - {product.GroupId.Value}.");
-                    throw new GroupNotFoundException(product.GroupId.Value);
+                    await logger.LogInformationAsync($"ProductService.UpdateAsync: group not found - {product.Group.GroupId}.");
+                    throw new GroupNotFoundException(product.Group.GroupId);
                 }
             }
 

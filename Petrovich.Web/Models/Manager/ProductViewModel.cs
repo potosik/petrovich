@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using Petrovich.Web.Core.Extensions;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -10,6 +11,7 @@ namespace Petrovich.Web.Models.Manager
     {
         public Guid ProductId { get; set; }
         public string Title { get; set; }
+        public string Price { get; set; }
 
         public static ProductViewModel Create(Product product)
         {
@@ -22,6 +24,7 @@ namespace Petrovich.Web.Models.Manager
             {
                 ProductId = product.ProductId,
                 Title = product.Title,
+                Price = product.GetHierarchicalPrice(),
             };
         }
     }

@@ -89,8 +89,8 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.PurchaseMonth = product.PurchaseMonth;
                 targetProduct.ImageDefault = product.ImageDefault;
                 targetProduct.ImageSmall = product.ImageSmall;
-                targetProduct.CategoryId = product.CategoryId;
-                targetProduct.GroupId = product.GroupId;
+                targetProduct.CategoryId = product.Category.CategoryId;
+                targetProduct.GroupId = product.Group?.GroupId;
 
                 if (product.ImageFull != null)
                 {

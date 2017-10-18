@@ -24,15 +24,12 @@ namespace Petrovich.Business.Models
 
         public string ImageDefault { get; set; }
         public string ImageSmall { get; set; }
-
+        
         public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }
 
-        public Guid CategoryId { get; set; }
-        public string CategoryTitle { get; set; }
-
-        public Guid? GroupId { get; set; }
-        public string GroupTitle { get; set; }
+        public Category Category { get; set; }
+        public Group Group { get; set; }
 
         public string BranchInventoryPart { get; set; }
         public int CategoryInventoryPart { get; set; }

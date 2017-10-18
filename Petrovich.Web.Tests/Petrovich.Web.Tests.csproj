@@ -112,6 +112,8 @@
     <Compile Include="Controllers\ErrorControllerTests.cs" />
     <Compile Include="Controllers\LoggingControllerTests.cs" />
     <Compile Include="Controllers\ProductsControllerTests.cs" />
+    <Compile Include="Core\Extensions\IPriceableEntityExtensionsTests.cs" />
+    <Compile Include="Core\Extensions\ProductExtensionsTests.cs" />
     <Compile Include="Models\JsonResponseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeverityLocalizationTests.cs" />

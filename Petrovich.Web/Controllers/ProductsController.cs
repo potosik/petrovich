@@ -107,8 +107,8 @@ namespace Petrovich.Web.Controllers
                         ImageDefault = image.GetDefaultImageString(),
                         ImageSmall = image.GetSmallImageString(),
 
-                        CategoryId = model.CategoryId,
-                        GroupId = model.GroupId,
+                        Category = new Category() { CategoryId = model.CategoryId },
+                        Group = model.GroupId.HasValue ? new Group() { GroupId = model.GroupId.Value } : null,
                     };
 
                     await productService.CreateAsync(newProduct);
@@ -163,7 +163,7 @@ namespace Petrovich.Web.Controllers
             {
                 var product = await productService.FindAsync(id);
                 var model = ProductEditViewModel.Create(product);
-                model.Groups = await CreateGroupsSelectList(product.CategoryId);
+                model.Groups = await CreateGroupsSelectList(product.Category.CategoryId);
                 model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
@@ -215,8 +215,8 @@ namespace Petrovich.Web.Controllers
                         ImageDefault = image.GetDefaultImageString() ?? model.ImageDefault,
                         ImageSmall = image.GetSmallImageString() ?? model.ImageSmall,
 
-                        CategoryId = model.CategoryId,
-                        GroupId = model.GroupId,
+                        Category = new Category() { CategoryId = model.CategoryId },
+                        Group = model.GroupId.HasValue ? new Group() { GroupId = model.GroupId.Value } : null,
                     };
 
                     await productService.UpdateAsync(product);

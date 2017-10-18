@@ -4,13 +4,14 @@
     <thead>
         <tr>
             <th>Название</th>
+            <th>Цена</th>
         </tr>
     </thead>
     <tbody>
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="3">Нет элементов для отображения</td>
+                <td colspan="2">Нет элементов для отображения</td>
             </tr>
         }
 
@@ -19,6 +20,9 @@
             <tr>
                 <td>
                     <a href="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = item.ProductId })">@item.Title</a>
+                </td>
+                <td>
+                    @item.Price
                 </td>
             </tr>
         }
