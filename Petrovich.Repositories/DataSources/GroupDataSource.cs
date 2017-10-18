@@ -73,7 +73,7 @@ namespace Petrovich.Repositories.DataSources
                 var targetGroup = await groupRepository.FindAsync(group.GroupId);
 
                 targetGroup.Title = group.Title;
-                targetGroup.BasePrice = group.BasePrice;
+                targetGroup.BasePrice = group.Price;
                 targetGroup.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceType, PriceType>(group.PriceType);
                 targetGroup.CategoryId = group.CategoryId;
 

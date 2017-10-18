@@ -263,9 +263,9 @@ namespace Petrovich.Business.Services
 
         private void ValidatePricingInformation(Category category)
         {
-            if (!category.BasePrice.HasValue || !category.PriceType.HasValue)
+            if (!category.Price.HasValue || !category.PriceType.HasValue)
             {
-                category.BasePrice = null;
+                category.Price = null;
                 category.PriceType = null;
             }
         }
@@ -398,9 +398,9 @@ namespace Petrovich.Business.Services
 
         private void ValidatePricingInformation(Group group)
         {
-            if (!group.BasePrice.HasValue || !group.PriceType.HasValue)
+            if (!group.Price.HasValue || !group.PriceType.HasValue)
             {
-                group.BasePrice = null;
+                group.Price = null;
                 group.PriceType = null;
             }
         }

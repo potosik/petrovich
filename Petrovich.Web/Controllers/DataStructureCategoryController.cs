@@ -74,7 +74,7 @@ namespace Petrovich.Web.Controllers
                     var newCategory = new Category()
                     {
                         Title = model.Title,
-                        BasePrice = model.BasePrice,
+                        Price = model.BasePrice,
                         PriceType = (PriceType?)model.PriceType,
                         BranchId = model.BranchId,
                     };
@@ -157,7 +157,7 @@ namespace Petrovich.Web.Controllers
                         CategoryId = model.CategoryId,
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
-                        BasePrice = model.BasePrice,
+                        Price = model.BasePrice,
                         PriceType = (PriceType?)model.PriceType,
                         BranchId = model.BranchId,
                     };

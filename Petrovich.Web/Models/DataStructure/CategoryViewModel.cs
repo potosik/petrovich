@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Models;
 using Petrovich.Business.Models.Base;
+using Petrovich.Web.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,7 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid CategoryId { get; set; }
         public string Title { get; set; }
         public int InventoryPart { get; set; }
-        public double? BasePrice { get; set; }
-        public int? PriceType { get; set; }
+        public string Price { get; set; }
         public string InventoryPartString { get { return InventoryPart.ToString("D2"); } }
         public string BranchTitle { get; set; }
 
@@ -37,7 +37,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 CategoryId = category.CategoryId,
                 Title = category.Title,
-                BasePrice = category.BasePrice,
+                Price = category.GetPriceInformation(),
                 InventoryPart = category.InventoryPart,
                 BranchTitle = category.BranchTitle,
             };

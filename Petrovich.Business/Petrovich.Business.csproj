@@ -96,6 +96,7 @@
     <Compile Include="Logging\LoggingService.cs" />
     <Compile Include="Models\Base\BaseEntity.cs" />
     <Compile Include="Models\Base\IChangeTrackableEntity.cs" />
+    <Compile Include="Models\Base\IPriceableEntity.cs" />
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\BranchCollection.cs" />
     <Compile Include="Models\Category.cs" />
@@ -148,6 +149,9 @@
       <Project>{0363A4E5-86AA-4D11-ACDE-273111E82A23}</Project>
       <Name>Petrovich.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

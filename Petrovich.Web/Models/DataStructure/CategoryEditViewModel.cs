@@ -59,7 +59,7 @@ namespace Petrovich.Web.Models.DataStructure
                 CategoryId = category.CategoryId,
                 Title = category.Title,
                 InventoryPart = category.InventoryPart,
-                BasePrice = category.BasePrice,
+                BasePrice = category.Price,
                 PriceType = (int?)category.PriceType,
                 BranchId = category.BranchId,
 

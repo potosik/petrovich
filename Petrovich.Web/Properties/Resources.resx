@@ -171,6 +171,21 @@
   <data name="PriceType_Week" xml:space="preserve">
     <value>За неделю</value>
   </data>
+  <data name="Price_Format" xml:space="preserve">
+    <value>{0} BYN / {1}</value>
+  </data>
+  <data name="Price_Format_Day" xml:space="preserve">
+    <value>день</value>
+  </data>
+  <data name="Price_Format_Month" xml:space="preserve">
+    <value>месяц</value>
+  </data>
+  <data name="Price_Format_NotAvailable" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="Price_Format_Week" xml:space="preserve">
+    <value>неделя</value>
+  </data>
   <data name="Product_BranchNotFound_Error" xml:space="preserve">
     <value>Выбранный раздел не найден.</value>
   </data>

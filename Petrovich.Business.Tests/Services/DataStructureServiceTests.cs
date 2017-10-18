@@ -232,7 +232,7 @@ namespace Petrovich.Business.Tests.Services
             var result = await dataStructureService.CreateCategoryAsync(new Models.Category() { PriceType = Models.Enumerations.PriceType.Month });
 
             Assert.NotNull(result);
-            Assert.Null(result.BasePrice);
+            Assert.Null(result.Price);
             Assert.Null(result.PriceType);
         }
 
@@ -246,10 +246,10 @@ namespace Petrovich.Business.Tests.Services
             categoryDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Category>()))
                 .ReturnsAsync(new Models.Category());
 
-            var result = await dataStructureService.CreateCategoryAsync(new Models.Category() { BasePrice = 1f });
+            var result = await dataStructureService.CreateCategoryAsync(new Models.Category() { Price = 1f });
 
             Assert.NotNull(result);
-            Assert.Null(result.BasePrice);
+            Assert.Null(result.Price);
             Assert.Null(result.PriceType);
         }
 
@@ -461,7 +461,7 @@ namespace Petrovich.Business.Tests.Services
             var result = await dataStructureService.CreateGroupAsync(new Models.Group() { PriceType = Models.Enumerations.PriceType.Month });
 
             Assert.NotNull(result);
-            Assert.Null(result.BasePrice);
+            Assert.Null(result.Price);
             Assert.Null(result.PriceType);
         }
 
@@ -473,10 +473,10 @@ namespace Petrovich.Business.Tests.Services
             groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.Group>()))
                 .ReturnsAsync(new Models.Group());
 
-            var result = await dataStructureService.CreateGroupAsync(new Models.Group() { BasePrice = 1f });
+            var result = await dataStructureService.CreateGroupAsync(new Models.Group() { Price = 1f });
 
             Assert.NotNull(result);
-            Assert.Null(result.BasePrice);
+            Assert.Null(result.Price);
             Assert.Null(result.PriceType);
         }
 

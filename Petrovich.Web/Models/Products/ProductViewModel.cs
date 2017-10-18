@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models.Base;
+using Petrovich.Web.Core.Extensions;
 
 namespace Petrovich.Web.Models.Products
 {
@@ -21,7 +22,7 @@ namespace Petrovich.Web.Models.Products
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public double? Price { get; set; }
+        public string Price { get; set; }
         public int? PriceType { get; set; }
 
         public string BranchTitle { get; set; }
@@ -46,7 +47,7 @@ namespace Petrovich.Web.Models.Products
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
-                Price = product.Price,
+                Price = product.GetPriceInformation(),
 
                 BranchTitle = product.BranchTitle,
 

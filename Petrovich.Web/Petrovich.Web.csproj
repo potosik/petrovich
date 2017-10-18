@@ -206,6 +206,7 @@
     <Compile Include="Core\Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Core\Extensions\IIdentityExtensions.cs" />
+    <Compile Include="Core\Extensions\IPriceableEntityExtensions.cs" />
     <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\ViewContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -298,6 +299,8 @@
     <Content Include="Content\js\theme.js" />
     <Content Include="Content\js\vendor\jquery-ui.datepicker.ru.min.js" />
     <Content Include="Content\js\vendor\jquery-ui.datepicker.ru.js" />
+    <Content Include="Content\js\vendor\jquery.inputmask.js" />
+    <Content Include="Content\js\vendor\jquery.inputmask.min.js" />
     <Content Include="Content\js\vendor\jquery.js" />
     <Content Include="Content\js\vendor\jquery.min.js" />
     <Content Include="Content\js\vendor\jquery-ui.min.js" />

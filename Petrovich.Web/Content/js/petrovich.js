@@ -23,6 +23,8 @@
             this.searchBoxInitialization();
             // initialize purchase date picker
             this.purchaseDatePickerInitialization();
+            // initialize input masks
+            this.inputMasksInitialization();
         };
 
         this.deleteButtonConfirmation = function () {
@@ -84,7 +86,7 @@
             if (month && year && !isNaN(month) && !isNaN(year)) {
                 defaultDate = new Date(year, month - 1, 1);
             }
-            
+
             $('#purchasePicker').datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -102,6 +104,10 @@
             if (defaultDate) {
                 element.datepicker("setDate", new Date(year, month - 1, 1));
             }
+        };
+
+        this.inputMasksInitialization = function () {
+            $('#price').inputmask('9{1,7},99', { numericInput: true });
         }
     }
 

@@ -54,7 +54,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
-                BasePrice = group.BasePrice,
+                BasePrice = group.Price,
                 PriceType = (int?)group.PriceType,
                 CategoryId = group.CategoryId,
 

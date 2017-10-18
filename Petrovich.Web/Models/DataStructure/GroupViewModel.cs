@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Models;
 using Petrovich.Business.Models.Base;
+using Petrovich.Web.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public Guid GroupId { get; set; }
         public string Title { get; set; }
-        public double? BasePrice { get; set; }
-        public int? PriceType { get; set; }
+        public string Price { get; set; }
         public string CategoryTitle { get; set; }
 
         public static GroupViewModel Create(Group group)
@@ -35,7 +35,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
-                BasePrice = group.BasePrice,
+                Price = group.GetPriceInformation(),
                 CategoryTitle = group.CategoryTitle,
             };
         }

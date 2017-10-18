@@ -196,6 +196,51 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} BYN / {1}.
+        /// </summary>
+        internal static string Price_Format {
+            get {
+                return ResourceManager.GetString("Price_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to день.
+        /// </summary>
+        internal static string Price_Format_Day {
+            get {
+                return ResourceManager.GetString("Price_Format_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to месяц.
+        /// </summary>
+        internal static string Price_Format_Month {
+            get {
+                return ResourceManager.GetString("Price_Format_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -.
+        /// </summary>
+        internal static string Price_Format_NotAvailable {
+            get {
+                return ResourceManager.GetString("Price_Format_NotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to неделя.
+        /// </summary>
+        internal static string Price_Format_Week {
+            get {
+                return ResourceManager.GetString("Price_Format_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to В день.
         /// </summary>
         internal static string PriceType_Day {
