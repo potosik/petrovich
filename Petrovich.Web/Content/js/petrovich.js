@@ -25,6 +25,8 @@
             this.purchaseDatePickerInitialization();
             // initialize input masks
             this.inputMasksInitialization();
+            // initialize smart cart
+            this.smartCartInitialization();
         };
 
         this.deleteButtonConfirmation = function () {
@@ -107,6 +109,71 @@
 
         this.inputMasksInitialization = function () {
             $('#price').inputmask('9{1,7},99', { numericInput: true });
+        };
+
+        this.smartCartInitialization = function () {
+            var storageKey = 'petrovich-smartcart-bid';
+            var storageValue = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            var products = $('.sc-product-item');
+            var selectedIds = storageValue.map(function (item) {
+                return item.product_id;
+            });
+
+            if (storageValue.length > 0) {
+                for (var i = 0; i < storageValue.length; i++) {
+                    products.each(function () {
+                        var element = $(this);
+                        var id = element.find('input[name="product_id"]').val();
+                        if (selectedIds.indexOf(id) > -1) {
+                            element.closest('.sc-product-item').addClass('sc-added-item');
+                        }
+                    });
+                }
+            }
+
+            // Initialize Smart Cart    	
+            $('#smartcart').smartCart({
+                cart: storageValue
+            });
+
+            function getIndexByKey(arr, value) {
+                for (var i = 0, iLen = arr.length; i < iLen; i++) {
+                    if (arr[i].unique_key === value) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            // Initialize Smart Cart Events
+            $("#smartcart").on("cartCleared", clearCartEvent);
+            $("#smartcart").on("cartSubmitted", clearCartEvent);
+
+            function clearCartEvent(e) {
+                localStorage.removeItem(storageKey);
+            }
+
+            $("#smartcart").on("itemAdded", addItemEvent);
+            function addItemEvent(e, cartItem) {
+                var fullObject = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                fullObject.push(cartItem);
+                localStorage.setItem(storageKey, JSON.stringify(fullObject));
+            }
+
+            $("#smartcart").on("itemRemoved", removeItemEvent);
+            function removeItemEvent(e, cartItem) {
+                var fullObject = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                var index = getIndexByKey(fullObject, cartItem.unique_key);
+                if (index > -1) {
+                    fullObject.splice(index, 1);
+                }
+                localStorage.setItem(storageKey, JSON.stringify(fullObject));
+            }
+
+            $("#smartcart").on("quantityUpdated", function operation(e, cartItem) {
+                removeItemEvent(e, cartItem);
+                addItemEvent(e, cartItem);
+            });
         };
     }
 

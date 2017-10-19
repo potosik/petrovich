@@ -288,12 +288,8 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\no-image.png" />
     <Content Include="Content\img\profile.png" />
-    <Content Include="Content\js\petrovich.min.js">
-      <DependentUpon>petrovich.js</DependentUpon>
-    </Content>
-    <Content Include="Content\js\theme.min.js">
-      <DependentUpon>theme.js</DependentUpon>
-    </Content>
+    <Content Include="Content\js\petrovich.min.js" />
+    <Content Include="Content\js\theme.min.js" />
     <Content Include="Content\js\vendor\bootstrap.js" />
     <Content Include="Content\js\vendor\bootstrap.min.js" />
     <Content Include="Content\js\petrovich.js" />
@@ -413,6 +409,7 @@
     <Content Include="Content\css\Petrovich\Product.less" />
     <Content Include="Views\Images\FullSize.cshtml" />
     <Content Include="Content\css\Petrovich\Manager.less" />
+    <Content Include="Content\css\Petrovich\SmartCart.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Manager\ProductDetails.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Manager.cshtml" />

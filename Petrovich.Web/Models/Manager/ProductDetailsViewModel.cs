@@ -2,6 +2,7 @@
 using Petrovich.Business.Models.Base;
 using Petrovich.Business.Models;
 using Petrovich.Core.Utils;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -20,6 +21,7 @@ namespace Petrovich.Web.Models.Manager
         public string Title { get; set; }
         public string Description { get; set; }
         public double? Price { get; set; }
+        public int? PriceType { get; set; }
         public string InventoryNumber { get; set; }
         public string PurchaseDate { get; set; }
 
@@ -48,6 +50,7 @@ namespace Petrovich.Web.Models.Manager
                 Title = product.Title,
                 Description = product.Description,
                 Price = product.Price,
+                PriceType = (int?)product.PriceType,
                 InventoryNumber = product.InventoryNumber,
                 PurchaseDate = DateTimeUtils.CreatePurchaseDate(product.PurchaseYear, product.PurchaseMonth),
 

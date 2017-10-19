@@ -18,5 +18,9 @@
   {
     "outputFile": "Content/js/vendor/fastclick.js",
     "inputFile": "Content/js/vendor/fastclick.js"
+  },
+  {
+    "outputFile": "Content/js/vendor/jquery.smartcart.js",
+    "inputFile": "Content/js/vendor/jquery.smartcart.js"
   }
 ]

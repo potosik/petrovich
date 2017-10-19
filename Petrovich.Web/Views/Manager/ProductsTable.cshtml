@@ -5,24 +5,35 @@
         <tr>
             <th>Название</th>
             <th>Цена</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @if (!Model.Any())
         {
             <tr>
-                <td colspan="2">Нет элементов для отображения</td>
+                <td colspan="3">Нет элементов для отображения</td>
             </tr>
         }
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="sc-product-item">
                 <td>
                     <a href="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = item.ProductId })">@item.Title</a>
                 </td>
                 <td>
-                    @item.Price
+                    @item.PriceText
+                </td>
+                <td>
+                    <input name="product_id" type="hidden" value="@item.ProductId">
+                    <input name="product_name" type="hidden" value="@item.Title">
+                    <input name="product_desc" type="hidden" value="@item.Description">
+                    <input name="product_price" type="hidden" value="@item.Price">
+                    <input name="product_pricetype" type="hidden" value="@item.PriceType">
+
+                    <button type="button" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</button>
+                    <button type="button" class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</button>
                 </td>
             </tr>
         }

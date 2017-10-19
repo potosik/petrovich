@@ -63,3 +63,26 @@ ul.stats-overview {
 .manager .x_content a:hover {
   text-decoration: underline;
 }
+.sc-product-item.sc-added-item .sc-add-to-cart {
+  display: none;
+}
+.sc-product-item.sc-added-item .sc-added-to-cart {
+  display: inline-block;
+}
+.sc-product-item .sc-added-to-cart {
+  display: none;
+}
+.info-number .sc-cart-count.badge {
+  right: 4px;
+}
+.navbar-nav .open .dropdown-menu.dropdown-bidmenu {
+  width: 450px;
+}
+.sc-cart-item-list .sc-cart-item {
+  border: none;
+  border-radius: 0;
+  border-top: 1px solid #ddd;
+}
+.sc-cart-item-list .sc-cart-item:first-child {
+  border: none;
+}

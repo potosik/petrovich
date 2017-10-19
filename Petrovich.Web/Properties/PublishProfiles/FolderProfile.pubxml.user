@@ -89,40 +89,40 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 23:00:52</publishTime>
     </File>
     <File Include="bin/Petrovich.Business.dll">
-      <publishTime>10/18/2017 10:53:00</publishTime>
+      <publishTime>10/19/2017 22:27:54</publishTime>
     </File>
     <File Include="bin/Petrovich.Business.pdb">
-      <publishTime>10/18/2017 10:53:00</publishTime>
+      <publishTime>10/19/2017 22:27:54</publishTime>
     </File>
     <File Include="bin/Petrovich.Context.dll">
-      <publishTime>10/18/2017 10:53:01</publishTime>
+      <publishTime>10/19/2017 22:27:56</publishTime>
     </File>
     <File Include="bin/Petrovich.Context.dll.config">
       <publishTime>05/30/2017 00:32:41</publishTime>
     </File>
     <File Include="bin/Petrovich.Context.pdb">
-      <publishTime>10/18/2017 10:53:01</publishTime>
+      <publishTime>10/19/2017 22:27:56</publishTime>
     </File>
     <File Include="bin/Petrovich.Core.dll">
-      <publishTime>10/18/2017 10:52:59</publishTime>
+      <publishTime>10/19/2017 22:27:54</publishTime>
     </File>
     <File Include="bin/Petrovich.Core.pdb">
-      <publishTime>10/18/2017 10:52:59</publishTime>
+      <publishTime>10/19/2017 22:27:54</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.dll">
-      <publishTime>10/18/2017 10:53:01</publishTime>
+      <publishTime>10/19/2017 22:27:56</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.dll.config">
       <publishTime>05/30/2017 00:32:41</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.pdb">
-      <publishTime>10/18/2017 10:53:01</publishTime>
+      <publishTime>10/19/2017 22:27:56</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.dll">
-      <publishTime>10/18/2017 13:01:43</publishTime>
+      <publishTime>10/19/2017 22:27:58</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.pdb">
-      <publishTime>10/18/2017 13:01:43</publishTime>
+      <publishTime>10/19/2017 22:27:58</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/11/2017 14:34:55</publishTime>
@@ -305,13 +305,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/24/2017 13:55:40</publishTime>
     </File>
     <File Include="Content/css/petrovich.css">
-      <publishTime>08/16/2017 22:16:10</publishTime>
+      <publishTime>10/19/2017 22:22:53</publishTime>
     </File>
     <File Include="Content/css/petrovich.less">
-      <publishTime>08/16/2017 21:22:23</publishTime>
+      <publishTime>10/19/2017 21:40:24</publishTime>
     </File>
     <File Include="Content/css/petrovich.min.css">
-      <publishTime>08/16/2017 22:16:10</publishTime>
+      <publishTime>10/19/2017 22:22:53</publishTime>
     </File>
     <File Include="Content/css/Petrovich/FastSearch.less">
       <publishTime>08/16/2017 13:50:18</publishTime>
@@ -323,13 +323,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/16/2017 21:22:23</publishTime>
     </File>
     <File Include="Content/css/Petrovich/Overrides.less">
-      <publishTime>08/16/2017 22:16:10</publishTime>
+      <publishTime>10/19/2017 22:14:27</publishTime>
     </File>
     <File Include="Content/css/Petrovich/Product.less">
       <publishTime>08/16/2017 22:12:16</publishTime>
     </File>
+    <File Include="Content/css/Petrovich/SmartCart.less">
+      <publishTime>10/19/2017 22:22:52</publishTime>
+    </File>
     <File Include="Content/css/Petrovich/Variables.less">
-      <publishTime>08/16/2017 16:59:55</publishTime>
+      <publishTime>10/19/2017 22:20:40</publishTime>
     </File>
     <File Include="Content/css/theme.css">
       <publishTime>08/16/2017 16:59:04</publishTime>
@@ -401,16 +404,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/js/petrovich.js">
-      <publishTime>10/18/2017 13:01:17</publishTime>
+      <publishTime>10/19/2017 21:59:04</publishTime>
     </File>
     <File Include="Content/js/petrovich.min.js">
-      <publishTime>10/18/2017 13:01:17</publishTime>
+      <publishTime>10/19/2017 22:27:15</publishTime>
     </File>
     <File Include="Content/js/theme.js">
       <publishTime>07/25/2017 11:02:57</publishTime>
     </File>
     <File Include="Content/js/theme.min.js">
-      <publishTime>07/25/2017 11:02:57</publishTime>
+      <publishTime>10/19/2017 22:27:35</publishTime>
     </File>
     <File Include="Content/js/vendor/bootstrap.js">
       <publishTime>05/23/2017 21:37:39</publishTime>
@@ -443,10 +446,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2017 21:37:39</publishTime>
     </File>
     <File Include="Content/js/vendor/jquery.smartcart.js">
-      <publishTime>09/10/2017 14:06:56</publishTime>
+      <publishTime>10/19/2017 22:26:28</publishTime>
     </File>
     <File Include="Content/js/vendor/jquery.smartcart.min.js">
-      <publishTime>09/10/2017 14:06:56</publishTime>
+      <publishTime>10/19/2017 22:26:33</publishTime>
     </File>
     <File Include="Content/js/vendor/mustache.js">
       <publishTime>07/24/2017 13:55:40</publishTime>
@@ -545,13 +548,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/16/2017 21:22:23</publishTime>
     </File>
     <File Include="Views/Manager/ProductDetails.cshtml">
-      <publishTime>09/10/2017 13:38:54</publishTime>
+      <publishTime>10/19/2017 21:44:13</publishTime>
     </File>
     <File Include="Views/Manager/Products.cshtml">
       <publishTime>08/16/2017 21:22:23</publishTime>
     </File>
     <File Include="Views/Manager/ProductsTable.cshtml">
-      <publishTime>08/16/2017 21:22:23</publishTime>
+      <publishTime>10/19/2017 21:43:41</publishTime>
     </File>
     <File Include="Views/Products/Create.cshtml">
       <publishTime>10/16/2017 22:20:54</publishTime>
@@ -587,7 +590,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/31/2017 15:30:42</publishTime>
     </File>
     <File Include="Views/Shared/Layout/TopNavigation.cshtml">
-      <publishTime>05/23/2017 21:37:39</publishTime>
+      <publishTime>10/19/2017 22:12:21</publishTime>
     </File>
     <File Include="Views/Shared/Layout/TopNavigation/UserMenu.cshtml">
       <publishTime>05/30/2017 00:33:19</publishTime>
@@ -596,7 +599,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/16/2017 21:22:23</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/16/2017 20:42:35</publishTime>
+      <publishTime>10/19/2017 21:52:37</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutEmpty.cshtml">
       <publishTime>05/23/2017 21:37:39</publishTime>

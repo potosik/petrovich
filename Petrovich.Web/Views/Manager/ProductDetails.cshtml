@@ -5,7 +5,7 @@
     ViewBag.Title = Model.Title;
 }
 
-<div class="x_panel product-details">
+<div class="x_panel product-details sc-product-item">
     <div class="x_title x_navigation">
         <small>
             <a href="@Url.Action(PetrovichRoutes.Manager.Branches)">Разделы</a>
@@ -36,12 +36,23 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
-            @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
-            {
-                <section class="administration-bar">
+            <section class="administration-bar">
+                @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
+                {
                     <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редактировать</a>
-                </section>
-            }
+                }
+                @if (User.Identity.HasClaim(PermissionClaims.Manager))
+                {
+                    <input name="product_id" type="hidden" value="@Model.ProductId">
+                    <input name="product_name" type="hidden" value="@Model.Title">
+                    <input name="product_desc" type="hidden" value="@Model.Description">
+                    <input name="product_price" type="hidden" value="@Model.Price">
+                    <input name="product_pricetype" type="hidden" value="@Model.PriceType">
+
+                    <a href="javascript:void(0)" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</a>
+                    <a class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</a>
+                }
+            </section>
             <section class="stats">
                 <ul class="stats-overview">
                     <li>

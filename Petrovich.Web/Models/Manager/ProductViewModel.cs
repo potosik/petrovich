@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
 using Petrovich.Web.Core.Extensions;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -11,7 +12,11 @@ namespace Petrovich.Web.Models.Manager
     {
         public Guid ProductId { get; set; }
         public string Title { get; set; }
-        public string Price { get; set; }
+        public string Description { get; set; }
+        public double? Price { get; set; }
+        public int? PriceType { get; set; }
+
+        public string PriceText { get; set; }
 
         public static ProductViewModel Create(ProductModel product)
         {
@@ -24,7 +29,10 @@ namespace Petrovich.Web.Models.Manager
             {
                 ProductId = product.ProductId,
                 Title = product.Title,
-                Price = product.GetHierarchicalPrice(),
+                Description = product.Description,
+                Price = product.Price,
+                PriceType = (int?)product.PriceType,
+                PriceText = product.GetHierarchicalPrice(),
             };
         }
     }

@@ -1,14 +1,16 @@
-/*!
- * jQuery Smart Cart v3.0.1
- * The smart interactive jQuery Shopping Cart plugin with PayPal payment support
- * http://www.techlaboratory.net/smartcart
- *
- * Created by Dipu Raj
- * http://dipuraj.me
- *
- * Licensed under the terms of the MIT License
- * https://github.com/techlab/SmartCart/blob/master/LICENSE
- */
+﻿/*!
+* jQuery Smart Cart v3.0.1
+* The smart interactive jQuery Shopping Cart plugin with PayPal payment support
+* http://www.techlaboratory.net/smartcart
+*
+* Created by Dipu Raj
+* http://dipuraj.me
+*
+* Licensed under the terms of the MIT License
+* https://github.com/techlab/SmartCart/blob/master/LICENSE
+*/
+
+'use strict';
 
 ;(function ($, window, document, undefined) {
     "use strict";
@@ -18,9 +20,9 @@
         cart: [], // initial products on cart
         resultName: 'cart_list', // Submit name of the cart parameter
         theme: 'default', // theme for the cart, related css need to include for other than default theme
-        combineProducts: true, // combine similar products on cart
+        combineProducts: false, // combine similar products on cart
         highlightEffect: true, // highlight effect on adding/updating product in cart
-        cartItemTemplate: '<img class="img-responsive pull-left" src="{product_image}" /><h4 class="list-group-item-heading">{product_name}</h4><p class="list-group-item-text">{product_desc}</p>',
+        cartItemTemplate: '<img class="img-responsive pull-left" src="{product_image}" /><h5 class="list-group-item-heading">{product_name}</h5><hr /><p class="list-group-item-text">{product_desc}</p>', // '<img class="img-responsive pull-left" src="{product_image}" /><h4 class="list-group-item-heading">{product_name}</h4><p class="list-group-item-text">{product_desc}</p>',
         cartItemQtyTemplate: '{display_price} × {display_quantity} = {display_amount}',
         productContainerSelector: '.sc-product-item',
         productElementSelector: '*', // input, textarea, select, div, p
@@ -32,12 +34,12 @@
             productId: 'product_id'
         },
         lang: { // Language variables
-            cartTitle: "Shopping Cart",
-            checkout: 'Checkout',
-            clear: 'Clear',
-            subtotal: 'Subtotal:',
+            cartTitle: "Заявка",
+            checkout: 'Оформить',
+            clear: 'Очистить',
+            subtotal: 'Всего:',
             cartRemove: '×',
-            cartEmpty: 'Cart is Empty!<br />Choose your products'
+            cartEmpty: 'Нет выбранных элементов'
         },
         submitSettings: {
             submitType: 'form', // form, paypal, ajax
@@ -45,11 +47,11 @@
             ajaxSettings: {} // Ajax extra settings for submit call
         },
         currencySettings: {
-            locales: 'en-US', // A string with a BCP 47 language tag, or an array of such strings
+            locales: 'ru-RU', // A string with a BCP 47 language tag, or an array of such strings
             currencyOptions: {
                 style: 'currency',
-                currency: 'USD',
-                currencyDisplay: 'symbol'
+                currency: 'BYN',
+                currencyDisplay: 'code'
             } // extra settings for the currency formatter. Refer: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
         },
         toolbarSettings: {
@@ -77,8 +79,7 @@
     }
 
     $.extend(SmartCart.prototype, {
-
-        init: function () {
+        init: function init() {
             // Set the elements
             this._setElements();
 
@@ -102,19 +103,19 @@
         /* 
          * Set basic elements for the cart
          */
-        _setElements: function () {
+        _setElements: function _setElements() {
             // The element store all cart data and submit with form
             var cartListElement = $('<input type="hidden" name="' + this.options.resultName + '" id="' + this.options.resultName + '" />');
             this.cart_element.append(cartListElement);
             // Set the cart main element
-            this.cart_element.addClass('panel panel-default sc-cart sc-theme-' + this.options.theme);
-            this.cart_element.append('<div class="panel-heading sc-cart-heading">' + this.options.lang.cartTitle + ' <span class="sc-cart-count badge">0</span></div>');
-            this.cart_element.append('<div class="list-group sc-cart-item-list"></div>');
+            this.cart_element.addClass('sc-cart sc-theme-' + this.options.theme);
+            this.cart_element.append('<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="bg-green sc-cart-count badge">0</span>&nbsp;</a>');
+            this.cart_element.append('<div class="dropdown-menu dropdown-bidmenu pull-right"><div class="sc-cart-item-list"></div></div>');
         },
         /* 
          * Set the toolbar for the cart 
          */
-        _setToolbar: function () {
+        _setToolbar: function _setToolbar() {
             if (this.options.toolbarSettings.showToolbar !== true) {
                 return false;
             }
@@ -160,12 +161,12 @@
 
             toolbar.append(toolbarSummaryPanel);
             toolbar.append(toolbarButtonPanel);
-            this.cart_element.append(toolbar);
+            this.cart_element.find('.dropdown-menu').append(toolbar);
         },
         /* 
          * Set events for the cart
          */
-        _setEvents: function () {
+        _setEvents: function _setEvents() {
             var mi = this;
             // Capture add to cart button events
             $(this.options.addCartSelector).on("click", function (e) {
@@ -217,7 +218,7 @@
          * Get the parameters of a product by seaching elements with name attribute/data.
          * Product details will be return as an object
          */
-        _getProductDetails: function (elm) {
+        _getProductDetails: function _getProductDetails(elm) {
             var mi = this;
             var p = {};
             elm.parents(this.options.productContainerSelector).find(this.options.productElementSelector).each(function () {
@@ -234,7 +235,7 @@
         /* 
          * Add the product object to the cart
          */
-        _addToCart: function (p) {
+        _addToCart: function _addToCart(p) {
             var mi = this;
 
             if (!p.hasOwnProperty(this.options.paramSettings.productPrice)) {
@@ -278,7 +279,7 @@
         /* 
          * Remove the product object from the cart
          */
-        _removeFromCart: function (unique_key) {
+        _removeFromCart: function _removeFromCart(unique_key) {
             var mi = this;
             $.each(this.cart, function (i, n) {
                 if (n.unique_key === unique_key) {
@@ -288,7 +289,7 @@
                     mi._hasCartChange();
 
                     // Trigger "itemRemoved" event
-                    this._triggerEvent("itemRemoved", [itemRemove]);
+                    mi._triggerEvent("itemRemoved", [itemRemove]);
                     return false;
                 }
             });
@@ -296,7 +297,7 @@
         /* 
          * Clear all products from the cart
          */
-        _clearCart: function () {
+        _clearCart: function _clearCart() {
             this.cart = [];
             // Trigger "cartCleared" event
             this._triggerEvent("cartCleared");
@@ -305,7 +306,7 @@
         /* 
          * Update the quantity of an item in the cart
          */
-        _updateCartQuantity: function (unique_key, qty) {
+        _updateCartQuantity: function _updateCartQuantity(unique_key, qty) {
             var mi = this;
             var qv = this._getValidateNumber(qty);
             $.each(this.cart, function (i, n) {
@@ -315,7 +316,7 @@
                     }
                     mi._addUpdateCartItem(mi.cart[i]);
                     // Trigger "quantityUpdate" event
-                    this._triggerEvent("quantityUpdated", [mi.cart[i], qty]);
+                    mi._triggerEvent("quantityUpdated", [mi.cart[i], qty]);
                     return false;
                 }
             });
@@ -323,7 +324,7 @@
         /* 
          * Update the UI of the cart list
          */
-        _addUpdateCartItem: function (p) {
+        _addUpdateCartItem: function _addUpdateCartItem(p) {
             var productAmount = (p[this.options.paramSettings.productQuantity] - 0) * (p[this.options.paramSettings.productPrice] - 0);
             var cartList = $('.sc-cart-item-list', this.cart_element);
             var elmMain = cartList.find("[data-unique-key='" + p.unique_key + "']");
@@ -358,7 +359,7 @@
         /* 
          * Handles the changes in the cart 
          */
-        _hasCartChange: function () {
+        _hasCartChange: function _hasCartChange() {
             $('.sc-cart-count', this.cart_element).text(this.cart.length);
             $('.sc-cart-subtotal', this.element).text(this._getCartSubtotal());
 
@@ -374,13 +375,13 @@
                 $('.sc-cart-checkout, .sc-cart-clear').removeClass('disabled');
             }
 
-            // Update cart value to the  cart hidden element 
+            // Update cart value to the  cart hidden element
             $('#' + this.options.resultName, this.cart_element).val(JSON.stringify(this.cart));
         },
         /* 
          * Calculates the cart subtotal
          */
-        _getCartSubtotal: function () {
+        _getCartSubtotal: function _getCartSubtotal() {
             var mi = this;
             var subtotal = 0;
             $.each(this.cart, function (i, p) {
@@ -393,7 +394,7 @@
         /* 
          * Cart submit functionalities
          */
-        _submitCart: function () {
+        _submitCart: function _submitCart() {
             var mi = this;
             var formElm = this.cart_element.parents('form');
             if (!formElm) {
@@ -409,14 +410,14 @@
                         url: ajaxURL,
                         type: "POST",
                         data: formElm.serialize(),
-                        beforeSend: function () {
+                        beforeSend: function beforeSend() {
                             mi.cart_element.addClass('loading');
                         },
-                        error: function (jqXHR, status, message) {
+                        error: function error(jqXHR, status, message) {
                             mi.cart_element.removeClass('loading');
                             mi._logError(message);
                         },
-                        success: function (res) {
+                        success: function success(res) {
                             mi.cart_element.removeClass('loading');
                             mi._triggerEvent("cartSubmitted", [mi.cart]);
                             mi._clearCart();
@@ -452,7 +453,7 @@
         /* 
          * Get the content of an HTML element irrespective of its type
          */
-        _getContent: function (elm) {
+        _getContent: function _getContent(elm) {
             if (elm.is(":checkbox, :radio")) {
                 return elm.is(":checked") ? elm.val() : '';
             } else if (elm.is("[value], select")) {
@@ -467,7 +468,7 @@
         /* 
          * Compare equality of two product objects
          */
-        _isObjectsEqual: function (o1, o2) {
+        _isObjectsEqual: function _isObjectsEqual(o1, o2) {
             if (Object.getOwnPropertyNames(o1).length !== Object.getOwnPropertyNames(o2).length) {
                 return false;
             }
@@ -487,20 +488,20 @@
         /* 
          * Format money
          */
-        _getMoneyFormatted: function (n) {
+        _getMoneyFormatted: function _getMoneyFormatted(n) {
             n = n - 0;
             return Number(n.toFixed(2)).toLocaleString(this.options.currencySettings.locales, this.options.currencySettings.currencyOptions);
         },
         /* 
          * Get the value of an element and empty value if the element not exists 
          */
-        _getValueOrEmpty: function (v) {
+        _getValueOrEmpty: function _getValueOrEmpty(v) {
             return v && typeof v !== typeof undefined ? v : '';
         },
         /* 
          * Validate Number
          */
-        _getValidateNumber: function (n) {
+        _getValidateNumber: function _getValidateNumber(n) {
             n = n - 0;
             if (n && n > 0) {
                 return true;
@@ -510,7 +511,7 @@
         /* 
          * Small templating function
          */
-        _formatTemplate: function (t, o) {
+        _formatTemplate: function _formatTemplate(t, o) {
             var r = t.split("{"),
                 fs = '';
             for (var i = 0; i < r.length; i++) {
@@ -526,7 +527,7 @@
         /* 
          * Event raiser
          */
-        _triggerEvent: function (name, params) {
+        _triggerEvent: function _triggerEvent(name, params) {
             // Trigger an event
             var e = $.Event(name);
             this.cart_element.trigger(e, params);
@@ -538,14 +539,14 @@
         /* 
          * Get unique key
          */
-        _getUniqueKey: function () {
+        _getUniqueKey: function _getUniqueKey() {
             var d = new Date();
             return d.getTime();
         },
         /* 
          * Log message to console
          */
-        _logMessage: function (msg) {
+        _logMessage: function _logMessage(msg) {
             if (this.options.debug !== true) {
                 return false;
             }
@@ -555,7 +556,7 @@
         /* 
          * Log error to console and terminate execution
          */
-        _logError: function (msg) {
+        _logError: function _logError(msg) {
             if (this.options.debug !== true) {
                 return false;
             }
@@ -567,13 +568,13 @@
         /* 
          * Public function to sumbit the cart
          */
-        submit: function () {
+        submit: function submit() {
             this._submitCart();
         },
         /* 
          * Public function to clear the cart
          */
-        clear: function () {
+        clear: function clear() {
             this._clearCart();
         }
     });
@@ -604,3 +605,4 @@
         }
     };
 })(jQuery, window, document);
+
