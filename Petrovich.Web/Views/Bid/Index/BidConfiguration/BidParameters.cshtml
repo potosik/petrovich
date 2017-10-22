@@ -1,0 +1,16 @@
+﻿@model Petrovich.Web.Models.Bid.CreateBidParametersViewModel
+
+<div class="form-group">
+    @Html.LabelFor(m => m.StartDate, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+    <span class="required">*</span>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Дата начала аренды" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.EndDate, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+    <span class="required">*</span>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control col-md-7 col-xs-12", placeholder = "Дата окончания аренды" })
+    </div>
+</div>

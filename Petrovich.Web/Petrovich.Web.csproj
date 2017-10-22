@@ -185,6 +185,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Composition\CompositionModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BidController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DataStructureBranchController.cs" />
     <Compile Include="Controllers\DataStructureGroupController.cs" />
@@ -200,14 +201,18 @@
     <Compile Include="Core\Attributes\LoggableActionsAttribute.cs" />
     <Compile Include="Core\Controllers\BaseController.cs" />
     <Compile Include="Core\Controllers\IdentityController.cs" />
+    <Compile Include="Core\DTOs\BidProductItemDTO.cs" />
+    <Compile Include="Core\DTOs\PriceableEntityDTO.cs" />
     <Compile Include="Core\Extensions\ClaimsExtensions.cs" />
     <Compile Include="Core\Extensions\ControllerExtensions.cs" />
+    <Compile Include="Core\Extensions\DoubleExtensions.cs" />
     <Compile Include="Core\Extensions\EndpointExtension.cs" />
     <Compile Include="Core\Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="Core\Extensions\IIdentityExtensions.cs" />
     <Compile Include="Core\Extensions\IPriceableEntityExtensions.cs" />
     <Compile Include="Core\Extensions\ProductExtensions.cs" />
+    <Compile Include="Core\Extensions\StringExtensions.cs" />
     <Compile Include="Core\Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Core\Extensions\ViewContextExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,6 +221,10 @@
     <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
+    <Compile Include="Models\Bid\BidProductViewModel.cs" />
+    <Compile Include="Models\Bid\CreateBidClientViewModel.cs" />
+    <Compile Include="Models\Bid\CreateBidParametersViewModel.cs" />
+    <Compile Include="Models\Bid\CreateBidViewModel.cs" />
     <Compile Include="Models\DataStructure\BranchViewModel.cs" />
     <Compile Include="Models\DataStructure\CategoryViewModel.cs" />
     <Compile Include="Models\DataStructure\BranchCreateViewModel.cs" />
@@ -288,8 +297,12 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\no-image.png" />
     <Content Include="Content\img\profile.png" />
-    <Content Include="Content\js\petrovich.min.js" />
-    <Content Include="Content\js\theme.min.js" />
+    <Content Include="Content\js\petrovich.min.js">
+      <DependentUpon>petrovich.js</DependentUpon>
+    </Content>
+    <Content Include="Content\js\theme.min.js">
+      <DependentUpon>theme.js</DependentUpon>
+    </Content>
     <Content Include="Content\js\vendor\bootstrap.js" />
     <Content Include="Content\js\vendor\bootstrap.min.js" />
     <Content Include="Content\js\petrovich.js" />
@@ -363,8 +376,8 @@
     <Content Include="Views\Shared\Layout\TopNavigation.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation.cshtml" />
     <Content Include="Views\Shared\Layout\Footer.cshtml" />
-    <Content Include="Content\css\Petrovich\Variables.less" />
-    <Content Include="Content\css\Petrovich\Overrides.less" />
+    <Content Include="Content\css\PetrovichComponents\Variables.less" />
+    <Content Include="Content\css\PetrovichComponents\Overrides.less" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Administrator.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
@@ -389,7 +402,7 @@
     <Content Include="Views\DataStructure\BranchEdit.cshtml" />
     <Content Include="Views\Logging\Index.cshtml" />
     <Content Include="Views\Logging\Details.cshtml" />
-    <Content Include="Content\css\Petrovich\Logging.less" />
+    <Content Include="Content\css\PetrovichComponents\Logging.less" />
     <Content Include="Views\DataStructure\CategoryCreate.cshtml" />
     <Content Include="Views\DataStructure\CategoryList.cshtml" />
     <Content Include="Views\DataStructure\CategoryEdit.cshtml" />
@@ -404,12 +417,12 @@
     <Content Include="Views\DataStructure\CategoryChildProductsExists.cshtml" />
     <Content Include="Views\DataStructure\GroupChildProductsExists.cshtml" />
     <Content Include="Views\Shared\_PagingNavigation.cshtml" />
-    <Content Include="Content\css\Petrovich\FastSearch.less" />
+    <Content Include="Content\css\PetrovichComponents\FastSearch.less" />
     <Content Include="Views\Shared\_Base64Image.cshtml" />
-    <Content Include="Content\css\Petrovich\Product.less" />
+    <Content Include="Content\css\PetrovichComponents\Product.less" />
     <Content Include="Views\Images\FullSize.cshtml" />
-    <Content Include="Content\css\Petrovich\Manager.less" />
-    <Content Include="Content\css\Petrovich\SmartCart.less" />
+    <Content Include="Content\css\PetrovichComponents\Manager.less" />
+    <Content Include="Content\css\PetrovichComponents\SmartCart.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Manager\ProductDetails.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Manager.cshtml" />
@@ -418,6 +431,12 @@
     <Content Include="Views\Manager\Groups.cshtml" />
     <Content Include="Views\Manager\ProductsTable.cshtml" />
     <Content Include="Views\Manager\Products.cshtml" />
+    <Content Include="Views\Bid\Index.cshtml" />
+    <Content Include="Views\Bid\Index\NoModelPresented.cshtml" />
+    <Content Include="Views\Bid\Index\BidConfiguration.cshtml" />
+    <Content Include="Views\Bid\Index\BidConfiguration\BidProducts.cshtml" />
+    <Content Include="Views\Bid\Index\BidConfiguration\BidParameters.cshtml" />
+    <Content Include="Views\Bid\Index\BidConfiguration\BidClient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

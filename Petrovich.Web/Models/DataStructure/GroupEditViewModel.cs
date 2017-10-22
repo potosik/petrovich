@@ -29,7 +29,7 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Название")]
         public string Title { get; set; }
 
-        [Display(Name = "Базовая цена товаров (BYN)")]
+        [Display(Name = "Базовая цена проката (BYN)")]
         public double? BasePrice { get; set; }
 
         [Display(Name = "Ценовой срок")]

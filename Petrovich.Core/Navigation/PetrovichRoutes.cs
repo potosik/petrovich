@@ -80,6 +80,13 @@
             public static Endpoint ProductDetails = new Endpoint(Controller, "ProductDetails");
         }
 
+        public static class Bid
+        {
+            private const string Controller = "Bid";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+        }
+
         public static class Products
         {
             private const string Controller = "Products";

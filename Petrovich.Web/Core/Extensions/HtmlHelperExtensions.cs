@@ -25,5 +25,10 @@ namespace Petrovich.Web.Core.Extensions
         {
             return helper.BeginForm(endpoint.Action, endpoint.Controller, method, htmlAttributes);
         }
+
+        public static MvcForm BeginForm(this HtmlHelper helper, Endpoint endpoint, FormMethod method)
+        {
+            return helper.BeginForm(endpoint.Action, endpoint.Controller, method);
+        }
     }
 }

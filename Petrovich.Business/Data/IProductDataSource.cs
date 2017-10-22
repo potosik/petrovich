@@ -1,6 +1,7 @@
 ﻿using Petrovich.Business.Models;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Petrovich.Business.Data
 {
@@ -17,5 +18,6 @@ namespace Petrovich.Business.Data
         Task<ProductModelCollection> SearchFastAsync(string query, int count);
         Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId);
         Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId);
+        Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds);
     }
 }

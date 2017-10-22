@@ -10,9 +10,7 @@
 * https://github.com/techlab/SmartCart/blob/master/LICENSE
 */
 
-'use strict';
-
-;(function ($, window, document, undefined) {
+; (function ($, window, document, undefined) {
     "use strict";
     // Default options
 
@@ -22,7 +20,12 @@
         theme: 'default', // theme for the cart, related css need to include for other than default theme
         combineProducts: false, // combine similar products on cart
         highlightEffect: true, // highlight effect on adding/updating product in cart
-        cartItemTemplate: '<img class="img-responsive pull-left" src="{product_image}" /><h5 class="list-group-item-heading">{product_name}</h5><hr /><p class="list-group-item-text">{product_desc}</p>', // '<img class="img-responsive pull-left" src="{product_image}" /><h4 class="list-group-item-heading">{product_name}</h4><p class="list-group-item-text">{product_desc}</p>',
+        cartItemTemplate: '' +
+                '<a href="{product_link}">' +
+                    '<span class="image"><img src="{product_image}"></span>' +
+                    '<span class="header">{product_name}</span>' +
+                    '<span class="message">{product_desc}</span>' +
+                '</a>',//'<img class="img-responsive pull-left" src="{product_image}" /><h5 class="list-group-item-heading">{product_name}</h5><hr /><p class="list-group-item-text">{product_desc}</p>',
         cartItemQtyTemplate: '{display_price} × {display_quantity} = {display_amount}',
         productContainerSelector: '.sc-product-item',
         productElementSelector: '*', // input, textarea, select, div, p
@@ -58,7 +61,7 @@
             showToolbar: true,
             showCheckoutButton: true,
             showClearButton: true,
-            showCartSummary: true,
+            showCartSummary: false,
             checkoutButtonStyle: 'default', // default, paypal, image
             checkoutButtonImage: '', // image for the checkout button
             toolbarExtraButtons: [] // Extra buttons to show on toolbar, array of jQuery input/buttons elements
@@ -74,6 +77,8 @@
         this.cart = [];
         // Cart element
         this.cart_element = $(element);
+        // Submit form
+        this.cart_form = $('#smartCartSubmitForm');
         // Call initial method
         this.init();
     }
@@ -106,11 +111,11 @@
         _setElements: function _setElements() {
             // The element store all cart data and submit with form
             var cartListElement = $('<input type="hidden" name="' + this.options.resultName + '" id="' + this.options.resultName + '" />');
-            this.cart_element.append(cartListElement);
+            this.cart_form.append(cartListElement);
             // Set the cart main element
             this.cart_element.addClass('sc-cart sc-theme-' + this.options.theme);
             this.cart_element.append('<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-shopping-cart"></i><span class="bg-green sc-cart-count badge">0</span>&nbsp;</a>');
-            this.cart_element.append('<div class="dropdown-menu dropdown-bidmenu pull-right"><div class="sc-cart-item-list"></div></div>');
+            this.cart_element.append('<div class="dropdown-menu dropdown-bidmenu pull-right"><ul class="sc-cart-item-list bidmenu"></ul></div>');
         },
         /* 
          * Set the toolbar for the cart 
@@ -332,17 +337,17 @@
                 elmMain.find(".sc-cart-item-qty").val(p[this.options.paramSettings.productQuantity]);
                 elmMain.find(".sc-cart-item-amount").text(this._getMoneyFormatted(productAmount));
             } else {
-                elmMain = $('<div></div>').addClass('sc-cart-item list-group-item');
-                elmMain.append('<button type="button" class="sc-cart-remove">' + this.options.lang.cartRemove + '</button>');
+                elmMain = $('<li></li>').addClass('sc-cart-item list-group-item');
+                elmMain.append('<button type="button" class="btn btn-default btn-xs sc-cart-remove" title="Удалить">' + this.options.lang.cartRemove + '</button>');
                 elmMain.attr('data-unique-key', p.unique_key);
 
                 elmMain.append(this._formatTemplate(this.options.cartItemTemplate, p));
 
-                var itemSummary = '<div class="sc-cart-item-summary"><span class="sc-cart-item-price">' + this._getMoneyFormatted(p[this.options.paramSettings.productPrice]) + '</span>';
-                itemSummary += ' × <input type="number" min="1" max="1000" class="sc-cart-item-qty" value="' + this._getValueOrEmpty(p[this.options.paramSettings.productQuantity]) + '" />';
-                itemSummary += ' = <span class="sc-cart-item-amount">' + this._getMoneyFormatted(productAmount) + '</span></div>';
+                //var itemSummary = '<div class="sc-cart-item-summary"><span class="sc-cart-item-price">' + this._getMoneyFormatted(p[this.options.paramSettings.productPrice]) + '</span>';
+                //itemSummary += ' × <input type="number" min="1" max="1000" class="sc-cart-item-qty" value="' + this._getValueOrEmpty(p[this.options.paramSettings.productQuantity]) + '" />';
+                //itemSummary += ' = <span class="sc-cart-item-amount">' + this._getMoneyFormatted(productAmount) + '</span></div>';
 
-                elmMain.append(itemSummary);
+                //elmMain.append(itemSummary);
                 cartList.append(elmMain);
             }
 
@@ -396,7 +401,7 @@
          */
         _submitCart: function _submitCart() {
             var mi = this;
-            var formElm = this.cart_element.parents('form');
+            var formElm = mi.cart_form;//this.cart_element.parents('form');
             if (!formElm) {
                 this._logError('Form not found to submit');
                 return false;
@@ -420,7 +425,7 @@
                         success: function success(res) {
                             mi.cart_element.removeClass('loading');
                             mi._triggerEvent("cartSubmitted", [mi.cart]);
-                            mi._clearCart();
+                            //mi._clearCart();
                         }
                     }, this.options.submitSettings.ajaxSettings);
 
@@ -605,4 +610,3 @@
         }
     };
 })(jQuery, window, document);
-

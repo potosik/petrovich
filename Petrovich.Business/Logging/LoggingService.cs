@@ -39,7 +39,7 @@ namespace Petrovich.Business.Logging
 
         public async Task LogCriticalAsync(Exception ex)
         {
-            await LogAsync(LogSeverityBusiness.Critical, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Critical, ex.Message, null, ex.InnerException?.Message);
         }
 
         public async Task LogCriticalAsync(string message, Exception ex)
@@ -55,7 +55,7 @@ namespace Petrovich.Business.Logging
 
         public async Task LogErrorAsync(Exception ex)
         {
-            await LogAsync(LogSeverityBusiness.Error, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Error, ex.Message, null, ex.InnerException?.Message);
         }
 
         public async Task LogErrorAsync(string message, Exception ex)
@@ -71,7 +71,7 @@ namespace Petrovich.Business.Logging
 
         public async Task LogInformationAsync(Exception ex)
         {
-            await LogAsync(LogSeverityBusiness.Information, null, ex.Message, ex.InnerException?.Message);
+            await LogAsync(LogSeverityBusiness.Information, ex.Message, null, ex.InnerException?.Message);
         }
 
         public async Task LogInformationAsync(string message, Exception ex)

@@ -9,6 +9,9 @@
                 @Html.Partial("Layout/TopNavigation/UserMenu")
             </li>
             <li id="smartcart">
+                @using (Html.BeginForm(PetrovichRoutes.Bid.Index, FormMethod.Post, new { id = "smartCartSubmitForm", @class = "hide" }))
+                {
+                }
                 <!-- smart cart bid will be generated here -->
             </li>
         </ul>

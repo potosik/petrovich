@@ -1,0 +1,55 @@
+﻿@model Petrovich.Web.Models.Bid.CreateBidViewModel
+
+@using (Html.BeginForm(PetrovichRoutes.DataStructure.CategoryCreate, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="x_panel bid_client">
+        <div class="x_title">
+            <small>Заказчик</small>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap no-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Partial("Index/BidConfiguration/BidClient", Model.Client)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="x_panel bid_parameters">
+        <div class="x_title">
+            <small>Параметры заявки</small>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap no-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Partial("Index/BidConfiguration/BidParameters", Model.Parameters)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="x_panel bid_products">
+        <div class="x_title">
+            <small>Выбранные продукты</small>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap no-footer">
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Partial("Index/BidConfiguration/BidProducts", Model)                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

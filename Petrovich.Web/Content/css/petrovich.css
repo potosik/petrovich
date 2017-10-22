@@ -25,6 +25,14 @@ ul.stats-overview {
 .input-group-addon {
   border-radius: 0;
 }
+ul.bidmenu {
+  overflow: hidden;
+  padding: 0;
+}
+ul.bidmenu > li.sc-cart-item {
+  float: none;
+  padding-right: 30px;
+}
 .fastsearch-item-wrapper {
   max-width: 700px;
   overflow: hidden;
@@ -60,6 +68,9 @@ ul.stats-overview {
 .product-details .administration-bar {
   text-align: right;
 }
+.product-details .assessedvalue {
+  color: #ff6a00;
+}
 .manager .x_content a:hover {
   text-decoration: underline;
 }
@@ -78,11 +89,23 @@ ul.stats-overview {
 .navbar-nav .open .dropdown-menu.dropdown-bidmenu {
   width: 450px;
 }
+.navbar-nav .open .dropdown-menu.dropdown-bidmenu .panel-footer {
+  padding: 6px;
+}
+.navbar-nav .open .dropdown-menu.dropdown-bidmenu .sc-cart-toolbar button {
+  margin-bottom: 0;
+}
+.navbar-nav .open .dropdown-menu.dropdown-bidmenu .sc-cart-empty-msg {
+  padding: 6px;
+}
 .sc-cart-item-list .sc-cart-item {
   border: none;
   border-radius: 0;
-  border-top: 1px solid #ddd;
 }
-.sc-cart-item-list .sc-cart-item:first-child {
-  border: none;
+.sc-cart-remove {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  margin: 0;
+  line-height: 15px;
 }

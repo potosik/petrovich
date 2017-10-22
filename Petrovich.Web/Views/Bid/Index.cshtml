@@ -1,0 +1,22 @@
+﻿@model Petrovich.Web.Models.Bid.CreateBidViewModel
+
+@{
+    ViewBag.Title = "Оформление заявки";
+}
+
+@if (Model == null)
+{
+    @Html.Partial("Index/NoModelPresented")
+    
+    @section scripts {
+        <script type="text/javascript">
+        $(function () {
+            petrovich.submitSmartCart();
+        });
+        </script>
+    }
+}
+else
+{
+    @Html.Partial("Index/BidConfiguration", Model)
+}

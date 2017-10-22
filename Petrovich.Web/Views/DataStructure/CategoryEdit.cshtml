@@ -28,7 +28,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.BasePrice, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-2 col-sm-2 col-xs-12">
-                    @Html.TextBoxFor(m => m.BasePrice, new { id = "price", @class = "form-control col-xs-12", placeholder = "Цена" })
+                    @Html.TextBoxFor(m => m.BasePrice, "{0:N2}", new { id = "price", @class = "form-control col-xs-12", placeholder = "Цена проката" })
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     @Html.DropDownListFor(m => m.PriceType, Model.PriceTypes, new { @class = "form-control col-xs-12" })

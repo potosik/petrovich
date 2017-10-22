@@ -14,13 +14,5 @@
   {
     "outputFile": "Content/js/theme.js",
     "inputFile": "Content/js/theme.js"
-  },
-  {
-    "outputFile": "Content/js/vendor/fastclick.js",
-    "inputFile": "Content/js/vendor/fastclick.js"
-  },
-  {
-    "outputFile": "Content/js/vendor/jquery.smartcart.js",
-    "inputFile": "Content/js/vendor/jquery.smartcart.js"
   }
 ]

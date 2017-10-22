@@ -50,6 +50,7 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int ProductSearchFastEventId = 14009;
         public const int ListProductsByCategoryIdEventId = 14010;
         public const int ListProductsByGroupIdEventId = 14011;
+        public const int ListProductsByIdsEventId = 14012;
 
         // fullimage #15
         public const int CreateFullImageEventId = 15001;

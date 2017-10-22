@@ -31,6 +31,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Description = product.Description,
                 Price = product.Price,
                 PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(product.PriceType),
+                AssessedValue = product.AssessedValue,
                 InventoryPart = product.InventoryPart,
 
                 PurchaseYear = product.PurchaseYear,
@@ -72,6 +73,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Description = productModel.Description,
                 Price = productModel.Price,
                 PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(productModel.PriceType),
+                AssessedValue = productModel.AssessedValue,
                 InventoryPart = productModel.InventoryPart,
 
                 PurchaseYear = productModel.PurchaseYear,

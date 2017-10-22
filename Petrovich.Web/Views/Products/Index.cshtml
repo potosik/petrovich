@@ -21,11 +21,10 @@
                             <tr>
                                 <th>Название</th>
                                 <th>Инвентарный номер</th>
-                                <th>Цена</th>
+                                <th>Цена проката</th>
                                 <th>Раздел</th>
                                 <th>Категория</th>
                                 <th>Группа</th>
-                                <th>Создан</th>
                                 <th>Отредактирован</th>
                                 <th>Операции</th>
                             </tr>
@@ -47,7 +46,6 @@
                                     <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.GroupTitle)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Created)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Modified)</td>
                                     <td>
                                         @using (Html.BeginForm(PetrovichRoutes.Products.Delete, new { id = item.ProductId }, FormMethod.Post, null))

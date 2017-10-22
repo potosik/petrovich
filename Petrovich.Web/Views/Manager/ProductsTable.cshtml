@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Petrovich.Web.Models.Manager.ProductViewModel>
+@using Petrovich.Core
 
 <table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>Название</th>
-            <th>Цена</th>
+            <th>Цена проката</th>
+            <th>Оценочная стоимость</th>
             <th></th>
         </tr>
     </thead>
@@ -26,14 +28,23 @@
                     @item.PriceText
                 </td>
                 <td>
-                    <input name="product_id" type="hidden" value="@item.ProductId">
-                    <input name="product_name" type="hidden" value="@item.Title">
-                    <input name="product_desc" type="hidden" value="@item.Description">
-                    <input name="product_price" type="hidden" value="@item.Price">
-                    <input name="product_pricetype" type="hidden" value="@item.PriceType">
+                    @item.AssessedValue.ToDoubleValueString() BYN
+                </td>
+                <td>
+                    @if (User.Identity.HasClaim(PermissionClaims.Manager) && item.Price.HasValue && item.PriceType.HasValue)
+                    {
+                        <input name="product_id" type="hidden" value="@item.ProductId">
+                        <input name="product_name" type="hidden" value="@item.Title">
+                        <input name="product_desc" type="hidden" value="@item.Description.CutDescription()">
+                        <input name="product_image" type="hidden" value="@item.ImageSmall.RenderImageForSmartCart(Url)">
+                        <input name="product_price" type="hidden" value="@item.PriceText">
+                        <input name="product_link" type="hidden" value="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = item.ProductId })">
+                        @*<input name="product_price" type="hidden" value="@item.Price.Value.ToDoubleValueString()">
+                        <input name="product_pricetype" type="hidden" value="@item.PriceType">*@
 
-                    <button type="button" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</button>
-                    <button type="button" class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</button>
+                        <button type="button" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</button>
+                        <button type="button" class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</button>
+                    }
                 </td>
             </tr>
         }

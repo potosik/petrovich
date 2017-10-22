@@ -35,11 +35,15 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [Display(Name = "Цена (BYN)")]
+        [Display(Name = "Цена проката (BYN)")]
         public double? Price { get; set; }
 
         [Display(Name = "Ценовой срок")]
         public int? PriceType { get; set; }
+
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        [Display(Name = "Оценочная стоимость (BYN)")]
+        public double AssessedValue { get; set; }
 
         [Display(Name = "Год закупки")]
         [Range(2000, 2100, ErrorMessageResourceName = "Product_PurchaseYear_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -93,6 +97,7 @@ namespace Petrovich.Web.Models.Products
                 Description = product.Description,
                 Price = product.Price,
                 PriceType = (int?)product.PriceType,
+                AssessedValue = product.AssessedValue,
                 InventoryPart = product.InventoryPart,
 
                 PurchaseYear = product.PurchaseYear,

@@ -14,5 +14,6 @@ namespace Petrovich.Repositories
         Task<int> SearchFastCountAsync(string query);
         Task<IList<Product>> ListByCategoryIdAsync(Guid categoryId);
         Task<IList<Product>> ListByGroupIdAsync(Guid groupId);
+        Task<IList<Product>> ListAsync(IEnumerable<Guid> productIds);
     }
 }

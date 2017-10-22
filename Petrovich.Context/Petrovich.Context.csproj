@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201709191928307_PriceTypesAdded.Designer.cs">
       <DependentUpon>201709191928307_PriceTypesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710221453297_AssessedValueAdded.cs" />
+    <Compile Include="Migrations\201710221453297_AssessedValueAdded.Designer.cs">
+      <DependentUpon>201710221453297_AssessedValueAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709191928307_PriceTypesAdded.resx">
       <DependentUpon>201709191928307_PriceTypesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710221453297_AssessedValueAdded.resx">
+      <DependentUpon>201710221453297_AssessedValueAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

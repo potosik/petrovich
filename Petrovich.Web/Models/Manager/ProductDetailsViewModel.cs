@@ -3,6 +3,7 @@ using Petrovich.Business.Models.Base;
 using Petrovich.Business.Models;
 using Petrovich.Core.Utils;
 using Petrovich.Business.Models.Enumerations;
+using Petrovich.Web.Core.Extensions;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -22,12 +23,15 @@ namespace Petrovich.Web.Models.Manager
         public string Description { get; set; }
         public double? Price { get; set; }
         public int? PriceType { get; set; }
+        public string PriceText { get; set; }
+        public double AssessedValue { get; set; }
         public string InventoryNumber { get; set; }
         public string PurchaseDate { get; set; }
 
         public Guid? ImageFullId { get; set; }
         public string ImageDefault { get; set; }
-        
+        public string ImageSmall { get; set; }
+
         public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }
 
@@ -44,18 +48,22 @@ namespace Petrovich.Web.Models.Manager
                 throw new ArgumentNullException(nameof(product));
             }
 
+            var priceDTO = product.GetHierarchicalPriceDTO();
             return new ProductDetailsViewModel(product)
             {
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
-                Price = product.Price,
-                PriceType = (int?)product.PriceType,
+                Price = priceDTO.Price,
+                PriceType = (int?)priceDTO.PriceType,
+                PriceText = product.GetHierarchicalPrice(),
+                AssessedValue = product.AssessedValue,
                 InventoryNumber = product.InventoryNumber,
                 PurchaseDate = DateTimeUtils.CreatePurchaseDate(product.PurchaseYear, product.PurchaseMonth),
 
                 ImageFullId = product.ImageFullId,
                 ImageDefault = product.ImageDefault ?? String.Empty,
+                ImageSmall = product.ImageSmall ?? String.Empty,
 
                 BranchId = product.BranchId,
                 BranchTitle = product.BranchTitle,

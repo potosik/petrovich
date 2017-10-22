@@ -84,6 +84,7 @@ namespace Petrovich.Repositories.DataSources
                 targetProduct.Description = product.Description;
                 targetProduct.Price = product.Price;
                 targetProduct.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(product.PriceType);
+                targetProduct.AssessedValue = product.AssessedValue;
                 targetProduct.InventoryPart = product.InventoryPart;
                 targetProduct.PurchaseYear = product.PurchaseYear;
                 targetProduct.PurchaseMonth = product.PurchaseMonth;
@@ -202,6 +203,20 @@ namespace Petrovich.Repositories.DataSources
             try
             {
                 var products = await productRepository.ListByGroupIdAsync(groupId);
+                var collection = productMapper.ToProductModelCollection(products);
+                return collection;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
+        {
+            try
+            {
+                var products = await productRepository.ListAsync(productIds);
                 var collection = productMapper.ToProductModelCollection(products);
                 return collection;
             }

@@ -4,6 +4,7 @@ using Petrovich.Business.Models;
 using System.Threading.Tasks;
 using Petrovich.Business.Logging;
 using Petrovich.Core.Performance;
+using System.Collections.Generic;
 
 namespace Petrovich.Business.PerformanceCounters
 {
@@ -102,6 +103,14 @@ namespace Petrovich.Business.PerformanceCounters
             using (new PerformanceMonitor(EventSource.ListProductsByGroupId, new { groupId }))
             {
                 return await innerDataSource.ListByGroupIdAsync(groupId);
+            }
+        }
+
+        public async Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
+        {
+            using (new PerformanceMonitor(EventSource.ListProductsByIds, new { productIds }))
+            {
+                return await innerDataSource.ListAsync(productIds);
             }
         }
     }

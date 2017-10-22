@@ -77,5 +77,11 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListProductsByGroupIdEventId, elapsed.ToString(), "IBranchDataSource.ListByGroupIdAsync", message);
         }
+
+        public void ListProductsByIds(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListProductsByIdsEventId, elapsed.ToString(), "IBranchDataSource.ListAsync", message);
+        }
     }
 }

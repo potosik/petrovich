@@ -99,6 +99,7 @@ namespace Petrovich.Web.Controllers
                         Description = model.Description,
                         Price = model.Price,
                         PriceType = (PriceTypeBusiness?)model.PriceType,
+                        AssessedValue = model.AssessedValue,
 
                         PurchaseYear = model.PurchaseYear,
                         PurchaseMonth = model.PurchaseMonth,
@@ -206,6 +207,7 @@ namespace Petrovich.Web.Controllers
                         Description = model.Description,
                         Price = model.Price,
                         PriceType = (PriceTypeBusiness?)model.PriceType,
+                        AssessedValue = model.AssessedValue,
                         InventoryPart = model.InventoryPart,
 
                         PurchaseYear = model.PurchaseYear,

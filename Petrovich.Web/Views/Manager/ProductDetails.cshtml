@@ -41,13 +41,16 @@
                 {
                     <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редактировать</a>
                 }
-                @if (User.Identity.HasClaim(PermissionClaims.Manager))
+                @if (User.Identity.HasClaim(PermissionClaims.Manager) && Model.Price.HasValue && Model.PriceType.HasValue)
                 {
                     <input name="product_id" type="hidden" value="@Model.ProductId">
                     <input name="product_name" type="hidden" value="@Model.Title">
-                    <input name="product_desc" type="hidden" value="@Model.Description">
-                    <input name="product_price" type="hidden" value="@Model.Price">
-                    <input name="product_pricetype" type="hidden" value="@Model.PriceType">
+                    <input name="product_desc" type="hidden" value="@Model.Description.CutDescription()">
+                    <input name="product_image" type="hidden" value="@Model.ImageSmall.RenderImageForSmartCart(Url)">
+                    <input name="product_price" type="hidden" value="@Model.PriceText">
+                    <input name="product_link" type="hidden" value="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = Model.ProductId })">
+                    @*<input name="product_price" type="hidden" value="@Model.Price.Value.ToDoubleValueString()">
+                    <input name="product_pricetype" type="hidden" value="@Model.PriceType">*@
 
                     <a href="javascript:void(0)" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</a>
                     <a class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</a>
@@ -63,11 +66,15 @@
                         <span class="name">Дата закупки</span>
                         <span class="value text-success">@Model.PurchaseDate</span>
                     </li>
+                    <li>
+                        <span class="name">Цена проката</span>
+                        <span class="value text-success">@Model.PriceText</span>
+                    </li>
                 </ul>
             </section>
             <section class="panel">
                 <div class="x_title">
-                    <h2>Описание продукта</h2>
+                    <h2>Оценочная стоимость: <span class="assessedvalue">@Model.AssessedValue BYN</span></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
@@ -77,3 +84,6 @@
         </div>
     </div>
 </div>
+
+
+

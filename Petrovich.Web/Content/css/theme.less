@@ -1557,7 +1557,7 @@ div.box {
 
 /* *********  widgets  *************************************** */
 
-ul.msg_list li {
+ul.bidmenu li {
     background: #f7f7f7;
     padding: 5px;
     display: flex;
@@ -1565,16 +1565,16 @@ ul.msg_list li {
     width: 96% !important;
 }
 
-ul.msg_list li:last-child {
+ul.bidmenu li:last-child {
     margin-bottom: 6px;
     padding: 10px;
 }
 
-ul.msg_list li a {
-    padding: 3px 5px !important;
+ul.bidmenu li a {
+    padding: 3px 15px 3px 0 !important;
 }
 
-ul.msg_list li a .image img {
+ul.bidmenu li a .image img {
     border-radius: 2px 2px 2px 2px;
     -webkit-border-radius: 2px 2px 2px 2px;
     float: left;
@@ -1582,20 +1582,17 @@ ul.msg_list li a .image img {
     width: 11%;
 }
 
-ul.msg_list li a .time {
+ul.bidmenu li a .header {
     font-size: 11px;
-    font-style: italic;
     font-weight: bold;
-    position: absolute;
-    right: 35px;
 }
 
-ul.msg_list li a .message {
-    display: block !important;
+ul.bidmenu li a .message {
+    /*display: block !important;*/
     font-size: 11px;
 }
 
-.dropdown-menu.msg_list span {
+.dropdown-menu.dropdown-bidmenu span {
     white-space: normal;
 }
 
@@ -1632,7 +1629,7 @@ ul.msg_list li a .message {
     width: 220px;
 }
 
-.navbar-nav .open .dropdown-menu.msg_list {
+.navbar-nav .open .dropdown-menu.dropdown-bidmenu {
     width: 300px;
 }
 

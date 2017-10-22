@@ -165,6 +165,7 @@ namespace Petrovich.Business.Services
         {
             if (String.IsNullOrWhiteSpace(query))
             {
+                await logger.LogInformationAsync($"ProductService.SearchFastAsync: search query if null or empty.");
                 throw new ArgumentNullException(nameof(query));
             }
 
@@ -226,6 +227,24 @@ namespace Petrovich.Business.Services
 
             await logger.LogNoneAsync($"ProductService.ListByGroupIdAsync: listing products by category '{group.GroupId}'");
             return await productDataSource.ListByGroupIdAsync(group.GroupId);
+        }
+
+        public async Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
+        {
+            if (productIds == null)
+            {
+                await logger.LogInformationAsync($"ProductService.ListAsync: productIds parameter is null.");
+                throw new ArgumentNullException(nameof(productIds));
+            }
+
+            if (!productIds.Any())
+            {
+                await logger.LogInformationAsync($"ProductService.ListByGroupIdAsync: productIds collection is empty.");
+                throw new ArgumentOutOfRangeException(nameof(productIds));
+            }
+
+            await logger.LogNoneAsync($"ProductService.ListAsync: listing products by ids ({String.Join(",", productIds)}).");
+            return await productDataSource.ListAsync(productIds);
         }
     }
 }

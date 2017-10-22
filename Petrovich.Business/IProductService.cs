@@ -17,5 +17,6 @@ namespace Petrovich.Business
         Task<ProductModelCollection> SearchFastAsync(string query, int count);
         Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId);
         Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId);
+        Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds);
     }
 }
