@@ -14,7 +14,10 @@ namespace Petrovich.Business.Models
 
         public int InventoryPart { get; set; }
 
+        public string BranchInventoryPart { get; set; }
+
         public Guid CategoryId { get; set; }
         public string CategoryTitle { get; set; }
+        public int CategoryInventoryPart { get; set; }
     }
 }

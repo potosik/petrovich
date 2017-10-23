@@ -10,18 +10,20 @@ namespace Petrovich.Web.Models.Manager
     {
         public Guid GroupId { get; set; }
         public string Title { get; set; }
+        public string InventoryNumbers { get; set; }
 
-        public static GroupViewModel Create(GroupModel item)
+        public static GroupViewModel Create(GroupModel group)
         {
-            if (item == null)
+            if (group == null)
             {
-                throw new ArgumentNullException(nameof(item));
+                throw new ArgumentNullException(nameof(group));
             }
 
             return new GroupViewModel()
             {
-                GroupId = item.GroupId,
-                Title = item.Title,
+                GroupId = group.GroupId,
+                Title = group.Title,
+                InventoryNumbers = $"{group.BranchInventoryPart}{group.CategoryInventoryPart.ToString("D2")}{group.InventoryPart.ToString("D2")}*",
             };
         }
     }

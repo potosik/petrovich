@@ -5,6 +5,7 @@
     <thead>
         <tr>
             <th>Название</th>
+            <th>Инвентарный номер</th>
             <th>Цена проката</th>
             <th>Оценочная стоимость</th>
             <th></th>
@@ -23,6 +24,9 @@
             <tr class="sc-product-item">
                 <td>
                     <a href="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = item.ProductId })">@item.Title</a>
+                </td>
+                <td>
+                    @item.InventoryNumber
                 </td>
                 <td>
                     @item.PriceText

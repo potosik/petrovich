@@ -29,13 +29,14 @@
                         <thead>
                             <tr>
                                 <th>Название</th>
+                                <th>Инвентарные номера</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (!Model.Groups.Any())
                             {
                                 <tr>
-                                    <td colspan="3">Нет элементов для отображения</td>
+                                    <td colspan="2">Нет элементов для отображения</td>
                                 </tr>
                             }
 
@@ -44,6 +45,9 @@
                                 <tr>
                                     <td>
                                         <a href="@Url.Action(PetrovichRoutes.Manager.Products, new { branchId = Model.BranchId, categoryId = Model.CategoryId, groupId = item.GroupId })">@item.Title</a>
+                                    </td>
+                                    <td>
+                                        @item.InventoryNumbers
                                     </td>
                                 </tr>
                             }

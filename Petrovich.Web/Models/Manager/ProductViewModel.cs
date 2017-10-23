@@ -19,6 +19,7 @@ namespace Petrovich.Web.Models.Manager
         public string ImageSmall { get; set; }
 
         public string PriceText { get; set; }
+        public string InventoryNumber { get; set; }
 
         public static ProductViewModel Create(ProductModel product)
         {
@@ -38,6 +39,7 @@ namespace Petrovich.Web.Models.Manager
                 PriceText = product.GetHierarchicalPrice(),
                 AssessedValue = product.AssessedValue,
                 ImageSmall = product.ImageSmall,
+                InventoryNumber = product.InventoryNumber,
             };
         }
     }

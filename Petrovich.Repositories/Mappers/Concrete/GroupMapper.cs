@@ -21,9 +21,12 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 InventoryPart = group.InventoryPart,
                 Price = group.BasePrice,
                 PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(group.PriceType),
-                CategoryId = group.CategoryId,
 
+                BranchInventoryPart = group.Category.Branch?.InventoryPart,
+
+                CategoryId = group.CategoryId,
                 CategoryTitle = group.Category?.Title,
+                CategoryInventoryPart = group.Category?.InventoryPart ?? 0,
                 
                 Created = group.Created,
                 CreatedBy = group.CreatedBy,

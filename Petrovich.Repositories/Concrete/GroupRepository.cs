@@ -17,12 +17,12 @@ namespace Petrovich.Repositories.Concrete
 
         public override async Task<Group> FindAsync(Guid id)
         {
-            return await context.Groups.FirstOrDefaultAsync(item => item.GroupId == id).ConfigureAwait(false);
+            return await context.Groups.Include(item => item.Category).Include(item => item.Category.Branch).FirstOrDefaultAsync(item => item.GroupId == id).ConfigureAwait(false);
         }
 
         public override async Task<IList<Group>> ListAllAsync()
         {
-            return await context.Groups.Include(item => item.Category).OrderByDescending(item => item.Created).ToListAsync();
+            return await context.Groups.Include(item => item.Category).Include(item => item.Category.Branch).OrderByDescending(item => item.Created).ToListAsync();
         }
 
         public async Task<bool> IsExistsForCategoryAsync(Guid categoryId)
@@ -32,12 +32,12 @@ namespace Petrovich.Repositories.Concrete
 
         public async Task<IList<Group>> ListByCategoryIdAsync(Guid categoryId)
         {
-            return await context.Groups.Where(item => item.CategoryId == categoryId).ToListAsync().ConfigureAwait(false);
+            return await context.Groups.Include(item => item.Category).Include(item => item.Category.Branch).Where(item => item.CategoryId == categoryId).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IList<int>> ListUsedInventoryPartsAsync(Guid categoryId)
         {
-            return await context.Groups.Where(item => item.CategoryId == categoryId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
+            return await context.Groups.Include(item => item.Category).Include(item => item.Category.Branch).Where(item => item.CategoryId == categoryId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
         }
     }
 }
