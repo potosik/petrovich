@@ -37,6 +37,7 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int DeleteGroupEventId = 13005;
         public const int IsExistsGroupsForCategoryEventId = 13006;
         public const int ListGroupsByCategoryIdEventId = 13007;
+        public const int GetNewInventoryNumberForGroupEventId = 13008;
 
         // products #14
         public const int ListProductsEventId = 14001;

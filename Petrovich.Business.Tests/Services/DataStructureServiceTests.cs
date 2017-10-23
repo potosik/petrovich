@@ -294,9 +294,6 @@ namespace Petrovich.Business.Tests.Services
         [Fact]
         public async Task UpdateCategoryAsync_WhenCategoryNotFound_ThrowsCategoryNotFoundException()
         {
-            branchDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.BranchModel());
-
             await Assert.ThrowsAsync<CategoryNotFoundException>(() =>
             {
                 return dataStructureService.UpdateCategoryAsync(new Models.CategoryModel() { CategoryId = Guid.NewGuid() });
@@ -306,6 +303,9 @@ namespace Petrovich.Business.Tests.Services
         [Fact]
         public async Task UpdateCategoryAsync_WhenBranchNotFound_ThrowsBranchNotFoundException()
         {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.CategoryModel());
+
             await Assert.ThrowsAsync<BranchNotFoundException>(() =>
             {
                 return dataStructureService.UpdateCategoryAsync(new Models.CategoryModel() { CategoryId = Guid.NewGuid() });
@@ -442,6 +442,8 @@ namespace Petrovich.Business.Tests.Services
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
+            groupDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
             groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.GroupModel>()))
                 .ReturnsAsync(new Models.GroupModel());
 
@@ -455,6 +457,8 @@ namespace Petrovich.Business.Tests.Services
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
+            groupDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
             groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.GroupModel>()))
                 .ReturnsAsync(new Models.GroupModel());
 
@@ -466,10 +470,26 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
+        public async Task CreateGroupAsync_WhenNoSlotsForInventoryPartAvailable_ThrowsNoCategoryGroupsSlotsException()
+        {
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.CategoryModel());
+            groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.GroupModel>()))
+                .ReturnsAsync(new Models.GroupModel());
+
+            await Assert.ThrowsAsync<NoCategoryGroupsSlotsException>(() =>
+            {
+                return dataStructureService.CreateGroupAsync(new Models.GroupModel());
+            });
+        }
+
+        [Fact]
         public async Task CreateGroupAsync_WhenBasePriceTypeIsNotSpecified_PriceShouldBeNull()
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
+            groupDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(5);
             groupDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.GroupModel>()))
                 .ReturnsAsync(new Models.GroupModel());
 
@@ -552,6 +572,20 @@ namespace Petrovich.Business.Tests.Services
             var result = await dataStructureService.UpdateGroupAsync(new Models.GroupModel() { GroupId = Guid.NewGuid() });
 
             Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async Task UpdateGroupAsync_WhenInventoryPartIsChanged_GroupInventoryPartChangedException()
+        {
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.GroupModel() { GroupId = Guid.NewGuid(), InventoryPart = 1 });
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.CategoryModel());
+
+            await Assert.ThrowsAsync<GroupInventoryPartChangedException>(() =>
+            {
+                return dataStructureService.UpdateGroupAsync(new Models.GroupModel() { GroupId = Guid.NewGuid() });
+            });
         }
 
         [Fact]

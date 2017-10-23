@@ -9,6 +9,7 @@ using Petrovich.Repositories.Mappers;
 using System.Data.Entity.Core;
 using Petrovich.Business.Exceptions;
 using Petrovich.Context.Enumerations;
+using Petrovich.Core;
 
 namespace Petrovich.Repositories.DataSources
 {
@@ -73,6 +74,7 @@ namespace Petrovich.Repositories.DataSources
                 var targetGroup = await groupRepository.FindAsync(group.GroupId);
 
                 targetGroup.Title = group.Title;
+                targetGroup.InventoryPart = group.InventoryPart;
                 targetGroup.BasePrice = group.Price;
                 targetGroup.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(group.PriceType);
                 targetGroup.CategoryId = group.CategoryId;
@@ -117,6 +119,30 @@ namespace Petrovich.Repositories.DataSources
             {
                 var groups = await groupRepository.ListByCategoryIdAsync(categoryId);
                 return groupMapper.ToGroupModelCollection(groups);
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
+        {
+            try
+            {
+                var usedInventoryPartNumbers = await groupRepository.ListUsedInventoryPartsAsync(categoryId);
+                if (usedInventoryPartNumbers.Count == Constants.GroupInventoryPartMaxCount)
+                {
+                    return null;
+                }
+
+                for (int i = Constants.GroupInventoryPartMinValue; i < Constants.GroupInventoryPartMaxValue; i++)
+                {
+                    if (!usedInventoryPartNumbers.Contains(i))
+                        return i;
+                }
+
+                return null;
             }
             catch (EntityException ex)
             {

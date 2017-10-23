@@ -197,20 +197,20 @@ namespace Petrovich.Business.Services
                 throw new ArgumentOutOfRangeException(nameof(category.CategoryId));
             }
 
-            await logger.LogNoneAsync($"DataStructureService.UpdateCategoryAsync: trying to get branch by id ({category.BranchId}).");
-            var dbBranch = await branchDataSource.FindAsync(category.BranchId);
-            if (dbBranch == null)
-            {
-                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: branch not found - {category.BranchId}.");
-                throw new BranchNotFoundException(category.BranchId);
-            }
-
             await logger.LogNoneAsync($"DataStructureService.UpdateCategoryAsync: trying to get category by id ({category.CategoryId}).");
             var dbCategory = await categoryDataSource.FindAsync(category.CategoryId);
             if (dbCategory == null)
             {
                 await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: category not found - {category.CategoryId}.");
                 throw new CategoryNotFoundException(category.CategoryId);
+            }
+
+            await logger.LogNoneAsync($"DataStructureService.UpdateCategoryAsync: trying to get branch by id ({category.BranchId}).");
+            var dbBranch = await branchDataSource.FindAsync(category.BranchId);
+            if (dbBranch == null)
+            {
+                await logger.LogInformationAsync($"DataStructureService.UpdateCategoryAsync: branch not found - {category.BranchId}.");
+                throw new BranchNotFoundException(category.BranchId);
             }
 
             if (category.InventoryPart != dbCategory.InventoryPart)
@@ -313,6 +313,15 @@ namespace Petrovich.Business.Services
                 throw new CategoryNotFoundException(group.CategoryId);
             }
 
+            await logger.LogNoneAsync($"DataStructureService.CreateGroupAsync: trying to get inventory number for group for category {category.CategoryId}.");
+            var inventoryPartValue = await groupDataSource.GetNewInventoryNumberAsync(category.CategoryId);
+            if (!inventoryPartValue.HasValue)
+            {
+                await logger.LogNoneAsync($"DataStructureService.CreateGroupAsync: there are no empty inventory numbers for category {category.CategoryId}.");
+                throw new NoCategoryGroupsSlotsException(category.CategoryId);
+            }
+
+            group.InventoryPart = inventoryPartValue.Value;
             ValidatePricingInformation(group);
 
             await logger.LogNoneAsync("DataStructureService.CreateGroupAsync: creating new group.");
@@ -360,6 +369,12 @@ namespace Petrovich.Business.Services
             {
                 await logger.LogInformationAsync($"DataStructureService.UpdateGroupAsync: category not found - {group.CategoryId}.");
                 throw new CategoryNotFoundException(group.CategoryId);
+            }
+
+            if (group.InventoryPart != dbGroup.InventoryPart)
+            {
+                await logger.LogInformationAsync($"DataStructureService.UpdateGroupAsync: group inventory part changed - {group.InventoryPart} / {dbGroup.InventoryPart}.");
+                throw new GroupInventoryPartChangedException(group.GroupId);
             }
 
             ValidatePricingInformation(group);

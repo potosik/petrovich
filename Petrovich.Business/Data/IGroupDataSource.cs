@@ -13,5 +13,6 @@ namespace Petrovich.Business.Data
         Task DeleteAsync(GroupModel group);
         Task<bool> IsExistsForCategoryAsync(Guid categoryId);
         Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId);
+        Task<int?> GetNewInventoryNumberAsync(Guid categoryId);
     }
 }

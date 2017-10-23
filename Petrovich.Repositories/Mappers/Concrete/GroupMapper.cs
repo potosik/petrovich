@@ -18,6 +18,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 GroupId = group.GroupId,
                 Title = group.Title,
+                InventoryPart = group.InventoryPart,
                 Price = group.BasePrice,
                 PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(group.PriceType),
                 CategoryId = group.CategoryId,
@@ -42,6 +43,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
             {
                 GroupId = groupModel.GroupId,
                 Title = groupModel.Title,
+                InventoryPart = groupModel.InventoryPart,
                 BasePrice = groupModel.Price,
                 PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(groupModel.PriceType),
                 CategoryId = groupModel.CategoryId,

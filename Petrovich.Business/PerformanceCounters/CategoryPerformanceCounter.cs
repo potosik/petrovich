@@ -24,15 +24,7 @@ namespace Petrovich.Business.PerformanceCounters
                 return await innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
-
-        public async Task<CategoryModel> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
-        {
-            using (new PerformanceMonitor(EventSource.FindCategoryByInventoryPart, new { inventoryPart, branchId }))
-            {
-                return await innerDataSource.FindByInventoryPartAsync(inventoryPart, branchId);
-            }
-        }
-
+        
         public async Task<CategoryModel> CreateAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.CreateCategory, new { category }))

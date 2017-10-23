@@ -52,25 +52,7 @@ namespace Petrovich.Repositories.Tests
             Assert.Equal(1, result[3].InventoryPart);
             Assert.Equal(4, result[4].InventoryPart);
         }
-
-        [Fact]
-        public async Task FindByInventoryPartAsync_WhenItemFound_ReturnsCorrectEntity()
-        {
-            var result = await categoryRepository.FindByInventoryPartAsync(3, new Guid("4fe3b265-5743-49f8-9b78-c24ac30e70e3"));
-
-            Assert.NotNull(result);
-            Assert.Equal(new Guid("eb9f3a64-c2c1-4f50-93d2-92414ad2511f"), result.CategoryId);
-            Assert.Equal("3", result.Title);
-            Assert.Equal(3, result.InventoryPart);
-        }
-
-        [Fact]
-        public async Task FindByInventoryPartAsync_WhenEntityNotFound_ReturnsNull()
-        {
-            var result = await categoryRepository.FindByInventoryPartAsync(0, Guid.Empty);
-            Assert.Null(result);
-        }
-
+        
         [Fact]
         public async Task ListUsedInventoryPartsAsync_WhenCategoriesFound_ReturnsList()
         {

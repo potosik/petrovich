@@ -34,13 +34,15 @@ namespace Petrovich.Business.Models
 
         public string BranchInventoryPart { get; set; }
         public int CategoryInventoryPart { get; set; }
+        public int GroupInventoryPart { get; set; }
         public string InventoryNumber
         {
             get
             {
                 var categoryInventoryPart = CategoryInventoryPart.ToString(Constants.CategoryInventoryPartStringFormat);
+                var groupInventoryPart = GroupInventoryPart.ToString(Constants.GroupInventoryPartStringFormat);
                 var productInventoryPart = InventoryPart.ToString(Constants.ProductInventoryPartStringFormat);
-                return $"{BranchInventoryPart}{categoryInventoryPart}{productInventoryPart}";
+                return $"{BranchInventoryPart}{categoryInventoryPart}{groupInventoryPart}{productInventoryPart}";
             }
         }
     }

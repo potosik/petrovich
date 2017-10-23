@@ -20,6 +20,7 @@
                         <thead>
                             <tr>
                                 <th>Название</th>
+                                <th>Часть инвентарного номера</th>
                                 <th>Базовая цена проката</th>
                                 <th>Категория</th>
                                 <th>Создана</th>
@@ -39,6 +40,7 @@
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.InventoryPartString)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Price)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Created)</td>

@@ -7,7 +7,6 @@ namespace Petrovich.Repositories
 {
     public interface ICategoryRepository : IBaseRepository<Category>
     {
-        Task<Category> FindByInventoryPartAsync(int inventoryPart, Guid branchId);
         Task<IList<int>> ListUsedInventoryPartsAsync(Guid branchId);
         Task<bool> IsExistsForBranchAsync(Guid branchId);
         Task<IList<Category>> ListByBranchIdAsync(Guid branchId);

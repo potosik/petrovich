@@ -51,6 +51,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
 
                 BranchInventoryPart = product.Category?.Branch?.InventoryPart,
                 CategoryInventoryPart = product.Category?.InventoryPart ?? 0,
+                GroupInventoryPart = product.Group?.InventoryPart ?? 0,
 
                 Created = product.Created,
                 CreatedBy = product.CreatedBy,

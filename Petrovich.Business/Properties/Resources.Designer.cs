@@ -169,6 +169,24 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group inventory part could not be changed for item with id: &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400011 {
+            get {
+                return ResourceManager.GetString("E400011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no available slots for new groups in category &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400012 {
+            get {
+                return ResourceManager.GetString("E400012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {

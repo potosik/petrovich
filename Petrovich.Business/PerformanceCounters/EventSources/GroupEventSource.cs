@@ -53,5 +53,11 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.ListGroupsByCategoryIdEventId, elapsed.ToString(), "IGroupDataSource.ListByCategoryIdAsync", message);
         }
+
+        public void GetNewInventoryNumberForGroup(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.GetNewInventoryNumberForGroupEventId, elapsed.ToString(), "IGroupDataSource.GetNewInventoryNumberAsync", message);
+        }
     }
 }

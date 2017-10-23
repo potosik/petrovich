@@ -7,7 +7,6 @@ namespace Petrovich.Business.Data
     public interface ICategoryDataSource
     {
         Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize);
-        Task<CategoryModel> FindByInventoryPartAsync(int inventoryPart, Guid branchId);
         Task<CategoryModel> CreateAsync(CategoryModel category);
         Task<int?> GetNewInventoryNumberAsync(Guid branchId);
         Task<CategoryModel> FindAsync(Guid id);

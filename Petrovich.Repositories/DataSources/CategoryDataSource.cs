@@ -39,20 +39,7 @@ namespace Petrovich.Repositories.DataSources
                 throw new DatabaseOperationException(ex);
             }
         }
-
-        public async Task<CategoryModel> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
-        {
-            try
-            {
-                var category = await categoryRepository.FindByInventoryPartAsync(inventoryPart, branchId);
-                return categoryMapper.ToCategoryModel(category);
-            }
-            catch (EntityException ex)
-            {
-                throw new DatabaseOperationException(ex);
-            }
-        }
-
+        
         public async Task<CategoryModel> CreateAsync(CategoryModel category)
         {
             try

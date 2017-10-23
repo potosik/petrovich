@@ -24,12 +24,7 @@ namespace Petrovich.Repositories.Concrete
         {
             return await context.Categories.Include(item => item.Branch).OrderByDescending(item => item.Created).ToListAsync();
         }
-
-        public async Task<Category> FindByInventoryPartAsync(int inventoryPart, Guid branchId)
-        {
-            return await context.Categories.FirstOrDefaultAsync(item => item.BranchId == branchId && item.InventoryPart == inventoryPart).ConfigureAwait(false);
-        }
-
+        
         public async Task<IList<int>> ListUsedInventoryPartsAsync(Guid branchId)
         {
             return await context.Categories.Where(item => item.BranchId == branchId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);

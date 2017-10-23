@@ -40,19 +40,7 @@ namespace Petrovich.Repositories.Tests.DataSources
                 return dataSource.ListAsync(1, 1);
             });
         }
-
-        [Fact]
-        public async Task FindByInventoryPartAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
-        {
-            categoryRepositoryMock.Setup(repository => repository.FindByInventoryPartAsync(It.IsAny<int>(), It.IsAny<Guid>()))
-                .ThrowsAsync(new EntityException());
-
-            await Assert.ThrowsAsync<DatabaseOperationException>(() =>
-            {
-                return dataSource.FindByInventoryPartAsync(0, Guid.Empty);
-            });
-        }
-
+        
         [Fact]
         public async Task CreateAsync_WhenEntityExceptionThrown_ShouldThrowDatabaseOperationException()
         {

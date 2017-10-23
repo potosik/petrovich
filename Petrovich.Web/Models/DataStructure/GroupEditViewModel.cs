@@ -36,6 +36,10 @@ namespace Petrovich.Web.Models.DataStructure
         public int? PriceType { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        [Display(Name = "Часть инвентарного номера")]
+        public int InventoryPart { get; set; }
+
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Категория")]
         public Guid CategoryId { get; set; }
 
@@ -56,6 +60,7 @@ namespace Petrovich.Web.Models.DataStructure
                 Title = group.Title,
                 BasePrice = group.Price,
                 PriceType = (int?)group.PriceType,
+                InventoryPart = group.InventoryPart,
                 CategoryId = group.CategoryId,
 
                 CategoryTitle = group.CategoryTitle,

@@ -79,6 +79,15 @@ namespace Petrovich.Context.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group inventory part value must be in range between {0} and {1}..
+        /// </summary>
+        internal static string Group_InventoryPart_Range_Error {
+            get {
+                return ResourceManager.GetString("Group_InventoryPart_Range_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product inventory part value must be in range between {0} and {1}..
         /// </summary>
         internal static string Product_InventoryPart_Range_Error {

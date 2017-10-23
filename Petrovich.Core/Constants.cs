@@ -15,10 +15,15 @@ namespace Petrovich.Core
         public const int CategoryInventoryPartMaxCount = 99;
         public const string CategoryInventoryPartStringFormat = "D2";
 
+        public const int GroupInventoryPartMinValue = 1;
+        public const int GroupInventoryPartMaxValue = 99;
+        public const int GroupInventoryPartMaxCount = 99;
+        public const string GroupInventoryPartStringFormat = "D2";
+
         public const int ProductInventoryPartMinValue = 1;
-        public const int ProductInventoryPartMaxValue = 99999;
-        public const int ProductInventoryPartMaxCount = 99999;
-        public const string ProductInventoryPartStringFormat = "D5";
+        public const int ProductInventoryPartMaxValue = 999;
+        public const int ProductInventoryPartMaxCount = 999;
+        public const string ProductInventoryPartStringFormat = "D3";
 
         public const string PriceValueStringFormat = "N2";
 
