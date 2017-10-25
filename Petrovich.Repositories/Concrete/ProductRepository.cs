@@ -30,9 +30,14 @@ namespace Petrovich.Repositories.Concrete
             return await context.Products.Where(item => item.GroupId.HasValue && item.GroupId.Value == groupId).AnyAsync().ConfigureAwait(false);
         }
 
-        public async Task<IList<int>> ListUsedInventoryPartsAsync(Guid categoryId)
+        public async Task<IList<int>> ListUsedInventoryPartsByCategoryAsync(Guid categoryId)
         {
-            return await context.Products.Where(item => item.CategoryId == categoryId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
+            return await context.Products.Where(item => item.CategoryId == categoryId && item.GroupId == null).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IList<int>> ListUsedInventoryPartsByGroupAsync(Guid groupId)
+        {
+            return await context.Products.Where(item => item.GroupId == groupId).Select(item => item.InventoryPart).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IList<Product>> SearchFastAsync(string query, int count)
@@ -48,7 +53,7 @@ namespace Petrovich.Repositories.Concrete
 
         public async Task<IList<Product>> ListByCategoryIdAsync(Guid categoryId)
         {
-            return await context.Products.Where(item => item.CategoryId == categoryId).ToListAsync().ConfigureAwait(false);
+            return await context.Products.Where(item => item.CategoryId == categoryId && item.GroupId == null).ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<IList<Product>> ListByGroupIdAsync(Guid groupId)

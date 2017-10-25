@@ -62,7 +62,7 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(Guid? source = null)
         {
             try
             {
@@ -72,7 +72,35 @@ namespace Petrovich.Web.Controllers
                     PriceTypes = CreatePriceTypeSelectList(),
                 };
 
+                if (source.HasValue)
+                {
+                    var sourceProduct = await productService.FindAsync(source.Value);
+                    model.Title = sourceProduct.Title;
+                    model.Description = sourceProduct.Description;
+                    model.Price = sourceProduct.Price;
+                    model.PriceType = (int?)sourceProduct.PriceType;
+                    model.AssessedValue = sourceProduct.AssessedValue;
+                    model.PurchaseYear = sourceProduct.PurchaseYear;
+                    model.PurchaseMonth = sourceProduct.PurchaseMonth;
+
+                    model.BranchId = sourceProduct.BranchId;
+
+                    model.CategoryId = sourceProduct.Category.CategoryId;
+                    model.Categories = await CreateCategoriesSelectList(sourceProduct.BranchId);
+
+                    model.GroupId = sourceProduct.Group?.GroupId;
+                    model.Groups = await CreateGroupsSelectList(sourceProduct.Category.CategoryId);
+                }
+
                 return View(model);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return await CreateBadRequestResponseAsync(ex);
+            }
+            catch (ProductNotFoundException ex)
+            {
+                return await CreateNotFoundResponseAsync(ex);
             }
             catch (DatabaseOperationException ex)
             {
@@ -164,7 +192,6 @@ namespace Petrovich.Web.Controllers
             {
                 var product = await productService.FindAsync(id);
                 var model = ProductEditViewModel.Create(product);
-                model.Groups = await CreateGroupsSelectList(product.Category.CategoryId);
                 model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
@@ -262,7 +289,6 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.Groups = await CreateGroupsSelectList(model.CategoryId);
             model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }

@@ -159,6 +159,9 @@
   <data name="E400012" xml:space="preserve">
     <value>There are no available slots for new groups in category '{0}'.</value>
   </data>
+  <data name="E400013" xml:space="preserve">
+    <value>There are no available slots for new products in group '{0}'.</value>
+  </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
   </data>

@@ -57,15 +57,30 @@ namespace Petrovich.Business.Services
                     throw new GroupNotFoundException(product.Group.GroupId);
                 }
             }
-            
-            await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get inventory number for product for category {product.Category.CategoryId}.");
-            var inventoryPartValue = await productDataSource.GetNewInventoryNumberAsync(product.Category.CategoryId);
-            if (!inventoryPartValue.HasValue)
+
+            var inventoryPartValue = (int?)null;
+            if (product.Group != null)
             {
-                await logger.LogNoneAsync($"ProductService.CreateAsync: there are no empty inventory numbers for category {product.Category.CategoryId}.");
-                throw new NoCategoryProductsSlotsException(product.Category.CategoryId);
+                await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get inventory number for product for group {product.Group.GroupId}.");
+                inventoryPartValue = await productDataSource.GetNewInventoryNumberInGroupAsync(product.Group.GroupId);
+                if (!inventoryPartValue.HasValue)
+                {
+                    await logger.LogNoneAsync($"ProductService.CreateAsync: there are no empty inventory numbers for group {product.Group.GroupId}.");
+                    throw new NoGroupProductsSlotsException(product.Group.GroupId);
+                }
             }
 
+            if (!inventoryPartValue.HasValue)
+            {
+                await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get inventory number for product for category {product.Category.CategoryId}.");
+                inventoryPartValue = await productDataSource.GetNewInventoryNumberInCategoryAsync(product.Category.CategoryId);
+                if (!inventoryPartValue.HasValue)
+                {
+                    await logger.LogNoneAsync($"ProductService.CreateAsync: there are no empty inventory numbers for category {product.Category.CategoryId}.");
+                    throw new NoCategoryProductsSlotsException(product.Category.CategoryId);
+                }
+            }
+            
             product.InventoryPart = inventoryPartValue.Value;
             ValidatePurchasingInformation(product);
             ValidatePricingInformation(product);

@@ -74,11 +74,19 @@ namespace Petrovich.Business.PerformanceCounters
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
+        public async Task<int?> GetNewInventoryNumberInCategoryAsync(Guid categoryId)
         {
-            using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProduct, new { categoryId }))
+            using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProductByCategory, new { categoryId }))
             {
-                return await innerDataSource.GetNewInventoryNumberAsync(categoryId);
+                return await innerDataSource.GetNewInventoryNumberInCategoryAsync(categoryId);
+            }
+        }
+
+        public async Task<int?> GetNewInventoryNumberInGroupAsync(Guid groupId)
+        {
+            using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProductByGroup, new { groupId }))
+            {
+                return await innerDataSource.GetNewInventoryNumberInGroupAsync(groupId);
             }
         }
 

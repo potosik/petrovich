@@ -54,10 +54,16 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.IsExistsProductsForGroupEventId, elapsed.ToString(), "IProductDataSource.IsExistsForGroupAsync", message);
         }
 
-        public void GetNewInventoryNumberForProduct(TimeSpan elapsed, object arguments)
+        public void GetNewInventoryNumberForProductByCategory(TimeSpan elapsed, object arguments)
         {
             var message = BuildMessage(arguments);
-            logger.LogPerformanceMetrics(PerformanceMetricEventIds.GetNewInventoryNumberForProductEventId, elapsed.ToString(), "IProductDataSource.GetNewInventoryNumberAsync", message);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.GetNewInventoryNumberForProductByCategoryEventId, elapsed.ToString(), "IProductDataSource.GetNewInventoryNumberInCategoryAsync", message);
+        }
+
+        public void GetNewInventoryNumberForProductByGroup(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.GetNewInventoryNumberForProductByGroupEventId, elapsed.ToString(), "IProductDataSource.GetNewInventoryNumberInGroupAsync", message);
         }
 
         public void ProductSearchFast(TimeSpan elapsed, object arguments)

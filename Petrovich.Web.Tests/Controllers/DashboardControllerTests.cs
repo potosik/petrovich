@@ -18,9 +18,9 @@ namespace Petrovich.Web.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_ReturnsNotNull()
+        public void Index_ReturnsNotNull()
         {
-            var resultGet = await controller.Index() as ViewResult;
+            var resultGet = controller.Index() as ViewResult;
             Assert.NotNull(resultGet);
         }
     }

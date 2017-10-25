@@ -18,6 +18,7 @@
             @Html.HiddenFor(m => m.ProductId)
             @Html.HiddenFor(m => m.InventoryPart)
             @Html.HiddenFor(m => m.CategoryId)
+            @Html.HiddenFor(m => m.GroupId)
 
             @Html.HiddenFor(m => m.ImageFullId)
             @Html.HiddenFor(m => m.ImageFull)
@@ -97,7 +98,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.GroupId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.DropDownListFor(m => m.GroupId, Model.Groups, String.Empty, new { id = "groups", @class = "form-control col-md-7 col-xs-12" })
+                    @Html.TextBoxFor(m => m.GroupTitle, new { @class = "form-control col-md-7 col-xs-12", @readonly = true })
                 </div>
             </div>
             <div class="ln_solid"></div>

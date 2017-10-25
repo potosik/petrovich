@@ -69,9 +69,30 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task ListUsedInventoryPartsAsync_WhenEntitiesFound_ReturnsList()
+        public async Task ListUsedInventoryPartsByCategoryAsync_WhenEntitiesFound_ReturnsList()
         {
-            var result = await productRepository.ListUsedInventoryPartsAsync(new Guid("1b795ef2-060b-4c63-9674-23c48cebc940"));
+            var result = await productRepository.ListUsedInventoryPartsByCategoryAsync(new Guid("f7fb9420-d49d-44e6-88f7-bc0b60fd5ac8"));
+
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Count);
+            Assert.Equal(2, result[0]);
+        }
+
+        [Fact]
+        public async Task ListUsedInventoryPartsByCategoryAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        {
+            var contextMock = CreateContext().MockSet(new List<Product>().AsQueryable(), c => c.Products);
+            var productRepository = new ProductRepository(contextMock.Object);
+            var result = await productRepository.ListUsedInventoryPartsByCategoryAsync(Guid.NewGuid());
+
+            Assert.NotNull(result);
+            Assert.Equal(0, result.Count);
+        }
+
+        [Fact]
+        public async Task ListUsedInventoryPartsByGroupAsync_WhenEntitiesFound_ReturnsList()
+        {
+            var result = await productRepository.ListUsedInventoryPartsByGroupAsync(new Guid("09501624-e934-46bc-a9f6-76f83420aa90"));
 
             Assert.NotNull(result);
             Assert.Equal(1, result.Count);
@@ -79,11 +100,11 @@ namespace Petrovich.Repositories.Tests
         }
 
         [Fact]
-        public async Task ListUsedInventoryPartsAsync_WhenEntitiesNotFound_ReturnsEmptyList()
+        public async Task ListUsedInventoryPartsByGroupAsync_WhenEntitiesNotFound_ReturnsEmptyList()
         {
             var contextMock = CreateContext().MockSet(new List<Product>().AsQueryable(), c => c.Products);
             var productRepository = new ProductRepository(contextMock.Object);
-            var result = await productRepository.ListUsedInventoryPartsAsync(Guid.NewGuid());
+            var result = await productRepository.ListUsedInventoryPartsByGroupAsync(Guid.NewGuid());
 
             Assert.NotNull(result);
             Assert.Equal(0, result.Count);

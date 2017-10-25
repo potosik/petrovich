@@ -153,6 +153,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         Price = model.BasePrice,
                         PriceType = (PriceTypeBusiness?)model.PriceType,
+                        InventoryPart = model.InventoryPart,
                         CategoryId = model.CategoryId,
                     };
 

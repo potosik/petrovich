@@ -73,7 +73,7 @@ namespace Petrovich.Web.Controllers
         {
             try
             {
-                var i = 0;
+                // TODO:
                 return await CreateBadRequestResponseAsync(new Exception());
             }
             catch (DatabaseOperationException ex)

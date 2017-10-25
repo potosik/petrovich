@@ -52,6 +52,9 @@
                                         {
                                             @Html.AntiForgeryToken()
                                             <div class="btn-group" role="group">
+                                                <a href="@Url.Action(PetrovichRoutes.Products.Create, new { source = item.ProductId })" class="btn btn-default btn-xs" aria-label="Дублировать" title="Дублировать">
+                                                    <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+                                                </a>
                                                 <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = item.ProductId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>

@@ -64,7 +64,7 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
-        public async Task CreateAsync_WhenNoSlotsForInventoryPartAvailable_ThrowsNoCategoryCategoriesSlotsException()
+        public async Task CreateAsync_WhenNoSlotsForInventoryPartForCategoryAvailable_ThrowsNoCategoryCategoriesSlotsException()
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
@@ -76,11 +76,25 @@ namespace Petrovich.Business.Tests.Services
         }
 
         [Fact]
+        public async Task CreateAsync_WhenNoSlotsForInventoryPartForGroupAvailable_ThrowsNoCategoryCategoriesSlotsException()
+        {
+            groupDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.GroupModel());
+            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(new Models.CategoryModel());
+
+            await Assert.ThrowsAsync<NoGroupProductsSlotsException>(() =>
+            {
+                return productService.CreateAsync(new Models.ProductModel() { Category = new Models.CategoryModel(), Group = new Models.GroupModel() });
+            });
+        }
+
+        [Fact]
         public async Task CreateAsync_WhenProductCreated_ReturnsProduct()
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(5);
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
                 .ReturnsAsync(new Models.ProductModel());
@@ -95,7 +109,7 @@ namespace Petrovich.Business.Tests.Services
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(5);
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
                 .ReturnsAsync(new Models.ProductModel());
@@ -112,7 +126,7 @@ namespace Petrovich.Business.Tests.Services
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(5);
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
                 .ReturnsAsync(new Models.ProductModel());
@@ -129,7 +143,7 @@ namespace Petrovich.Business.Tests.Services
         {
             categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberAsync(It.IsAny<Guid>()))
+            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(5);
             productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
                 .ReturnsAsync(new Models.ProductModel());

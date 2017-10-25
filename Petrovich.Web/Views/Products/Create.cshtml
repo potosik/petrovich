@@ -75,13 +75,13 @@
                 @Html.LabelFor(m => m.CategoryId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <span class="required">*</span>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.DropDownListFor(m => m.CategoryId, new List<SelectListItem>(), new { id = "categories", @class = "form-control col-md-7 col-xs-12" })
+                    @Html.DropDownListFor(m => m.CategoryId, Model.Categories, new { id = "categories", @class = "form-control col-md-7 col-xs-12" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.GroupId, new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    @Html.DropDownListFor(m => m.GroupId, new List<SelectListItem>(), new { id = "groups", @class = "form-control col-md-7 col-xs-12" })
+                    @Html.DropDownListFor(m => m.GroupId, Model.Groups, new { id = "groups", @class = "form-control col-md-7 col-xs-12" })
                 </div>
             </div>
             <div class="ln_solid"></div>
@@ -151,7 +151,10 @@
                     });
                 });
 
-                    branchesSelect.change();
+                @if (Model.CategoryId == Guid.Empty)
+                { 
+                    @:branchesSelect.change();
+                }
 
                 function clearCategories() {
                     categoriesSelect.empty();

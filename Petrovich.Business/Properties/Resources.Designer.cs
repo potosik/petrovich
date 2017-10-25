@@ -187,6 +187,15 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no available slots for new products in group &apos;{0}&apos;..
+        /// </summary>
+        internal static string E400013 {
+            get {
+                return ResourceManager.GetString("E400013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {

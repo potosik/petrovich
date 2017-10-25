@@ -144,11 +144,35 @@ namespace Petrovich.Repositories.DataSources
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
+        public async Task<int?> GetNewInventoryNumberInCategoryAsync(Guid categoryId)
         {
             try
             {
-                var usedInventoryPartNumbers = await productRepository.ListUsedInventoryPartsAsync(categoryId);
+                var usedInventoryPartNumbers = await productRepository.ListUsedInventoryPartsByCategoryAsync(categoryId);
+                if (usedInventoryPartNumbers.Count == Constants.ProductInventoryPartMaxCount)
+                {
+                    return null;
+                }
+
+                for (int i = Constants.ProductInventoryPartMinValue; i < Constants.ProductInventoryPartMaxValue; i++)
+                {
+                    if (!usedInventoryPartNumbers.Contains(i))
+                        return i;
+                }
+
+                return null;
+            }
+            catch (EntityException ex)
+            {
+                throw new DatabaseOperationException(ex);
+            }
+        }
+
+        public async Task<int?> GetNewInventoryNumberInGroupAsync(Guid groupId)
+        {
+            try
+            {
+                var usedInventoryPartNumbers = await productRepository.ListUsedInventoryPartsByGroupAsync(groupId);
                 if (usedInventoryPartNumbers.Count == Constants.ProductInventoryPartMaxCount)
                 {
                     return null;

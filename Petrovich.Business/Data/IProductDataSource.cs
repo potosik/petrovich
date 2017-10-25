@@ -14,7 +14,8 @@ namespace Petrovich.Business.Data
         Task DeleteAsync(ProductModel product);
         Task<bool> IsExistsForCategoryAsync(Guid categoryId);
         Task<bool> IsExistsForGroupAsync(Guid groupId);
-        Task<int?> GetNewInventoryNumberAsync(Guid categoryId);
+        Task<int?> GetNewInventoryNumberInCategoryAsync(Guid categoryId);
+        Task<int?> GetNewInventoryNumberInGroupAsync(Guid groupId);
         Task<ProductModelCollection> SearchFastAsync(string query, int count);
         Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId);
         Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId);

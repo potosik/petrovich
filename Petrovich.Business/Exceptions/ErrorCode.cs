@@ -17,6 +17,7 @@
         InvalidImageFormat = 400010,
         GroupInventoryPartChanged = 400011,
         NoCategoryGroupsSlots = 400012,
+        NoGroupProductsSlots = 400013,
 
         LogNotFound = 404001,
         UserNotFound = 404002,

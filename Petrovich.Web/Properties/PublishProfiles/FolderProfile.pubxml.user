@@ -89,10 +89,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2012 23:00:52</publishTime>
     </File>
     <File Include="bin/Petrovich.Business.dll">
-      <publishTime>10/23/2017 19:23:16</publishTime>
+      <publishTime>10/24/2017 13:00:38</publishTime>
     </File>
     <File Include="bin/Petrovich.Business.pdb">
-      <publishTime>10/23/2017 19:23:16</publishTime>
+      <publishTime>10/24/2017 13:00:38</publishTime>
     </File>
     <File Include="bin/Petrovich.Context.dll">
       <publishTime>10/23/2017 18:55:26</publishTime>
@@ -110,19 +110,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2017 18:55:25</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.dll">
-      <publishTime>10/23/2017 19:23:17</publishTime>
+      <publishTime>10/24/2017 13:00:38</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.dll.config">
       <publishTime>05/30/2017 00:32:41</publishTime>
     </File>
     <File Include="bin/Petrovich.Repositories.pdb">
-      <publishTime>10/23/2017 19:23:17</publishTime>
+      <publishTime>10/24/2017 13:00:38</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.dll">
-      <publishTime>10/23/2017 19:40:57</publishTime>
+      <publishTime>10/25/2017 11:00:35</publishTime>
     </File>
     <File Include="bin/Petrovich.Web.pdb">
-      <publishTime>10/23/2017 19:40:57</publishTime>
+      <publishTime>10/25/2017 11:00:35</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>06/11/2017 14:34:55</publishTime>
@@ -599,13 +599,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2017 19:27:00</publishTime>
     </File>
     <File Include="Views/Products/Create.cshtml">
-      <publishTime>10/22/2017 18:10:14</publishTime>
+      <publishTime>10/25/2017 10:59:54</publishTime>
     </File>
     <File Include="Views/Products/Edit.cshtml">
-      <publishTime>10/22/2017 18:10:11</publishTime>
+      <publishTime>10/24/2017 12:56:02</publishTime>
     </File>
     <File Include="Views/Products/Index.cshtml">
-      <publishTime>10/22/2017 18:19:10</publishTime>
+      <publishTime>10/25/2017 10:53:17</publishTime>
     </File>
     <File Include="Views/Shared/Layout/Footer.cshtml">
       <publishTime>05/23/2017 21:37:39</publishTime>
