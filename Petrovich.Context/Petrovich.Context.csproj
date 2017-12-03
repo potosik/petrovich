@@ -76,7 +76,7 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Branch.cs" />
     <Compile Include="Enumerations\LogSeverity.cs" />
-    <Compile Include="Enumerations\PriceType.cs" />
+    <Compile Include="Enumerations\PriceCalculationType.cs" />
     <Compile Include="IPetrovichContextBase.cs" />
     <Compile Include="IPetrovichContext.cs" />
     <Compile Include="Migrations\201706031440402_InitialCreate.cs" />
@@ -122,6 +122,14 @@
     <Compile Include="Migrations\201710231401128_GroupInventoryNumberAdded.cs" />
     <Compile Include="Migrations\201710231401128_GroupInventoryNumberAdded.Designer.cs">
       <DependentUpon>201710231401128_GroupInventoryNumberAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711121029005_PriceCalculationType.cs" />
+    <Compile Include="Migrations\201711121029005_PriceCalculationType.Designer.cs">
+      <DependentUpon>201711121029005_PriceCalculationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712011656281_DefectsFieldAdded.cs" />
+    <Compile Include="Migrations\201712011656281_DefectsFieldAdded.Designer.cs">
+      <DependentUpon>201712011656281_DefectsFieldAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
@@ -177,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710231401128_GroupInventoryNumberAdded.resx">
       <DependentUpon>201710231401128_GroupInventoryNumberAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711121029005_PriceCalculationType.resx">
+      <DependentUpon>201711121029005_PriceCalculationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712011656281_DefectsFieldAdded.resx">
+      <DependentUpon>201712011656281_DefectsFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -12,7 +12,7 @@ namespace Petrovich.Web.Models.DataStructure
         public CategoryCreateViewModel()
         {
             Branches = new List<SelectListItem>();
-            PriceTypes = new List<SelectListItem>();
+            PriceCalculationTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -22,14 +22,15 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Базовая цена проката (BYN)")]
         public double? BasePrice { get; set; }
 
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        [Display(Name = "Схема расчета цены")]
+        public int PriceCalculationType { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Раздел")]
         public Guid BranchId { get; set; }
 
         public List<SelectListItem> Branches { get; set; }
-        public List<SelectListItem> PriceTypes { get; set; }
+        public List<SelectListItem> PriceCalculationTypes { get; set; }
     }
 }

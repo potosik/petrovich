@@ -17,7 +17,6 @@ namespace Petrovich.Context.Entities
         public string Title { get; set; }
         
         public double? BasePrice { get; set; }
-        public PriceType? PriceType { get; set; }
 
         [Range(Constants.GroupInventoryPartMinValue, Constants.GroupInventoryPartMaxValue, ErrorMessageResourceName = "Group_InventoryPart_Range_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         public int InventoryPart { get; set; }

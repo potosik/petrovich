@@ -14,13 +14,11 @@ namespace Petrovich.Web.Models.Products
     {
         public ProductEditViewModel()
         {
-            PriceTypes = new List<SelectListItem>();
         }
 
         public ProductEditViewModel(IChangeTrackableEntityModel entity) 
             : base(entity)
         {
-            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -33,11 +31,11 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
+        [Display(Name = "Дефекты")]
+        public string Defects { get; set; }
+
         [Display(Name = "Цена проката (BYN)")]
         public double? Price { get; set; }
-
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Оценочная стоимость (BYN)")]
@@ -77,8 +75,6 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Группа")]
         public Guid? GroupId { get; set; }
         public string GroupTitle { get; set; }
-      
-        public IList<SelectListItem> PriceTypes { get; set; }
 
 
         public static ProductEditViewModel Create(ProductModel product)
@@ -93,8 +89,8 @@ namespace Petrovich.Web.Models.Products
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
+                Defects = product.Defects,
                 Price = product.Price,
-                PriceType = (int?)product.PriceType,
                 AssessedValue = product.AssessedValue,
                 InventoryPart = product.InventoryPart,
 

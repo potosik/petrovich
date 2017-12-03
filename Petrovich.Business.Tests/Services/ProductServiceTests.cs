@@ -120,41 +120,7 @@ namespace Petrovich.Business.Tests.Services
             Assert.Null(result.PurchaseYear);
             Assert.Null(result.PurchaseMonth);
         }
-
-        [Fact]
-        public async Task CreateAsync_WhenPriceIsNotSpecified_PriceTypeShouldBeNull()
-        {
-            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(5);
-            productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
-                .ReturnsAsync(new Models.ProductModel());
-
-            var result = await productService.CreateAsync(new Models.ProductModel() { PriceType = Models.Enumerations.PriceTypeBusiness.Month, Category = new Models.CategoryModel() });
-
-            Assert.NotNull(result);
-            Assert.Null(result.Price);
-            Assert.Null(result.PriceType);
-        }
-
-        [Fact]
-        public async Task CreateAsync_WhenBasePriceTypeIsNotSpecified_PriceShouldBeNull()
-        {
-            categoryDataSourceMock.Setup(dataSource => dataSource.FindAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(new Models.CategoryModel());
-            productDataSourceMock.Setup(dataSource => dataSource.GetNewInventoryNumberInCategoryAsync(It.IsAny<Guid>()))
-                .ReturnsAsync(5);
-            productDataSourceMock.Setup(dataSource => dataSource.CreateAsync(It.IsAny<Models.ProductModel>()))
-                .ReturnsAsync(new Models.ProductModel());
-
-            var result = await productService.CreateAsync(new Models.ProductModel() { Price = 1f, Category = new Models.CategoryModel() });
-
-            Assert.NotNull(result);
-            Assert.Null(result.Price);
-            Assert.Null(result.PriceType);
-        }
-
+        
         [Fact]
         public async Task FindAsync_WhenProductIdIsEmpty_ThrowsArgumentOutOfRangeException()
         {

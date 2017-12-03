@@ -16,11 +16,11 @@ namespace Petrovich.Web.Models.Products
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
+        [Display(Name = "Дефекты")]
+        public string Defects { get; set; }
+
         [Display(Name = "Цена проката (BYN)")]
         public double? Price { get; set; }
-
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Оценочная стоимость (BYN)")]

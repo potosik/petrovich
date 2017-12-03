@@ -117,91 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Branch_InventoryPart_Changed_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="Branch_InventoryPart_Duplicate_Error" xml:space="preserve">
-    <value>Раздел с данной частью инвентарного номера уже зарегистрирован.</value>
-  </data>
-  <data name="Branch_InventoryPart_StringLength_Error" xml:space="preserve">
-    <value>Часть инвентарного номера должна быть 2 символа.</value>
-  </data>
-  <data name="Category_BranchNotFound_Error" xml:space="preserve">
-    <value>Выбранный раздел не найден.</value>
-  </data>
-  <data name="Category_InventoryPart_Changed_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
-  </data>
-  <data name="Category_NoInventoryPartSlotsAvailable_Error" xml:space="preserve">
-    <value>Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию.</value>
-  </data>
-  <data name="Critical" xml:space="preserve">
-    <value>Критическая ошибка</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Ошибка</value>
-  </data>
-  <data name="Group_CategoryNotFound_Error" xml:space="preserve">
-    <value>Выбранная категория не найдена.</value>
-  </data>
-  <data name="Image_InvalidFormat_Error" xml:space="preserve">
-    <value>Неизвестный или недопустимый формат изображения.</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Информационный</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>Отсутсвует</value>
-  </data>
-  <data name="Password_LengthValidation_Error" xml:space="preserve">
-    <value>Пароль {0} должен содержать не менее {2} символов.</value>
-  </data>
-  <data name="Password_MatchConfirmPassword_Error" xml:space="preserve">
-    <value>Пароль и подтверждение пароля должны совпадать.</value>
-  </data>
-  <data name="Performance" xml:space="preserve">
-    <value>Производительность</value>
-  </data>
-  <data name="PriceCalculationType_Abr_ByDailyPrice" xml:space="preserve">
-    <value>ОСЦ</value>
-  </data>
-  <data name="PriceCalculationType_Abr_ByMonthPrice" xml:space="preserve">
-    <value>ОМЦ</value>
-  </data>
-  <data name="PriceCalculationType_ByDailyPrice" xml:space="preserve">
-    <value>Относительно суточной цены</value>
-  </data>
-  <data name="PriceCalculationType_ByMonthPrice" xml:space="preserve">
-    <value>Относительно месячной цены</value>
-  </data>
-  <data name="Price_Format" xml:space="preserve">
-    <value>{0} BYN {1}</value>
-  </data>
-  <data name="Price_Format_NotAvailable" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="Price_Format_Week" xml:space="preserve">
-    <value>неделя</value>
-  </data>
-  <data name="Product_BranchNotFound_Error" xml:space="preserve">
-    <value>Выбранный раздел не найден.</value>
-  </data>
-  <data name="Product_CategoryNotFound_Error" xml:space="preserve">
-    <value>Выбранная категория не найдена.</value>
-  </data>
-  <data name="Product_GroupNotFound_Error" xml:space="preserve">
-    <value>Выбранная группа не найдена.</value>
-  </data>
-  <data name="Product_InventoryChanged_Error" xml:space="preserve">
-    <value>Часть инвентарного номера не может быть изменена.</value>
-  </data>
-  <data name="Product_PurchaseMonth_Range_Error" xml:space="preserve">
-    <value>Месяц закупки должен быть в диапазоне от {0} до {1}.</value>
-  </data>
-  <data name="Product_PurchaseYear_Range_Error" xml:space="preserve">
-    <value>Год закупки должен быть в диапазоне от {0} до {1}.</value>
-  </data>
-  <data name="Required_Field_Error" xml:space="preserve">
-    <value>Поле {0} обязательно для заполнения.</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

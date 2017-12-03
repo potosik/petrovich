@@ -31,6 +31,16 @@ namespace Petrovich.Web.Core.Controllers
             return RedirectToAction(endpoint.Action, endpoint.Controller, routeValues);
         }
 
+        protected ActionResult RedirectToLocalOrAction(string returnUrl, Endpoint endpoint)
+        {
+            if (String.IsNullOrEmpty(returnUrl))
+            {
+                return RedirectToAction(endpoint.Action, endpoint.Controller);
+            }
+
+            return RedirectToLocal(returnUrl);
+        }
+
         protected ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -79,15 +89,15 @@ namespace Petrovich.Web.Core.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
-        protected List<SelectListItem> CreatePriceTypeSelectList()
+        protected List<SelectListItem> CreatePriceCalculationTypeSelectList()
         {
-            var values = Enum.GetValues(typeof(PriceTypeBusiness));
-            var list = new List<SelectListItem>() { new SelectListItem() };
+            var values = Enum.GetValues(typeof(PriceCalculationTypeBusiness));
+            var list = new List<SelectListItem>();
 
-            foreach (PriceTypeBusiness value in values)
+            foreach (PriceCalculationTypeBusiness value in values)
             {
                 var iValue = (int)value;
-                var text = Properties.Resources.ResourceManager.GetString($"PriceType_{value}");
+                var text = Properties.Resources.ResourceManager.GetString($"PriceCalculationType_{value}");
                 list.Add(new SelectListItem() { Text = text, Value = iValue.ToString() });
             }
 

@@ -13,13 +13,11 @@ namespace Petrovich.Web.Models.DataStructure
     {
         public GroupEditViewModel()
         {
-            PriceTypes = new List<SelectListItem>();
         }
 
         public GroupEditViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
-            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -32,9 +30,6 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Базовая цена проката (BYN)")]
         public double? BasePrice { get; set; }
 
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
-
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Часть инвентарного номера")]
         public int InventoryPart { get; set; }
@@ -44,8 +39,6 @@ namespace Petrovich.Web.Models.DataStructure
         public Guid CategoryId { get; set; }
 
         public string CategoryTitle { get; set; }
-
-        public List<SelectListItem> PriceTypes { get; set; }
 
         public static GroupEditViewModel Create(GroupModel group)
         {
@@ -59,7 +52,6 @@ namespace Petrovich.Web.Models.DataStructure
                 GroupId = group.GroupId,
                 Title = group.Title,
                 BasePrice = group.Price,
-                PriceType = (int?)group.PriceType,
                 InventoryPart = group.InventoryPart,
                 CategoryId = group.CategoryId,
 

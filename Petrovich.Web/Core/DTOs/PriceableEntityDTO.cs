@@ -9,6 +9,6 @@ namespace Petrovich.Web.Core.DTOs
     public class PriceableEntityDTO
     {
         public double? Price { get; set; }
-        public PriceTypeBusiness? PriceType { get; set; }
+        public PriceCalculationTypeBusiness? PriceCalculationType { get; set; }
     }
 }

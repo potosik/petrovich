@@ -14,18 +14,15 @@ namespace Petrovich.Web.Tests.Core.Extensions
         private ProductModel product = new ProductModel()
         {
             Price = 12.3f,
-            PriceType = Business.Models.Enumerations.PriceTypeBusiness.Month,
 
             Group = new GroupModel()
             {
                 Price = 45.6f,
-                PriceType = Business.Models.Enumerations.PriceTypeBusiness.Day,
             },
 
             Category = new CategoryModel()
             {
                 Price = 78.9f,
-                PriceType = Business.Models.Enumerations.PriceTypeBusiness.Week,
             }
         };
 
@@ -35,56 +32,50 @@ namespace Petrovich.Web.Tests.Core.Extensions
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("12,30 BYN / месяц", result);
+            Assert.Equal("12,30 BYN", result);
         }
 
         [Fact]
         public void GetHierarchicalPrice_WhenProductNoGroupHasPrice_ShouldReturnGroupPrice()
         {
             product.Price = null;
-            product.PriceType = null;
 
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("45,60 BYN / день", result);
+            Assert.Equal("45,60 BYN", result);
         }
 
         [Fact]
         public void GetHierarchicalPrice_WhenProductNoGroupNoCategoryHasPrice_ShouldReturnCategoryPrice()
         {
             product.Price = null;
-            product.PriceType = null;
             product.Group.Price = null;
-            product.Group.PriceType = null;
 
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("78,90 BYN / неделя", result);
+            Assert.Equal("78,90 BYN", result);
         }
 
         [Fact]
         public void GetHierarchicalPrice_WhenProductNoGroupNullCategoryHasPrice_ShouldReturnCategoryPrice()
         {
             product.Price = null;
-            product.PriceType = null;
             product.Group = null;
 
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("78,90 BYN / неделя", result);
+            Assert.Equal("78,90 BYN", result);
         }
 
         [Fact]
         public void GetHierarchicalPrice_WhenNoAnyPrice_ShouldReturnPriceFormatNotAvailableString()
         {
             product.Price = null;
-            product.PriceType = null;
             product.Group = null;
             product.Category.Price = null;
-            product.Category.PriceType = null;
 
             var result = product.GetHierarchicalPrice();
 

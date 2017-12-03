@@ -116,7 +116,7 @@
     <Compile Include="Core\Extensions\ProductExtensionsTests.cs" />
     <Compile Include="Models\JsonResponseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeverityLocalizationTests.cs" />
+    <Compile Include="LocalizationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

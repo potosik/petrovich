@@ -196,29 +196,11 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} BYN / {1}.
+        ///   Looks up a localized string similar to {0} BYN {1}.
         /// </summary>
         internal static string Price_Format {
             get {
                 return ResourceManager.GetString("Price_Format", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to день.
-        /// </summary>
-        internal static string Price_Format_Day {
-            get {
-                return ResourceManager.GetString("Price_Format_Day", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to месяц.
-        /// </summary>
-        internal static string Price_Format_Month {
-            get {
-                return ResourceManager.GetString("Price_Format_Month", resourceCulture);
             }
         }
         
@@ -241,29 +223,38 @@ namespace Petrovich.Web.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to В день.
+        ///   Looks up a localized string similar to ОСЦ.
         /// </summary>
-        internal static string PriceType_Day {
+        internal static string PriceCalculationType_Abr_ByDailyPrice {
             get {
-                return ResourceManager.GetString("PriceType_Day", resourceCulture);
+                return ResourceManager.GetString("PriceCalculationType_Abr_ByDailyPrice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to В месяц.
+        ///   Looks up a localized string similar to ОМЦ.
         /// </summary>
-        internal static string PriceType_Month {
+        internal static string PriceCalculationType_Abr_ByMonthPrice {
             get {
-                return ResourceManager.GetString("PriceType_Month", resourceCulture);
+                return ResourceManager.GetString("PriceCalculationType_Abr_ByMonthPrice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to За неделю.
+        ///   Looks up a localized string similar to Относительно суточной цены.
         /// </summary>
-        internal static string PriceType_Week {
+        internal static string PriceCalculationType_ByDailyPrice {
             get {
-                return ResourceManager.GetString("PriceType_Week", resourceCulture);
+                return ResourceManager.GetString("PriceCalculationType_ByDailyPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Относительно месячной цены.
+        /// </summary>
+        internal static string PriceCalculationType_ByMonthPrice {
+            get {
+                return ResourceManager.GetString("PriceCalculationType_ByMonthPrice", resourceCulture);
             }
         }
         

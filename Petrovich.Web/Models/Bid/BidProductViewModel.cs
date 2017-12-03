@@ -13,7 +13,6 @@ namespace Petrovich.Web.Models.Bid
         public string Title { get; set; }
         public string Description { get; set; }
         public double? Price { get; set; }
-        public int? PriceType { get; set; }
         public double AssessedValue { get; set; }
 
         public string BranchTitle { get; set; }
@@ -34,7 +33,6 @@ namespace Petrovich.Web.Models.Bid
                 Title = product.Title,
                 Description = product.Description,
                 Price = priceDTO.Price,
-                PriceType = (int?)priceDTO.PriceType,
                 AssessedValue = product.AssessedValue,
 
                 BranchTitle = product.Category.BranchTitle,

@@ -15,9 +15,9 @@ namespace Petrovich.Context.Entities
 
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Defects { get;set;}
  
         public double? Price { get; set; }
-        public PriceType? PriceType { get; set; }
 
         public double AssessedValue { get; set; }
 

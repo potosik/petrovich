@@ -2,6 +2,7 @@
 using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
+using Petrovich.Business.Models.Enumerations;
 
 namespace Petrovich.Repositories.Mappers.Concrete
 {
@@ -20,9 +21,8 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Title = group.Title,
                 InventoryPart = group.InventoryPart,
                 Price = group.BasePrice,
-                PriceType = EnumMapper.Map<Context.Enumerations.PriceType, Business.Models.Enumerations.PriceTypeBusiness>(group.PriceType),
 
-                BranchInventoryPart = group.Category.Branch?.InventoryPart,
+                BranchInventoryPart = group.Category?.Branch?.InventoryPart,
 
                 CategoryId = group.CategoryId,
                 CategoryTitle = group.Category?.Title,
@@ -48,7 +48,6 @@ namespace Petrovich.Repositories.Mappers.Concrete
                 Title = groupModel.Title,
                 InventoryPart = groupModel.InventoryPart,
                 BasePrice = groupModel.Price,
-                PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, Context.Enumerations.PriceType>(groupModel.PriceType),
                 CategoryId = groupModel.CategoryId,
 
                 Created = groupModel.Created,

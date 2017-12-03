@@ -69,7 +69,6 @@ namespace Petrovich.Web.Controllers
                 var model = new ProductCreateViewModel()
                 {
                     Branches = await CreateBranchesSelectList(),
-                    PriceTypes = CreatePriceTypeSelectList(),
                 };
 
                 if (source.HasValue)
@@ -77,8 +76,8 @@ namespace Petrovich.Web.Controllers
                     var sourceProduct = await productService.FindAsync(source.Value);
                     model.Title = sourceProduct.Title;
                     model.Description = sourceProduct.Description;
+                    model.Defects = sourceProduct.Defects;
                     model.Price = sourceProduct.Price;
-                    model.PriceType = (int?)sourceProduct.PriceType;
                     model.AssessedValue = sourceProduct.AssessedValue;
                     model.PurchaseYear = sourceProduct.PurchaseYear;
                     model.PurchaseMonth = sourceProduct.PurchaseMonth;
@@ -125,8 +124,8 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         Description = model.Description,
+                        Defects = model.Defects,
                         Price = model.Price,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         AssessedValue = model.AssessedValue,
 
                         PurchaseYear = model.PurchaseYear,
@@ -147,7 +146,6 @@ namespace Petrovich.Web.Controllers
                 model.Branches = await CreateBranchesSelectList();
                 model.Categories = await CreateCategoriesSelectList(model.BranchId);
                 model.Groups = await CreateGroupsSelectList(model.CategoryId);
-                model.PriceTypes = CreatePriceTypeSelectList();
             }
             catch (InvalidImageFormatException ex)
             {
@@ -186,14 +184,12 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Edit(Guid id)
+        public async Task<ActionResult> Edit(Guid id, string returnUrl = null)
         {
             try
             {
                 var product = await productService.FindAsync(id);
-                var model = ProductEditViewModel.Create(product);
-                model.PriceTypes = CreatePriceTypeSelectList();
-                return View(model);
+                return View(ProductEditViewModel.Create(product));
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -220,7 +216,7 @@ namespace Petrovich.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ProductEditViewModel model, HttpPostedFileBase file)
+        public async Task<ActionResult> Edit(ProductEditViewModel model, HttpPostedFileBase file, string returnUrl = null)
         {
             try
             {
@@ -232,8 +228,8 @@ namespace Petrovich.Web.Controllers
                         ProductId = model.ProductId,
                         Title = model.Title,
                         Description = model.Description,
+                        Defects = model.Defects,
                         Price = model.Price,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         AssessedValue = model.AssessedValue,
                         InventoryPart = model.InventoryPart,
 
@@ -249,7 +245,7 @@ namespace Petrovich.Web.Controllers
                     };
 
                     await productService.UpdateAsync(product);
-                    return RedirectToAction(PetrovichRoutes.Products.Index);
+                    return RedirectToLocalOrAction(returnUrl, PetrovichRoutes.Products.Index);
                 }
             }
             catch (InvalidImageFormatException ex)
@@ -289,18 +285,17 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id, string returnUrl = null)
         {
             try
             {
                 await productService.DeleteAsync(id);
-                return RedirectToAction(PetrovichRoutes.Products.Index);
+                return RedirectToLocalOrAction(returnUrl, PetrovichRoutes.Products.Index);
             }
             catch (ArgumentOutOfRangeException ex)
             {

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Petrovich.Context.Enumerations
 {
-    public enum PriceType : int
+    public enum PriceCalculationType : int
     {
-        Day = 0,
-        Week = 1,
-        Month = 2,
+        ByDailyPrice = 0,
+        ByMonthPrice = 1,
     }
 }

@@ -105,7 +105,7 @@
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CategoryModelCollection.cs" />
     <Compile Include="Models\Enumerations\LogSeverityBusiness.cs" />
-    <Compile Include="Models\Enumerations\PriceTypeBusiness.cs" />
+    <Compile Include="Models\Enumerations\PriceCalculationTypeBusiness.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\GroupModelCollection.cs" />
     <Compile Include="Models\LogModel.cs" />

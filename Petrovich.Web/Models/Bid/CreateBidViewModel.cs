@@ -13,14 +13,12 @@ namespace Petrovich.Web.Models.Bid
         public CreateBidParametersViewModel Parameters { get; set; }
 
         public IList<BidProductViewModel> Products { get; set; }
-        public IList<SelectListItem> PriceTypes { get; set; }
 
         public CreateBidViewModel()
         {
             Client = new CreateBidClientViewModel();
             Parameters = new CreateBidParametersViewModel();
             Products = new List<BidProductViewModel>();
-            PriceTypes = new List<SelectListItem>();
         }
     }
 }

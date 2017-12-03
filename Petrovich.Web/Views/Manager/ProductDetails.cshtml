@@ -41,7 +41,7 @@
                 {
                     <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = Model.ProductId })" class="btn btn-default btn-xs">Редактировать</a>
                 }
-                @if (User.Identity.HasClaim(PermissionClaims.Manager) && Model.Price.HasValue && Model.PriceType.HasValue)
+                @if (User.Identity.HasClaim(PermissionClaims.Manager) && Model.Price.HasValue)
                 {
                     <input name="product_id" type="hidden" value="@Model.ProductId">
                     <input name="product_name" type="hidden" value="@Model.Title">
@@ -49,8 +49,6 @@
                     <input name="product_image" type="hidden" value="@Model.ImageSmall.RenderImageForSmartCart(Url)">
                     <input name="product_price" type="hidden" value="@Model.PriceText">
                     <input name="product_link" type="hidden" value="@Url.Action(PetrovichRoutes.Manager.ProductDetails, new { id = Model.ProductId })">
-                    @*<input name="product_price" type="hidden" value="@Model.Price.Value.ToDoubleValueString()">
-                    <input name="product_pricetype" type="hidden" value="@Model.PriceType">*@
 
                     <a href="javascript:void(0)" class="btn btn-success btn-xs sc-add-to-cart">Добавить в заявку</a>
                     <a class="btn btn-dark btn-xs sc-added-to-cart" disabled>Добавлен в заявку</a>
@@ -77,6 +75,12 @@
                     <h2>Оценочная стоимость: <span class="assessedvalue">@Model.AssessedValue BYN</span></h2>
                     <div class="clearfix"></div>
                 </div>
+                @if (!String.IsNullOrWhiteSpace(Model.Defects))
+                {
+                    <div class="panel-body">
+                        <p><strong>Дефекты:</strong> @Model.Defects</p>
+                    </div>
+                }
                 <div class="panel-body">
                     <p>@Model.Description</p>
                 </div>

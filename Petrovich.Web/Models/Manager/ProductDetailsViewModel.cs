@@ -21,8 +21,8 @@ namespace Petrovich.Web.Models.Manager
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Defects { get; set; }
         public double? Price { get; set; }
-        public int? PriceType { get; set; }
         public string PriceText { get; set; }
         public double AssessedValue { get; set; }
         public string InventoryNumber { get; set; }
@@ -54,8 +54,8 @@ namespace Petrovich.Web.Models.Manager
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
+                Defects = product.Defects,
                 Price = priceDTO.Price,
-                PriceType = (int?)priceDTO.PriceType,
                 PriceText = product.GetHierarchicalPrice(),
                 AssessedValue = product.AssessedValue,
                 InventoryNumber = product.InventoryNumber,

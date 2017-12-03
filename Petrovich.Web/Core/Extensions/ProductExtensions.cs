@@ -12,7 +12,7 @@ namespace Petrovich.Web.Core.Extensions
     {
         public static string GetHierarchicalPrice(this ProductModel product)
         {
-            var result = product.GetPriceInformation();
+            var result = product.GetPriceInformation(product.Category.PriceCalculationType);
             if (result != Resources.Price_Format_NotAvailable)
             {
                 return result;
@@ -20,7 +20,7 @@ namespace Petrovich.Web.Core.Extensions
 
             if (product.Group != null)
             {
-                result = product.Group.GetPriceInformation();
+                result = product.Group.GetPriceInformation(product.Category.PriceCalculationType);
                 if (result != Resources.Price_Format_NotAvailable)
                 {
                     return result;
@@ -29,7 +29,7 @@ namespace Petrovich.Web.Core.Extensions
 
             if (product.Category != null)
             {
-                return product.Category.GetPriceInformation();
+                return product.Category.GetPriceInformation(product.Category.PriceCalculationType);
             }
 
             return result;
@@ -37,32 +37,32 @@ namespace Petrovich.Web.Core.Extensions
 
         public static PriceableEntityDTO GetHierarchicalPriceDTO(this ProductModel product)
         {
-            if (product.Price.HasValue && product.PriceType.HasValue)
+            if (product.Price.HasValue)
             {
                 return new PriceableEntityDTO()
                 {
                     Price = product.Price,
-                    PriceType = product.PriceType,
+                    PriceCalculationType = product.Category.PriceCalculationType,
                 };
             }
 
 
-            if (product.Group != null && product.Group.Price.HasValue && product.Group.PriceType.HasValue)
+            if (product.Group != null && product.Group.Price.HasValue)
             {
                 return new PriceableEntityDTO()
                 {
                     Price = product.Group.Price,
-                    PriceType = product.Group.PriceType,
+                    PriceCalculationType = product.Category.PriceCalculationType,
                 };
             }
 
 
-            if (product.Category.Price.HasValue && product.Category.PriceType.HasValue)
+            if (product.Category.Price.HasValue)
             {
                 return new PriceableEntityDTO()
                 {
                     Price = product.Category.Price,
-                    PriceType = product.Category.PriceType,
+                    PriceCalculationType = product.Category.PriceCalculationType,
                 };
             }
 

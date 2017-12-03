@@ -48,7 +48,7 @@ namespace Petrovich.Web.Controllers
                 var model = new CategoryCreateViewModel()
                 {
                     Branches = await CreateBranchesSelectList(),
-                    PriceTypes = CreatePriceTypeSelectList(),
+                    PriceCalculationTypes = CreatePriceCalculationTypeSelectList(),
                 };
 
                 return View(model);
@@ -75,7 +75,7 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
+                        PriceCalculationType = (PriceCalculationTypeBusiness)model.PriceCalculationType,
                         BranchId = model.BranchId,
                     };
 
@@ -84,7 +84,7 @@ namespace Petrovich.Web.Controllers
                 }
 
                 model.Branches = await CreateBranchesSelectList();
-                model.PriceTypes = CreatePriceTypeSelectList();
+                model.PriceCalculationTypes = CreatePriceCalculationTypeSelectList();
             }
             catch (BranchNotFoundException ex)
             {
@@ -119,7 +119,7 @@ namespace Petrovich.Web.Controllers
             {
                 var category = await dataStructureService.FindCategoryAsync(id);
                 var model = CategoryEditViewModel.Create(category);
-                model.PriceTypes = CreatePriceTypeSelectList();
+                model.PriceCalculationTypes = CreatePriceCalculationTypeSelectList();
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -158,7 +158,7 @@ namespace Petrovich.Web.Controllers
                         Title = model.Title,
                         InventoryPart = model.InventoryPart,
                         Price = model.BasePrice,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
+                        PriceCalculationType = (PriceCalculationTypeBusiness)model.PriceCalculationType,
                         BranchId = model.BranchId,
                     };
 
@@ -193,7 +193,7 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.PriceTypes = CreatePriceTypeSelectList();
+            model.PriceCalculationTypes = CreatePriceCalculationTypeSelectList();
             return View(model);
         }
 

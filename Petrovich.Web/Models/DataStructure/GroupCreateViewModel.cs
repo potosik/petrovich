@@ -12,7 +12,6 @@ namespace Petrovich.Web.Models.DataStructure
         public GroupCreateViewModel()
         {
             Categories = new List<SelectListItem>();
-            PriceTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -22,14 +21,10 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Базовая цена проката (BYN)")]
         public double? BasePrice { get; set; }
 
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
-
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Категория")]
         public Guid CategoryId { get; set; }
 
         public List<SelectListItem> Categories { get; set; }
-        public List<SelectListItem> PriceTypes { get; set; }
     }
 }

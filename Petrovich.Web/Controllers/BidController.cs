@@ -46,7 +46,6 @@ namespace Petrovich.Web.Controllers
                 var model = new CreateBidViewModel()
                 {
                     Products = products,
-                    PriceTypes = CreatePriceTypeSelectList(),
                 };
                 return View(model);
             }

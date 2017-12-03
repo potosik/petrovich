@@ -10,9 +10,9 @@ namespace Petrovich.Business.Models
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Defects { get; set; }
 
         public double? Price { get; set; }
-        public PriceTypeBusiness? PriceType { get; set; }
         public double AssessedValue { get; set; }
 
         public int InventoryPart { get; set; }

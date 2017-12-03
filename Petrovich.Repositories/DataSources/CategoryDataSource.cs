@@ -100,7 +100,7 @@ namespace Petrovich.Repositories.DataSources
                 targetCategory.Title = category.Title;
                 targetCategory.InventoryPart = category.InventoryPart;
                 targetCategory.BasePrice = category.Price;
-                targetCategory.PriceType = EnumMapper.Map<Business.Models.Enumerations.PriceTypeBusiness, PriceType>(category.PriceType);
+                targetCategory.PriceCalculationType = EnumMapper.Map<Business.Models.Enumerations.PriceCalculationTypeBusiness, PriceCalculationType>(category.PriceCalculationType);
                 targetCategory.BranchId = category.BranchId;
 
                 await categoryRepository.UpdateAsync(targetCategory);

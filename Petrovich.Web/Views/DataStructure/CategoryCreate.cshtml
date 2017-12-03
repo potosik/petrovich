@@ -29,7 +29,7 @@
                     @Html.TextBoxFor(m => m.BasePrice, "{0:N2}", new { id = "price", @class = "form-control col-xs-12", placeholder = "Цена проката" })
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
-                    @Html.DropDownListFor(m => m.PriceType, Model.PriceTypes, new { @class = "form-control col-xs-12" })
+                    @Html.DropDownListFor(m => m.PriceCalculationType, Model.PriceCalculationTypes, new { @class = "form-control col-xs-12" })
                 </div>
             </div>
             <div class="form-group">

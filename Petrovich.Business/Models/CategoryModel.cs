@@ -11,7 +11,7 @@ namespace Petrovich.Business.Models
         public int InventoryPart { get; set; }
 
         public double? Price { get; set; }
-        public PriceTypeBusiness? PriceType { get; set; }
+        public PriceCalculationTypeBusiness PriceCalculationType { get; set; }
 
         public Guid BranchId { get; set; }
         public string BranchTitle { get; set; }

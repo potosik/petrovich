@@ -10,6 +10,5 @@ namespace Petrovich.Business.Models.Base
     public interface IPriceableEntityModel
     {
         double? Price { get; set; }
-        PriceTypeBusiness? PriceType { get; set; }
     }
 }

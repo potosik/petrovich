@@ -13,13 +13,13 @@ namespace Petrovich.Web.Models.DataStructure
     {
         public CategoryEditViewModel()
         {
-            PriceTypes = new List<SelectListItem>();
+            PriceCalculationTypes = new List<SelectListItem>();
         }
 
         public CategoryEditViewModel(IChangeTrackableEntityModel entity)
             : base(entity)
         {
-            PriceTypes = new List<SelectListItem>();
+            PriceCalculationTypes = new List<SelectListItem>();
         }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
@@ -36,8 +36,9 @@ namespace Petrovich.Web.Models.DataStructure
         [Display(Name = "Базовая цена проката (BYN)")]
         public double? BasePrice { get; set; }
 
-        [Display(Name = "Ценовой срок")]
-        public int? PriceType { get; set; }
+        [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
+        [Display(Name = "Схема расчета цены")]
+        public int PriceCalculationType { get; set; }
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Раздел")]
@@ -45,7 +46,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public string BranchTitle { get; set; }
 
-        public List<SelectListItem> PriceTypes { get; set; }
+        public List<SelectListItem> PriceCalculationTypes { get; set; }
 
         public static CategoryEditViewModel Create(CategoryModel category)
         {
@@ -60,7 +61,7 @@ namespace Petrovich.Web.Models.DataStructure
                 Title = category.Title,
                 InventoryPart = category.InventoryPart,
                 BasePrice = category.Price,
-                PriceType = (int?)category.PriceType,
+                PriceCalculationType = (int)category.PriceCalculationType,
                 BranchId = category.BranchId,
 
                 BranchTitle = category.BranchTitle,

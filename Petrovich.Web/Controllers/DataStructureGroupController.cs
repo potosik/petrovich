@@ -48,7 +48,6 @@ namespace Petrovich.Web.Controllers
                 var model = new GroupCreateViewModel()
                 {
                     Categories = await CreateGroupsSelectList(),
-                    PriceTypes = CreatePriceTypeSelectList(),
                 };
 
                 return View(model);
@@ -75,7 +74,6 @@ namespace Petrovich.Web.Controllers
                     {
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         CategoryId = model.CategoryId,
                     };
 
@@ -84,7 +82,6 @@ namespace Petrovich.Web.Controllers
                 }
 
                 model.Categories = await CreateGroupsSelectList();
-                model.PriceTypes = CreatePriceTypeSelectList();
             }
             catch (CategoryNotFoundException ex)
             {
@@ -114,7 +111,6 @@ namespace Petrovich.Web.Controllers
             {
                 var group = await dataStructureService.FindGroupAsync(id);
                 var model = GroupEditViewModel.Create(group);
-                model.PriceTypes = CreatePriceTypeSelectList();
                 return View(model);
             }
             catch (ArgumentOutOfRangeException ex)
@@ -152,7 +148,6 @@ namespace Petrovich.Web.Controllers
                         GroupId = model.GroupId,
                         Title = model.Title,
                         Price = model.BasePrice,
-                        PriceType = (PriceTypeBusiness?)model.PriceType,
                         InventoryPart = model.InventoryPart,
                         CategoryId = model.CategoryId,
                     };
@@ -183,7 +178,6 @@ namespace Petrovich.Web.Controllers
                 return await CreateInternalServerErrorResponseAsync(ex);
             }
 
-            model.PriceTypes = CreatePriceTypeSelectList();
             return View(model);
         }
 

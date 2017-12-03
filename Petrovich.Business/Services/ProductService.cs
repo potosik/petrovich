@@ -83,7 +83,6 @@ namespace Petrovich.Business.Services
             
             product.InventoryPart = inventoryPartValue.Value;
             ValidatePurchasingInformation(product);
-            ValidatePricingInformation(product);
 
             await logger.LogNoneAsync("ProductService.CreateAsync: creating new product.");
             return await productDataSource.CreateAsync(product);
@@ -150,7 +149,6 @@ namespace Petrovich.Business.Services
             }
 
             ValidatePurchasingInformation(product);
-            ValidatePricingInformation(product);
 
             await logger.LogNoneAsync("ProductService.UpdateAsync: updating product.");
             return await productDataSource.UpdateAsync(product);
@@ -192,15 +190,6 @@ namespace Petrovich.Business.Services
             if (!product.PurchaseYear.HasValue)
             {
                 product.PurchaseMonth = null;
-            }
-        }
-
-        private void ValidatePricingInformation(ProductModel product)
-        {
-            if (!product.Price.HasValue || !product.PriceType.HasValue)
-            {
-                product.Price = null;
-                product.PriceType = null;
             }
         }
 

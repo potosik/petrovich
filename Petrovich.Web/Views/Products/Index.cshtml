@@ -21,6 +21,7 @@
                             <tr>
                                 <th>Название</th>
                                 <th>Инвентарный номер</th>
+                                <th>Дефекты</th>
                                 <th>Цена проката</th>
                                 <th>Раздел</th>
                                 <th>Категория</th>
@@ -42,20 +43,26 @@
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                     <td>@Html.DisplayFor(modelItem => item.InventoryNumber)</td>
+                                    <td>
+                                        @if(!String.IsNullOrWhiteSpace(item.Defects))
+                                        {
+                                            @:Да
+                                        }
+                                    </td>
                                     <td>@Html.DisplayFor(modelItem => item.Price)</td>
                                     <td>@Html.DisplayFor(modelItem => item.BranchTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.CategoryTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.GroupTitle)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Modified)</td>
                                     <td>
-                                        @using (Html.BeginForm(PetrovichRoutes.Products.Delete, new { id = item.ProductId }, FormMethod.Post, null))
+                                        @using (Html.BeginForm(PetrovichRoutes.Products.Delete, new { id = item.ProductId, returnUrl = Request.RawUrl }, FormMethod.Post, null))
                                         {
                                             @Html.AntiForgeryToken()
                                             <div class="btn-group" role="group">
-                                                <a href="@Url.Action(PetrovichRoutes.Products.Create, new { source = item.ProductId })" class="btn btn-default btn-xs" aria-label="Дублировать" title="Дублировать">
+                                                <a href="@Url.Action(PetrovichRoutes.Products.Create, new { source = item.ProductId, returnUrl = Request.RawUrl })" class="btn btn-default btn-xs" aria-label="Дублировать" title="Дублировать">
                                                     <span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
                                                 </a>
-                                                <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = item.ProductId })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
+                                                <a href="@Url.Action(PetrovichRoutes.Products.Edit, new { id = item.ProductId, returnUrl = Request.RawUrl })" class="btn btn-default btn-xs" aria-label="Редактировать" title="Редактировать">
                                                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                                 </a>
                                                 <button type="submit" class="btn btn-danger btn-xs btn-delete" aria-label="Удалить" title="Удалить">

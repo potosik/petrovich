@@ -22,8 +22,8 @@ namespace Petrovich.Web.Models.Products
         public Guid ProductId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Defects { get; set; }
         public string Price { get; set; }
-        public int? PriceType { get; set; }
 
         public string BranchTitle { get; set; }
 
@@ -47,7 +47,8 @@ namespace Petrovich.Web.Models.Products
                 ProductId = product.ProductId,
                 Title = product.Title,
                 Description = product.Description,
-                Price = product.GetPriceInformation(),
+                Defects = product.Defects,
+                Price = product.GetPriceInformation(product.Category.PriceCalculationType),
 
                 BranchTitle = product.BranchTitle,
 

@@ -37,7 +37,7 @@ namespace Petrovich.Web.Models.DataStructure
             {
                 CategoryId = category.CategoryId,
                 Title = category.Title,
-                Price = category.GetPriceInformation(),
+                Price = category.GetPriceInformation(category.PriceCalculationType),
                 InventoryPart = category.InventoryPart,
                 BranchTitle = category.BranchTitle,
             };
