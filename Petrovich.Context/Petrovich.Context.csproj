@@ -151,6 +151,10 @@
     <Compile Include="Migrations\201712011656281_DefectsFieldAdded.Designer.cs">
       <DependentUpon>201712011656281_DefectsFieldAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712131230313_ClientsAndBidsAdded.cs" />
+    <Compile Include="Migrations\201712131230313_ClientsAndBidsAdded.Designer.cs">
+      <DependentUpon>201712131230313_ClientsAndBidsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PetrovichContextBase.cs" />
     <Compile Include="PetrovichContext.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712011656281_DefectsFieldAdded.resx">
       <DependentUpon>201712011656281_DefectsFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712131230313_ClientsAndBidsAdded.resx">
+      <DependentUpon>201712131230313_ClientsAndBidsAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
