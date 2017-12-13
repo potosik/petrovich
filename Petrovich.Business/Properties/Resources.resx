@@ -183,4 +183,7 @@
   <data name="E404007" xml:space="preserve">
     <value>Image '{0}' not found.</value>
   </data>
+  <data name="E404008" xml:space="preserve">
+    <value>Client '{0}' not found.</value>
+  </data>
 </root>

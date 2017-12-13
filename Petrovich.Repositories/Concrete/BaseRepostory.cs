@@ -15,7 +15,7 @@ namespace Petrovich.Repositories.Concrete
 
         public BaseRepostory(IPetrovichContext context)
         {
-            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.context = context;
         }
         
         public abstract Task<TEntity> FindAsync(Guid id);

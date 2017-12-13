@@ -1,6 +1,7 @@
 ﻿using Petrovich.Core.Composition;
 using Microsoft.Practices.Unity;
 using Petrovich.Repositories.Mappers.Concrete;
+using Unity;
 
 namespace Petrovich.Repositories.Mappers.Composition
 {

@@ -8,11 +8,11 @@
     "inputFile": "Content/css/theme.less"
   },
   {
-    "outputFile": "Content/js/petrovich.js",
-    "inputFile": "Content/js/petrovich.js"
-  },
-  {
     "outputFile": "Content/js/theme.js",
     "inputFile": "Content/js/theme.js"
+  },
+  {
+    "outputFile": "Content/js/petrovich.js",
+    "inputFile": "Content/js/petrovich.js"
   }
 ]

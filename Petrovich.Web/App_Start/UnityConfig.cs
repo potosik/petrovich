@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Petrovich.Core.Composition;
 using Petrovich.Web.Composition;
 using System.Linq;
+using Unity;
 
 namespace Petrovich.Web.App_Start
 {

@@ -4,6 +4,8 @@ using Petrovich.Business.Data;
 using Petrovich.Business.PerformanceCounters;
 using Petrovich.Business.Services;
 using Petrovich.Business.Logging;
+using Unity;
+using Unity.Injection;
 
 namespace Petrovich.Business.Composition
 {
@@ -19,10 +21,11 @@ namespace Petrovich.Business.Composition
             container.RegisterType<IDataStructureService, DataStructureService>();
             container.RegisterType<IProductService, ProductService>();
             container.RegisterType<IFullImageService, FullImageService>();
+            container.RegisterType<IClientService, ClientService>();
 
             container.RegisterType<ILogDataSource, LogPerformanceCounter>(new InjectionConstructor(new ResolvedParameter(typeof(ILogDataSource), "LogDataSource")));
             container.RegisterType<IBranchDataSource, BranchPerformanceCounter>(new InjectionConstructor(
-                new ResolvedParameter(typeof(IBranchDataSource), "BranchDataSource"), 
+                new ResolvedParameter(typeof(IBranchDataSource), "BranchDataSource"),
                 new ResolvedParameter(typeof(ILoggingService))));
             container.RegisterType<ICategoryDataSource, CategoryPerformanceCounter>(new InjectionConstructor(
                 new ResolvedParameter(typeof(ICategoryDataSource), "CategoryDataSource"),
@@ -35,6 +38,9 @@ namespace Petrovich.Business.Composition
                 new ResolvedParameter(typeof(ILoggingService))));
             container.RegisterType<IFullImageDataSource, FullImagePerformanceCounter>(new InjectionConstructor(
                 new ResolvedParameter(typeof(IFullImageDataSource), "FullImageDataSource"),
+                new ResolvedParameter(typeof(ILoggingService))));
+            container.RegisterType<IClientDataSource, ClientPerformanceCounter>(new InjectionConstructor(
+                new ResolvedParameter(typeof(IClientDataSource), "ClientDataSource"),
                 new ResolvedParameter(typeof(ILoggingService))));
         }
     }

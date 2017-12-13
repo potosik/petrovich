@@ -17,8 +17,8 @@ namespace Petrovich.Repositories.DataSources
 
         public FullImageDataSource(IFullImageRepository fullImageRepository, IFullImageMapper fullImageMapper)
         {
-            this.fullImageRepository = fullImageRepository ?? throw new ArgumentNullException(nameof(fullImageRepository));
-            this.fullImageMapper = fullImageMapper ?? throw new ArgumentNullException(nameof(fullImageMapper));
+            this.fullImageRepository = fullImageRepository;
+            this.fullImageMapper = fullImageMapper;
         }
 
         public async Task<Guid> CreateAsync(byte[] content)

@@ -30,9 +30,9 @@
                     @item.InventoryNumber
                 </td>
                 <td>
-                    @if(!String.IsNullOrWhiteSpace(item.Defects))
+                    @if (!String.IsNullOrWhiteSpace(item.Defects))
                     {
-                        @:Да
+                        <span title="@item.Defects">Да</span>
                     }
                 </td>
                 <td>

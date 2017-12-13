@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -14,10 +15,7 @@ namespace Petrovich.Web.Models.Manager
 
         public static GroupViewModel Create(GroupModel group)
         {
-            if (group == null)
-            {
-                throw new ArgumentNullException(nameof(group));
-            }
+            Guard.NotNullArgument(group, nameof(group));
 
             return new GroupViewModel()
             {

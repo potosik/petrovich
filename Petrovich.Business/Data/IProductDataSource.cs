@@ -7,7 +7,7 @@ namespace Petrovich.Business.Data
 {
     public interface IProductDataSource
     {
-        Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize);
+        Task<ProductModelCollection> ListAsync(string filter, int pageIndex, int pageSize);
         Task<ProductModel> CreateAsync(ProductModel product);
         Task<ProductModel> FindAsync(Guid id);
         Task<ProductModel> UpdateAsync(ProductModel product);

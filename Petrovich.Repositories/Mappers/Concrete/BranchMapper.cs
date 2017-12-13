@@ -3,6 +3,7 @@ using Petrovich.Business.Models;
 using Petrovich.Context.Entities;
 using System.Linq;
 using System;
+using Petrovich.Core;
 
 namespace Petrovich.Repositories.Mappers.Concrete
 {
@@ -35,10 +36,7 @@ namespace Petrovich.Repositories.Mappers.Concrete
 
         public Branch ToContextBranch(BranchModel branchModel)
         {
-            if (branchModel == null)
-            {
-                throw new ArgumentNullException(nameof(branchModel));
-            }
+            Guard.NotNullArgument(branchModel, nameof(branchModel));
 
             return new Branch()
             {

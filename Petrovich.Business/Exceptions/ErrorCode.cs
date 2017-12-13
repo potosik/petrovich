@@ -26,6 +26,7 @@
         GroupNotFound = 404005,
         ProductNotFound = 404006,
         FullImageNotFound = 404007,
+        ClientNotFound = 404008,
     }
 
 }

@@ -15,8 +15,8 @@ namespace Petrovich.Repositories.DataSources
 
         public LogDataSource(ILogRepository logRepository, ILogMapper logMapper)
         {
-            this.logRepository = logRepository ?? throw new ArgumentNullException(nameof(logRepository));
-            this.logMapper = logMapper ?? throw new ArgumentNullException(nameof(logMapper));
+            this.logRepository = logRepository;
+            this.logMapper = logMapper;
         }
 
         public async Task<LogModel> FindAsync(Guid id)

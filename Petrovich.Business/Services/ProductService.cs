@@ -7,6 +7,7 @@ using Petrovich.Business.Models;
 using Petrovich.Business.Data;
 using Petrovich.Business.Logging;
 using Petrovich.Business.Exceptions;
+using Petrovich.Core;
 
 namespace Petrovich.Business.Services
 {
@@ -20,24 +21,20 @@ namespace Petrovich.Business.Services
             IGroupDataSource groupDataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            this.productDataSource = productDataSource ?? throw new ArgumentNullException(nameof(productDataSource));
-            this.categoryDataSource = categoryDataSource ?? throw new ArgumentNullException(nameof(categoryDataSource));
-            this.groupDataSource = groupDataSource ?? throw new ArgumentNullException(nameof(groupDataSource));
+            this.productDataSource = productDataSource;
+            this.categoryDataSource = categoryDataSource;
+            this.groupDataSource = groupDataSource;
         }
 
-        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<ProductModelCollection> ListAsync(string filter, int pageIndex, int pageSize)
         {
             await logger.LogNoneAsync($"ProductService.ListAsync: listing products (pageIndex: {pageIndex} pageSize: {pageSize}).");
-            return await productDataSource.ListAsync(pageIndex, pageSize);
+            return await productDataSource.ListAsync(filter, pageIndex, pageSize);
         }
 
         public async Task<ProductModel> CreateAsync(ProductModel product)
         {
-            if (product == null)
-            {
-                await logger.LogInformationAsync("ProductService.CreateAsync: product parameter is null.");
-                throw new ArgumentNullException(nameof(product));
-            }
+            Guard.NotNullArgument(product, nameof(product));
 
             await logger.LogNoneAsync($"ProductService.CreateAsync: trying to get category {product.Category.CategoryId}.");
             var category = await categoryDataSource.FindAsync(product.Category.CategoryId);
@@ -90,11 +87,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModel> FindAsync(Guid id)
         {
-            if (id == Guid.Empty)
-            {
-                await logger.LogInformationAsync($"ProductService.FindAsync: id parameter is {id}.");
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
+            Guard.ValidateIdentifier(id, nameof(id));
 
             await logger.LogNoneAsync($"ProductService.FindAsync: trying to get product by id ({id}).");
             var product = await productDataSource.FindAsync(id);
@@ -109,11 +102,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModel> UpdateAsync(ProductModel product)
         {
-            if (product.ProductId == Guid.Empty)
-            {
-                await logger.LogInformationAsync($"ProductService.UpdateAsync: productId is {product.ProductId}.");
-                throw new ArgumentOutOfRangeException(nameof(product.ProductId));
-            }
+            Guard.ValidateIdentifier(product.ProductId, nameof(product.ProductId));
 
             await logger.LogNoneAsync($"ProductService.UpdateAsync: trying to get product by id ({product.ProductId}).");
             var dbProduct = await productDataSource.FindAsync(product.ProductId);
@@ -156,11 +145,7 @@ namespace Petrovich.Business.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            if (id == Guid.Empty)
-            {
-                await logger.LogInformationAsync($"ProductService.DeleteAsync: id parameter is {id}.");
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
+            Guard.ValidateIdentifier(id, nameof(id));
 
             await logger.LogNoneAsync($"ProductService.DeleteAsync: trying to get product by id ({id}).");
             var product = await productDataSource.FindAsync(id);
@@ -176,11 +161,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
-            if (String.IsNullOrWhiteSpace(query))
-            {
-                await logger.LogInformationAsync($"ProductService.SearchFastAsync: search query if null or empty.");
-                throw new ArgumentNullException(nameof(query));
-            }
+            Guard.NotNullArgument(query, nameof(query));
 
             return await productDataSource.SearchFastAsync(query, count);
         }
@@ -195,11 +176,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
-            if (categoryId == Guid.Empty)
-            {
-                await logger.LogInformationAsync($"ProductService.ListByCategoryIdAsync: categoryId parameter is {categoryId}.");
-                throw new ArgumentOutOfRangeException(nameof(categoryId));
-            }
+            Guard.ValidateIdentifier(categoryId, nameof(categoryId));
 
             await logger.LogNoneAsync($"ProductService.ListByCategoryIdAsync: trying to get category by id ({categoryId}).");
             var category = await categoryDataSource.FindAsync(categoryId);
@@ -215,11 +192,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
         {
-            if (groupId == Guid.Empty)
-            {
-                await logger.LogInformationAsync($"ProductService.ListByGroupIdAsync: groupId parameter is {groupId}.");
-                throw new ArgumentOutOfRangeException(nameof(groupId));
-            }
+            Guard.ValidateIdentifier(groupId, nameof(groupId));
 
             await logger.LogNoneAsync($"ProductService.ListByGroupIdAsync: trying to get group by id ({groupId}).");
             var group = await groupDataSource.FindAsync(groupId);
@@ -235,17 +208,8 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
         {
-            if (productIds == null)
-            {
-                await logger.LogInformationAsync($"ProductService.ListAsync: productIds parameter is null.");
-                throw new ArgumentNullException(nameof(productIds));
-            }
-
-            if (!productIds.Any())
-            {
-                await logger.LogInformationAsync($"ProductService.ListByGroupIdAsync: productIds collection is empty.");
-                throw new ArgumentOutOfRangeException(nameof(productIds));
-            }
+            Guard.NotNullArgument(productIds, nameof(productIds));
+            Guard.CollectionNotEmpty(productIds, nameof(productIds));
 
             await logger.LogNoneAsync($"ProductService.ListAsync: listing products by ids ({String.Join(",", productIds)}).");
             return await productDataSource.ListAsync(productIds);

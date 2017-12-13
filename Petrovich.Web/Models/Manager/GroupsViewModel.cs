@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -19,25 +20,10 @@ namespace Petrovich.Web.Models.Manager
 
         internal static GroupsViewModel Create(BranchModel branch, CategoryModel category, GroupModelCollection groups, ProductModelCollection products)
         {
-            if (branch == null)
-            {
-                throw new ArgumentNullException(nameof(branch));
-            }
-
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
-
-            if (groups == null)
-            {
-                throw new ArgumentNullException(nameof(groups));
-            }
-
-            if (products == null)
-            {
-                throw new ArgumentNullException(nameof(products));
-            }
+            Guard.NotNullArgument(branch, nameof(branch));
+            Guard.NotNullArgument(category, nameof(category));
+            Guard.NotNullArgument(groups, nameof(groups));
+            Guard.NotNullArgument(products, nameof(products));
 
             return new GroupsViewModel()
             {

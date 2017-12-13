@@ -16,30 +16,30 @@ namespace Petrovich.Business.PerformanceCounters
         public FullImagePerformanceCounter(IFullImageDataSource dataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<Guid> CreateAsync(byte[] content)
+        public Task<Guid> CreateAsync(byte[] content)
         {
             using (new PerformanceMonitor(EventSource.CreateFullImageAsync, new { content.Length }))
             {
-                return await innerDataSource.CreateAsync(content);
+                return innerDataSource.CreateAsync(content);
             }
         }
 
-        public async Task<Guid> UpdateOrCreateAsync(byte[] content, Guid? imageId)
+        public Task<Guid> UpdateOrCreateAsync(byte[] content, Guid? imageId)
         {
             using (new PerformanceMonitor(EventSource.UpdateOrCreateFullImageAsync, new { content.Length, imageId }))
             {
-                return await innerDataSource.UpdateOrCreateAsync(content, imageId);
+                return innerDataSource.UpdateOrCreateAsync(content, imageId);
             }
         }
 
-        public async Task<byte[]> FindAsync(Guid id)
+        public Task<byte[]> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindFullImageAsync, new { id }))
             {
-                return await innerDataSource.FindAsync(id);
+                return innerDataSource.FindAsync(id);
             }
         }
     }

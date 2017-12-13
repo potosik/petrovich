@@ -20,8 +20,8 @@ namespace Petrovich.Repositories.DataSources
 
         public CategoryDataSource(ICategoryRepository categoryRepository, ICategoryMapper categoryMapper)
         {
-            this.categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
-            this.categoryMapper = categoryMapper ?? throw new ArgumentNullException(nameof(categoryMapper));
+            this.categoryRepository = categoryRepository;
+            this.categoryMapper = categoryMapper;
         }
 
         public async Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize)

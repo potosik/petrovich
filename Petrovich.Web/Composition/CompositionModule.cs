@@ -1,5 +1,6 @@
 ﻿using Petrovich.Core.Composition;
 using Microsoft.Practices.Unity;
+using Unity;
 
 namespace Petrovich.Web.Composition
 {
@@ -9,6 +10,7 @@ namespace Petrovich.Web.Composition
         {
             new Business.Composition.CompositionModule(),
             new Repositories.Composition.CompositionModule(),
+            new DataSource.Composition.CompositionModule(),
         };
 
         public void RegisterTypes(IUnityContainer container)

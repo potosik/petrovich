@@ -16,7 +16,7 @@
             <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination">
                     @if (Model.CurrentPage == 1)
-                {
+                    {
                         <li class="paginate_button previous disabled">
                             <a>&lt;</a>
                         </li>
@@ -29,9 +29,9 @@
                     }
 
                     @for (int index = startPage; index <= endPage; index++)
-                {
-                    var currentPageIndex = Model.CurrentPage == index;
-                    var btnClass = currentPageIndex ? "active" : String.Empty;
+                    {
+                        var currentPageIndex = Model.CurrentPage == index;
+                        var btnClass = currentPageIndex ? "active" : String.Empty;
 
                         <li class="paginate_button @btnClass">
                             @if (currentPageIndex)
@@ -40,13 +40,13 @@
                             }
                             else
                             {
-                                @Html.ActionLink(index.ToString(), Model.Endpoint, new { page = index }, null)
+                                @Html.ActionLink(index.ToString(), Model.Endpoint, new { page = index, filter = ViewBag.QueryFilter }, null)
                             }
                         </li>
                     }
 
                     @if (Model.CurrentPage == Model.TotalPages)
-                {
+                    {
                         <li class="paginate_button next disabled">
                             <a>&gt;</a>
                         </li>

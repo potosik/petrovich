@@ -14,78 +14,78 @@ namespace Petrovich.Business.PerformanceCounters
         public CategoryPerformanceCounter(ICategoryDataSource dataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize)
+        public Task<CategoryModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListCategories, new { pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync(pageIndex, pageSize);
+                return innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
         
-        public async Task<CategoryModel> CreateAsync(CategoryModel category)
+        public Task<CategoryModel> CreateAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.CreateCategory, new { category }))
             {
-                return await innerDataSource.CreateAsync(category);
+                return innerDataSource.CreateAsync(category);
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberAsync(Guid branchId)
+        public Task<int?> GetNewInventoryNumberAsync(Guid branchId)
         {
             using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForCategory, new { branchId }))
             {
-                return await innerDataSource.GetNewInventoryNumberAsync(branchId);
+                return innerDataSource.GetNewInventoryNumberAsync(branchId);
             }
         }
 
-        public async Task<CategoryModel> FindAsync(Guid id)
+        public Task<CategoryModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindCategoryById, new { id }))
             {
-                return await innerDataSource.FindAsync(id);
+                return innerDataSource.FindAsync(id);
             }
         }
 
-        public async Task<CategoryModel> UpdateAsync(CategoryModel category)
+        public Task<CategoryModel> UpdateAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.UpdateCategory, new { category }))
             {
-                return await innerDataSource.UpdateAsync(category);
+                return innerDataSource.UpdateAsync(category);
             }
         }
 
-        public async Task DeleteAsync(CategoryModel category)
+        public Task DeleteAsync(CategoryModel category)
         {
             using (new PerformanceMonitor(EventSource.DeleteCategory, new { category }))
             {
-                await innerDataSource.DeleteAsync(category);
+                return innerDataSource.DeleteAsync(category);
             }
         }
 
-        public async Task<bool> IsExistsForBranchAsync(Guid branchId)
+        public Task<bool> IsExistsForBranchAsync(Guid branchId)
         {
             using (new PerformanceMonitor(EventSource.IsExistsCategoriesForBranch, new { branchId }))
             {
-                return await innerDataSource.IsExistsForBranchAsync(branchId);
+                return innerDataSource.IsExistsForBranchAsync(branchId);
             }
         }
 
-        public async Task<CategoryModelCollection> ListByBranchIdAsync(Guid branchId)
+        public Task<CategoryModelCollection> ListByBranchIdAsync(Guid branchId)
         {
             using (new PerformanceMonitor(EventSource.ListCategoriesByBranchId, new { branchId }))
             {
-                return await innerDataSource.ListByBranchIdAsync(branchId);
+                return innerDataSource.ListByBranchIdAsync(branchId);
             }
         }
 
-        public async Task<CategoryModelCollection> ListAllAsync()
+        public Task<CategoryModelCollection> ListAllAsync()
         {
             using (new PerformanceMonitor(EventSource.ListAllCategoriesAsync))
             {
-                return await innerDataSource.ListAllAsync();
+                return innerDataSource.ListAllAsync();
             }
         }
     }

@@ -19,7 +19,7 @@ namespace Petrovich.Business.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -255,6 +255,15 @@ namespace Petrovich.Business.Properties {
         internal static string E404007 {
             get {
                 return ResourceManager.GetString("E404007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string E404008 {
+            get {
+                return ResourceManager.GetString("E404008", resourceCulture);
             }
         }
     }

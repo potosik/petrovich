@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Petrovich.Business.Data;
 using Petrovich.Repositories.DataSources;
 using Petrovich.Repositories.Concrete;
+using Unity;
 
 namespace Petrovich.Repositories.Composition
 {

@@ -15,6 +15,8 @@ namespace Petrovich.Web.Models
         public int StartItem { get; set; }
         public int LastItem { get; set; }
 
+        public Dictionary<string, string> UriParams { get; set; }
+
         public IEnumerable<TViewModel> Items { get; set; }
         public Endpoint Endpoint { get; set; }
 
@@ -29,6 +31,11 @@ namespace Petrovich.Web.Models
 
             StartItem = (currentPage - 1) * pageSize + 1;
             LastItem = StartItem - 1 + items.Count();
+
+            UriParams = new Dictionary<string, string>()
+            {
+                { "page", currentPage.ToString() },
+            };
         }
     }
 }

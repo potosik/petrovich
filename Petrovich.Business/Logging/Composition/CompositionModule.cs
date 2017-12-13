@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using Petrovich.Core.Composition;
+using Unity;
 
 namespace Petrovich.Business.Logging.Composition
 {

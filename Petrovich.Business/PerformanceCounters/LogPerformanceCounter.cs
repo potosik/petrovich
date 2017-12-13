@@ -11,22 +11,22 @@ namespace Petrovich.Business.PerformanceCounters
 
         public LogPerformanceCounter(ILogDataSource dataSource)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<LogModel> FindAsync(Guid id)
+        public Task<LogModel> FindAsync(Guid id)
         {
-            return await innerDataSource.FindAsync(id);
+            return innerDataSource.FindAsync(id);
         }
 
-        public async Task<LogModelCollection> ListAsync(int pageIndex, int pageSize)
+        public Task<LogModelCollection> ListAsync(int pageIndex, int pageSize)
         {
-            return await innerDataSource.ListAsync(pageIndex, pageSize);
+            return innerDataSource.ListAsync(pageIndex, pageSize);
         }
 
-        public async Task WriteLogAsync(LogModel entity)
+        public Task WriteLogAsync(LogModel entity)
         {
-            await innerDataSource.WriteLogAsync(entity);
+            return innerDataSource.WriteLogAsync(entity);
         }
     }
 }

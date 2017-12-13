@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Petrovich.Business.Models;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.DataStructure
 {
@@ -50,10 +51,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public static CategoryEditViewModel Create(CategoryModel category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
+            Guard.NotNullArgument(category, nameof(category));
 
             return new CategoryEditViewModel(category)
             {

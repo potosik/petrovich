@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Core;
 using Petrovich.Web.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,7 @@ namespace Petrovich.Web.Models.Bid
 
         public static BidProductViewModel Create(ProductModel product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
+            Guard.NotNullArgument(product, nameof(product));
 
             var priceDTO = product.GetHierarchicalPriceDTO();
             return new BidProductViewModel()

@@ -18,8 +18,8 @@ namespace Petrovich.Repositories.DataSources
 
         public BranchDataSource(IBranchRepository branchRepository, IBranchMapper branchMapper)
         {
-            this.branchRepository = branchRepository ?? throw new ArgumentNullException(nameof(branchRepository));
-            this.branchMapper = branchMapper ?? throw new ArgumentNullException(nameof(branchMapper));
+            this.branchRepository = branchRepository;
+            this.branchMapper = branchMapper;
         }
 
         public async Task<BranchModelCollection> ListAsync(int pageIndex, int pageSize)

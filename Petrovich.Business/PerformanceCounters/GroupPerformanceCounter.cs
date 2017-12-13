@@ -14,70 +14,70 @@ namespace Petrovich.Business.PerformanceCounters
         public GroupPerformanceCounter(IGroupDataSource dataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize)
+        public Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListGroups, new { pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync(pageIndex, pageSize);
+                return innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
 
-        public async Task<GroupModel> CreateAsync(GroupModel group)
+        public Task<GroupModel> CreateAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.CreateGroup, new { group }))
             {
-                return await innerDataSource.CreateAsync(group);
+                return innerDataSource.CreateAsync(group);
             }
         }
 
-        public async Task<GroupModel> FindAsync(Guid id)
+        public Task<GroupModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindGroupById, new { id }))
             {
-                return await innerDataSource.FindAsync(id);
+                return innerDataSource.FindAsync(id);
             }
         }
 
-        public async Task<GroupModel> UpdateAsync(GroupModel group)
+        public Task<GroupModel> UpdateAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.UpdateGroup, new { group }))
             {
-                return await innerDataSource.UpdateAsync(group);
+                return innerDataSource.UpdateAsync(group);
             }
         }
 
-        public async Task DeleteAsync(GroupModel group)
+        public Task DeleteAsync(GroupModel group)
         {
             using (new PerformanceMonitor(EventSource.DeleteGroup, new { group }))
             {
-                await innerDataSource.DeleteAsync(group);
+                return innerDataSource.DeleteAsync(group);
             }
         }
 
-        public async Task<bool> IsExistsForCategoryAsync(Guid categoryId)
+        public Task<bool> IsExistsForCategoryAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.IsExistsGroupsForCategory, new { categoryId }))
             {
-                return await innerDataSource.IsExistsForCategoryAsync(categoryId);
+                return innerDataSource.IsExistsForCategoryAsync(categoryId);
             }
         }
 
-        public async Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId)
+        public Task<GroupModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.ListGroupsByCategoryId, new { categoryId }))
             {
-                return await innerDataSource.ListByCategoryIdAsync(categoryId);
+                return innerDataSource.ListByCategoryIdAsync(categoryId);
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
+        public Task<int?> GetNewInventoryNumberAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForGroup, new { categoryId }))
             {
-                return await innerDataSource.GetNewInventoryNumberAsync(categoryId);
+                return innerDataSource.GetNewInventoryNumberAsync(categoryId);
             }
         }
     }

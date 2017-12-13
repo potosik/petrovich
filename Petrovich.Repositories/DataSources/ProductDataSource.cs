@@ -21,17 +21,17 @@ namespace Petrovich.Repositories.DataSources
 
         public ProductDataSource(IProductRepository productRepository, IProductMapper productMapper, IFullImageDataSource fullImageDataSource)
         {
-            this.productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
-            this.productMapper = productMapper ?? throw new ArgumentNullException(nameof(productMapper));
-            this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
+            this.productRepository = productRepository;
+            this.productMapper = productMapper;
+            this.fullImageDataSource = fullImageDataSource;
         }
 
-        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
+        public async Task<ProductModelCollection> ListAsync(string filter, int pageIndex, int pageSize)
         {
             try
             {
-                var products = await productRepository.ListAsync(pageIndex, pageSize);
-                var count = await productRepository.ListCountAsync();
+                var products = await productRepository.ListAsync(filter, pageIndex, pageSize);
+                var count = await productRepository.ListCountAsync(filter);
                 var collection = productMapper.ToProductModelCollection(products);
                 collection.TotalCount = count;
                 return collection;

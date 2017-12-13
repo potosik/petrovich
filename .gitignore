@@ -19,3 +19,7 @@ Petrovich.Context/obj/
 .vs/Petrovich/v15/.suo
 _Publish/
 .vs/slnx.sqlite
+Petrovich.DataSource.Tests/obj/
+Petrovich.DataSource/bin/
+Petrovich.DataSource/obj/
+Petrovich.DataSource.Tests/bin/

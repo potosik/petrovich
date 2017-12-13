@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Models;
 using Petrovich.Business.Models.Base;
+using Petrovich.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -42,10 +43,7 @@ namespace Petrovich.Web.Models.Logging
         
         public static LogViewModel Create(LogModel log)
         {
-            if (log == null)
-            {
-                throw new ArgumentNullException(nameof(log));
-            }
+            Guard.NotNullArgument(log, nameof(log));
 
             return new LogViewModel(log)
             {

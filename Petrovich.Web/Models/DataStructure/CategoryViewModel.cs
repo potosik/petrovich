@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Models;
 using Petrovich.Business.Models.Base;
+using Petrovich.Core;
 using Petrovich.Web.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public static CategoryViewModel Create(CategoryModel category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
+            Guard.NotNullArgument(category, nameof(category));
 
             return new CategoryViewModel(category)
             {

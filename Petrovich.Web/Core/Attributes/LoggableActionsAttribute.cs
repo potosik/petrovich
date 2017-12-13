@@ -2,6 +2,7 @@
 using Petrovich.Business.Logging;
 using Petrovich.Web.Core.Extensions;
 using System.Web.Mvc;
+using Unity.Attributes;
 
 namespace Petrovich.Web.Core.Attributes
 {

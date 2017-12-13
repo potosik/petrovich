@@ -32,7 +32,7 @@ namespace Petrovich.Web.Tests.Core.Extensions
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("12,30 BYN", result);
+            Assert.Equal("12,30 BYN ОСЦ", result);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace Petrovich.Web.Tests.Core.Extensions
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("45,60 BYN", result);
+            Assert.Equal("45,60 BYN ОСЦ", result);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace Petrovich.Web.Tests.Core.Extensions
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("78,90 BYN", result);
+            Assert.Equal("78,90 BYN ОСЦ", result);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace Petrovich.Web.Tests.Core.Extensions
             var result = product.GetHierarchicalPrice();
 
             Assert.NotNull(result);
-            Assert.Equal("78,90 BYN", result);
+            Assert.Equal("78,90 BYN ОСЦ", result);
         }
 
         [Fact]

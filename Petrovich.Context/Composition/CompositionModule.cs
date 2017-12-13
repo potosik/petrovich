@@ -1,5 +1,6 @@
 ﻿using Petrovich.Core.Composition;
 using Microsoft.Practices.Unity;
+using Unity;
 
 namespace Petrovich.Context.Composition
 {

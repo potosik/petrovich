@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -21,25 +22,10 @@ namespace Petrovich.Web.Models.Manager
 
         public static ProductsViewModel Create(BranchModel branch, CategoryModel category, GroupModel group, ProductModelCollection products)
         {
-            if (branch == null)
-            {
-                throw new ArgumentNullException(nameof(branch));
-            }
-
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
-
-            if (group == null)
-            {
-                throw new ArgumentNullException(nameof(group));
-            }
-
-            if (products == null)
-            {
-                throw new ArgumentNullException(nameof(products));
-            }
+            Guard.NotNullArgument(branch, nameof(branch));
+            Guard.NotNullArgument(category, nameof(category));
+            Guard.NotNullArgument(group, nameof(group));
+            Guard.NotNullArgument(products, nameof(products));
 
             return new ProductsViewModel()
             {

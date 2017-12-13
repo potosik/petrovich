@@ -20,5 +20,7 @@ namespace Petrovich.Context
         public IDbSet<Product> Products { get; set; }
 
         public IDbSet<FullImage> FullImages { get; set; }
+
+        public IDbSet<Client> Clients { get; set; }
     }
 }

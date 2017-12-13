@@ -65,5 +65,25 @@ namespace Petrovich.Repositories.Concrete
         {
             return await context.Products.Where(item => productIds.Contains(item.ProductId)).ToListAsync().ConfigureAwait(false);
         }
+
+        public async Task<IList<Product>> ListAsync(string filter, int pageIndex, int pageSize)
+        {
+            var query = context.Products.AsQueryable();
+            if (!String.IsNullOrWhiteSpace(filter))
+            {
+                query = query.Where(item => item.Title.Contains(filter));
+            }
+            return await query.OrderByDescending(item => item.Created).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false);
+        }
+
+        public async Task<int> ListCountAsync(string filter)
+        {
+            var query = context.Products.AsQueryable();
+            if (!String.IsNullOrWhiteSpace(filter))
+            {
+                query = query.Where(item => item.Title.Contains(filter));
+            }
+            return await query.CountAsync().ConfigureAwait(false);
+        }
     }
 }

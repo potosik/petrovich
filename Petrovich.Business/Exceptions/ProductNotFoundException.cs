@@ -12,6 +12,6 @@ namespace Petrovich.Business.Exceptions
         public ProductNotFoundException(Guid id)
             : base(FormatErrorMessage(ErrorCode.ProductNotFound, id))
         {
+        }
     }
-}
 }

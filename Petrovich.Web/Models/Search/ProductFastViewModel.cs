@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Core;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Core.Extensions;
 using System;
@@ -24,10 +25,7 @@ namespace Petrovich.Web.Models.Search
         
         public static ProductFastViewModel Create(ProductModel product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
+            Guard.NotNullArgument(product, nameof(product));
 
             return new ProductFastViewModel()
             {

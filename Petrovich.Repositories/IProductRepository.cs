@@ -16,5 +16,7 @@ namespace Petrovich.Repositories
         Task<IList<Product>> ListByCategoryIdAsync(Guid categoryId);
         Task<IList<Product>> ListByGroupIdAsync(Guid groupId);
         Task<IList<Product>> ListAsync(IEnumerable<Guid> productIds);
+        Task<IList<Product>> ListAsync(string filter, int pageIndex, int pageSize);
+        Task<int> ListCountAsync(string filter);
     }
 }

@@ -1,5 +1,4 @@
 ﻿'use strict';
-
 (function () {
     var registerFunctionIfNotRegistered = function registerFunctionIfNotRegistered(key, callback) {
         if (typeof window[key] !== 'function') {
@@ -15,6 +14,29 @@
         }
     });
 
+    // update url parameter
+    registerFunctionIfNotRegistered('urlParam', function (paramName, value) {
+        var uri = URI(window.location.href).removeQuery('page');
+        if (!value) {
+            uri.removeQuery(paramName);
+        } else {
+            uri.setQuery(paramName, value);
+        }
+
+        window.location.href = uri.normalize().toString();
+    });
+
+    // get url string parameter
+    registerFunctionIfNotRegistered('getUrlParam', function getParameterByName(paramName, url) {
+        if (!url) url = window.location.href;
+        paramName = paramName.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + paramName + "(=([^&#]*)|&|#|$)");
+        var results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    });
+
     function Petrovich() {
         this.init = function () {
             // initialize delete button confirmation dialog
@@ -27,6 +49,8 @@
             this.inputMasksInitialization();
             // initialize smart cart
             this.smartCartInitialization();
+            // initialize table filter
+            this.tableFilterInitialization();
         };
 
         this.deleteButtonConfirmation = function () {
@@ -184,6 +208,29 @@
             } else {
                 $('.x_panel.bid.hide').removeClass('hide');
             }
+        };
+
+        this.tableFilterInitialization = function () {
+            var filterParamName = 'filter';
+            var tableSearchContainer = $('.table_search');
+            var tableSearchBtn = tableSearchContainer.find('.btn-table-search');
+            var tableSearchInput = tableSearchContainer.find('.input-table-search');
+
+            var filterParameterValue = window.getUrlParam(filterParamName);
+            if (filterParameterValue) {
+                tableSearchInput.val(filterParameterValue);
+            }
+
+            tableSearchBtn.click(function () {
+                var value = tableSearchInput.val();
+                window.urlParam(filterParamName, value);
+            });
+
+            tableSearchInput.on('keyup', function (e) {
+                if (e.keyCode == 13) {
+                    tableSearchBtn.click();
+                }
+            });
         };
     }
 

@@ -1,6 +1,7 @@
 ﻿using Petrovich.Business.Data;
 using Petrovich.Business.Exceptions;
 using Petrovich.Business.Logging;
+using Petrovich.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,12 @@ namespace Petrovich.Business.Services
         public FullImageService(IFullImageDataSource fullImageDataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            this.fullImageDataSource = fullImageDataSource ?? throw new ArgumentNullException(nameof(fullImageDataSource));
+            this.fullImageDataSource = fullImageDataSource;
         }
 
         public async Task<byte[]> FindAsync(Guid id)
         {
-            if (id == Guid.Empty)
-            {
-                await logger.LogInformationAsync("FullImageService.FindAsync: id parameter is empty.");
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
+            Guard.ValidateIdentifier(id, nameof(id));
 
             await logger.LogNoneAsync($"FullImageService.FindAsync: trying to get image {id}.");
             var image = await fullImageDataSource.FindAsync(id);

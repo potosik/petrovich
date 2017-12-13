@@ -13,7 +13,7 @@ namespace Petrovich.Business.Services
 
         public BaseService(ILoggingService loggingService)
         {
-            this.logger = loggingService ?? throw new ArgumentNullException(nameof(loggingService));
+            this.logger = loggingService;
         }
     }
 }

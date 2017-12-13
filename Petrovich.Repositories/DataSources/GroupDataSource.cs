@@ -20,8 +20,8 @@ namespace Petrovich.Repositories.DataSources
 
         public GroupDataSource(IGroupRepository groupRepository, IGroupMapper groupMapper)
         {
-            this.groupRepository = groupRepository ?? throw new ArgumentNullException(nameof(groupRepository));
-            this.groupMapper = groupMapper ?? throw new ArgumentNullException(nameof(groupMapper));
+            this.groupRepository = groupRepository;
+            this.groupMapper = groupMapper;
         }
 
         public async Task<GroupModelCollection> ListAsync(int pageIndex, int pageSize)

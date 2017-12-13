@@ -14,7 +14,7 @@ namespace Petrovich.Web.Models
 
         int StartItem { get; set; }
         int LastItem { get; set; }
-
+        
         Endpoint Endpoint { get; set; }
     }
 }

@@ -13,6 +13,7 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
+        @Html.Partial("_TableSearch")
         <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="row">
                 <div class="col-xs-12">
@@ -34,7 +35,7 @@
                             @if (!Model.Items.Any())
                             {
                                 <tr>
-                                    <td colspan="3">Нет элементов для отображения</td>
+                                    <td colspan="9">Нет элементов для отображения</td>
                                 </tr>
                             }
 
@@ -44,9 +45,9 @@
                                     <td>@Html.DisplayFor(modelItem => item.Title)</td>
                                     <td>@Html.DisplayFor(modelItem => item.InventoryNumber)</td>
                                     <td>
-                                        @if(!String.IsNullOrWhiteSpace(item.Defects))
+                                        @if (!String.IsNullOrWhiteSpace(item.Defects))
                                         {
-                                            @:Да
+                                            <span title="@item.Defects">Да</span>
                                         }
                                     </td>
                                     <td>@Html.DisplayFor(modelItem => item.Price)</td>

@@ -16,62 +16,62 @@ namespace Petrovich.Business.PerformanceCounters
         public BranchPerformanceCounter(IBranchDataSource dataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<BranchModelCollection> ListAsync(int pageIndex, int pageSize)
+        public Task<BranchModelCollection> ListAsync(int pageIndex, int pageSize)
         {
             using (new PerformanceMonitor(EventSource.ListBranches, new { pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync(pageIndex, pageSize);
+                return innerDataSource.ListAsync(pageIndex, pageSize);
             }
         }
 
-        public async Task<BranchModel> FindByInventoryPartAsync(string inventoryPart)
+        public Task<BranchModel> FindByInventoryPartAsync(string inventoryPart)
         {
             using (new PerformanceMonitor(EventSource.FindBranchByInventoryPart, new { inventoryPart }))
             {
-                return await innerDataSource.FindByInventoryPartAsync(inventoryPart);
+                return innerDataSource.FindByInventoryPartAsync(inventoryPart);
             }
         }
 
-        public async Task<BranchModel> CreateAsync(BranchModel branch)
+        public Task<BranchModel> CreateAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.CreateBranch, new { branch }))
             {
-                return await innerDataSource.CreateAsync(branch);
+                return innerDataSource.CreateAsync(branch);
             }
         }
 
-        public async Task<BranchModel> FindAsync(Guid id)
+        public Task<BranchModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindBranchById, new { id }))
             {
-                return await innerDataSource.FindAsync(id);
+                return innerDataSource.FindAsync(id);
             }
         }
 
-        public async Task<BranchModel> UpdateAsync(BranchModel branch)
+        public Task<BranchModel> UpdateAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.UpdateBranch, new { branch }))
             {
-                return await innerDataSource.UpdateAsync(branch);
+                return innerDataSource.UpdateAsync(branch);
             }
         }
 
-        public async Task DeleteAsync(BranchModel branch)
+        public Task DeleteAsync(BranchModel branch)
         {
             using (new PerformanceMonitor(EventSource.DeleteBranch, new { branch }))
             {
-                await innerDataSource.DeleteAsync(branch);
+                return innerDataSource.DeleteAsync(branch);
             }
         }
 
-        public async Task<BranchModelCollection> ListAllAsync()
+        public Task<BranchModelCollection> ListAllAsync()
         {
             using (new PerformanceMonitor(EventSource.ListAllBranchesAsync))
             {
-                return await innerDataSource.ListAllAsync();
+                return innerDataSource.ListAllAsync();
             }
         }
     }

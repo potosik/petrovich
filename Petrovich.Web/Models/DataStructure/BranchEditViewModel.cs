@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.DataStructure
 {
@@ -45,10 +46,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public static BranchEditViewModel Create(BranchModel branch)
         {
-            if (branch == null)
-            {
-                throw new ArgumentNullException(nameof(branch));
-            }
+            Guard.NotNullArgument(branch, nameof(branch));
 
             return new BranchEditViewModel(branch)
             {

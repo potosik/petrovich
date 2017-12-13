@@ -1,5 +1,6 @@
 ﻿using Petrovich.Business.Models;
 using Petrovich.Business.Models.Base;
+using Petrovich.Core;
 using Petrovich.Web.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public static GroupViewModel Create(GroupModel group)
         {
-            if (group == null)
-            {
-                throw new ArgumentNullException(nameof(group));
-            }
+            Guard.NotNullArgument(group, nameof(group));
 
             return new GroupViewModel(group)
             {

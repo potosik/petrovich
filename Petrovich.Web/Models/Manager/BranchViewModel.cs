@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,7 @@ namespace Petrovich.Web.Models.Manager
 
         public static BranchViewModel Create(BranchModel branch)
         {
-            if (branch == null)
-            {
-                throw new ArgumentNullException(nameof(branch));
-            }
+            Guard.NotNullArgument(branch, nameof(branch));
 
             return new BranchViewModel()
             {

@@ -1,4 +1,5 @@
 ﻿using Petrovich.Business.Models;
+using Petrovich.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,7 @@ namespace Petrovich.Web.Models.Manager
         
         public static CategoryViewModel Create(CategoryModel category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException(nameof(category));
-            }
+            Guard.NotNullArgument(category, nameof(category));
 
             return new CategoryViewModel()
             {

@@ -5,6 +5,7 @@ using System.Web;
 using Petrovich.Business.Models;
 using Petrovich.Web.Core.Extensions;
 using Petrovich.Business.Models.Enumerations;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.Manager
 {
@@ -23,10 +24,7 @@ namespace Petrovich.Web.Models.Manager
 
         public static ProductViewModel Create(ProductModel product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
+            Guard.NotNullArgument(product, nameof(product));
 
             var priceDTO = product.GetHierarchicalPriceDTO();
             return new ProductViewModel()

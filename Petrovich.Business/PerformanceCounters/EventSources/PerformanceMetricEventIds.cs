@@ -58,5 +58,9 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         public const int CreateFullImageEventId = 15001;
         public const int UpdateOrCreateFullImageEventId = 15002;
         public const int FindFullImageEventId = 15003;
+
+        // clients #16
+        public const int ListClientsEventId = 16001;
+        public const int FindClientByIdEventId = 16002;
     }
 }

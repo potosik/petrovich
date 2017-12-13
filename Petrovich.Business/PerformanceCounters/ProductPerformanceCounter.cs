@@ -15,110 +15,110 @@ namespace Petrovich.Business.PerformanceCounters
         public ProductPerformanceCounter(IProductDataSource dataSource, ILoggingService loggingService)
             : base(loggingService)
         {
-            innerDataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            innerDataSource = dataSource;
         }
 
-        public async Task<ProductModelCollection> ListAsync(int pageIndex, int pageSize)
+        public Task<ProductModelCollection> ListAsync(string filter, int pageIndex, int pageSize)
         {
-            using (new PerformanceMonitor(EventSource.ListProducts, new { pageIndex, pageSize }))
+            using (new PerformanceMonitor(EventSource.ListProducts, new { filter, pageIndex, pageSize }))
             {
-                return await innerDataSource.ListAsync(pageIndex, pageSize);
+                return innerDataSource.ListAsync(filter, pageIndex, pageSize);
             }
         }
 
-        public async Task<ProductModel> CreateAsync(ProductModel product)
+        public Task<ProductModel> CreateAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.CreateProduct, new { product }))
             {
-                return await innerDataSource.CreateAsync(product);
+                return innerDataSource.CreateAsync(product);
             }
         }
 
-        public async Task<ProductModel> FindAsync(Guid id)
+        public Task<ProductModel> FindAsync(Guid id)
         {
             using (new PerformanceMonitor(EventSource.FindProductById, new { id }))
             {
-                return await innerDataSource.FindAsync(id);
+                return innerDataSource.FindAsync(id);
             }
         }
 
-        public async Task<ProductModel> UpdateAsync(ProductModel product)
+        public Task<ProductModel> UpdateAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.UpdateProduct, new { product }))
             {
-                return await innerDataSource.UpdateAsync(product);
+                return innerDataSource.UpdateAsync(product);
             }
         }
 
-        public async Task DeleteAsync(ProductModel product)
+        public Task DeleteAsync(ProductModel product)
         {
             using (new PerformanceMonitor(EventSource.DeleteProduct, new { product }))
             {
-                await innerDataSource.DeleteAsync(product);
+                return innerDataSource.DeleteAsync(product);
             }
         }
 
-        public async Task<bool> IsExistsForCategoryAsync(Guid categoryId)
+        public Task<bool> IsExistsForCategoryAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.IsExistsProductsForCategory, new { categoryId }))
             {
-                return await innerDataSource.IsExistsForCategoryAsync(categoryId);
+                return innerDataSource.IsExistsForCategoryAsync(categoryId);
             }
         }
 
-        public async Task<bool> IsExistsForGroupAsync(Guid groupId)
+        public Task<bool> IsExistsForGroupAsync(Guid groupId)
         {
             using (new PerformanceMonitor(EventSource.IsExistsProductsForGroup, new { groupId }))
             {
-                return await innerDataSource.IsExistsForGroupAsync(groupId);
+                return innerDataSource.IsExistsForGroupAsync(groupId);
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberInCategoryAsync(Guid categoryId)
+        public Task<int?> GetNewInventoryNumberInCategoryAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProductByCategory, new { categoryId }))
             {
-                return await innerDataSource.GetNewInventoryNumberInCategoryAsync(categoryId);
+                return innerDataSource.GetNewInventoryNumberInCategoryAsync(categoryId);
             }
         }
 
-        public async Task<int?> GetNewInventoryNumberInGroupAsync(Guid groupId)
+        public Task<int?> GetNewInventoryNumberInGroupAsync(Guid groupId)
         {
             using (new PerformanceMonitor(EventSource.GetNewInventoryNumberForProductByGroup, new { groupId }))
             {
-                return await innerDataSource.GetNewInventoryNumberInGroupAsync(groupId);
+                return innerDataSource.GetNewInventoryNumberInGroupAsync(groupId);
             }
         }
 
-        public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
+        public Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
             using (new PerformanceMonitor(EventSource.ProductSearchFast, new { query, count }))
             {
-                return await innerDataSource.SearchFastAsync(query, count);
+                return innerDataSource.SearchFastAsync(query, count);
             }
         }
 
-        public async Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
+        public Task<ProductModelCollection> ListByCategoryIdAsync(Guid categoryId)
         {
             using (new PerformanceMonitor(EventSource.ListProductsByCategoryId, new { categoryId }))
             {
-                return await innerDataSource.ListByCategoryIdAsync(categoryId);
+                return innerDataSource.ListByCategoryIdAsync(categoryId);
             }
         }
 
-        public async Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
+        public Task<ProductModelCollection> ListByGroupIdAsync(Guid groupId)
         {
             using (new PerformanceMonitor(EventSource.ListProductsByGroupId, new { groupId }))
             {
-                return await innerDataSource.ListByGroupIdAsync(groupId);
+                return innerDataSource.ListByGroupIdAsync(groupId);
             }
         }
 
-        public async Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
+        public Task<ProductModelCollection> ListAsync(IEnumerable<Guid> productIds)
         {
             using (new PerformanceMonitor(EventSource.ListProductsByIds, new { productIds }))
             {
-                return await innerDataSource.ListAsync(productIds);
+                return innerDataSource.ListAsync(productIds);
             }
         }
     }

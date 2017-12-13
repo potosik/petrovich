@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Petrovich.Business.Models.Base;
 using Petrovich.Core.Extensions;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models
 {
@@ -15,10 +16,7 @@ namespace Petrovich.Web.Models
 
         public ChangeTrackableViewModel(IChangeTrackableEntityModel entity)
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            Guard.NotNullArgument(entity, nameof(entity));
 
             MapChangeTrackingFields(entity);
         }

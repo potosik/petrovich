@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using Petrovich.Business.Models;
 using System.Web.Mvc;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.DataStructure
 {
@@ -42,10 +43,7 @@ namespace Petrovich.Web.Models.DataStructure
 
         public static GroupEditViewModel Create(GroupModel group)
         {
-            if (group == null)
-            {
-                throw new ArgumentNullException(nameof(group));
-            }
+            Guard.NotNullArgument(group, nameof(group));
 
             return new GroupEditViewModel(group)
             {

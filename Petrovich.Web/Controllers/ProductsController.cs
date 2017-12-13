@@ -37,12 +37,14 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index(int page = 1)
+        public async Task<ActionResult> Index(string filter, int page = 1)
         {
             try
             {
+                ViewBag.QueryFilter = filter;
+
                 var pageIndex = page - 1;
-                var products = await productService.ListAsync(pageIndex, DefaultPageSize);
+                var products = await productService.ListAsync(filter, pageIndex, DefaultPageSize);
                 var items = products.Select(item => ProductViewModel.Create(item));
                 var model = new PagedListViewModel<ProductViewModel>(items, PetrovichRoutes.Products.Index, page, products.TotalCount, DefaultPageSize);
                 return View(model);

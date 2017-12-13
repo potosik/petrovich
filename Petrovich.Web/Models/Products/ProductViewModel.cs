@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using Petrovich.Business.Models.Base;
 using Petrovich.Web.Core.Extensions;
+using Petrovich.Core;
 
 namespace Petrovich.Web.Models.Products
 {
@@ -37,10 +38,7 @@ namespace Petrovich.Web.Models.Products
 
         public static ProductViewModel Create(ProductModel product)
         {
-            if (product == null)
-            {
-                throw new ArgumentNullException(nameof(product));
-            }
+            Guard.NotNullArgument(product, nameof(product));
 
             return new ProductViewModel(product)
             {

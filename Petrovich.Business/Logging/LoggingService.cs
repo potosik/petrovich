@@ -4,6 +4,7 @@ using Petrovich.Business.Models.Enumerations;
 using Petrovich.Business.Models;
 using Petrovich.Business.Data;
 using Petrovich.Business.Exceptions;
+using Petrovich.Core;
 
 namespace Petrovich.Business.Logging
 {
@@ -15,7 +16,7 @@ namespace Petrovich.Business.Logging
 
         public LoggingService(ILogDataSource dataSource)
         {
-            this.dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            this.dataSource = dataSource;
         }
 
         private async Task LogAsync(LogSeverityBusiness severity, string message, string stackTrace = null, string innerExceptionMessage = null)
@@ -107,10 +108,7 @@ namespace Petrovich.Business.Logging
 
         public async Task<LogModel> FindAsync(Guid id)
         {
-            if (id == Guid.Empty)
-            {
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
+            Guard.ValidateIdentifier(id, nameof(id));
 
             var log = await dataSource.FindAsync(id);
             if (log == null)

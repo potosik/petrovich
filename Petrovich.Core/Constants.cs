@@ -36,5 +36,11 @@ namespace Petrovich.Core
             public const int SmallWidth = 64;
             public const int SmallHeight = 64;
         }
+
+        public static class Validation
+        {
+            public static int UnassignedId = 0;
+            public static Guid UnassignedGuidId = Guid.Empty;
+        }
     }
 }
