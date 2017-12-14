@@ -79,8 +79,21 @@
   <ItemGroup>
     <Compile Include="ClientDataSource.cs" />
     <Compile Include="Composition\CompositionModule.cs" />
+    <Compile Include="Mappers\Concrete\BranchMapper.cs" />
+    <Compile Include="Mappers\Concrete\CategoryMapper.cs" />
     <Compile Include="Mappers\Concrete\ClientMapper.cs" />
+    <Compile Include="Mappers\Concrete\FullImageMapper.cs" />
+    <Compile Include="Mappers\Concrete\GroupMapper.cs" />
+    <Compile Include="Mappers\Concrete\LogMapper.cs" />
+    <Compile Include="Mappers\Concrete\ProductMapper.cs" />
+    <Compile Include="Mappers\EnumMapper.cs" />
+    <Compile Include="Mappers\IBranchMapper.cs" />
+    <Compile Include="Mappers\ICategoryMapper.cs" />
     <Compile Include="Mappers\IClientMapper.cs" />
+    <Compile Include="Mappers\IFullImageMapper.cs" />
+    <Compile Include="Mappers\IGroupMapper.cs" />
+    <Compile Include="Mappers\ILogMapper.cs" />
+    <Compile Include="Mappers\IProductMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\FindClientByIdQuery.cs" />
     <Compile Include="Queries\ListClientsByFilterQuery.cs" />

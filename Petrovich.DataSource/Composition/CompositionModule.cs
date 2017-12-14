@@ -16,6 +16,12 @@ namespace Petrovich.DataSource.Composition
         {
             container.RegisterType<IClientDataSource, ClientDataSource>("ClientDataSource");
 
+            container.RegisterType<ILogMapper, LogMapper>();
+            container.RegisterType<IBranchMapper, BranchMapper>();
+            container.RegisterType<ICategoryMapper, CategoryMapper>();
+            container.RegisterType<IGroupMapper, GroupMapper>();
+            container.RegisterType<IProductMapper, ProductMapper>();
+            container.RegisterType<IFullImageMapper, FullImageMapper>();
             container.RegisterType<IClientMapper, ClientMapper>();
         }
     }

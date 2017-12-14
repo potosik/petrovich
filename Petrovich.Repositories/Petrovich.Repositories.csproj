@@ -98,20 +98,6 @@
     <Compile Include="IGroupRepository.cs" />
     <Compile Include="ILogRepository.cs" />
     <Compile Include="IProductRepository.cs" />
-    <Compile Include="Mappers\Composition\CompositionModule.cs" />
-    <Compile Include="Mappers\Concrete\FullImageMapper.cs" />
-    <Compile Include="Mappers\EnumMapper.cs" />
-    <Compile Include="Mappers\Concrete\BranchMapper.cs" />
-    <Compile Include="Mappers\IBranchMapper.cs" />
-    <Compile Include="Mappers\Concrete\CategoryMapper.cs" />
-    <Compile Include="Mappers\ICategoryMapper.cs" />
-    <Compile Include="Mappers\Concrete\GroupMapper.cs" />
-    <Compile Include="Mappers\IGroupMapper.cs" />
-    <Compile Include="Mappers\IFullImageMapper.cs" />
-    <Compile Include="Mappers\ILogMapper.cs" />
-    <Compile Include="Mappers\Concrete\ProductMapper.cs" />
-    <Compile Include="Mappers\IProductMapper.cs" />
-    <Compile Include="Mappers\Concrete\LogMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +117,10 @@
     <ProjectReference Include="..\Petrovich.Core\Petrovich.Core.csproj">
       <Project>{0363A4E5-86AA-4D11-ACDE-273111E82A23}</Project>
       <Name>Petrovich.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Petrovich.DataSource\Petrovich.DataSource.csproj">
+      <Project>{4D7F63D5-757F-40E6-B14A-4D218D3936A4}</Project>
+      <Name>Petrovich.DataSource</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

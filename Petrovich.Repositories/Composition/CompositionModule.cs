@@ -12,7 +12,6 @@ namespace Petrovich.Repositories.Composition
         public ICompositionModule[] InnerModules => new ICompositionModule[] 
         {
             new Context.Composition.CompositionModule(),
-            new Mappers.Composition.CompositionModule(),
 
         };
 

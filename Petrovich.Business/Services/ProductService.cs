@@ -161,7 +161,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> SearchFastAsync(string query, int count)
         {
-            Guard.NotNullArgument(query, nameof(query));
+            Guard.NotNullOrWhiteSpace(query, nameof(query));
 
             return await productDataSource.SearchFastAsync(query, count);
         }
