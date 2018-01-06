@@ -19,7 +19,7 @@ namespace Petrovich.Web.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -111,6 +111,15 @@ namespace Petrovich.Web.Properties {
         internal static string Category_NoInventoryPartSlotsAvailable_Error {
             get {
                 return ResourceManager.GetString("Category_NoInventoryPartSlotsAvailable_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Клиент с данным номером паспорта уже зарегистрирован..
+        /// </summary>
+        internal static string Client_Passport_Id_Already_Exist_Error {
+            get {
+                return ResourceManager.GetString("Client_Passport_Id_Already_Exist_Error", resourceCulture);
             }
         }
         

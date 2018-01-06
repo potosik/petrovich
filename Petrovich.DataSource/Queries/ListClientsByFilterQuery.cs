@@ -14,10 +14,14 @@ namespace Petrovich.DataSource.Queries
     internal class ListClientsByFilterQuery : IDatabaseQuery<IPetrovichContext, IEnumerable<Client>>
     {
         private readonly string filter;
+        private readonly int pageIndex;
+        private readonly int pageSize;
 
-        public ListClientsByFilterQuery(string filter)
+        public ListClientsByFilterQuery(string filter, int pageIndex, int pageSize)
         {
             this.filter = filter;
+            this.pageIndex = pageIndex;
+            this.pageSize = pageSize;
         }
 
         public async Task<IEnumerable<Client>> ExecuteAsync(IPetrovichContext model)
@@ -32,6 +36,8 @@ namespace Petrovich.DataSource.Queries
 
             return await query
                 .OrderBy(item => item.PassportId)
+                .Skip(pageIndex * pageSize)
+                .Take(pageSize)
                 .ToListAsync()
                 .ConfigureAwait(false);
         }

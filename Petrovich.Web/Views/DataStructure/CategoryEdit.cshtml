@@ -57,9 +57,9 @@
             </div>
             <div class="ln_solid"></div>
             <p class="font-gray-dark text-right small">
-                Создан: <strong>@Model.Created</strong> пользователем <strong>@Model.CreatedBy</strong>
+                Создан: <strong>@Html.DisplayFor(m => m.Created)</strong> пользователем <strong>@Html.DisplayFor(m => m.CreatedBy)</strong>
                 <br />
-                Отредактирован: <strong>@Model.Modified</strong> пользователем <strong>@Model.ModifiedBy</strong>
+                Отредактирован: <strong>@Html.DisplayFor(m => m.Modified)</strong> пользователем <strong>@Html.DisplayFor(m => m.ModifiedBy)</strong>
             </p>
         }
     </div>

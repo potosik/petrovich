@@ -9,7 +9,10 @@ namespace Petrovich.Business.Data
 {
     public interface IClientDataSource
     {
-        Task<ClientModelCollection> ListAsync(string filter);
+        Task<ClientModelCollection> ListAsync(string filter, int pageIndex, int pageSize);
         Task<ClientModel> FindAsync(Guid clientId);
+        Task<ClientModel> FindAsync(string passportId);
+        Task<ClientModel> CreateAsync(ClientModel client);
+        Task<ClientModel> UpdateAsync(ClientModel client);
     }
 }

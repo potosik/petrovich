@@ -117,5 +117,15 @@
             public static Endpoint Delete = new Endpoint(Controller, "Delete");
             public static Endpoint Restore = new Endpoint(Controller, "Restore");
         }
+
+        public static class Clients
+        {
+            private const string Controller = "Clients";
+
+            public static Endpoint Index = new Endpoint(Controller, IndexAction);
+            public static Endpoint Create = new Endpoint(Controller, "Create");
+            public static Endpoint Edit = new Endpoint(Controller, "Edit");
+            public static Endpoint Pick = new Endpoint(Controller, "Pick");
+        }
     }
 }

@@ -62,5 +62,7 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
         // clients #16
         public const int ListClientsEventId = 16001;
         public const int FindClientByIdEventId = 16002;
+        public const int CreateClientEventId = 16003;
+        public const int UpdateClientEventId = 16004;
     }
 }

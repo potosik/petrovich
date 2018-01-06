@@ -51,6 +51,10 @@
             this.smartCartInitialization();
             // initialize table filter
             this.tableFilterInitialization();
+            // initialize birthdate date picker
+            this.birthDatePickerInitialization();
+            // initialize json array editor
+            this.jsonArrayEditorInitialization();
         };
 
         this.deleteButtonConfirmation = function () {
@@ -231,6 +235,37 @@
                     tableSearchBtn.click();
                 }
             });
+        };
+
+        this.birthDatePickerInitialization = function () {
+            var element = $('#birthdatePicker');
+            var control = $('#birthdate');
+            var value = new Date(control.val());
+
+            if (!value) {
+                var currentDate = new Date();
+                value = new Date(currentDate.getFullYear() - 10, currentDate.getMonth(), currentDate.getDate());
+            }
+
+            $('#birthdatePicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'dd MM yy',
+                closeText: 'Готово',
+                defaultDate: value,
+                yearRange: "-100:-10",
+                onClose: function onClose(dateText, inst) {
+                    control.val(inst.currentDay + "." + (inst.currentMonth + 1) + "." + inst.currentYear);
+                    $(this).datepicker('setDate', new Date(inst.currentYear, inst.currentMonth, inst.currentDay));
+                }
+            });
+
+            element.datepicker("setDate", value);
+        };
+
+        this.jsonArrayEditorInitialization = function () {
+            $('.json-array-edit').jsonArrayEditor();
         };
     }
 

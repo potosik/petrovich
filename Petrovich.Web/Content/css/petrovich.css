@@ -109,3 +109,13 @@ ul.bidmenu > li.sc-cart-item {
   margin: 0;
   line-height: 15px;
 }
+.json-array-edit-container .json-array-edit-add {
+  width: 37px;
+}
+.json-array-edit-container .json-array-edit-add .input-group-addon {
+  border: 1px solid #ccc;
+}
+.json-array-edit-container .json-array-edit-element .input-group-addon,
+.json-array-edit-container .json-array-edit-add .input-group-addon {
+  cursor: pointer;
+}

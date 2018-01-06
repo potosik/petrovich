@@ -1,0 +1,65 @@
+﻿@model Petrovich.Web.Models.PagedListViewModel<Petrovich.Web.Models.Client.ClientPickViewModel>
+
+@{
+    ViewBag.Title = "Список клиентов";
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.Title <small>список зарегистрированных клиентов</small></h2>
+        <div class="nav navbar-right">
+            @*<a href="@Url.Action(PetrovichRoutes.Clients.Create)" class="btn btn-default btn-sm">Добавить клиента</a>*@
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        @Html.Partial("_TableSearch")
+        <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Имя</th>
+                                <th>Номер паспорта</th>
+                                <th>Дата рождения</th>
+                                <th>Адрес</th>
+                                <th>Регистрация</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Items.Any())
+                            {
+                                <tr>
+                                    <td colspan="5">Нет элементов для отображения</td>
+                                </tr>
+                            }
+
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Client.LastName) @Html.DisplayFor(modelItem => item.Client.FirstName)</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Client.PassportId)
+                                        <br />
+                                        @Html.DisplayFor(modelItem => item.Client.PersonalId)
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.Client.BirthDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Client.Address)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Client.Registered)</td>
+                                    <td>
+                                        <a href="@item.PickUri" class="btn btn-success btn-xs" aria-label="Выбрать" title="Выбрать клиента">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Выбрать
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @Html.Partial("_PagingNavigation", Model)
+        </div>
+    </div>
+</div>

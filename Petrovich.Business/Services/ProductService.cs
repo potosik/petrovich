@@ -28,7 +28,7 @@ namespace Petrovich.Business.Services
 
         public async Task<ProductModelCollection> ListAsync(string filter, int pageIndex, int pageSize)
         {
-            await logger.LogNoneAsync($"ProductService.ListAsync: listing products (pageIndex: {pageIndex} pageSize: {pageSize}).");
+            await logger.LogNoneAsync($"ProductService.ListAsync: listing products (filter: {filter} pageIndex: {pageIndex} pageSize: {pageSize}).");
             return await productDataSource.ListAsync(filter, pageIndex, pageSize);
         }
 

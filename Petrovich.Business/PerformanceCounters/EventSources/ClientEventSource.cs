@@ -23,5 +23,17 @@ namespace Petrovich.Business.PerformanceCounters.EventSources
             var message = BuildMessage(arguments);
             logger.LogPerformanceMetrics(PerformanceMetricEventIds.FindClientByIdEventId, elapsed.ToString(), "IClientDataSource.FindAsync", message);
         }
+
+        public void CreateClient(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.CreateClientEventId, elapsed.ToString(), "IClientDataSource.FindAsync", message);
+        }
+
+        public void UpdateClient(TimeSpan elapsed, object arguments)
+        {
+            var message = BuildMessage(arguments);
+            logger.LogPerformanceMetrics(PerformanceMetricEventIds.UpdateClientEventId, elapsed.ToString(), "IClientDataSource.FindAsync", message);
+        }
     }
 }

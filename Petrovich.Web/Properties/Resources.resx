@@ -135,6 +135,9 @@
   <data name="Category_NoInventoryPartSlotsAvailable_Error" xml:space="preserve">
     <value>Для выбранного раздела все слоты для категорий заняты. Выберите другой раздел либо удалите ненужную категорию.</value>
   </data>
+  <data name="Client_Passport_Id_Already_Exist_Error" xml:space="preserve">
+    <value>Клиент с данным номером паспорта уже зарегистрирован.</value>
+  </data>
   <data name="Critical" xml:space="preserve">
     <value>Критическая ошибка</value>
   </data>

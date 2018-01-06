@@ -9,7 +9,9 @@ namespace Petrovich.Business
 {
     public interface IClientService
     {
-        Task<ClientModelCollection> ListAsync(string filter);
+        Task<ClientModelCollection> ListAsync(string filter, int pageIndex, int pageSize);
         Task<ClientModel> FindAsync(Guid id);
+        Task<ClientModel> CreateAsync(ClientModel client);
+        Task<ClientModel> UpdateAsync(ClientModel client);
     }
 }

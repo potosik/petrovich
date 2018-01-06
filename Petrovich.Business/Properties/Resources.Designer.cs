@@ -196,6 +196,15 @@ namespace Petrovich.Business.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User with the same Passport Id &apos;{0}&apos; found: {1}..
+        /// </summary>
+        internal static string E400014 {
+            get {
+                return ResourceManager.GetString("E400014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log entity &apos;{0}&apos; not found..
         /// </summary>
         internal static string E404001 {

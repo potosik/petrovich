@@ -199,6 +199,7 @@
     <Compile Include="Composition\CompositionModule.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BidController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DataStructureBranchController.cs" />
     <Compile Include="Controllers\DataStructureGroupController.cs" />
@@ -238,6 +239,10 @@
     <Compile Include="Models\Bid\CreateBidClientViewModel.cs" />
     <Compile Include="Models\Bid\CreateBidParametersViewModel.cs" />
     <Compile Include="Models\Bid\CreateBidViewModel.cs" />
+    <Compile Include="Models\Client\ClientCreateViewModel.cs" />
+    <Compile Include="Models\Client\ClientEditViewModel.cs" />
+    <Compile Include="Models\Client\ClientPickViewModel.cs" />
+    <Compile Include="Models\Client\ClientViewModel.cs" />
     <Compile Include="Models\DataStructure\BranchViewModel.cs" />
     <Compile Include="Models\DataStructure\CategoryViewModel.cs" />
     <Compile Include="Models\DataStructure\BranchCreateViewModel.cs" />
@@ -310,6 +315,9 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\no-image.png" />
     <Content Include="Content\img\profile.png" />
+    <Content Include="Content\js\jquery.jsonarrayeditor.min.js">
+      <DependentUpon>jquery.jsonarrayeditor.js</DependentUpon>
+    </Content>
     <Content Include="Content\js\petrovich.min.js">
       <DependentUpon>petrovich.js</DependentUpon>
     </Content>
@@ -442,6 +450,8 @@
     <Content Include="Views\Images\FullSize.cshtml" />
     <Content Include="Content\css\PetrovichComponents\Manager.less" />
     <Content Include="Content\css\PetrovichComponents\SmartCart.less" />
+    <Content Include="Content\js\jquery.jsonarrayeditor.js" />
+    <Content Include="Content\css\PetrovichComponents\JsonArrayEdit.less" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Manager\ProductDetails.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Manager.cshtml" />
@@ -457,6 +467,10 @@
     <Content Include="Views\Bid\Index\BidConfiguration\BidParameters.cshtml" />
     <Content Include="Views\Bid\Index\BidConfiguration\BidClient.cshtml" />
     <Content Include="Views\Shared\_TableSearch.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Pick.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

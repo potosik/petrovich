@@ -105,6 +105,7 @@
     <Compile Include="Exceptions\ProductInventoryPartChangedException.cs" />
     <Compile Include="Exceptions\ProductNotFoundException.cs" />
     <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Exceptions\ClientPassportIdAlreadyExistException.cs" />
     <Compile Include="IClientService.cs" />
     <Compile Include="IDataStructureService.cs" />
     <Compile Include="IFullImageService.cs" />

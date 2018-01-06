@@ -162,6 +162,9 @@
   <data name="E400013" xml:space="preserve">
     <value>There are no available slots for new products in group '{0}'.</value>
   </data>
+  <data name="E400014" xml:space="preserve">
+    <value>User with the same Passport Id '{0}' found: {1}.</value>
+  </data>
   <data name="E404001" xml:space="preserve">
     <value>Log entity '{0}' not found.</value>
   </data>

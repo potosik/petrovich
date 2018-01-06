@@ -14,5 +14,9 @@
   {
     "outputFile": "Content/js/petrovich.js",
     "inputFile": "Content/js/petrovich.js"
+  },
+  {
+    "outputFile": "Content/js/jquery.jsonarrayeditor.js",
+    "inputFile": "Content/js/jquery.jsonarrayeditor.js"
   }
 ]

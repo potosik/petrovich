@@ -11,6 +11,7 @@ namespace Petrovich.Context.Composition
         public void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IPetrovichContext, PetrovichContext>();
+            container.RegisterType<IPetrovichContextFactory, PetrovichContextFactory>();
         }
     }
 }

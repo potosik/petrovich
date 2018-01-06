@@ -29,6 +29,11 @@ namespace Petrovich.DataSource.Mappers.Concrete
                 PersonalId = client.PersonalId,
                 BirthDate = client.BirthDate,
                 PhonesJson = client.PhonesJson,
+
+                Created = client.Created,
+                CreatedBy = client.CreatedBy,
+                Modified = client.Modified,
+                ModifiedBy = client.ModifiedBy,
             };
         }
 
@@ -51,6 +56,11 @@ namespace Petrovich.DataSource.Mappers.Concrete
                 PersonalId = clientModel.PersonalId,
                 BirthDate = clientModel.BirthDate,
                 PhonesJson = clientModel.PhonesJson,
+
+                Created = clientModel.Created,
+                CreatedBy = clientModel.CreatedBy,
+                Modified = clientModel.Modified,
+                ModifiedBy = clientModel.ModifiedBy,
             };
         }
     }

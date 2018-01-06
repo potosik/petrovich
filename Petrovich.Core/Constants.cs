@@ -42,5 +42,12 @@ namespace Petrovich.Core
             public static int UnassignedId = 0;
             public static Guid UnassignedGuidId = Guid.Empty;
         }
+
+        public static class Format
+        {
+            public const string DateFormat = "dd MMMM yyyy";
+            public const string TimeFormat = "HH:mm";
+            public const string DateTimeFormat = "dd MMMM yyyy HH:mm";
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using Petrovich.Business.Models.Base;
 using Petrovich.Core.Extensions;
 using Petrovich.Core;
+using System.ComponentModel.DataAnnotations;
 
 namespace Petrovich.Web.Models
 {
@@ -20,9 +21,12 @@ namespace Petrovich.Web.Models
 
             MapChangeTrackingFields(entity);
         }
-
+        
+        [DisplayFormat(DataFormatString = "{0:" + Constants.Format.DateTimeFormat + "}")]
         public DateTime? Created { get; set; }
         public string CreatedBy { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:" + Constants.Format.DateTimeFormat + "}")]
         public DateTime? Modified { get; set; }
         public string ModifiedBy { get; set; }
 

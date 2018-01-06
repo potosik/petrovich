@@ -16,7 +16,8 @@ namespace Petrovich.Web
                 .Include("~/Content/js/vendor/mustache.js")
                 .Include("~/Content/js/vendor/jquery.smartcart.js")
                 .Include("~/Content/js/vendor/jquery.inputmask.js")
-                .Include("~/Content/js/vendor/uri.js"));
+                .Include("~/Content/js/vendor/uri.js")
+                .Include("~/Content/js/jquery.jsonarrayeditor.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/theme").Include("~/Content/js/theme.js"));
             bundles.Add(new ScriptBundle("~/bundles/petrovich").Include("~/Content/js/petrovich.js"));

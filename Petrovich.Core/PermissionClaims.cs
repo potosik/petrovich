@@ -6,6 +6,6 @@
         PowerAdmin,
         ProductsAdmin,
         UserManagement,
-        Manager
+        Manager,
     }
 }

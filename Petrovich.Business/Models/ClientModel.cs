@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Petrovich.Business.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Petrovich.Business.Models
 {
-    public class ClientModel
+    public class ClientModel : BaseEntityModel
     {
         public Guid ClientId { get; set; }
         public string FirstName { get; set; }

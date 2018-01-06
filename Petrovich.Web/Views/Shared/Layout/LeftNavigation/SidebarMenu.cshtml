@@ -13,16 +13,21 @@
 
     @if (User.Identity.HasClaim(PermissionClaims.DataStructureAdmin))
     {
-        @Html.Partial("Layout/LeftNavigation/SidebarMenu/DataStructure")    ;
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/DataStructure");
     }
 
     @if (User.Identity.HasClaim(PermissionClaims.ProductsAdmin))
     {
-        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Products")    ;
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Products");
     }
 
     @if (User.Identity.HasClaim(PermissionClaims.Manager))
     {
         @Html.Partial("Layout/LeftNavigation/SidebarMenu/Manager");
+    }
+
+    @if (User.Identity.HasClaim(PermissionClaims.ClientsAdmin))
+    {
+        @Html.Partial("Layout/LeftNavigation/SidebarMenu/Clients");
     }
 </div>
