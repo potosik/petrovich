@@ -120,9 +120,6 @@
   <data name="ClientAdmin" xml:space="preserve">
     <value>Управление клиентами</value>
   </data>
-  <data name="DataStructureAdmin" xml:space="preserve">
-    <value>Управление структурой продуктов</value>
-  </data>
   <data name="Manager" xml:space="preserve">
     <value>Менеджер заявок</value>
   </data>

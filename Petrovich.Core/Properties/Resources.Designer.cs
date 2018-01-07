@@ -70,15 +70,6 @@ namespace Petrovich.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Управление структурой продуктов.
-        /// </summary>
-        internal static string DataStructureAdmin {
-            get {
-                return ResourceManager.GetString("DataStructureAdmin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Менеджер заявок.
         /// </summary>
         internal static string Manager {

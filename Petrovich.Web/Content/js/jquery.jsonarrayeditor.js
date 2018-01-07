@@ -8,18 +8,14 @@
         var $this = $(this);
         $this.parent().addClass('json-array-edit-container');
         container = $this.closest('.json-array-edit-container');
-
-        plugin.createMarkup(this);
+        $(plugin.markupTemplates.addButton).appendTo(container);
+        
         plugin.setInitialState();
         plugin.bindEvents();
 
         return this;
     };
-
-    plugin.createMarkup = function () {
-        $(plugin.markupTemplates.addButton).appendTo(container);
-    };
-
+    
     plugin.setInitialState = function () {
         try {
             var value = container.find('input.json-array-edit').val();

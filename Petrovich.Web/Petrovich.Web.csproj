@@ -421,7 +421,6 @@
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\UserManagement\UserList\UserItemDeleted.cshtml" />
     <Content Include="Key.snk" />
-    <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\DataStructure.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Products.cshtml" />
     <Content Include="Views\Shared\Layout\LeftNavigation\SidebarMenu\Logging.cshtml" />
     <Content Include="Views\DataStructure\BranchList.cshtml" />

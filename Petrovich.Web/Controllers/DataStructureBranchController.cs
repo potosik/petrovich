@@ -17,7 +17,7 @@ using Petrovich.Web.Models;
 namespace Petrovich.Web.Controllers
 {
     [LoggableActions]
-    [ClaimsAuthorize(Claims = new[] { PermissionClaims.DataStructureAdmin, PermissionClaims.PowerAdmin })]
+    [ClaimsAuthorize(Claims = new[] { PermissionClaims.ProductsAdmin, PermissionClaims.PowerAdmin })]
     public partial class DataStructureController : BaseController
     {
         private readonly IDataStructureService dataStructureService;

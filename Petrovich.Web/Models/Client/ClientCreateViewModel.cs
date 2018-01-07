@@ -36,7 +36,7 @@ namespace Petrovich.Web.Models.Client
 
         [Required(ErrorMessageResourceName = "Required_Field_Error", ErrorMessageResourceType = typeof(Properties.Resources))]
         [Display(Name = "Дата рождения")]
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now.AddYears(-18);
 
         [Display(Name = "Номера телефонов")]
         public string PhonesJson { get; set; }

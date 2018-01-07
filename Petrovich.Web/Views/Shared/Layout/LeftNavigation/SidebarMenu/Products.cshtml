@@ -2,6 +2,39 @@
     <h3>Склад</h3>
     <ul class="nav side-menu">
         <li>
+            <a><i class="fa fa-user"></i> Раздел <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    @Html.ActionLink("Список разделов", PetrovichRoutes.DataStructure.BranchList)
+                </li>
+                <li>
+                    @Html.ActionLink("Добавить раздел", PetrovichRoutes.DataStructure.BranchCreate)
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-user"></i> Категории <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    @Html.ActionLink("Список категорий", PetrovichRoutes.DataStructure.CategoryList)
+                </li>
+                <li>
+                    @Html.ActionLink("Добавить категорию", PetrovichRoutes.DataStructure.CategoryCreate)
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-user"></i> Группы товаров <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li>
+                    @Html.ActionLink("Список групп", PetrovichRoutes.DataStructure.GroupList)
+                </li>
+                <li>
+                    @Html.ActionLink("Добавить группу", PetrovichRoutes.DataStructure.GroupCreate)
+                </li>
+            </ul>
+        </li>
+        <li>
             <a><i class="fa fa-user"></i> Товар <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
                 <li>

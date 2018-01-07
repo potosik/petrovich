@@ -3,6 +3,7 @@ using Petrovich.Business.Exceptions;
 using Petrovich.Business.Logging;
 using Petrovich.Business.Models;
 using Petrovich.Core;
+using Petrovich.Core.Extensions;
 using Petrovich.Core.Navigation;
 using Petrovich.Web.Core.Attributes;
 using Petrovich.Web.Core.Controllers;
@@ -23,6 +24,8 @@ namespace Petrovich.Web.Controllers
     [ClaimsAuthorize(Claims = new[] { PermissionClaims.PowerAdmin, PermissionClaims.Manager })]
     public class ClientsController : BaseController
     {
+        private const string DefaultPickParameter = "clientId";
+
         private readonly IClientService clientService;
 
         public ClientsController(IClientService clientService, ILoggingService loggingService)
@@ -73,7 +76,7 @@ namespace Petrovich.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ClientCreateViewModel model)
+        public async Task<ActionResult> Create(ClientCreateViewModel model, string pickReturnUrl, string parameter = DefaultPickParameter)
         {
             try
             {
@@ -92,8 +95,14 @@ namespace Petrovich.Web.Controllers
                         PhonesJson = model.PhonesJson,
                     };
 
-                    await clientService.CreateAsync(newClient);
-                    return RedirectToAction(PetrovichRoutes.Clients.Index);
+                    var client = await clientService.CreateAsync(newClient);
+                    if (String.IsNullOrWhiteSpace(pickReturnUrl))
+                    {
+                        return RedirectToAction(PetrovichRoutes.Clients.Index);
+                    }
+
+                    var returnUri = PrepareReturnUrl(pickReturnUrl);
+                    return Redirect(returnUri.SetParameter(parameter, client.ClientId.ToString()).ToString());
                 }
             }
 
@@ -200,11 +209,13 @@ namespace Petrovich.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Pick(string filter, string returnUrl, int page = 1, string parameter = "clientId")
+        public async Task<ActionResult> Pick(string filter, string returnUrl, int page = 1, string parameter = DefaultPickParameter)
         {
             try
             {
                 ViewBag.QueryFilter = filter;
+                ViewBag.PickReturnUrl = returnUrl;
+                ViewBag.Parameter = parameter;
 
                 var pageIndex = page - 1;
                 var returnUri = PrepareReturnUrl(returnUrl);

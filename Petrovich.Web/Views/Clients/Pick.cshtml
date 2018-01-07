@@ -8,7 +8,7 @@
     <div class="x_title">
         <h2>@ViewBag.Title <small>список зарегистрированных клиентов</small></h2>
         <div class="nav navbar-right">
-            @*<a href="@Url.Action(PetrovichRoutes.Clients.Create)" class="btn btn-default btn-sm">Добавить клиента</a>*@
+            <a href="@Url.Action(PetrovichRoutes.Clients.Create, new { pickReturnUrl = ViewBag.PickReturnUrl, parameter = ViewBag.Parameter })" class="btn btn-default btn-sm">Добавить клиента</a>
         </div>
         <div class="clearfix"></div>
     </div>
